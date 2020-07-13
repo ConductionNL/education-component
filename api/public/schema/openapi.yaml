@@ -6395,12 +6395,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -6440,12 +6440,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
     required:
       - name
@@ -6469,22 +6469,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -6600,22 +6600,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -6843,12 +6843,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
     required: []
   AuditTrail-write:
     properties:
@@ -6896,12 +6896,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-13 14:38:47'
+        example: '2020-07-13 14:54:39'
     required: []
   ChangeLog-write:
     properties:
