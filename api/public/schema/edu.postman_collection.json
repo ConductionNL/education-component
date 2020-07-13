@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "5ab66d47-7749-4b54-9f95-9f389fb7051e",
+		"name": "Education Component",
+		"description": "    API Details\r\n    - Component: Education Component\r\n    - Reference: edu\r\n    - Enviroment: dev\r\n    - Version: V.0.1\r\n    - Repository: [online](https://github.com/ConductionNL/education-component) / [zip](https://github.com/ConductionNL/education-component/archive/master.zip)\r\n    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/edu-php) \r\n    - Datamodel: [postman](/schema/edu.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) \r\n    \r\n    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.' ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "courses",
+			"item": [
+				{
+					"name": "Retrieves the collection of Course resources.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9ef8074f-09ac-48ea-a29b-cca08674e949",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// example using response assertions\r",
+									"pm.test(\"response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"// example using pm.response.to.be*\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"    // assert that the status code is 200\r",
+									"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"    // assert that the response has a valid JSON body\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request",
+								"type": "text"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)",
+								"type": "text"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courses",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a Challenge resource. Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c293b076-c060-4e27-8206-281064a337c4",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"// example using response assertions\r",
+									"pm.test(\"response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"// example using pm.response.to.be*\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"    // assert that the status code is 200\r",
+									"    // pm.response.to.be.created; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"    // assert that the response has a valid JSON body\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Set ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData);\r",
+									"    //var payloadData = JSON.parse(jsonData.Payload); //parsed payload\r",
+									"\r",
+									"    //console.log(payloadData.Id);\r",
+									"\r",
+									"    pm.environment.set(\"challenge\", jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Werken met scrum en Github\",\n    \"description\": \"Deze cursus leert je de basics van werken met scrum en Github.\",\n    \"courseCode\": \"SG123\",\n    \"coursePrerequisites\": \"Een vmbo diploma of hoger.\",\n    \"hasCourseInstance\": \"https://edu.conduction.nl/courses\",\n    \"numberOfCredits\": 5,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/courses",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/challenges",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Challenge resource created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/challenges",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+						},
+						{
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/challenges",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "courses/{id}",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "education events",
+			"item": [],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c32fa714-dc4b-489e-baa8-498023b2aad1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a41946b0-b888-4d1f-9da0-89c228fa1ade",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "education events/{id}",
+			"item": [],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b9978c53-d34b-419a-9549-aaa88c78aa91",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f28cbff-8e5a-4407-a851-fb843f6914a0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "educational occupational programs",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "educational occupational programs/{id}",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "participants",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "participants/{id}",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "14bbac91-1121-462a-a2a0-f09f72825f56",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6488120d-5a07-4874-bc47-be9295af0b20",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "dfc0f74e-2464-4c0d-a88d-039fc097fa30",
+			"key": "baseUrl",
+			"value": "edu.localhost"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

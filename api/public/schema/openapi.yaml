@@ -1942,6 +1942,2930 @@ paths:
             schema:
               $ref: '#/components/schemas/ChangeLog-write'
         description: 'The updated ChangeLog resource'
+  /courses:
+    get:
+      tags:
+        - Course
+      operationId: getCourseCollection
+      summary: 'Retrieves the collection of Course resources.'
+      responses:
+        200:
+          description: 'Course collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Course:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Course:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Course
+      operationId: postCourseCollection
+      summary: 'Creates a Course resource.'
+      responses:
+        201:
+          description: 'Course resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Course:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Course:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+          links:
+            GetCourseItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getCourseItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /courses/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Course:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Course:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+        description: 'The new Course resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/courses/{id}':
+    get:
+      tags:
+        - Course
+      operationId: getCourseItem
+      summary: 'Retrieves a Course resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Course resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Course:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Course:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Course
+      operationId: deleteCourseItem
+      summary: 'Removes the Course resource.'
+      responses:
+        204:
+          description: 'Course resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Course
+      operationId: putCourseItem
+      summary: 'Replaces the Course resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Course resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Course:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Course:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Course:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Course:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+        description: 'The updated Course resource'
+    patch:
+      tags:
+        - Course
+      operationId: patchCourseItem
+      summary: 'Updates the Course resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Course resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Course:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Course:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Course-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Course:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Course-write'
+        description: 'The updated Course resource'
+  /education_events:
+    get:
+      tags:
+        - EducationEvent
+      operationId: getEducationEventCollection
+      summary: 'Retrieves the collection of EducationEvent resources.'
+      responses:
+        200:
+          description: 'EducationEvent collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/EducationEvent:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/EducationEvent:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationEvent-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - EducationEvent
+      operationId: postEducationEventCollection
+      summary: 'Creates a EducationEvent resource.'
+      responses:
+        201:
+          description: 'EducationEvent resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/EducationEvent:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+          links:
+            GetEducationEventItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getEducationEventItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /education_events/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/EducationEvent:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+        description: 'The new EducationEvent resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/education_events/{id}':
+    get:
+      tags:
+        - EducationEvent
+      operationId: getEducationEventItem
+      summary: 'Retrieves a EducationEvent resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'EducationEvent resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/EducationEvent:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - EducationEvent
+      operationId: deleteEducationEventItem
+      summary: 'Removes the EducationEvent resource.'
+      responses:
+        204:
+          description: 'EducationEvent resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - EducationEvent
+      operationId: putEducationEventItem
+      summary: 'Replaces the EducationEvent resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'EducationEvent resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/EducationEvent:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/EducationEvent:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+        description: 'The updated EducationEvent resource'
+    patch:
+      tags:
+        - EducationEvent
+      operationId: patchEducationEventItem
+      summary: 'Updates the EducationEvent resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'EducationEvent resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/EducationEvent:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/EducationEvent-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/EducationEvent-write'
+        description: 'The updated EducationEvent resource'
+  /educational_occupational_programs:
+    get:
+      tags:
+        - EducationalOccupationalProgram
+      operationId: getEducationalOccupationalProgramCollection
+      summary: 'Retrieves the collection of EducationalOccupationalProgram resources.'
+      responses:
+        200:
+          description: 'EducationalOccupationalProgram collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - EducationalOccupationalProgram
+      operationId: postEducationalOccupationalProgramCollection
+      summary: 'Creates a EducationalOccupationalProgram resource.'
+      responses:
+        201:
+          description: 'EducationalOccupationalProgram resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+          links:
+            GetEducationalOccupationalProgramItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getEducationalOccupationalProgramItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /educational_occupational_programs/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+        description: 'The new EducationalOccupationalProgram resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/educational_occupational_programs/{id}':
+    get:
+      tags:
+        - EducationalOccupationalProgram
+      operationId: getEducationalOccupationalProgramItem
+      summary: 'Retrieves a EducationalOccupationalProgram resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'EducationalOccupationalProgram resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - EducationalOccupationalProgram
+      operationId: deleteEducationalOccupationalProgramItem
+      summary: 'Removes the EducationalOccupationalProgram resource.'
+      responses:
+        204:
+          description: 'EducationalOccupationalProgram resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - EducationalOccupationalProgram
+      operationId: putEducationalOccupationalProgramItem
+      summary: 'Replaces the EducationalOccupationalProgram resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'EducationalOccupationalProgram resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+        description: 'The updated EducationalOccupationalProgram resource'
+    patch:
+      tags:
+        - EducationalOccupationalProgram
+      operationId: patchEducationalOccupationalProgramItem
+      summary: 'Updates the EducationalOccupationalProgram resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'EducationalOccupationalProgram resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+        description: 'The updated EducationalOccupationalProgram resource'
+  /participants:
+    get:
+      tags:
+        - Participant
+      operationId: getParticipantCollection
+      summary: 'Retrieves the collection of Participant resources.'
+      responses:
+        200:
+          description: 'Participant collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Participant
+      operationId: postParticipantCollection
+      summary: 'Creates a Participant resource.'
+      responses:
+        201:
+          description: 'Participant resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Participant:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Participant:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+          links:
+            GetParticipantItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getParticipantItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /participants/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Participant:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Participant:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+        description: 'The new Participant resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/participants/{id}':
+    get:
+      tags:
+        - Participant
+      operationId: getParticipantItem
+      summary: 'Retrieves a Participant resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Participant resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Participant:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Participant:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Participant
+      operationId: deleteParticipantItem
+      summary: 'Removes the Participant resource.'
+      responses:
+        204:
+          description: 'Participant resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Participant
+      operationId: putParticipantItem
+      summary: 'Replaces the Participant resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Participant resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Participant:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Participant:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Participant:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Participant:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+        description: 'The updated Participant resource'
+    patch:
+      tags:
+        - Participant
+      operationId: patchParticipantItem
+      summary: 'Updates the Participant resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Participant resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Participant:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Participant:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Participant-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Participant:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Participant-write'
+        description: 'The updated Participant resource'
 components:
   schemas:
     AuditTrail-read:
@@ -2322,7 +5246,1499 @@ components:
         '@type':
           readOnly: true
           type: string
+    Course-read:
+      type: object
+      description: 'A Course is a course within a program in which participants can participate.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this Course.'
+          type: string
+        description:
+          description: 'The description of this Course.'
+          type: string
+          nullable: true
+        courseCode:
+          description: 'The courseCode of this Course.'
+          type: string
+          nullable: true
+        coursePrerequisites:
+          description: 'The coursePrerequisites of this Course.'
+          type: string
+          nullable: true
+        hasCourseInstance:
+          description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
+          type: string
+          nullable: true
+        numberOfCredits:
+          description: 'The numberOfCredits of this Course.'
+          type: integer
+          nullable: true
+        occupationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        dateCreated:
+          description: 'The moment this Course was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this Course was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    Course-write:
+      type: object
+      description: 'A Course is a course within a program in which participants can participate.'
+      required:
+        - name
+      properties:
+        name:
+          description: 'The name of this Course.'
+          type: string
+        description:
+          description: 'The description of this Course.'
+          type: string
+          nullable: true
+        courseCode:
+          description: 'The courseCode of this Course.'
+          type: string
+          nullable: true
+        coursePrerequisites:
+          description: 'The coursePrerequisites of this Course.'
+          type: string
+          nullable: true
+        hasCourseInstance:
+          description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
+          type: string
+          nullable: true
+        numberOfCredits:
+          description: 'The numberOfCredits of this Course.'
+          type: integer
+          nullable: true
+        occupationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+    'Course:jsonld-read':
+      type: object
+      description: 'A Course is a course within a program in which participants can participate.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this Course.'
+          type: string
+        description:
+          description: 'The description of this Course.'
+          type: string
+          nullable: true
+        courseCode:
+          description: 'The courseCode of this Course.'
+          type: string
+          nullable: true
+        coursePrerequisites:
+          description: 'The coursePrerequisites of this Course.'
+          type: string
+          nullable: true
+        hasCourseInstance:
+          description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
+          type: string
+          nullable: true
+        numberOfCredits:
+          description: 'The numberOfCredits of this Course.'
+          type: integer
+          nullable: true
+        occupationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        dateCreated:
+          description: 'The moment this Course was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this Course was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    'Course:jsonld-write':
+      type: object
+      description: 'A Course is a course within a program in which participants can participate.'
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this Course.'
+          type: string
+        description:
+          description: 'The description of this Course.'
+          type: string
+          nullable: true
+        courseCode:
+          description: 'The courseCode of this Course.'
+          type: string
+          nullable: true
+        coursePrerequisites:
+          description: 'The coursePrerequisites of this Course.'
+          type: string
+          nullable: true
+        hasCourseInstance:
+          description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
+          type: string
+          nullable: true
+        numberOfCredits:
+          description: 'The numberOfCredits of this Course.'
+          type: integer
+          nullable: true
+        occupationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+    EducationEvent-read:
+      type: object
+      description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationEvent.'
+          type: string
+        description:
+          description: 'The description of this EducationEvent.'
+          type: string
+          nullable: true
+        assesses:
+          description: 'The assesses of this EducationEvent.'
+          type: string
+          nullable: true
+        educationalLevel:
+          description: 'The educationalLevel of this EducationEvent.'
+          type: string
+          nullable: true
+        teaches:
+          description: 'The teaches of this EducationEvent.'
+          type: string
+          nullable: true
+        startDate:
+          description: 'The moment this EducationEvent starts.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this EducationEvent ends.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        dateCreated:
+          description: 'The moment this EducationEvent was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationEvent was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    EducationEvent-write:
+      type: object
+      description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
+      required:
+        - name
+      properties:
+        name:
+          description: 'The name of this EducationEvent.'
+          type: string
+        description:
+          description: 'The description of this EducationEvent.'
+          type: string
+          nullable: true
+        assesses:
+          description: 'The assesses of this EducationEvent.'
+          type: string
+          nullable: true
+        educationalLevel:
+          description: 'The educationalLevel of this EducationEvent.'
+          type: string
+          nullable: true
+        teaches:
+          description: 'The teaches of this EducationEvent.'
+          type: string
+          nullable: true
+        startDate:
+          description: 'The moment this EducationEvent starts.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this EducationEvent ends.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+    'EducationEvent:jsonld-read':
+      type: object
+      description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationEvent.'
+          type: string
+        description:
+          description: 'The description of this EducationEvent.'
+          type: string
+          nullable: true
+        assesses:
+          description: 'The assesses of this EducationEvent.'
+          type: string
+          nullable: true
+        educationalLevel:
+          description: 'The educationalLevel of this EducationEvent.'
+          type: string
+          nullable: true
+        teaches:
+          description: 'The teaches of this EducationEvent.'
+          type: string
+          nullable: true
+        startDate:
+          description: 'The moment this EducationEvent starts.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this EducationEvent ends.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        dateCreated:
+          description: 'The moment this EducationEvent was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationEvent was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    'EducationEvent:jsonld-write':
+      type: object
+      description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this EducationEvent.'
+          type: string
+        description:
+          description: 'The description of this EducationEvent.'
+          type: string
+          nullable: true
+        assesses:
+          description: 'The assesses of this EducationEvent.'
+          type: string
+          nullable: true
+        educationalLevel:
+          description: 'The educationalLevel of this EducationEvent.'
+          type: string
+          nullable: true
+        teaches:
+          description: 'The teaches of this EducationEvent.'
+          type: string
+          nullable: true
+        startDate:
+          description: 'The moment this EducationEvent starts.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this EducationEvent ends.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+    EducationalOccupationalProgram-read:
+      type: object
+      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        applicationStartDate:
+          description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        applicationDeadline:
+          description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        startDate:
+          description: 'The moment this EducationalOccupationalProgram starts.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this EducationalOccupationalProgram ends.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        financialAidEligible:
+          description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        maximumEnrollment:
+          description: 'The maximum number of students who may be enrolled in the program..'
+          type: integer
+          nullable: true
+        numberOfCredits:
+          description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        occupationalCategory:
+          description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
+          type: string
+          nullable: true
+        occupationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalProgramMode:
+          description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        offers:
+          description: 'The offers of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        programPrerequisites:
+          description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        programType:
+          description: 'The programType of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        provider:
+          description: 'The provider of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        salaryUponCompletion:
+          description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        termDuration:
+          description: 'The termDuration of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        termsPerYear:
+          description: 'The termsPerYear of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        dayOfWeek:
+          description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        timeOfDay:
+          description: 'The timeOfDay of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        timeToComplete:
+          description: 'The timeToComplete of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        trainingSalary:
+          description: 'The trainingSalary of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        typicalCreditsPerTerm:
+          description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    EducationalOccupationalProgram-write:
+      type: object
+      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
+      required:
+        - name
+      properties:
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        applicationStartDate:
+          description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        applicationDeadline:
+          description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        startDate:
+          description: 'The moment this EducationalOccupationalProgram starts.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this EducationalOccupationalProgram ends.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        financialAidEligible:
+          description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        maximumEnrollment:
+          description: 'The maximum number of students who may be enrolled in the program..'
+          type: integer
+          nullable: true
+        numberOfCredits:
+          description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        occupationalCategory:
+          description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
+          type: string
+          nullable: true
+        occupationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalProgramMode:
+          description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        offers:
+          description: 'The offers of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        programPrerequisites:
+          description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        programType:
+          description: 'The programType of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        provider:
+          description: 'The provider of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        salaryUponCompletion:
+          description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        termDuration:
+          description: 'The termDuration of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        termsPerYear:
+          description: 'The termsPerYear of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        dayOfWeek:
+          description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        timeOfDay:
+          description: 'The timeOfDay of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        timeToComplete:
+          description: 'The timeToComplete of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        trainingSalary:
+          description: 'The trainingSalary of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        typicalCreditsPerTerm:
+          description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+    'EducationalOccupationalProgram:jsonld-read':
+      type: object
+      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        applicationStartDate:
+          description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        applicationDeadline:
+          description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        startDate:
+          description: 'The moment this EducationalOccupationalProgram starts.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this EducationalOccupationalProgram ends.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        financialAidEligible:
+          description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        maximumEnrollment:
+          description: 'The maximum number of students who may be enrolled in the program..'
+          type: integer
+          nullable: true
+        numberOfCredits:
+          description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        occupationalCategory:
+          description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
+          type: string
+          nullable: true
+        occupationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalProgramMode:
+          description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        offers:
+          description: 'The offers of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        programPrerequisites:
+          description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        programType:
+          description: 'The programType of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        provider:
+          description: 'The provider of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        salaryUponCompletion:
+          description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        termDuration:
+          description: 'The termDuration of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        termsPerYear:
+          description: 'The termsPerYear of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        dayOfWeek:
+          description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        timeOfDay:
+          description: 'The timeOfDay of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        timeToComplete:
+          description: 'The timeToComplete of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        trainingSalary:
+          description: 'The trainingSalary of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        typicalCreditsPerTerm:
+          description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    'EducationalOccupationalProgram:jsonld-write':
+      type: object
+      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        applicationStartDate:
+          description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        applicationDeadline:
+          description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        startDate:
+          description: 'The moment this EducationalOccupationalProgram starts.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this EducationalOccupationalProgram ends.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
+        financialAidEligible:
+          description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        maximumEnrollment:
+          description: 'The maximum number of students who may be enrolled in the program..'
+          type: integer
+          nullable: true
+        numberOfCredits:
+          description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        occupationalCategory:
+          description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
+          type: string
+          nullable: true
+        occupationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalCredentialAwarded:
+          description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+          type: string
+          nullable: true
+        educationalProgramMode:
+          description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        offers:
+          description: 'The offers of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        programPrerequisites:
+          description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        programType:
+          description: 'The programType of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        provider:
+          description: 'The provider of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        salaryUponCompletion:
+          description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        termDuration:
+          description: 'The termDuration of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        termsPerYear:
+          description: 'The termsPerYear of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+        dayOfWeek:
+          description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        timeOfDay:
+          description: 'The timeOfDay of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        timeToComplete:
+          description: 'The timeToComplete of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        trainingSalary:
+          description: 'The trainingSalary of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        typicalCreditsPerTerm:
+          description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+          type: integer
+          nullable: true
+    Participant-read:
+      type: object
+      description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this Participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        person:
+          description: 'The contact of this Participant.'
+          type: string
+        dateCreated:
+          description: 'The moment this Participant was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this Participant was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - person
+    Participant-write:
+      type: object
+      description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
+      required:
+        - person
+      properties:
+        person:
+          description: 'The contact of this Participant.'
+          type: string
+    'Participant:jsonld-read':
+      type: object
+      description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this Participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        person:
+          description: 'The contact of this Participant.'
+          type: string
+        dateCreated:
+          description: 'The moment this Participant was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this Participant was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - person
+    'Participant:jsonld-write':
+      type: object
+      description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
+      required:
+        - person
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        person:
+          description: 'The contact of this Participant.'
+          type: string
 definitions:
+  Course-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Course.'
+        type: string
+        example: 'Werken met scrum en Github'
+        maxLength: 255
+      description:
+        description: 'The description of this Course.'
+        type: string
+        example: 'Deze cursus leert je de basics van werken met scrum en Github.'
+        maxLength: 255
+      courseCode:
+        description: 'The courseCode of this Course.'
+        type: string
+        example: SG123
+        maxLength: 255
+      coursePrerequisites:
+        description: 'The coursePrerequisites of this Course.'
+        type: string
+        example: 'Een vmbo diploma of hoger.'
+        maxLength: 255
+      hasCourseInstance:
+        description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
+        type: string
+        example: 'https://edu.conduction.nl/courses'
+        maxLength: 255
+      numberOfCredits:
+        description: 'The numberOfCredits of this Course.'
+        type: int
+        example: '5'
+      occupationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.'
+        maxLength: 255
+      educationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this Course was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Course was last Modified'
+        type: \Datetime
+    required:
+      - name
+  Course-write:
+    properties:
+      name:
+        description: 'The name of this Course.'
+        type: string
+        example: 'Werken met scrum en Github'
+        maxLength: 255
+      description:
+        description: 'The description of this Course.'
+        type: string
+        example: 'Deze cursus leert je de basics van werken met scrum en Github.'
+        maxLength: 255
+      courseCode:
+        description: 'The courseCode of this Course.'
+        type: string
+        example: SG123
+        maxLength: 255
+      coursePrerequisites:
+        description: 'The coursePrerequisites of this Course.'
+        type: string
+        example: 'Een vmbo diploma of hoger.'
+        maxLength: 255
+      hasCourseInstance:
+        description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
+        type: string
+        example: 'https://edu.conduction.nl/courses'
+        maxLength: 255
+      numberOfCredits:
+        description: 'The numberOfCredits of this Course.'
+        type: int
+        example: '5'
+      occupationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.'
+        maxLength: 255
+      educationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.'
+        maxLength: 255
+    required:
+      - name
+  EducationEvent-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this EducationEvent.'
+        type: string
+        example: 'Les 1 over Github'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationEvent.'
+        type: string
+        example: 'Dit is de eerste online les over Github.'
+        maxLength: 255
+      assesses:
+        description: 'The assesses of this EducationEvent.'
+        type: string
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      dateCreated:
+        description: 'The moment this EducationEvent was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this EducationEvent was last Modified'
+        type: \Datetime
+    required:
+      - name
+  EducationEvent-write:
+    properties:
+      name:
+        description: 'The name of this EducationEvent.'
+        type: string
+        example: 'Les 1 over Github'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationEvent.'
+        type: string
+        example: 'Dit is de eerste online les over Github.'
+        maxLength: 255
+      assesses:
+        description: 'The assesses of this EducationEvent.'
+        type: string
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+    required:
+      - name
+  EducationalOccupationalProgram-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      applicationStartDate:
+        description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      applicationDeadline:
+        description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      startDate:
+        description: 'The moment this EducationalOccupationalProgram starts.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationalOccupationalProgram ends.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      financialAidEligible:
+        description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.'
+        maxLength: 255
+      maximumEnrollment:
+        description: 'The maximum number of students who may be enrolled in the program..'
+        type: int
+        example: '100'
+      numberOfCredits:
+        description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+        type: int
+        example: '120'
+      occupationalCategory:
+        description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
+        type: string
+        example: BLS
+        maxLength: 255
+      occupationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
+        maxLength: 255
+      educationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
+        maxLength: 255
+      educationalProgramMode:
+        description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+        type: string
+        example: full-time
+        maxLength: 255
+      offers:
+        description: 'The offers of this EducationalOccupationalProgram.'
+        type: string
+        example: 'https://pdc.conduction.nl/offers'
+        maxLength: 255
+      programPrerequisites:
+        description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Minimaal vmbo diploma gehaald.'
+        maxLength: 255
+      programType:
+        description: 'The programType of this EducationalOccupationalProgram.'
+        type: string
+        example: 'classroom, internship.'
+        maxLength: 255
+      provider:
+        description: 'The provider of this EducationalOccupationalProgram.'
+        type: string
+        example: 'https://wrc.conduction.nl/organizations'
+        maxLength: 255
+      salaryUponCompletion:
+        description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+        type: string
+        example: €1000
+        maxLength: 255
+      termDuration:
+        description: 'The termDuration of this EducationalOccupationalProgram.'
+        type: string
+        example: '2 maanden.'
+        maxLength: 255
+      termsPerYear:
+        description: 'The termsPerYear of this EducationalOccupationalProgram.'
+        type: int
+        example: '4'
+      dayOfWeek:
+        description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+        type: string
+        example: 'van maandag tot zaterdag.'
+        maxLength: 255
+      timeOfDay:
+        description: 'The timeOfDay of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Overdag, soms in de avond.'
+        maxLength: 255
+      timeToComplete:
+        description: 'The timeToComplete of this EducationalOccupationalProgram.'
+        type: string
+        example: '2 jaar.'
+        maxLength: 255
+      trainingSalary:
+        description: 'The trainingSalary of this EducationalOccupationalProgram.'
+        type: string
+        example: '€300 per maand.'
+        maxLength: 255
+      typicalCreditsPerTerm:
+        description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+        type: int
+        example: '15'
+      dateCreated:
+        description: 'The moment this EducationalOccupationalProgram was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        type: \Datetime
+    required:
+      - name
+  EducationalOccupationalProgram-write:
+    properties:
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      applicationStartDate:
+        description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      applicationDeadline:
+        description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      startDate:
+        description: 'The moment this EducationalOccupationalProgram starts.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationalOccupationalProgram ends.'
+        type: string
+        example: '2020-07-13 14:38:47'
+        format: date-time
+      financialAidEligible:
+        description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.'
+        maxLength: 255
+      maximumEnrollment:
+        description: 'The maximum number of students who may be enrolled in the program..'
+        type: int
+        example: '100'
+      numberOfCredits:
+        description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+        type: int
+        example: '120'
+      occupationalCategory:
+        description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
+        type: string
+        example: BLS
+        maxLength: 255
+      occupationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
+        maxLength: 255
+      educationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
+        maxLength: 255
+      educationalProgramMode:
+        description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+        type: string
+        example: full-time
+        maxLength: 255
+      offers:
+        description: 'The offers of this EducationalOccupationalProgram.'
+        type: string
+        example: 'https://pdc.conduction.nl/offers'
+        maxLength: 255
+      programPrerequisites:
+        description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Minimaal vmbo diploma gehaald.'
+        maxLength: 255
+      programType:
+        description: 'The programType of this EducationalOccupationalProgram.'
+        type: string
+        example: 'classroom, internship.'
+        maxLength: 255
+      provider:
+        description: 'The provider of this EducationalOccupationalProgram.'
+        type: string
+        example: 'https://wrc.conduction.nl/organizations'
+        maxLength: 255
+      salaryUponCompletion:
+        description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+        type: string
+        example: €1000
+        maxLength: 255
+      termDuration:
+        description: 'The termDuration of this EducationalOccupationalProgram.'
+        type: string
+        example: '2 maanden.'
+        maxLength: 255
+      termsPerYear:
+        description: 'The termsPerYear of this EducationalOccupationalProgram.'
+        type: int
+        example: '4'
+      dayOfWeek:
+        description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+        type: string
+        example: 'van maandag tot zaterdag.'
+        maxLength: 255
+      timeOfDay:
+        description: 'The timeOfDay of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Overdag, soms in de avond.'
+        maxLength: 255
+      timeToComplete:
+        description: 'The timeToComplete of this EducationalOccupationalProgram.'
+        type: string
+        example: '2 jaar.'
+        maxLength: 255
+      trainingSalary:
+        description: 'The trainingSalary of this EducationalOccupationalProgram.'
+        type: string
+        example: '€300 per maand.'
+        maxLength: 255
+      typicalCreditsPerTerm:
+        description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+        type: int
+        example: '15'
+    required:
+      - name
+  Participant-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      person:
+        description: 'The contact of this Participant.'
+        type: string
+        example: 'https://cc.conduction.nl/people'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this Participant was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Participant was last Modified'
+        type: \Datetime
+    required:
+      - person
+  Participant-write:
+    properties:
+      person:
+        description: 'The contact of this Participant.'
+        type: string
+        example: 'https://cc.conduction.nl/people'
+        maxLength: 255
+    required:
+      - person
   AuditTrail-read:
     properties:
       id:
@@ -2427,12 +6843,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-08 14:50:39'
+        example: '2020-07-13 14:38:47'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-08 14:50:39'
+        example: '2020-07-13 14:38:47'
     required: []
   AuditTrail-write:
     properties:
@@ -2480,12 +6896,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-08 14:50:39'
+        example: '2020-07-13 14:38:47'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-08 14:50:39'
+        example: '2020-07-13 14:38:47'
     required: []
   ChangeLog-write:
     properties:
@@ -2496,6 +6912,30 @@ definitions:
         maxLength: 2555
     required: []
 tags:
+  -
+    name: Course
+    description: |
+      A Course is a course within a program in which participants can participate.
+      
+      
+  -
+    name: EducationEvent
+    description: |
+      An EducationEvent is a (online) meeting, college etc. of a course.
+      
+      
+  -
+    name: EducationalOccupationalProgram
+    description: |
+      A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.
+      
+      
+  -
+    name: Participant
+    description: |
+      A Participant is a person who participates in a Course or an EducationalOccupationalProgram.
+      
+      
   -
     name: AuditTrail
     description: |
