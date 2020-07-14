@@ -39,7 +39,7 @@ class ConductionFixtures extends Fixture
         $testStudent->setId($id);
         $manager->persist($testStudent);
         $manager->flush();
-        $testStudent = $manager->getRepository('App:Organization')->findOneBy(['id'=> $id]);
+        $testStudent = $manager->getRepository('App:Participant')->findOneBy(['id'=> $id]);
 
         $manager->flush();
     }
