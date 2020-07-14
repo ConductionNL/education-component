@@ -45,12 +45,12 @@ class ConductionFixtures extends Fixture
         // Test Tutorial
         $id = Uuid::fromString('f8d6be3c-c985-4a5b-8497-9d03d9a0580a');
         $testTutorial = new Course();
-        $testTutorial->setName("Scrum gericht werken en Github");
-        $testTutorial->setDescription("Deze tutorial leert je scrum gericht werken door onder andere Github.");
-        $testTutorial->setCourseCode("SG1");
-        $testTutorial->setCoursePrerequisites("Een vmbo diploma of hoger.");
+        $testTutorial->setName('Scrum gericht werken en Github');
+        $testTutorial->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $testTutorial->setCourseCode('SG1');
+        $testTutorial->setCoursePrerequisites('Een vmbo diploma of hoger.');
         $testTutorial->setNumberOfCredits(5);
-        $testTutorial->setOccupationalCredentialAwarded("Een mooie Conduction sticker en een high five");
+        $testTutorial->setOccupationalCredentialAwarded('Een mooie Conduction sticker en een high five');
         $manager->persist($testTutorial);
         $testTutorial->setId($id);
         $manager->persist($testTutorial);
