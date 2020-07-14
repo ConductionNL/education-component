@@ -5,11 +5,14 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ParticipantRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -69,6 +72,26 @@ class Participant
      */
     private $dateModified;
 
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=EducationalOccupationalProgram::class, inversedBy="participants")
+     * @MaxDepth(1)
+     */
+    private $educationalOccupationalPrograms;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="participants")
+     * @MaxDepth(1)
+     */
+    private $courses;
+
+    public function __construct()
+    {
+        $this->educationalOccupationalPrograms = new ArrayCollection();
+        $this->courses = new ArrayCollection();
+    }
+
     public function getId(): Uuid
     {
         return $this->id;
@@ -113,6 +136,58 @@ class Participant
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EducationalOccupationalProgram[]
+     */
+    public function getEducationalOccupationalPrograms(): Collection
+    {
+        return $this->educationalOccupationalPrograms;
+    }
+
+    public function addEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    {
+        if (!$this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
+            $this->educationalOccupationalPrograms[] = $educationalOccupationalProgram;
+        }
+
+        return $this;
+    }
+
+    public function removeEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    {
+        if ($this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
+            $this->educationalOccupationalPrograms->removeElement($educationalOccupationalProgram);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Course[]
+     */
+    public function getCourses(): Collection
+    {
+        return $this->courses;
+    }
+
+    public function addCourse(Course $course): self
+    {
+        if (!$this->courses->contains($course)) {
+            $this->courses[] = $course;
+        }
+
+        return $this;
+    }
+
+    public function removeCourse(Course $course): self
+    {
+        if ($this->courses->contains($course)) {
+            $this->courses->removeElement($course);
+        }
 
         return $this;
     }

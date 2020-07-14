@@ -5298,6 +5298,18 @@ components:
           type: string
           format: date-time
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-read'
+        educationalOccupationalPrograms:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+        educationEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationEvent-read'
       required:
         - name
     Course-write:
@@ -5337,6 +5349,18 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-write'
+        educationalOccupationalPrograms:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+        educationEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationEvent-write'
     'Course:jsonld-read':
       type: object
       description: 'A Course is a course within a program in which participants can participate.'
@@ -5398,6 +5422,18 @@ components:
           type: string
           format: date-time
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-read'
+        educationalOccupationalPrograms:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+        educationEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationEvent:jsonld-read'
       required:
         - name
     'Course:jsonld-write':
@@ -5446,6 +5482,18 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-write'
+        educationalOccupationalPrograms:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
+        educationEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationEvent:jsonld-write'
     EducationEvent-read:
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -5500,6 +5548,8 @@ components:
           type: string
           format: date-time
           nullable: true
+        course:
+          $ref: '#/components/schemas/Course-read'
       required:
         - name
     EducationEvent-write:
@@ -5541,6 +5591,8 @@ components:
           type: string
           format: date-time
           nullable: true
+        course:
+          $ref: '#/components/schemas/Course-write'
     'EducationEvent:jsonld-read':
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -5604,6 +5656,8 @@ components:
           type: string
           format: date-time
           nullable: true
+        course:
+          $ref: '#/components/schemas/Course:jsonld-read'
       required:
         - name
     'EducationEvent:jsonld-write':
@@ -5654,6 +5708,8 @@ components:
           type: string
           format: date-time
           nullable: true
+        course:
+          $ref: '#/components/schemas/Course:jsonld-write'
     EducationalOccupationalProgram-read:
       type: object
       description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
@@ -5786,6 +5842,14 @@ components:
           type: string
           format: date-time
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course-read'
       required:
         - name
     EducationalOccupationalProgram-write:
@@ -5905,6 +5969,14 @@ components:
           description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
           type: integer
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-write'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course-write'
     'EducationalOccupationalProgram:jsonld-read':
       type: object
       description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
@@ -6046,6 +6118,14 @@ components:
           type: string
           format: date-time
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course:jsonld-read'
       required:
         - name
     'EducationalOccupationalProgram:jsonld-write':
@@ -6174,6 +6254,14 @@ components:
           description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
           type: integer
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-write'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course:jsonld-write'
     Participant-read:
       type: object
       description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
@@ -6198,6 +6286,14 @@ components:
           type: string
           format: date-time
           nullable: true
+        educationalOccupationalPrograms:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course-read'
       required:
         - person
     Participant-write:
@@ -6209,6 +6305,14 @@ components:
         person:
           description: 'The contact of this Participant.'
           type: string
+        educationalOccupationalPrograms:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course-write'
     'Participant:jsonld-read':
       type: object
       description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
@@ -6242,6 +6346,14 @@ components:
           type: string
           format: date-time
           nullable: true
+        educationalOccupationalPrograms:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course:jsonld-read'
       required:
         - person
     'Participant:jsonld-write':
@@ -6262,6 +6374,14 @@ components:
         person:
           description: 'The contact of this Participant.'
           type: string
+        educationalOccupationalPrograms:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course:jsonld-write'
 definitions:
   Course-read:
     properties:
@@ -6315,6 +6435,9 @@ definitions:
       dateModified:
         description: 'The moment this Course was last Modified'
         type: \Datetime
+      participants: []
+      educationalOccupationalPrograms: []
+      educationEvents: []
     required:
       - name
   Course-write:
@@ -6358,6 +6481,9 @@ definitions:
         type: string
         example: 'Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.'
         maxLength: 255
+      participants: []
+      educationalOccupationalPrograms: []
+      educationEvents: []
     required:
       - name
   EducationEvent-read:
@@ -6395,12 +6521,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -6408,6 +6534,7 @@ definitions:
       dateModified:
         description: 'The moment this EducationEvent was last Modified'
         type: \Datetime
+      course: []
     required:
       - name
   EducationEvent-write:
@@ -6440,13 +6567,14 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
+      course: []
     required:
       - name
   EducationalOccupationalProgram-read:
@@ -6469,22 +6597,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -6502,7 +6630,7 @@ definitions:
       occupationalCategory:
         description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
         type: string
-        example: BLS
+        example: HBO
         maxLength: 255
       occupationalCredentialAwarded:
         description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
@@ -6583,6 +6711,8 @@ definitions:
       dateModified:
         description: 'The moment this EducationalOccupationalProgram was last Modified'
         type: \Datetime
+      participants: []
+      courses: []
     required:
       - name
   EducationalOccupationalProgram-write:
@@ -6600,22 +6730,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -6633,7 +6763,7 @@ definitions:
       occupationalCategory:
         description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
         type: string
-        example: BLS
+        example: HBO
         maxLength: 255
       occupationalCredentialAwarded:
         description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
@@ -6708,6 +6838,8 @@ definitions:
         description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
         type: int
         example: '15'
+      participants: []
+      courses: []
     required:
       - name
   Participant-read:
@@ -6728,6 +6860,8 @@ definitions:
       dateModified:
         description: 'The moment this Participant was last Modified'
         type: \Datetime
+      educationalOccupationalPrograms: []
+      courses: []
     required:
       - person
   Participant-write:
@@ -6737,6 +6871,8 @@ definitions:
         type: string
         example: 'https://cc.conduction.nl/people'
         maxLength: 255
+      educationalOccupationalPrograms: []
+      courses: []
     required:
       - person
   AuditTrail-read:
@@ -6843,12 +6979,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
     required: []
   AuditTrail-write:
     properties:
@@ -6896,12 +7032,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-13 14:54:39'
+        example: '2020-07-14 07:50:35'
     required: []
   ChangeLog-write:
     properties:
