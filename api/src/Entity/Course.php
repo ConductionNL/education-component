@@ -5,11 +5,14 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CourseRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -157,6 +160,34 @@ class Course
      */
     private $dateModified;
 
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="courses")
+     * @MaxDepth(1)
+     */
+    private $participants;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=EducationalOccupationalProgram::class, mappedBy="courses")
+     * @MaxDepth(1)
+     */
+    private $educationalOccupationalPrograms;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity=EducationEvent::class, mappedBy="course", orphanRemoval=true)
+     * @MaxDepth(1)
+     */
+    private $educationEvents;
+
+    public function __construct()
+    {
+        $this->participants = new ArrayCollection();
+        $this->educationalOccupationalPrograms = new ArrayCollection();
+        $this->educationEvents = new ArrayCollection();
+    }
+
     public function getId(): Uuid
     {
         return $this->id;
@@ -285,6 +316,93 @@ class Course
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participant[]
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+            $participant->addCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): self
+    {
+        if ($this->participants->contains($participant)) {
+            $this->participants->removeElement($participant);
+            $participant->removeCourse($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EducationalOccupationalProgram[]
+     */
+    public function getEducationalOccupationalPrograms(): Collection
+    {
+        return $this->educationalOccupationalPrograms;
+    }
+
+    public function addEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    {
+        if (!$this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
+            $this->educationalOccupationalPrograms[] = $educationalOccupationalProgram;
+            $educationalOccupationalProgram->addCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    {
+        if ($this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
+            $this->educationalOccupationalPrograms->removeElement($educationalOccupationalProgram);
+            $educationalOccupationalProgram->removeCourse($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EducationEvent[]
+     */
+    public function getEducationEvents(): Collection
+    {
+        return $this->educationEvents;
+    }
+
+    public function addEducationEvent(EducationEvent $educationEvent): self
+    {
+        if (!$this->educationEvents->contains($educationEvent)) {
+            $this->educationEvents[] = $educationEvent;
+            $educationEvent->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEducationEvent(EducationEvent $educationEvent): self
+    {
+        if ($this->educationEvents->contains($educationEvent)) {
+            $this->educationEvents->removeElement($educationEvent);
+            // set the owning side to null (unless already changed)
+            if ($educationEvent->getCourse() === $this) {
+                $educationEvent->setCourse(null);
+            }
+        }
 
         return $this;
     }

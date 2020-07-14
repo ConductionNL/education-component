@@ -5,13 +5,15 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\EducationalOccupationalProgramRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.
@@ -66,24 +68,24 @@ class EducationalOccupationalProgram
     private $description;
 
     /**
-     * @var Date The day that people can start to apply for this EducationalOccupationalProgram.
+     * @var DateTime The day that people can start to apply for this EducationalOccupationalProgram.
      *
-     * @example 13-07-2020
+     * @example 13-07-2020 12:00:00
      *
      * @Assert\DateTime
      * @Groups({"read", "write"})
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $applicationStartDate;
 
     /**
-     * @var Date The day that people can no longer apply for this EducationalOccupationalProgram.
+     * @var DateTime The day that people can no longer apply for this EducationalOccupationalProgram.
      *
-     * @example 25-09-2020
+     * @example 25-09-2020 20:00:00
      *
      * @Assert\DateTime
      * @Groups({"read", "write"})
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $applicationDeadline;
 
@@ -145,7 +147,7 @@ class EducationalOccupationalProgram
     /**
      * @var string A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.
      *
-     * @example BLS
+     * @example HBO
      *
      * @Assert\Length(
      *     max = 255
@@ -361,6 +363,26 @@ class EducationalOccupationalProgram
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="educationalOccupationalPrograms")
+     * @MaxDepth(1)
+     */
+    private $participants;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="educationalOccupationalPrograms")
+     * @MaxDepth(1)
+     */
+    private $courses;
+
+    public function __construct()
+    {
+        $this->participants = new ArrayCollection();
+        $this->courses = new ArrayCollection();
+    }
 
     public function getId(): Uuid
     {
@@ -694,6 +716,60 @@ class EducationalOccupationalProgram
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participant[]
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+            $participant->addEducationalOccupationalProgram($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): self
+    {
+        if ($this->participants->contains($participant)) {
+            $this->participants->removeElement($participant);
+            $participant->removeEducationalOccupationalProgram($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Course[]
+     */
+    public function getCourses(): Collection
+    {
+        return $this->courses;
+    }
+
+    public function addCourse(Course $course): self
+    {
+        if (!$this->courses->contains($course)) {
+            $this->courses[] = $course;
+        }
+
+        return $this;
+    }
+
+    public function removeCourse(Course $course): self
+    {
+        if ($this->courses->contains($course)) {
+            $this->courses->removeElement($course);
+        }
 
         return $this;
     }
