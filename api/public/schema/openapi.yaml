@@ -1,16 +1,16 @@
 openapi: 3.0.2
 info:
-  title: 'Proto component commonground'
+  title: 'Education Component'
   version: V.0.1
   description: |
     API Details
-    - Component: Proto component commonground
-    - Reference: pc
+    - Component: Education Component
+    - Reference: edu
     - Enviroment: dev
     - Version: V.0.1
-    - Repository: [online](https://github.com/ConductionNL/proto-component) / [zip](https://github.com/ConductionNL/proto-component/archive/master.zip)
-    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/pc-php) 
-    - Datamodel: [postman](/schema/pc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
+    - Repository: [online](https://github.com/ConductionNL/education-component) / [zip](https://github.com/ConductionNL/education-component/archive/master.zip)
+    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/edu-php) 
+    - Datamodel: [postman](/schema/edu.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
     'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
@@ -6486,97 +6486,39 @@ definitions:
       educationEvents: []
     required:
       - name
-  EducationEvent-read:
+  Participant-read:
     properties:
       id:
-        description: 'The UUID identifier of this participant.'
+        description: 'The UUID identifier of this Participant.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      name:
-        description: 'The name of this EducationEvent.'
+      person:
+        description: 'The contact of this Participant.'
         type: string
-        example: 'Les 1 over Github'
+        example: 'https://cc.conduction.nl/people'
         maxLength: 255
-      description:
-        description: 'The description of this EducationEvent.'
-        type: string
-        example: 'Dit is de eerste online les over Github.'
-        maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
-        type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-07-14 07:50:35'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-07-14 07:50:35'
-        format: date-time
       dateCreated:
-        description: 'The moment this EducationEvent was created'
+        description: 'The moment this Participant was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this EducationEvent was last Modified'
+        description: 'The moment this Participant was last Modified'
         type: \Datetime
-      course: []
+      educationalOccupationalPrograms: []
+      courses: []
     required:
-      - name
-  EducationEvent-write:
+      - person
+  Participant-write:
     properties:
-      name:
-        description: 'The name of this EducationEvent.'
+      person:
+        description: 'The contact of this Participant.'
         type: string
-        example: 'Les 1 over Github'
+        example: 'https://cc.conduction.nl/people'
         maxLength: 255
-      description:
-        description: 'The description of this EducationEvent.'
-        type: string
-        example: 'Dit is de eerste online les over Github.'
-        maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
-        type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-07-14 07:50:35'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-07-14 07:50:35'
-        format: date-time
-      course: []
+      educationalOccupationalPrograms: []
+      courses: []
     required:
-      - name
+      - person
   EducationalOccupationalProgram-read:
     properties:
       id:
@@ -6597,22 +6539,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -6730,22 +6672,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -6842,39 +6784,97 @@ definitions:
       courses: []
     required:
       - name
-  Participant-read:
+  EducationEvent-read:
     properties:
       id:
-        description: 'The UUID identifier of this Participant.'
+        description: 'The UUID identifier of this participant.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      person:
-        description: 'The contact of this Participant.'
+      name:
+        description: 'The name of this EducationEvent.'
         type: string
-        example: 'https://cc.conduction.nl/people'
+        example: 'Les 1 over Github'
         maxLength: 255
+      description:
+        description: 'The description of this EducationEvent.'
+        type: string
+        example: 'Dit is de eerste online les over Github.'
+        maxLength: 255
+      assesses:
+        description: 'The assesses of this EducationEvent.'
+        type: string
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-07-14 09:08:01'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-07-14 09:08:01'
+        format: date-time
       dateCreated:
-        description: 'The moment this Participant was created'
+        description: 'The moment this EducationEvent was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this Participant was last Modified'
+        description: 'The moment this EducationEvent was last Modified'
         type: \Datetime
-      educationalOccupationalPrograms: []
-      courses: []
+      course: []
     required:
-      - person
-  Participant-write:
+      - name
+  EducationEvent-write:
     properties:
-      person:
-        description: 'The contact of this Participant.'
+      name:
+        description: 'The name of this EducationEvent.'
         type: string
-        example: 'https://cc.conduction.nl/people'
+        example: 'Les 1 over Github'
         maxLength: 255
-      educationalOccupationalPrograms: []
-      courses: []
+      description:
+        description: 'The description of this EducationEvent.'
+        type: string
+        example: 'Dit is de eerste online les over Github.'
+        maxLength: 255
+      assesses:
+        description: 'The assesses of this EducationEvent.'
+        type: string
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-07-14 09:08:01'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-07-14 09:08:01'
+        format: date-time
+      course: []
     required:
-      - person
+      - name
   AuditTrail-read:
     properties:
       id:
@@ -6979,12 +6979,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
     required: []
   AuditTrail-write:
     properties:
@@ -7032,12 +7032,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-14 07:50:35'
+        example: '2020-07-14 09:08:01'
     required: []
   ChangeLog-write:
     properties:
@@ -7055,9 +7055,9 @@ tags:
       
       
   -
-    name: EducationEvent
+    name: Participant
     description: |
-      An EducationEvent is a (online) meeting, college etc. of a course.
+      A Participant is a person who participates in a Course or an EducationalOccupationalProgram.
       
       
   -
@@ -7067,9 +7067,9 @@ tags:
       
       
   -
-    name: Participant
+    name: EducationEvent
     description: |
-      A Participant is a person who participates in a Course or an EducationalOccupationalProgram.
+      An EducationEvent is a (online) meeting, college etc. of a course.
       
       
   -
@@ -7103,7 +7103,7 @@ host: irc.zaakonline.nl
 servers:
   -
     name: conduction.nl
-    url: pc.dev.conduction.nl
+    url: edu.dev.conduction.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
