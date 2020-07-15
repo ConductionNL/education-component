@@ -22,9 +22,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
  * )
- * @ORM\Entity(repositoryClass=EducationalOccupationalProgramRepository::class)
+ * @ORM\Entity(repositoryClass=ProgramRepository::class)
  */
-class EducationalOccupationalProgram
+class Program
 {
     /**
      * @var UuidInterface The UUID identifier of this participant.
@@ -373,7 +373,7 @@ class EducationalOccupationalProgram
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="educationalOccupationalPrograms")
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="educationalOccupationalPrograms", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $courses;

@@ -169,14 +169,14 @@ class Course
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=EducationalOccupationalProgram::class, mappedBy="courses")
+     * @ORM\ManyToMany(targetEntity=Program::class, mappedBy="courses", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $educationalOccupationalPrograms;
+    private $programs;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=EducationEvent::class, mappedBy="course", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=EducationEvent::class, mappedBy="course", orphanRemoval=true, cascade={"persist"})
      * @MaxDepth(1)
      */
     private $educationEvents;
@@ -184,7 +184,7 @@ class Course
     public function __construct()
     {
         $this->participants = new ArrayCollection();
-        $this->educationalOccupationalPrograms = new ArrayCollection();
+        $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
     }
 
@@ -349,28 +349,28 @@ class Course
     }
 
     /**
-     * @return Collection|EducationalOccupationalProgram[]
+     * @return Collection|program[]
      */
-    public function getEducationalOccupationalPrograms(): Collection
+    public function getPrograms(): Collection
     {
-        return $this->educationalOccupationalPrograms;
+        return $this->programs;
     }
 
-    public function addEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    public function addProgram(Program $program): self
     {
-        if (!$this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
-            $this->educationalOccupationalPrograms[] = $educationalOccupationalProgram;
-            $educationalOccupationalProgram->addCourse($this);
+        if (!$this->educationalOccupationalPrograms->contains($program)) {
+            $this->educationalOccupationalPrograms[] = $program;
+            $program->addCourse($this);
         }
 
         return $this;
     }
 
-    public function removeEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    public function removeProgram(Program $program): self
     {
-        if ($this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
-            $this->educationalOccupationalPrograms->removeElement($educationalOccupationalProgram);
-            $educationalOccupationalProgram->removeCourse($this);
+        if ($this->programs->contains($program)) {
+            $this->programs->removeElement($program);
+            $program->removeCourse($this);
         }
 
         return $this;
