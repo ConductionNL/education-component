@@ -348,14 +348,14 @@ class Program
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="educationalOccupationalPrograms")
+     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="programs")
      * @MaxDepth(1)
      */
     private $participants;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="educationalOccupationalPrograms", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $courses;

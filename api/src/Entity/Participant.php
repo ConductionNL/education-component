@@ -154,7 +154,7 @@ class Participant
         return $this->programs;
     }
 
-    public function addEducationalOccupationalProgram(Program $program): self
+    public function addProgram(Program $program): self
     {
         if (!$this->Programs->contains($program)) {
             $this->Programs[] = $program;
@@ -163,7 +163,7 @@ class Participant
         return $this;
     }
 
-    public function removeEducationalOccupationalProgram(Program $program): self
+    public function removeProgram(Program $program): self
     {
         if ($this->programs->contains($program)) {
             $this->programs->removeElement($program);

@@ -33,8 +33,10 @@ class ConductionFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
-            $this->params->get('app_domain') != 'conduction.nl' &&
-            strpos($this->params->get('app_domain'), 'conduction.nl') == false
+            // If build all fixtures is true we build all the fixtures
+            !$this->params->get('app_build_all_fixtures') &&
+            // Specific domain names
+            $this->params->get('app_domain') != 'conduction.nl' && strpos($this->params->get('app_domain'), 'conduction.nl') == false
         ) {
             return false;
         }
@@ -157,7 +159,6 @@ class ConductionFixtures extends Fixture
         $course->setCoursePrerequisites('Een vmbo diploma of hoger.');
         $course->setNumberOfCredits(5);
         $course->setOccupationalCredentialAwarded('Een mooie Conduction sticker en een high five');
-        $manager->persist($course);
         $program->addCourse($course);
 
         $activity = new Activity();
@@ -166,6 +167,7 @@ class ConductionFixtures extends Fixture
         $activity->setEducationalUse('test');
         $course->addActivity($activity);
 
+        $manager->persist($program);
 
         $manager->flush();
     }
