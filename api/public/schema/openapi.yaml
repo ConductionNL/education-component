@@ -15,6 +15,737 @@ info:
     'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
+  /activities:
+    get:
+      tags:
+        - Activity
+      operationId: getActivityCollection
+      summary: 'Retrieves the collection of Activity resources.'
+      responses:
+        200:
+          description: 'Activity collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Activity
+      operationId: postActivityCollection
+      summary: 'Creates a Activity resource.'
+      responses:
+        201:
+          description: 'Activity resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Activity:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Activity:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+          links:
+            GetActivityItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getActivityItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /activities/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Activity:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Activity:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+        description: 'The new Activity resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/activities/{id}':
+    get:
+      tags:
+        - Activity
+      operationId: getActivityItem
+      summary: 'Retrieves a Activity resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Activity resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Activity:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Activity:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Activity
+      operationId: deleteActivityItem
+      summary: 'Removes the Activity resource.'
+      responses:
+        204:
+          description: 'Activity resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Activity
+      operationId: putActivityItem
+      summary: 'Replaces the Activity resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Activity resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Activity:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Activity:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Activity:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Activity:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+        description: 'The updated Activity resource'
+    patch:
+      tags:
+        - Activity
+      operationId: patchActivityItem
+      summary: 'Updates the Activity resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Activity resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Activity:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Activity:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Activity-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Activity:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Activity-write'
+        description: 'The updated Activity resource'
   /audit_trails:
     get:
       tags:
@@ -3404,737 +4135,6 @@ paths:
             schema:
               $ref: '#/components/schemas/EducationEvent-write'
         description: 'The updated EducationEvent resource'
-  /educational_occupational_programs:
-    get:
-      tags:
-        - EducationalOccupationalProgram
-      operationId: getEducationalOccupationalProgramCollection
-      summary: 'Retrieves the collection of EducationalOccupationalProgram resources.'
-      responses:
-        200:
-          description: 'EducationalOccupationalProgram collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/json+ld:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+vnd.api:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-      parameters:
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-            default: 1
-        -
-          name: limit
-          in: query
-          required: false
-          description: 'The number of items per page'
-          schema:
-            type: integer
-            default: 30
-            minimum: 0
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
-    post:
-      tags:
-        - EducationalOccupationalProgram
-      operationId: postEducationalOccupationalProgramCollection
-      summary: 'Creates a EducationalOccupationalProgram resource.'
-      responses:
-        201:
-          description: 'EducationalOccupationalProgram resource created'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-          links:
-            GetEducationalOccupationalProgramItem:
-              parameters:
-                id: '$response.body#/id'
-              operationId: getEducationalOccupationalProgramItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /educational_occupational_programs/{id}`.'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
-          application/json+ld:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/json+vnd.api:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-        description: 'The new EducationalOccupationalProgram resource'
-      parameters:
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-  '/educational_occupational_programs/{id}':
-    get:
-      tags:
-        - EducationalOccupationalProgram
-      operationId: getEducationalOccupationalProgramItem
-      summary: 'Retrieves a EducationalOccupationalProgram resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      responses:
-        200:
-          description: 'EducationalOccupationalProgram resource response'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-        404:
-          description: 'Resource not found'
-      produces:
-        - application/health+json
-    delete:
-      tags:
-        - EducationalOccupationalProgram
-      operationId: deleteEducationalOccupationalProgramItem
-      summary: 'Removes the EducationalOccupationalProgram resource.'
-      responses:
-        204:
-          description: 'EducationalOccupationalProgram resource deleted'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-    put:
-      tags:
-        - EducationalOccupationalProgram
-      operationId: putEducationalOccupationalProgramItem
-      summary: 'Replaces the EducationalOccupationalProgram resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'EducationalOccupationalProgram resource updated'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
-          application/json+ld:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/json+vnd.api:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-        description: 'The updated EducationalOccupationalProgram resource'
-    patch:
-      tags:
-        - EducationalOccupationalProgram
-      operationId: patchEducationalOccupationalProgramItem
-      summary: 'Updates the EducationalOccupationalProgram resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'EducationalOccupationalProgram resource updated'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/merge-patch+json:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          applications/x-yaml:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-        description: 'The updated EducationalOccupationalProgram resource'
   /participants:
     get:
       tags:
@@ -4866,8 +4866,2333 @@ paths:
             schema:
               $ref: '#/components/schemas/Participant-write'
         description: 'The updated Participant resource'
+  /programs:
+    get:
+      tags:
+        - Program
+      operationId: getProgramCollection
+      summary: 'Retrieves the collection of Program resources.'
+      responses:
+        200:
+          description: 'Program collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Program:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Program:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Program
+      operationId: postProgramCollection
+      summary: 'Creates a Program resource.'
+      responses:
+        201:
+          description: 'Program resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Program:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Program:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+          links:
+            GetProgramItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getProgramItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /programs/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Program:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Program:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+        description: 'The new Program resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/programs/{id}':
+    get:
+      tags:
+        - Program
+      operationId: getProgramItem
+      summary: 'Retrieves a Program resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Program resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Program:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Program:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Program
+      operationId: deleteProgramItem
+      summary: 'Removes the Program resource.'
+      responses:
+        204:
+          description: 'Program resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Program
+      operationId: putProgramItem
+      summary: 'Replaces the Program resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Program resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Program:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Program:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Program:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Program:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+        description: 'The updated Program resource'
+    patch:
+      tags:
+        - Program
+      operationId: patchProgramItem
+      summary: 'Updates the Program resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Program resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Program:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Program:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Program-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Program:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Program-write'
+        description: 'The updated Program resource'
+  /results:
+    get:
+      tags:
+        - Result
+      operationId: getResultCollection
+      summary: 'Retrieves the collection of Result resources.'
+      responses:
+        200:
+          description: 'Result collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Result
+      operationId: postResultCollection
+      summary: 'Creates a Result resource.'
+      responses:
+        201:
+          description: 'Result resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Result:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Result:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+          links:
+            GetResultItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getResultItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /results/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Result:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Result:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+        description: 'The new Result resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/results/{id}':
+    get:
+      tags:
+        - Result
+      operationId: getResultItem
+      summary: 'Retrieves a Result resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Result resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Result:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Result:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Result
+      operationId: deleteResultItem
+      summary: 'Removes the Result resource.'
+      responses:
+        204:
+          description: 'Result resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Result
+      operationId: putResultItem
+      summary: 'Replaces the Result resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Result resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Result:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Result:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Result:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Result:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+        description: 'The updated Result resource'
+    patch:
+      tags:
+        - Result
+      operationId: patchResultItem
+      summary: 'Updates the Result resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Result resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Result:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Result:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Result-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Result:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Result-write'
+        description: 'The updated Result resource'
+  /reviews:
+    get:
+      tags:
+        - Review
+      operationId: getReviewCollection
+      summary: 'Retrieves the collection of Review resources.'
+      responses:
+        200:
+          description: 'Review collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Review:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Review:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Review
+      operationId: postReviewCollection
+      summary: 'Creates a Review resource.'
+      responses:
+        201:
+          description: 'Review resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Review:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Review:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+          links:
+            GetReviewItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getReviewItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /reviews/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Review:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Review:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+        description: 'The new Review resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/reviews/{id}':
+    get:
+      tags:
+        - Review
+      operationId: getReviewItem
+      summary: 'Retrieves a Review resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Review resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Review:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Review:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Review
+      operationId: deleteReviewItem
+      summary: 'Removes the Review resource.'
+      responses:
+        204:
+          description: 'Review resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Review
+      operationId: putReviewItem
+      summary: 'Replaces the Review resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Review resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Review:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Review:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Review:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Review:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+        description: 'The updated Review resource'
+    patch:
+      tags:
+        - Review
+      operationId: patchReviewItem
+      summary: 'Updates the Review resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Review resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Review:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Review:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Review-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Review:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Review-write'
+        description: 'The updated Review resource'
 components:
   schemas:
+    Activity-read:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        educationalUse:
+          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result-read'
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    Activity-write:
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        educationalUse:
+          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result-write'
+    'Activity:jsonld-read':
+      type: object
+      description: ''
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        educationalUse:
+          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result:jsonld-read'
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    'Activity:jsonld-write':
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        educationalUse:
+          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result:jsonld-write'
     AuditTrail-read:
       type: object
       description: 'An resource representing a log line.'
@@ -5248,7 +7573,7 @@ components:
           type: string
     Course-read:
       type: object
-      description: 'A Course is a course within a program in which participants can participate.'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
       properties:
         id:
           readOnly: true
@@ -5302,19 +7627,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant-read'
-        educationalOccupationalPrograms:
+        programs:
           type: array
           items:
-            $ref: '#/components/schemas/EducationalOccupationalProgram-read'
+            $ref: '#/components/schemas/Program-read'
         educationEvents:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-read'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity-read'
       required:
         - name
     Course-write:
       type: object
-      description: 'A Course is a course within a program in which participants can participate.'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
       required:
         - name
       properties:
@@ -5353,17 +7682,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant-write'
-        educationalOccupationalPrograms:
+        programs:
           type: array
           items:
-            $ref: '#/components/schemas/EducationalOccupationalProgram-write'
+            $ref: '#/components/schemas/Program-write'
         educationEvents:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-write'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity-write'
     'Course:jsonld-read':
       type: object
-      description: 'A Course is a course within a program in which participants can participate.'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
       properties:
         '@context':
           readOnly: true
@@ -5426,19 +7759,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant:jsonld-read'
-        educationalOccupationalPrograms:
+        programs:
           type: array
           items:
-            $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
+            $ref: '#/components/schemas/Program:jsonld-read'
         educationEvents:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-read'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity:jsonld-read'
       required:
         - name
     'Course:jsonld-write':
       type: object
-      description: 'A Course is a course within a program in which participants can participate.'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
       required:
         - name
       properties:
@@ -5486,14 +7823,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant:jsonld-write'
-        educationalOccupationalPrograms:
+        programs:
           type: array
           items:
-            $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
+            $ref: '#/components/schemas/Program:jsonld-write'
         educationEvents:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-write'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity:jsonld-write'
     EducationEvent-read:
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -5710,9 +8051,133 @@ components:
           nullable: true
         course:
           $ref: '#/components/schemas/Course:jsonld-write'
-    EducationalOccupationalProgram-read:
+    Participant-read:
       type: object
-      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
+      description: 'A Participant is a person who participates in a Course or an Program.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this Participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        person:
+          description: 'The contact of this Participant.'
+          type: string
+        dateCreated:
+          description: 'The moment this Participant was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this Participant was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        programs:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Program-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course-read'
+      required:
+        - person
+    Participant-write:
+      type: object
+      description: 'A Participant is a person who participates in a Course or an Program.'
+      required:
+        - person
+      properties:
+        person:
+          description: 'The contact of this Participant.'
+          type: string
+        programs:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Program-write'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course-write'
+    'Participant:jsonld-read':
+      type: object
+      description: 'A Participant is a person who participates in a Course or an Program.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this Participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        person:
+          description: 'The contact of this Participant.'
+          type: string
+        dateCreated:
+          description: 'The moment this Participant was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this Participant was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        programs:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Program:jsonld-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course:jsonld-read'
+      required:
+        - person
+    'Participant:jsonld-write':
+      type: object
+      description: 'A Participant is a person who participates in a Course or an Program.'
+      required:
+        - person
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        person:
+          description: 'The contact of this Participant.'
+          type: string
+        programs:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Program:jsonld-write'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course:jsonld-write'
+    Program-read:
+      type: object
+      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
       properties:
         id:
           readOnly: true
@@ -5832,6 +8297,14 @@ components:
           description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
           type: integer
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course-read'
         dateCreated:
           description: 'The moment this EducationalOccupationalProgram was created'
           type: string
@@ -5842,19 +8315,11 @@ components:
           type: string
           format: date-time
           nullable: true
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant-read'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course-read'
       required:
         - name
-    EducationalOccupationalProgram-write:
+    Program-write:
       type: object
-      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
+      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
       required:
         - name
       properties:
@@ -5977,9 +8442,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course-write'
-    'EducationalOccupationalProgram:jsonld-read':
+    'Program:jsonld-read':
       type: object
-      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
+      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
       properties:
         '@context':
           readOnly: true
@@ -6108,6 +8573,14 @@ components:
           description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
           type: integer
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course:jsonld-read'
         dateCreated:
           description: 'The moment this EducationalOccupationalProgram was created'
           type: string
@@ -6118,19 +8591,11 @@ components:
           type: string
           format: date-time
           nullable: true
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant:jsonld-read'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course:jsonld-read'
       required:
         - name
-    'EducationalOccupationalProgram:jsonld-write':
+    'Program:jsonld-write':
       type: object
-      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.'
+      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
       required:
         - name
       properties:
@@ -6262,60 +8727,74 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-write'
-    Participant-read:
+    Result-read:
       type: object
-      description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
+      description: ''
       properties:
         id:
           readOnly: true
-          description: 'The UUID identifier of this Participant.'
+          description: 'The UUID identifier of this participant.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
-        person:
-          description: 'The contact of this Participant.'
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
           type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        participant:
+          $ref: '#/components/schemas/Participant-read'
+        activity:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Activity-read'
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review-read'
         dateCreated:
-          description: 'The moment this Participant was created'
+          description: 'The moment this EducationalOccupationalProgram was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this Participant was last Modified'
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
           type: string
           format: date-time
           nullable: true
-        educationalOccupationalPrograms:
-          type: array
-          items:
-            $ref: '#/components/schemas/EducationalOccupationalProgram-read'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course-read'
       required:
-        - person
-    Participant-write:
+        - name
+    Result-write:
       type: object
-      description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
+      description: ''
       required:
-        - person
+        - name
       properties:
-        person:
-          description: 'The contact of this Participant.'
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
           type: string
-        educationalOccupationalPrograms:
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        participant:
+          $ref: '#/components/schemas/Participant-write'
+        activity:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Activity-write'
+        reviews:
           type: array
           items:
-            $ref: '#/components/schemas/EducationalOccupationalProgram-write'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course-write'
-    'Participant:jsonld-read':
+            $ref: '#/components/schemas/Review-write'
+    'Result:jsonld-read':
       type: object
-      description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
+      description: ''
       properties:
         '@context':
           readOnly: true
@@ -6328,39 +8807,46 @@ components:
           type: string
         id:
           readOnly: true
-          description: 'The UUID identifier of this Participant.'
+          description: 'The UUID identifier of this participant.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
-        person:
-          description: 'The contact of this Participant.'
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
           type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        participant:
+          $ref: '#/components/schemas/Participant:jsonld-read'
+        activity:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Activity:jsonld-read'
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review:jsonld-read'
         dateCreated:
-          description: 'The moment this Participant was created'
+          description: 'The moment this EducationalOccupationalProgram was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this Participant was last Modified'
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
           type: string
           format: date-time
           nullable: true
-        educationalOccupationalPrograms:
-          type: array
-          items:
-            $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-read'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course:jsonld-read'
       required:
-        - person
-    'Participant:jsonld-write':
+        - name
+    'Result:jsonld-write':
       type: object
-      description: 'A Participant is a person who participates in a Course or an EducationalOccupationalProgram.'
+      description: ''
       required:
-        - person
+        - name
       properties:
         '@context':
           readOnly: true
@@ -6371,18 +8857,204 @@ components:
         '@type':
           readOnly: true
           type: string
-        person:
-          description: 'The contact of this Participant.'
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
           type: string
-        educationalOccupationalPrograms:
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        participant:
+          $ref: '#/components/schemas/Participant:jsonld-write'
+        activity:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Activity:jsonld-write'
+        reviews:
           type: array
           items:
-            $ref: '#/components/schemas/EducationalOccupationalProgram:jsonld-write'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course:jsonld-write'
+            $ref: '#/components/schemas/Review:jsonld-write'
+    Review-read:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        result:
+          $ref: '#/components/schemas/Result-read'
+        body:
+          type: string
+          nullable: true
+        rating:
+          type: integer
+          nullable: true
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    Review-write:
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        result:
+          $ref: '#/components/schemas/Result-write'
+        body:
+          type: string
+          nullable: true
+        rating:
+          type: integer
+          nullable: true
+    'Review:jsonld-read':
+      type: object
+      description: ''
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        result:
+          $ref: '#/components/schemas/Result:jsonld-read'
+        body:
+          type: string
+          nullable: true
+        rating:
+          type: integer
+          nullable: true
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    'Review:jsonld-write':
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        result:
+          $ref: '#/components/schemas/Result:jsonld-write'
+        body:
+          type: string
+          nullable: true
+        rating:
+          type: integer
+          nullable: true
 definitions:
+  Activity-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      educationalUse: []
+      dateCreated:
+        description: 'The moment this EducationalOccupationalProgram was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        type: \Datetime
+      results: []
+    required:
+      - name
+  Activity-write:
+    properties:
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      educationalUse: []
+      results: []
+    required:
+      - name
   Course-read:
     properties:
       id:
@@ -6436,8 +9108,9 @@ definitions:
         description: 'The moment this Course was last Modified'
         type: \Datetime
       participants: []
-      educationalOccupationalPrograms: []
+      programs: []
       educationEvents: []
+      activities: []
     required:
       - name
   Course-write:
@@ -6482,8 +9155,9 @@ definitions:
         example: 'Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.'
         maxLength: 255
       participants: []
-      educationalOccupationalPrograms: []
+      programs: []
       educationEvents: []
+      activities: []
     required:
       - name
   EducationEvent-read:
@@ -6521,12 +9195,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -6567,17 +9241,50 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       course: []
     required:
       - name
-  EducationalOccupationalProgram-read:
+  Participant-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      person:
+        description: 'The contact of this Participant.'
+        type: string
+        example: 'https://cc.conduction.nl/people'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this Participant was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Participant was last Modified'
+        type: \Datetime
+      programs: []
+      courses: []
+    required:
+      - person
+  Participant-write:
+    properties:
+      person:
+        description: 'The contact of this Participant.'
+        type: string
+        example: 'https://cc.conduction.nl/people'
+        maxLength: 255
+      programs: []
+      courses: []
+    required:
+      - person
+  Program-read:
     properties:
       id:
         description: 'The UUID identifier of this participant.'
@@ -6597,22 +9304,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -6715,7 +9422,7 @@ definitions:
       courses: []
     required:
       - name
-  EducationalOccupationalProgram-write:
+  Program-write:
     properties:
       name:
         description: 'The name of this EducationalOccupationalProgram.'
@@ -6730,22 +9437,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -6842,39 +9549,96 @@ definitions:
       courses: []
     required:
       - name
-  Participant-read:
+  Result-read:
     properties:
       id:
-        description: 'The UUID identifier of this Participant.'
+        description: 'The UUID identifier of this participant.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      person:
-        description: 'The contact of this Participant.'
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
         type: string
-        example: 'https://cc.conduction.nl/people'
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
         maxLength: 255
       dateCreated:
-        description: 'The moment this Participant was created'
+        description: 'The moment this EducationalOccupationalProgram was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this Participant was last Modified'
+        description: 'The moment this EducationalOccupationalProgram was last Modified'
         type: \Datetime
-      educationalOccupationalPrograms: []
-      courses: []
+      participant: []
+      activity: []
+      reviews: []
     required:
-      - person
-  Participant-write:
+      - name
+  Result-write:
     properties:
-      person:
-        description: 'The contact of this Participant.'
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
         type: string
-        example: 'https://cc.conduction.nl/people'
+        example: 'associate degree informatica'
         maxLength: 255
-      educationalOccupationalPrograms: []
-      courses: []
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      participant: []
+      activity: []
+      reviews: []
     required:
-      - person
+      - name
+  Review-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      body: []
+      rating: []
+      dateCreated:
+        description: 'The moment this EducationalOccupationalProgram was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        type: \Datetime
+      result: []
+    required:
+      - name
+  Review-write:
+    properties:
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      body: []
+      rating: []
+      result: []
+    required:
+      - name
   AuditTrail-read:
     properties:
       id:
@@ -6979,12 +9743,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
     required: []
   AuditTrail-write:
     properties:
@@ -7032,12 +9796,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-14 11:09:39'
+        example: '2020-07-15 09:56:37'
     required: []
   ChangeLog-write:
     properties:
@@ -7049,9 +9813,15 @@ definitions:
     required: []
 tags:
   -
+    name: Activity
+    description: |
+      
+      
+      
+  -
     name: Course
     description: |
-      A Course is a course within a program in which participants can participate.
+      A Course is a course within a program in which participants can participate. Based on https://schema.org/Course
       
       
   -
@@ -7061,15 +9831,27 @@ tags:
       
       
   -
-    name: EducationalOccupationalProgram
+    name: Participant
     description: |
-      A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.
+      A Participant is a person who participates in a Course or an Program.
       
       
   -
-    name: Participant
+    name: Program
     description: |
-      A Participant is a person who participates in a Course or an EducationalOccupationalProgram.
+      A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram
+      
+      
+  -
+    name: Result
+    description: |
+      
+      
+      
+  -
+    name: Review
+    description: |
+      
       
       
   -

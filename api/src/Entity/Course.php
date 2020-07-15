@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A Course is a course within a program in which participants can participate.
+ * A Course is a course within a program in which participants can participate. Based on https://schema.org/Course
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -169,23 +169,33 @@ class Course
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=EducationalOccupationalProgram::class, mappedBy="courses")
+     * @ORM\ManyToMany(targetEntity=Program::class, mappedBy="courses", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $educationalOccupationalPrograms;
+    private $programs;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=EducationEvent::class, mappedBy="course", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=EducationEvent::class, mappedBy="course", orphanRemoval=true, cascade={"persist"})
      * @MaxDepth(1)
      */
     private $educationEvents;
 
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $activities;
+
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
-        $this->educationalOccupationalPrograms = new ArrayCollection();
+        $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
+        $this->activities = new ArrayCollection();
+        $this->tests = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -349,28 +359,28 @@ class Course
     }
 
     /**
-     * @return Collection|EducationalOccupationalProgram[]
+     * @return Collection|program[]
      */
-    public function getEducationalOccupationalPrograms(): Collection
+    public function getPrograms(): Collection
     {
-        return $this->educationalOccupationalPrograms;
+        return $this->programs;
     }
 
-    public function addEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    public function addProgram(Program $program): self
     {
-        if (!$this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
-            $this->educationalOccupationalPrograms[] = $educationalOccupationalProgram;
-            $educationalOccupationalProgram->addCourse($this);
+        if (!$this->educationalOccupationalPrograms->contains($program)) {
+            $this->educationalOccupationalPrograms[] = $program;
+            $program->addCourse($this);
         }
 
         return $this;
     }
 
-    public function removeEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    public function removeProgram(Program $program): self
     {
-        if ($this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
-            $this->educationalOccupationalPrograms->removeElement($educationalOccupationalProgram);
-            $educationalOccupationalProgram->removeCourse($this);
+        if ($this->programs->contains($program)) {
+            $this->programs->removeElement($program);
+            $program->removeCourse($this);
         }
 
         return $this;
@@ -401,6 +411,68 @@ class Course
             // set the owning side to null (unless already changed)
             if ($educationEvent->getCourse() === $this) {
                 $educationEvent->setCourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Activity[]
+     */
+    public function getActivities(): Collection
+    {
+        return $this->activities;
+    }
+
+    public function addActivity(Activity $activity): self
+    {
+        if (!$this->activities->contains($activity)) {
+            $this->activities[] = $activity;
+            $activity->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivity(Activity $activity): self
+    {
+        if ($this->activities->contains($activity)) {
+            $this->activities->removeElement($activity);
+            // set the owning side to null (unless already changed)
+            if ($activity->getCourse() === $this) {
+                $activity->setCourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Test[]
+     */
+    public function getTests(): Collection
+    {
+        return $this->tests;
+    }
+
+    public function addTest(Test $test): self
+    {
+        if (!$this->tests->contains($test)) {
+            $this->tests[] = $test;
+            $test->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTest(Test $test): self
+    {
+        if ($this->tests->contains($test)) {
+            $this->tests->removeElement($test);
+            // set the owning side to null (unless already changed)
+            if ($test->getCourse() === $this) {
+                $test->setCourse(null);
             }
         }
 

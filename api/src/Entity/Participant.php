@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A Participant is a person who participates in a Course or an EducationalOccupationalProgram.
+ * A Participant is a person who participates in a Course or an Program.
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -74,10 +74,10 @@ class Participant
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=EducationalOccupationalProgram::class, inversedBy="participants")
+     * @ORM\ManyToMany(targetEntity=Program::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $educationalOccupationalPrograms;
+    private $programs;
 
     /**
      * @Groups({"read","write"})
@@ -86,10 +86,16 @@ class Participant
      */
     private $courses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", orphanRemoval=true)
+     */
+    private $results;
+
     public function __construct()
     {
-        $this->educationalOccupationalPrograms = new ArrayCollection();
+        $this->programs = new ArrayCollection();
         $this->courses = new ArrayCollection();
+        $this->results = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -141,26 +147,26 @@ class Participant
     }
 
     /**
-     * @return Collection|EducationalOccupationalProgram[]
+     * @return Collection|Program[]
      */
-    public function getEducationalOccupationalPrograms(): Collection
+    public function getPrograms(): Collection
     {
-        return $this->educationalOccupationalPrograms;
+        return $this->programs;
     }
 
-    public function addEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    public function addEducationalOccupationalProgram(Program $program): self
     {
-        if (!$this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
-            $this->educationalOccupationalPrograms[] = $educationalOccupationalProgram;
+        if (!$this->Programs->contains($program)) {
+            $this->Programs[] = $program;
         }
 
         return $this;
     }
 
-    public function removeEducationalOccupationalProgram(EducationalOccupationalProgram $educationalOccupationalProgram): self
+    public function removeEducationalOccupationalProgram(Program $program): self
     {
-        if ($this->educationalOccupationalPrograms->contains($educationalOccupationalProgram)) {
-            $this->educationalOccupationalPrograms->removeElement($educationalOccupationalProgram);
+        if ($this->programs->contains($program)) {
+            $this->programs->removeElement($program);
         }
 
         return $this;
@@ -187,6 +193,37 @@ class Participant
     {
         if ($this->courses->contains($course)) {
             $this->courses->removeElement($course);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Result[]
+     */
+    public function getResults(): Collection
+    {
+        return $this->results;
+    }
+
+    public function addResult(Result $result): self
+    {
+        if (!$this->results->contains($result)) {
+            $this->results[] = $result;
+            $result->setParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResult(Result $result): self
+    {
+        if ($this->results->contains($result)) {
+            $this->results->removeElement($result);
+            // set the owning side to null (unless already changed)
+            if ($result->getParticipant() === $this) {
+                $result->setParticipant(null);
+            }
         }
 
         return $this;
