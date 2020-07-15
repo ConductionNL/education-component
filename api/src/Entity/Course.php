@@ -195,7 +195,6 @@ class Course
         $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
         $this->activities = new ArrayCollection();
-        $this->tests = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -368,8 +367,8 @@ class Course
 
     public function addProgram(Program $program): self
     {
-        if (!$this->educationalOccupationalPrograms->contains($program)) {
-            $this->educationalOccupationalPrograms[] = $program;
+        if (!$this->programs->contains($program)) {
+            $this->programs[] = $program;
             $program->addCourse($this);
         }
 
@@ -442,37 +441,6 @@ class Course
             // set the owning side to null (unless already changed)
             if ($activity->getCourse() === $this) {
                 $activity->setCourse(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Test[]
-     */
-    public function getTests(): Collection
-    {
-        return $this->tests;
-    }
-
-    public function addTest(Test $test): self
-    {
-        if (!$this->tests->contains($test)) {
-            $this->tests[] = $test;
-            $test->setCourse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTest(Test $test): self
-    {
-        if ($this->tests->contains($test)) {
-            $this->tests->removeElement($test);
-            // set the owning side to null (unless already changed)
-            if ($test->getCourse() === $this) {
-                $test->setCourse(null);
             }
         }
 

@@ -8076,7 +8076,6 @@ components:
           format: date-time
           nullable: true
         programs:
-          readOnly: true
           type: array
           items:
             $ref: '#/components/schemas/Program-read'
@@ -8096,7 +8095,6 @@ components:
           description: 'The contact of this Participant.'
           type: string
         programs:
-          readOnly: true
           type: array
           items:
             $ref: '#/components/schemas/Program-write'
@@ -8138,7 +8136,6 @@ components:
           format: date-time
           nullable: true
         programs:
-          readOnly: true
           type: array
           items:
             $ref: '#/components/schemas/Program:jsonld-read'
@@ -8167,7 +8164,6 @@ components:
           description: 'The contact of this Participant.'
           type: string
         programs:
-          readOnly: true
           type: array
           items:
             $ref: '#/components/schemas/Program:jsonld-write'
@@ -9195,12 +9191,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -9241,12 +9237,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       course: []
     required:
@@ -9304,22 +9300,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -9437,22 +9433,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -9743,12 +9739,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
     required: []
   AuditTrail-write:
     properties:
@@ -9796,12 +9792,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-15 09:56:37'
+        example: '2020-07-15 12:22:07'
     required: []
   ChangeLog-write:
     properties:
