@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\EducationalOccupationalProgramRepository;
+use App\Repository\ProgramRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -347,6 +347,20 @@ class Program
     private $typicalCreditsPerTerm;
 
     /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="educationalOccupationalPrograms")
+     * @MaxDepth(1)
+     */
+    private $participants;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="educationalOccupationalPrograms", cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $courses;
+
+    /**
      * @var Datetime The moment this EducationalOccupationalProgram was created
      *
      * @Groups({"read"})
@@ -363,20 +377,6 @@ class Program
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="educationalOccupationalPrograms")
-     * @MaxDepth(1)
-     */
-    private $participants;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="educationalOccupationalPrograms", cascade={"persist"})
-     * @MaxDepth(1)
-     */
-    private $courses;
 
     public function __construct()
     {
@@ -696,30 +696,6 @@ class Program
         return $this;
     }
 
-    public function getDateCreated(): ?\DateTimeInterface
-    {
-        return $this->dateCreated;
-    }
-
-    public function setDateCreated(\DateTimeInterface $dateCreated): self
-    {
-        $this->dateCreated = $dateCreated;
-
-        return $this;
-    }
-
-    public function getDateModified(): ?\DateTimeInterface
-    {
-        return $this->dateModified;
-    }
-
-    public function setDateModified(\DateTimeInterface $dateModified): self
-    {
-        $this->dateModified = $dateModified;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Participant[]
      */
@@ -770,6 +746,30 @@ class Program
         if ($this->courses->contains($course)) {
             $this->courses->removeElement($course);
         }
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->dateCreated;
+    }
+
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getDateModified(): ?\DateTimeInterface
+    {
+        return $this->dateModified;
+    }
+
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+        $this->dateModified = $dateModified;
 
         return $this;
     }

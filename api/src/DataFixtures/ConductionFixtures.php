@@ -2,10 +2,13 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Activity;
 use App\Entity\Course;
+use App\Entity\EducationalEvent;
 use App\Entity\Participant;
 use App\Entity\Program;
-use App\Entity\EducationalEvent;
+use App\Entity\Result;
+use App\Entity\Review;
 
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -56,11 +59,35 @@ class ConductionFixtures extends Fixture
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
         $program->addCourse($course);
 
+        $activity = new Activity();
+        $activity->setName('Maak een acount aan voor Github');
+        $activity->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $activity->setEducationalUse('assignment');
+        $course->addActivity($activity);
+
+        $activity = new Activity();
+        $activity->setName('Maak een acount aan voor Docker');
+        $activity->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $activity->setEducationalUse('assignment');
+        $course->addActivity($activity);
+
+        $activity = new Activity();
+        $activity->setName('Wat gaan we doen?');
+        $activity->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
         // W
         $course = new Course();
         $course->setName('Agile en Scrum');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
         $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
 
         // W
         $course = new Course();
@@ -68,11 +95,23 @@ class ConductionFixtures extends Fixture
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
         $program->addCourse($course);
 
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
         // W
         $course = new Course();
         $course->setName('Userinterface en NL Design');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
         $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
 
         // W
         $course = new Course();
@@ -80,17 +119,35 @@ class ConductionFixtures extends Fixture
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
         $program->addCourse($course);
 
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
         // W
         $course = new Course();
         $course->setName('API Design en Datamodellen');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
         $program->addCourse($course);
 
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
         // W
         $course = new Course();
         $course->setName('Protocomponent');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
         $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
 
         // Test Tutorial
         $course = new Course();
@@ -102,6 +159,12 @@ class ConductionFixtures extends Fixture
         $course->setOccupationalCredentialAwarded('Een mooie Conduction sticker en een high five');
         $manager->persist($course);
         $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
 
 
         $manager->flush();

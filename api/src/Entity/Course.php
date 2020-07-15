@@ -182,14 +182,12 @@ class Course
     private $educationEvents;
 
     /**
-     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true)
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $activities;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Test::class, mappedBy="course", orphanRemoval=true)
-     */
-    private $tests;
 
     public function __construct()
     {

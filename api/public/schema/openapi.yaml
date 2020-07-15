@@ -29,7 +29,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld' } }
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
@@ -39,7 +39,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld' } }
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
@@ -49,57 +49,57 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             application/json+hal:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             application/json+vnd.api:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             application/health+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             application/json+health:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Activity'
+                  $ref: '#/components/schemas/Activity-read'
       parameters:
         -
           name: page
@@ -202,43 +202,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Activity:jsonld'
+                $ref: '#/components/schemas/Activity:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Activity:jsonld'
+                $ref: '#/components/schemas/Activity:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
           links:
             GetActivityItem:
               parameters:
@@ -253,43 +253,43 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Activity:jsonld'
+              $ref: '#/components/schemas/Activity:jsonld-write'
           application/json+ld:
             schema:
-              $ref: '#/components/schemas/Activity:jsonld'
+              $ref: '#/components/schemas/Activity:jsonld-write'
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/json+hal:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/json+vnd.api:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/health+json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/json+health:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
         description: 'The new Activity resource'
       parameters:
         -
@@ -411,43 +411,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Activity:jsonld'
+                $ref: '#/components/schemas/Activity:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Activity:jsonld'
+                $ref: '#/components/schemas/Activity:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
         404:
           description: 'Resource not found'
       produces:
@@ -545,43 +545,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Activity:jsonld'
+                $ref: '#/components/schemas/Activity:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Activity:jsonld'
+                $ref: '#/components/schemas/Activity:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
         400:
           description: 'Invalid input'
         404:
@@ -590,43 +590,43 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Activity:jsonld'
+              $ref: '#/components/schemas/Activity:jsonld-write'
           application/json+ld:
             schema:
-              $ref: '#/components/schemas/Activity:jsonld'
+              $ref: '#/components/schemas/Activity:jsonld-write'
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/json+hal:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/json+vnd.api:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/health+json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/json+health:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
         description: 'The updated Activity resource'
     patch:
       tags:
@@ -675,43 +675,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Activity:jsonld'
+                $ref: '#/components/schemas/Activity:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Activity:jsonld'
+                $ref: '#/components/schemas/Activity:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Activity'
+                $ref: '#/components/schemas/Activity-read'
         400:
           description: 'Invalid input'
         404:
@@ -720,31 +720,31 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Activity:jsonld'
+              $ref: '#/components/schemas/Activity:jsonld-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           applications/x-yaml:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Activity'
+              $ref: '#/components/schemas/Activity-write'
         description: 'The updated Activity resource'
   /audit_trails:
     get:
@@ -5611,7 +5611,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld' } }
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
@@ -5621,7 +5621,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld' } }
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
@@ -5631,57 +5631,57 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             application/json+hal:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             application/json+vnd.api:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             application/health+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             application/json+health:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Result'
+                  $ref: '#/components/schemas/Result-read'
       parameters:
         -
           name: page
@@ -5784,43 +5784,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Result:jsonld'
+                $ref: '#/components/schemas/Result:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Result:jsonld'
+                $ref: '#/components/schemas/Result:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
           links:
             GetResultItem:
               parameters:
@@ -5835,43 +5835,43 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Result:jsonld'
+              $ref: '#/components/schemas/Result:jsonld-write'
           application/json+ld:
             schema:
-              $ref: '#/components/schemas/Result:jsonld'
+              $ref: '#/components/schemas/Result:jsonld-write'
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/json+hal:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/json+vnd.api:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/health+json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/json+health:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
         description: 'The new Result resource'
       parameters:
         -
@@ -5993,43 +5993,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Result:jsonld'
+                $ref: '#/components/schemas/Result:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Result:jsonld'
+                $ref: '#/components/schemas/Result:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
         404:
           description: 'Resource not found'
       produces:
@@ -6127,43 +6127,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Result:jsonld'
+                $ref: '#/components/schemas/Result:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Result:jsonld'
+                $ref: '#/components/schemas/Result:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
         400:
           description: 'Invalid input'
         404:
@@ -6172,43 +6172,43 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Result:jsonld'
+              $ref: '#/components/schemas/Result:jsonld-write'
           application/json+ld:
             schema:
-              $ref: '#/components/schemas/Result:jsonld'
+              $ref: '#/components/schemas/Result:jsonld-write'
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/json+hal:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/json+vnd.api:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/health+json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/json+health:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
         description: 'The updated Result resource'
     patch:
       tags:
@@ -6257,43 +6257,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Result:jsonld'
+                $ref: '#/components/schemas/Result:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Result:jsonld'
+                $ref: '#/components/schemas/Result:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result-read'
         400:
           description: 'Invalid input'
         404:
@@ -6302,31 +6302,31 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Result:jsonld'
+              $ref: '#/components/schemas/Result:jsonld-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           applications/x-yaml:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Result'
+              $ref: '#/components/schemas/Result-write'
         description: 'The updated Result resource'
   /reviews:
     get:
@@ -6342,7 +6342,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Review:jsonld' } }
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Review:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
@@ -6352,7 +6352,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Review:jsonld' } }
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Review:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
@@ -6362,57 +6362,57 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             application/json+hal:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             application/json+vnd.api:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             application/health+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             application/json+health:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Review'
+                  $ref: '#/components/schemas/Review-read'
       parameters:
         -
           name: page
@@ -6515,43 +6515,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Review:jsonld'
+                $ref: '#/components/schemas/Review:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Review:jsonld'
+                $ref: '#/components/schemas/Review:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
           links:
             GetReviewItem:
               parameters:
@@ -6566,43 +6566,43 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Review:jsonld'
+              $ref: '#/components/schemas/Review:jsonld-write'
           application/json+ld:
             schema:
-              $ref: '#/components/schemas/Review:jsonld'
+              $ref: '#/components/schemas/Review:jsonld-write'
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/json+hal:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/json+vnd.api:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/health+json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/json+health:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
         description: 'The new Review resource'
       parameters:
         -
@@ -6724,43 +6724,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Review:jsonld'
+                $ref: '#/components/schemas/Review:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Review:jsonld'
+                $ref: '#/components/schemas/Review:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
         404:
           description: 'Resource not found'
       produces:
@@ -6858,43 +6858,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Review:jsonld'
+                $ref: '#/components/schemas/Review:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Review:jsonld'
+                $ref: '#/components/schemas/Review:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
         400:
           description: 'Invalid input'
         404:
@@ -6903,43 +6903,43 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Review:jsonld'
+              $ref: '#/components/schemas/Review:jsonld-write'
           application/json+ld:
             schema:
-              $ref: '#/components/schemas/Review:jsonld'
+              $ref: '#/components/schemas/Review:jsonld-write'
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/json+hal:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/json+vnd.api:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/health+json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/json+health:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
         description: 'The updated Review resource'
     patch:
       tags:
@@ -6988,43 +6988,43 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Review:jsonld'
+                $ref: '#/components/schemas/Review:jsonld-read'
             application/json+ld:
               schema:
-                $ref: '#/components/schemas/Review:jsonld'
+                $ref: '#/components/schemas/Review:jsonld-read'
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+hal:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+vnd.api:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/health+json:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/json+health:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Review'
+                $ref: '#/components/schemas/Review-read'
         400:
           description: 'Invalid input'
         404:
@@ -7033,783 +7033,92 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Review:jsonld'
+              $ref: '#/components/schemas/Review:jsonld-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           applications/x-yaml:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Review'
+              $ref: '#/components/schemas/Review-write'
         description: 'The updated Review resource'
-  /tests:
-    get:
-      tags:
-        - Test
-      operationId: getTestCollection
-      summary: 'Retrieves the collection of Test resources.'
-      responses:
-        200:
-          description: 'Test collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Test:jsonld' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/json+ld:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Test:jsonld' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            application/json+vnd.api:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Test'
-      parameters:
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-            default: 1
-        -
-          name: limit
-          in: query
-          required: false
-          description: 'The number of items per page'
-          schema:
-            type: integer
-            default: 30
-            minimum: 0
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
-    post:
-      tags:
-        - Test
-      operationId: postTestCollection
-      summary: 'Creates a Test resource.'
-      responses:
-        201:
-          description: 'Test resource created'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Test:jsonld'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/Test:jsonld'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Test'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Test'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Test'
-          links:
-            GetTestItem:
-              parameters:
-                id: '$response.body#/id'
-              operationId: getTestItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /tests/{id}`.'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Test:jsonld'
-          application/json+ld:
-            schema:
-              $ref: '#/components/schemas/Test:jsonld'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/json+vnd.api:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Test'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Test'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Test'
-        description: 'The new Test resource'
-      parameters:
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-  '/tests/{id}':
-    get:
-      tags:
-        - Test
-      operationId: getTestItem
-      summary: 'Retrieves a Test resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      responses:
-        200:
-          description: 'Test resource response'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Test:jsonld'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/Test:jsonld'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Test'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Test'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Test'
-        404:
-          description: 'Resource not found'
-      produces:
-        - application/health+json
-    delete:
-      tags:
-        - Test
-      operationId: deleteTestItem
-      summary: 'Removes the Test resource.'
-      responses:
-        204:
-          description: 'Test resource deleted'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-    put:
-      tags:
-        - Test
-      operationId: putTestItem
-      summary: 'Replaces the Test resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'Test resource updated'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Test:jsonld'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/Test:jsonld'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Test'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Test'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Test'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Test:jsonld'
-          application/json+ld:
-            schema:
-              $ref: '#/components/schemas/Test:jsonld'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/json+vnd.api:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Test'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Test'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Test'
-        description: 'The updated Test resource'
-    patch:
-      tags:
-        - Test
-      operationId: patchTestItem
-      summary: 'Updates the Test resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'Test resource updated'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Test:jsonld'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/Test:jsonld'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Test'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/Test'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/Test'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Test'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Test:jsonld'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/merge-patch+json:
-            schema:
-              $ref: '#/components/schemas/Test'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Test'
-          applications/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Test'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Test'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Test'
-        description: 'The updated Test resource'
 components:
   schemas:
-    Activity:
+    Activity-read:
       type: object
       description: ''
       properties:
         id:
           readOnly: true
-          type: integer
-        course:
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
-          format: iri-reference
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
         educationalUse:
+          description: 'Could be ''assignment'', ''group work'' or ''test'''
           type: string
         results:
           type: array
           items:
-            type: string
-            format: iri-reference
-    'Activity:jsonld':
+            $ref: '#/components/schemas/Result-read'
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    Activity-write:
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        educationalUse:
+          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result-write'
+    'Activity:jsonld-read':
       type: object
       description: ''
       properties:
@@ -7824,17 +7133,66 @@ components:
           type: string
         id:
           readOnly: true
-          type: integer
-        course:
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
-          format: iri-reference
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
         educationalUse:
+          description: 'Could be ''assignment'', ''group work'' or ''test'''
           type: string
         results:
           type: array
           items:
-            type: string
-            format: iri-reference
+            $ref: '#/components/schemas/Result:jsonld-read'
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    'Activity:jsonld-write':
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        educationalUse:
+          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result:jsonld-write'
     AuditTrail-read:
       type: object
       description: 'An resource representing a log line.'
@@ -8277,6 +7635,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-read'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity-read'
       required:
         - name
     Course-write:
@@ -8328,6 +7690,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-write'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity-write'
     'Course:jsonld-read':
       type: object
       description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
@@ -8401,6 +7767,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-read'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity:jsonld-read'
       required:
         - name
     'Course:jsonld-write':
@@ -8461,6 +7831,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-write'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity:jsonld-write'
     EducationEvent-read:
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -8923,6 +8297,14 @@ components:
           description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
           type: integer
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course-read'
         dateCreated:
           description: 'The moment this EducationalOccupationalProgram was created'
           type: string
@@ -8933,14 +8315,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant-read'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course-read'
       required:
         - name
     Program-write:
@@ -9199,6 +8573,14 @@ components:
           description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
           type: integer
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-read'
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course:jsonld-read'
         dateCreated:
           description: 'The moment this EducationalOccupationalProgram was created'
           type: string
@@ -9209,14 +8591,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant:jsonld-read'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course:jsonld-read'
       required:
         - name
     'Program:jsonld-write':
@@ -9353,30 +8727,72 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-write'
-    Result:
+    Result-read:
       type: object
       description: ''
       properties:
         id:
           readOnly: true
-          type: integer
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
         participant:
-          type: string
-          format: iri-reference
+          $ref: '#/components/schemas/Participant-read'
         activity:
-          type: string
-          format: iri-reference
           nullable: true
-        test:
-          type: string
-          format: iri-reference
-          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Activity-read'
         reviews:
           type: array
           items:
-            type: string
-            format: iri-reference
-    'Result:jsonld':
+            $ref: '#/components/schemas/Review-read'
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    Result-write:
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        participant:
+          $ref: '#/components/schemas/Participant-write'
+        activity:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Activity-write'
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review-write'
+    'Result:jsonld-read':
       type: object
       description: ''
       properties:
@@ -9391,80 +8807,134 @@ components:
           type: string
         id:
           readOnly: true
-          type: integer
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
         participant:
-          type: string
-          format: iri-reference
+          $ref: '#/components/schemas/Participant:jsonld-read'
         activity:
-          type: string
-          format: iri-reference
           nullable: true
-        test:
-          type: string
-          format: iri-reference
-          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Activity:jsonld-read'
         reviews:
           type: array
           items:
-            type: string
-            format: iri-reference
-    Review:
+            $ref: '#/components/schemas/Review:jsonld-read'
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    'Result:jsonld-write':
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        participant:
+          $ref: '#/components/schemas/Participant:jsonld-write'
+        activity:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Activity:jsonld-write'
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review:jsonld-write'
+    Review-read:
       type: object
       description: ''
       properties:
         id:
           readOnly: true
-          type: integer
-        result:
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
-          format: iri-reference
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        result:
+          $ref: '#/components/schemas/Result-read'
         body:
           type: string
           nullable: true
         rating:
           type: integer
           nullable: true
-    'Review:jsonld':
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    Review-write:
       type: object
       description: ''
+      required:
+        - name
       properties:
-        '@context':
-          readOnly: true
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
           type: string
-        '@id':
-          readOnly: true
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
           type: string
-        '@type':
-          readOnly: true
-          type: string
-        id:
-          readOnly: true
-          type: integer
+          nullable: true
         result:
-          type: string
-          format: iri-reference
+          $ref: '#/components/schemas/Result-write'
         body:
           type: string
           nullable: true
         rating:
           type: integer
           nullable: true
-    Test:
-      type: object
-      description: ''
-      properties:
-        id:
-          readOnly: true
-          type: integer
-        course:
-          type: string
-          format: iri-reference
-        results:
-          type: array
-          items:
-            type: string
-            format: iri-reference
-    'Test:jsonld':
+    'Review:jsonld-read':
       type: object
       description: ''
       properties:
@@ -9479,16 +8949,112 @@ components:
           type: string
         id:
           readOnly: true
-          type: integer
-        course:
+          description: 'The UUID identifier of this participant.'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
-          format: iri-reference
-        results:
-          type: array
-          items:
-            type: string
-            format: iri-reference
+          format: uuid
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        result:
+          $ref: '#/components/schemas/Result:jsonld-read'
+        body:
+          type: string
+          nullable: true
+        rating:
+          type: integer
+          nullable: true
+        dateCreated:
+          description: 'The moment this EducationalOccupationalProgram was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+    'Review:jsonld-write':
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this EducationalOccupationalProgram.'
+          type: string
+        description:
+          description: 'The description of this EducationalOccupationalProgram.'
+          type: string
+          nullable: true
+        result:
+          $ref: '#/components/schemas/Result:jsonld-write'
+        body:
+          type: string
+          nullable: true
+        rating:
+          type: integer
+          nullable: true
 definitions:
+  Activity-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      educationalUse: []
+      dateCreated:
+        description: 'The moment this EducationalOccupationalProgram was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        type: \Datetime
+      results: []
+    required:
+      - name
+  Activity-write:
+    properties:
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      educationalUse: []
+      results: []
+    required:
+      - name
   Course-read:
     properties:
       id:
@@ -9544,6 +9110,7 @@ definitions:
       participants: []
       programs: []
       educationEvents: []
+      activities: []
     required:
       - name
   Course-write:
@@ -9590,6 +9157,7 @@ definitions:
       participants: []
       programs: []
       educationEvents: []
+      activities: []
     required:
       - name
   EducationEvent-read:
@@ -9627,12 +9195,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -9673,12 +9241,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       course: []
     required:
@@ -9736,22 +9304,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -9869,22 +9437,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       startDate:
         description: 'The moment this EducationalOccupationalProgram starts.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       endDate:
         description: 'The moment this EducationalOccupationalProgram ends.'
         type: string
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this EducationalOccupationalProgram.'
@@ -9979,6 +9547,96 @@ definitions:
         example: '15'
       participants: []
       courses: []
+    required:
+      - name
+  Result-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this EducationalOccupationalProgram was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        type: \Datetime
+      participant: []
+      activity: []
+      reviews: []
+    required:
+      - name
+  Result-write:
+    properties:
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      participant: []
+      activity: []
+      reviews: []
+    required:
+      - name
+  Review-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      body: []
+      rating: []
+      dateCreated:
+        description: 'The moment this EducationalOccupationalProgram was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        type: \Datetime
+      result: []
+    required:
+      - name
+  Review-write:
+    properties:
+      name:
+        description: 'The name of this EducationalOccupationalProgram.'
+        type: string
+        example: 'associate degree informatica'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationalOccupationalProgram.'
+        type: string
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        maxLength: 255
+      body: []
+      rating: []
+      result: []
     required:
       - name
   AuditTrail-read:
@@ -10085,12 +9743,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
     required: []
   AuditTrail-write:
     properties:
@@ -10138,12 +9796,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-15 09:35:28'
+        example: '2020-07-15 09:56:37'
     required: []
   ChangeLog-write:
     properties:
@@ -10192,12 +9850,6 @@ tags:
       
   -
     name: Review
-    description: |
-      
-      
-      
-  -
-    name: Test
     description: |
       
       
