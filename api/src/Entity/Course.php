@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A Course is a course within a program in which participants can participate.
+ * A Course is a course within a program in which participants can participate. Based on https://schema.org/Course
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -181,11 +181,23 @@ class Course
      */
     private $educationEvents;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true)
+     */
+    private $activities;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Test::class, mappedBy="course", orphanRemoval=true)
+     */
+    private $tests;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
         $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
+        $this->activities = new ArrayCollection();
+        $this->tests = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -401,6 +413,68 @@ class Course
             // set the owning side to null (unless already changed)
             if ($educationEvent->getCourse() === $this) {
                 $educationEvent->setCourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Activity[]
+     */
+    public function getActivities(): Collection
+    {
+        return $this->activities;
+    }
+
+    public function addActivity(Activity $activity): self
+    {
+        if (!$this->activities->contains($activity)) {
+            $this->activities[] = $activity;
+            $activity->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivity(Activity $activity): self
+    {
+        if ($this->activities->contains($activity)) {
+            $this->activities->removeElement($activity);
+            // set the owning side to null (unless already changed)
+            if ($activity->getCourse() === $this) {
+                $activity->setCourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Test[]
+     */
+    public function getTests(): Collection
+    {
+        return $this->tests;
+    }
+
+    public function addTest(Test $test): self
+    {
+        if (!$this->tests->contains($test)) {
+            $this->tests[] = $test;
+            $test->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTest(Test $test): self
+    {
+        if ($this->tests->contains($test)) {
+            $this->tests->removeElement($test);
+            // set the owning side to null (unless already changed)
+            if ($test->getCourse() === $this) {
+                $test->setCourse(null);
             }
         }
 

@@ -86,10 +86,16 @@ class Participant
      */
     private $courses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", orphanRemoval=true)
+     */
+    private $results;
+
     public function __construct()
     {
         $this->programs = new ArrayCollection();
         $this->courses = new ArrayCollection();
+        $this->results = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -187,6 +193,37 @@ class Participant
     {
         if ($this->courses->contains($course)) {
             $this->courses->removeElement($course);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Result[]
+     */
+    public function getResults(): Collection
+    {
+        return $this->results;
+    }
+
+    public function addResult(Result $result): self
+    {
+        if (!$this->results->contains($result)) {
+            $this->results[] = $result;
+            $result->setParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResult(Result $result): self
+    {
+        if ($this->results->contains($result)) {
+            $this->results->removeElement($result);
+            // set the owning side to null (unless already changed)
+            if ($result->getParticipant() === $this) {
+                $result->setParticipant(null);
+            }
         }
 
         return $this;
