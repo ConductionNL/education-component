@@ -2,8 +2,14 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Activity;
 use App\Entity\Course;
+use App\Entity\EducationalEvent;
 use App\Entity\Participant;
+use App\Entity\Program;
+use App\Entity\Result;
+use App\Entity\Review;
+
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -27,8 +33,10 @@ class ConductionFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
-            $this->params->get('app_domain') != 'conduction.nl' &&
-            strpos($this->params->get('app_domain'), 'conduction.nl') == false
+            // If build all fixtures is true we build all the fixtures
+            !$this->params->get('app_build_all_fixtures') &&
+            // Specific domain names
+            $this->params->get('app_domain') != 'conduction.nl' && strpos($this->params->get('app_domain'), 'conduction.nl') == false
         ) {
             return false;
         }
@@ -42,20 +50,124 @@ class ConductionFixtures extends Fixture
         $manager->flush();
         $testStudent = $manager->getRepository('App:Participant')->findOneBy(['id'=> $id]);
 
+        // Het online stage programma
+        $program = new Program();
+        $program->setName('Online commonground stage');
+        $program->setDescription('Tijdens dit programma wordt je voorbereid op het online lopen van een stage bij een commonground gemeente of orgnaisatie.');
+
+        // W
+        $course = new Course();
+        $course->setName('Introductie');
+        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Maak een acount aan voor Github');
+        $activity->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $activity->setEducationalUse('assignment');
+        $course->addActivity($activity);
+
+        $activity = new Activity();
+        $activity->setName('Maak een acount aan voor Docker');
+        $activity->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $activity->setEducationalUse('assignment');
+        $course->addActivity($activity);
+
+        $activity = new Activity();
+        $activity->setName('Wat gaan we doen?');
+        $activity->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
+        // W
+        $course = new Course();
+        $course->setName('Agile en Scrum');
+        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
+        // W
+        $course = new Course();
+        $course->setName('Git en versiebeheer');
+        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
+        // W
+        $course = new Course();
+        $course->setName('Userinterface en NL Design');
+        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
+        // W
+        $course = new Course();
+        $course->setName('Architectuur en componenten');
+        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
+        // W
+        $course = new Course();
+        $course->setName('API Design en Datamodellen');
+        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
+        // W
+        $course = new Course();
+        $course->setName('Protocomponent');
+        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
         // Test Tutorial
-        $id = Uuid::fromString('f8d6be3c-c985-4a5b-8497-9d03d9a0580a');
-        $testTutorial = new Course();
-        $testTutorial->setName('Scrum gericht werken en Github');
-        $testTutorial->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
-        $testTutorial->setCourseCode('SG1');
-        $testTutorial->setCoursePrerequisites('Een vmbo diploma of hoger.');
-        $testTutorial->setNumberOfCredits(5);
-        $testTutorial->setOccupationalCredentialAwarded('Een mooie Conduction sticker en een high five');
-        $manager->persist($testTutorial);
-        $testTutorial->setId($id);
-        $manager->persist($testTutorial);
-        $manager->flush();
-        $testTutorial = $manager->getRepository('App:Course')->findOneBy(['id'=> $id]);
+        $course = new Course();
+        $course->setName('Scrum gericht werken en Github');
+        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $course->setCourseCode('SG1');
+        $course->setCoursePrerequisites('Een vmbo diploma of hoger.');
+        $course->setNumberOfCredits(5);
+        $course->setOccupationalCredentialAwarded('Een mooie Conduction sticker en een high five');
+        $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
+        $manager->persist($program);
 
         $manager->flush();
     }

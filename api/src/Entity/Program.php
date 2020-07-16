@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\EducationalOccupationalProgramRepository;
+use App\Repository\ProgramRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,15 +16,15 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate.
+ * A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
  * )
- * @ORM\Entity(repositoryClass=EducationalOccupationalProgramRepository::class)
+ * @ORM\Entity(repositoryClass=ProgramRepository::class)
  */
-class EducationalOccupationalProgram
+class Program
 {
     /**
      * @var UuidInterface The UUID identifier of this participant.
@@ -347,6 +347,20 @@ class EducationalOccupationalProgram
     private $typicalCreditsPerTerm;
 
     /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="programs")
+     * @MaxDepth(1)
+     */
+    private $participants;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $courses;
+
+    /**
      * @var Datetime The moment this EducationalOccupationalProgram was created
      *
      * @Groups({"read"})
@@ -363,20 +377,6 @@ class EducationalOccupationalProgram
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="educationalOccupationalPrograms")
-     * @MaxDepth(1)
-     */
-    private $participants;
-
-    /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="educationalOccupationalPrograms")
-     * @MaxDepth(1)
-     */
-    private $courses;
 
     public function __construct()
     {
@@ -696,30 +696,6 @@ class EducationalOccupationalProgram
         return $this;
     }
 
-    public function getDateCreated(): ?\DateTimeInterface
-    {
-        return $this->dateCreated;
-    }
-
-    public function setDateCreated(\DateTimeInterface $dateCreated): self
-    {
-        $this->dateCreated = $dateCreated;
-
-        return $this;
-    }
-
-    public function getDateModified(): ?\DateTimeInterface
-    {
-        return $this->dateModified;
-    }
-
-    public function setDateModified(\DateTimeInterface $dateModified): self
-    {
-        $this->dateModified = $dateModified;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Participant[]
      */
@@ -770,6 +746,30 @@ class EducationalOccupationalProgram
         if ($this->courses->contains($course)) {
             $this->courses->removeElement($course);
         }
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->dateCreated;
+    }
+
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getDateModified(): ?\DateTimeInterface
+    {
+        return $this->dateModified;
+    }
+
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+        $this->dateModified = $dateModified;
 
         return $this;
     }
