@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Activity
 {
     /**
-     * @var UuidInterface The UUID identifier of this participant.
+     * @var UuidInterface The UUID identifier of this Activity.
      *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
@@ -39,9 +39,9 @@ class Activity
     private $id;
 
     /**
-     * @var string The name of this EducationalOccupationalProgram.
+     * @var string The name of this Activity.
      *
-     * @example associate degree informatica
+     * @example Activity1
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -53,9 +53,9 @@ class Activity
     private $name;
 
     /**
-     * @var string The description of this EducationalOccupationalProgram.
+     * @var string The description of this Activity.
      *
-     * @example Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.
+     * @example Beschrijving van Activity1.
      *
      * @Assert\Length(
      *     max = 255
@@ -67,6 +67,7 @@ class Activity
 
     /**
      * @MaxDepth(1)
+     * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="activities")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -89,7 +90,7 @@ class Activity
     private $results;
 
     /**
-     * @var Datetime The moment this EducationalOccupationalProgram was created
+     * @var Datetime The moment this Activity was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -98,7 +99,7 @@ class Activity
     private $dateCreated;
 
     /**
-     * @var Datetime The moment this EducationalOccupationalProgram was last Modified
+     * @var Datetime The moment this Activity was last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")

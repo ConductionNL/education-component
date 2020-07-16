@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram
+ * A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -27,7 +27,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Program
 {
     /**
-     * @var UuidInterface The UUID identifier of this participant.
+     * @var UuidInterface The UUID identifier of this Program.
      *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
@@ -41,7 +41,7 @@ class Program
     private $id;
 
     /**
-     * @var string The name of this EducationalOccupationalProgram.
+     * @var string The name of this Program.
      *
      * @example associate degree informatica
      *
@@ -55,7 +55,7 @@ class Program
     private $name;
 
     /**
-     * @var string The description of this EducationalOccupationalProgram.
+     * @var string The description of this Program.
      *
      * @example Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.
      *
@@ -68,7 +68,7 @@ class Program
     private $description;
 
     /**
-     * @var DateTime The day that people can start to apply for this EducationalOccupationalProgram.
+     * @var DateTime The day that people can start to apply for this Program.
      *
      * @example 13-07-2020 12:00:00
      *
@@ -79,7 +79,7 @@ class Program
     private $applicationStartDate;
 
     /**
-     * @var DateTime The day that people can no longer apply for this EducationalOccupationalProgram.
+     * @var DateTime The day that people can no longer apply for this Program.
      *
      * @example 25-09-2020 20:00:00
      *
@@ -90,7 +90,7 @@ class Program
     private $applicationDeadline;
 
     /**
-     * @var DateTime The moment this EducationalOccupationalProgram starts.
+     * @var DateTime The moment this Program starts.
      *
      * @example 25-09-2020 13:00:00
      *
@@ -101,7 +101,7 @@ class Program
     private $startDate;
 
     /**
-     * @var DateTime The moment this EducationalOccupationalProgram ends.
+     * @var DateTime The moment this Program ends.
      *
      * @example 25-09-2022 15:00:00
      *
@@ -112,7 +112,7 @@ class Program
     private $endDate;
 
     /**
-     * @var string The financialAidEligible of this EducationalOccupationalProgram.
+     * @var string The financialAidEligible of this Program.
      *
      * @example Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.
      *
@@ -135,7 +135,7 @@ class Program
     private $maximumEnrollment;
 
     /**
-     * @var int The numberOfCredits of this EducationalOccupationalProgram.
+     * @var int The numberOfCredits of this Program.
      *
      * @example 120
      *
@@ -184,7 +184,7 @@ class Program
     private $educationalCredentialAwarded;
 
     /**
-     * @var string The educationalProgramMode of this EducationalOccupationalProgram.
+     * @var string The educationalProgramMode of this Program.
      *
      * @example full-time
      *
@@ -197,7 +197,7 @@ class Program
     private $educationalProgramMode;
 
     /**
-     * @var string The offers of this EducationalOccupationalProgram.
+     * @var string The offers of this Program.
      *
      * @example https://pdc.conduction.nl/offers
      *
@@ -210,7 +210,7 @@ class Program
     private $offers;
 
     /**
-     * @var string The programPrerequisites of this EducationalOccupationalProgram.
+     * @var string The programPrerequisites of this Program.
      *
      * @example Minimaal vmbo diploma gehaald.
      *
@@ -223,7 +223,7 @@ class Program
     private $programPrerequisites;
 
     /**
-     * @var string The programType of this EducationalOccupationalProgram.
+     * @var string The programType of this Program.
      *
      * @example classroom, internship.
      *
@@ -236,7 +236,7 @@ class Program
     private $programType;
 
     /**
-     * @var string The provider of this EducationalOccupationalProgram.
+     * @var string The provider of this Program.
      *
      * @example https://wrc.conduction.nl/organizations
      *
@@ -249,7 +249,7 @@ class Program
     private $provider;
 
     /**
-     * @var string The salaryUponCompletion of this EducationalOccupationalProgram.
+     * @var string The salaryUponCompletion of this Program.
      *
      * @example €1000
      *
@@ -262,7 +262,7 @@ class Program
     private $salaryUponCompletion;
 
     /**
-     * @var string The termDuration of this EducationalOccupationalProgram.
+     * @var string The termDuration of this Program.
      *
      * @example 2 maanden.
      *
@@ -275,7 +275,7 @@ class Program
     private $termDuration;
 
     /**
-     * @var int The termsPerYear of this EducationalOccupationalProgram.
+     * @var int The termsPerYear of this Program.
      *
      * @example 4
      *
@@ -285,7 +285,7 @@ class Program
     private $termsPerYear;
 
     /**
-     * @var string The dayOfWeek of this EducationalOccupationalProgram.
+     * @var string The dayOfWeek of this Program.
      *
      * @example van maandag tot zaterdag.
      *
@@ -298,7 +298,7 @@ class Program
     private $dayOfWeek;
 
     /**
-     * @var string The timeOfDay of this EducationalOccupationalProgram.
+     * @var string The timeOfDay of this Program.
      *
      * @example Overdag, soms in de avond.
      *
@@ -311,7 +311,7 @@ class Program
     private $timeOfDay;
 
     /**
-     * @var string The timeToComplete of this EducationalOccupationalProgram.
+     * @var string The timeToComplete of this Program.
      *
      * @example 2 jaar.
      *
@@ -324,7 +324,7 @@ class Program
     private $timeToComplete;
 
     /**
-     * @var string The trainingSalary of this EducationalOccupationalProgram.
+     * @var string The trainingSalary of this Program.
      *
      * @example €300 per maand.
      *
@@ -337,7 +337,7 @@ class Program
     private $trainingSalary;
 
     /**
-     * @var int The typicalCreditsPerTerm of this EducationalOccupationalProgram.
+     * @var int The typicalCreditsPerTerm of this Program.
      *
      * @example 15
      *
@@ -361,7 +361,7 @@ class Program
     private $courses;
 
     /**
-     * @var Datetime The moment this EducationalOccupationalProgram was created
+     * @var Datetime The moment this Program was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -370,7 +370,7 @@ class Program
     private $dateCreated;
 
     /**
-     * @var Datetime The moment this EducationalOccupationalProgram was last Modified
+     * @var Datetime The moment this Program was last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -708,7 +708,7 @@ class Program
     {
         if (!$this->participants->contains($participant)) {
             $this->participants[] = $participant;
-            $participant->addEducationalOccupationalProgram($this);
+            $participant->Program($this);
         }
 
         return $this;
@@ -718,7 +718,7 @@ class Program
     {
         if ($this->participants->contains($participant)) {
             $this->participants->removeElement($participant);
-            $participant->removeEducationalOccupationalProgram($this);
+            $participant->Program($this);
         }
 
         return $this;

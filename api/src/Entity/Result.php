@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Result
 {
     /**
-     * @var UuidInterface The UUID identifier of this participant.
+     * @var UuidInterface The UUID identifier of this Result.
      *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
@@ -38,9 +38,9 @@ class Result
     private $id;
 
     /**
-     * @var string The name of this EducationalOccupationalProgram.
+     * @var string The name of this Result.
      *
-     * @example associate degree informatica
+     * @example Result1
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -52,9 +52,9 @@ class Result
     private $name;
 
     /**
-     * @var string The description of this EducationalOccupationalProgram.
+     * @var string The description of this Result.
      *
-     * @example Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.
+     * @example Beschrijving van Result1.
      *
      * @Assert\Length(
      *     max = 255
@@ -87,7 +87,7 @@ class Result
     private $reviews;
 
     /**
-     * @var Datetime The moment this EducationalOccupationalProgram was created
+     * @var Datetime The moment this Result was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -96,7 +96,7 @@ class Result
     private $dateCreated;
 
     /**
-     * @var Datetime The moment this EducationalOccupationalProgram was last Modified
+     * @var Datetime The moment this Result was last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")

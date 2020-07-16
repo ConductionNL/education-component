@@ -58,7 +58,7 @@ class ConductionFixtures extends Fixture
         // W
         $course = new Course();
         $course->setName('Introductie');
-        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $course->setDescription('Hier komt een introductie over de tutorials.');
         $program->addCourse($course);
 
         $activity = new Activity();

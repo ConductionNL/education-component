@@ -87,6 +87,8 @@ class Participant
     private $courses;
 
     /**
+     * @MaxDepth(1)
+     * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", orphanRemoval=true)
      */
     private $results;
