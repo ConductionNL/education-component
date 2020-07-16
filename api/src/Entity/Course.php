@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A Course is a course within a program in which participants can participate. Based on https://schema.org/Course
+ * A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -27,7 +27,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Course
 {
     /**
-     * @var UuidInterface The UUID identifier of this participant.
+     * @var UuidInterface The UUID identifier of this Course.
      *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
@@ -187,7 +187,6 @@ class Course
      * @MaxDepth(1)
      */
     private $activities;
-
 
     public function __construct()
     {

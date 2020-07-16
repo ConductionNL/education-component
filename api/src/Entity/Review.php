@@ -5,8 +5,6 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ReviewRepository;
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -25,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Review
 {
     /**
-     * @var UuidInterface The UUID identifier of this participant.
+     * @var UuidInterface The UUID identifier of this Review.
      *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
@@ -39,9 +37,9 @@ class Review
     private $id;
 
     /**
-     * @var string The name of this EducationalOccupationalProgram.
+     * @var string The name of this Review.
      *
-     * @example associate degree informatica
+     * @example Review1
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -53,9 +51,9 @@ class Review
     private $name;
 
     /**
-     * @var string The description of this EducationalOccupationalProgram.
+     * @var string The description of this Review.
      *
-     * @example Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.
+     * @example Beschrijving van Review1.
      *
      * @Assert\Length(
      *     max = 255
@@ -86,7 +84,7 @@ class Review
     private $rating;
 
     /**
-     * @var Datetime The moment this EducationalOccupationalProgram was created
+     * @var Datetime The moment this Review was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -95,14 +93,13 @@ class Review
     private $dateCreated;
 
     /**
-     * @var Datetime The moment this EducationalOccupationalProgram was last Modified
+     * @var Datetime The moment this Review was last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
-
 
     public function getId(): Uuid
     {

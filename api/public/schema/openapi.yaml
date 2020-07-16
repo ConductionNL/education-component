@@ -7067,32 +7067,34 @@ components:
       properties:
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Activity.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Activity.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Activity.'
           type: string
           nullable: true
+        course:
+          $ref: '#/components/schemas/Course-read'
         educationalUse:
-          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
         results:
           type: array
           items:
             $ref: '#/components/schemas/Result-read'
         dateCreated:
-          description: 'The moment this EducationalOccupationalProgram was created'
+          description: 'The moment this Activity was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          description: 'The moment this Activity was last Modified'
           type: string
           format: date-time
           nullable: true
@@ -7105,14 +7107,16 @@ components:
         - name
       properties:
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Activity.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Activity.'
           type: string
           nullable: true
+        course:
+          $ref: '#/components/schemas/Course-write'
         educationalUse:
-          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
         results:
           type: array
@@ -7133,32 +7137,34 @@ components:
           type: string
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Activity.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Activity.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Activity.'
           type: string
           nullable: true
+        course:
+          $ref: '#/components/schemas/Course:jsonld-read'
         educationalUse:
-          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
         results:
           type: array
           items:
             $ref: '#/components/schemas/Result:jsonld-read'
         dateCreated:
-          description: 'The moment this EducationalOccupationalProgram was created'
+          description: 'The moment this Activity was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          description: 'The moment this Activity was last Modified'
           type: string
           format: date-time
           nullable: true
@@ -7180,14 +7186,16 @@ components:
           readOnly: true
           type: string
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Activity.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Activity.'
           type: string
           nullable: true
+        course:
+          $ref: '#/components/schemas/Course:jsonld-write'
         educationalUse:
-          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
         results:
           type: array
@@ -7573,11 +7581,11 @@ components:
           type: string
     Course-read:
       type: object
-      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       properties:
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Course.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
@@ -7643,7 +7651,7 @@ components:
         - name
     Course-write:
       type: object
-      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       required:
         - name
       properties:
@@ -7696,7 +7704,7 @@ components:
             $ref: '#/components/schemas/Activity-write'
     'Course:jsonld-read':
       type: object
-      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       properties:
         '@context':
           readOnly: true
@@ -7709,7 +7717,7 @@ components:
           type: string
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Course.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
@@ -7775,7 +7783,7 @@ components:
         - name
     'Course:jsonld-write':
       type: object
-      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       required:
         - name
       properties:
@@ -7841,7 +7849,7 @@ components:
       properties:
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this EducationEvent.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
@@ -7949,7 +7957,7 @@ components:
           type: string
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this EducationEvent.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
@@ -8083,6 +8091,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course-read'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result-read'
       required:
         - person
     Participant-write:
@@ -8102,6 +8114,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course-write'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result-write'
     'Participant:jsonld-read':
       type: object
       description: 'A Participant is a person who participates in a Course or an Program.'
@@ -8143,6 +8159,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-read'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result:jsonld-read'
       required:
         - person
     'Participant:jsonld-write':
@@ -8171,54 +8191,58 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-write'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result:jsonld-write'
     Program-read:
       type: object
-      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
+      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
       properties:
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Program.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Program.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Program.'
           type: string
           nullable: true
         applicationStartDate:
-          description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+          description: 'The day that people can start to apply for this Program.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         applicationDeadline:
-          description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+          description: 'The day that people can no longer apply for this Program.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         startDate:
-          description: 'The moment this EducationalOccupationalProgram starts.'
+          description: 'The moment this Program starts.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         endDate:
-          description: 'The moment this EducationalOccupationalProgram ends.'
+          description: 'The moment this Program ends.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         financialAidEligible:
-          description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+          description: 'The financialAidEligible of this Program.'
           type: string
           nullable: true
         maximumEnrollment:
@@ -8226,7 +8250,7 @@ components:
           type: integer
           nullable: true
         numberOfCredits:
-          description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+          description: 'The numberOfCredits of this Program.'
           type: integer
           nullable: true
         occupationalCategory:
@@ -8242,55 +8266,55 @@ components:
           type: string
           nullable: true
         educationalProgramMode:
-          description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+          description: 'The educationalProgramMode of this Program.'
           type: string
           nullable: true
         offers:
-          description: 'The offers of this EducationalOccupationalProgram.'
+          description: 'The offers of this Program.'
           type: string
           nullable: true
         programPrerequisites:
-          description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+          description: 'The programPrerequisites of this Program.'
           type: string
           nullable: true
         programType:
-          description: 'The programType of this EducationalOccupationalProgram.'
+          description: 'The programType of this Program.'
           type: string
           nullable: true
         provider:
-          description: 'The provider of this EducationalOccupationalProgram.'
+          description: 'The provider of this Program.'
           type: string
           nullable: true
         salaryUponCompletion:
-          description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+          description: 'The salaryUponCompletion of this Program.'
           type: string
           nullable: true
         termDuration:
-          description: 'The termDuration of this EducationalOccupationalProgram.'
+          description: 'The termDuration of this Program.'
           type: string
           nullable: true
         termsPerYear:
-          description: 'The termsPerYear of this EducationalOccupationalProgram.'
+          description: 'The termsPerYear of this Program.'
           type: integer
           nullable: true
         dayOfWeek:
-          description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+          description: 'The dayOfWeek of this Program.'
           type: string
           nullable: true
         timeOfDay:
-          description: 'The timeOfDay of this EducationalOccupationalProgram.'
+          description: 'The timeOfDay of this Program.'
           type: string
           nullable: true
         timeToComplete:
-          description: 'The timeToComplete of this EducationalOccupationalProgram.'
+          description: 'The timeToComplete of this Program.'
           type: string
           nullable: true
         trainingSalary:
-          description: 'The trainingSalary of this EducationalOccupationalProgram.'
+          description: 'The trainingSalary of this Program.'
           type: string
           nullable: true
         typicalCreditsPerTerm:
-          description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+          description: 'The typicalCreditsPerTerm of this Program.'
           type: integer
           nullable: true
         participants:
@@ -8302,12 +8326,12 @@ components:
           items:
             $ref: '#/components/schemas/Course-read'
         dateCreated:
-          description: 'The moment this EducationalOccupationalProgram was created'
+          description: 'The moment this Program was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          description: 'The moment this Program was last Modified'
           type: string
           format: date-time
           nullable: true
@@ -8315,47 +8339,47 @@ components:
         - name
     Program-write:
       type: object
-      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
+      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
       required:
         - name
       properties:
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Program.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Program.'
           type: string
           nullable: true
         applicationStartDate:
-          description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+          description: 'The day that people can start to apply for this Program.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         applicationDeadline:
-          description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+          description: 'The day that people can no longer apply for this Program.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         startDate:
-          description: 'The moment this EducationalOccupationalProgram starts.'
+          description: 'The moment this Program starts.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         endDate:
-          description: 'The moment this EducationalOccupationalProgram ends.'
+          description: 'The moment this Program ends.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         financialAidEligible:
-          description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+          description: 'The financialAidEligible of this Program.'
           type: string
           nullable: true
         maximumEnrollment:
@@ -8363,7 +8387,7 @@ components:
           type: integer
           nullable: true
         numberOfCredits:
-          description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+          description: 'The numberOfCredits of this Program.'
           type: integer
           nullable: true
         occupationalCategory:
@@ -8379,55 +8403,55 @@ components:
           type: string
           nullable: true
         educationalProgramMode:
-          description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+          description: 'The educationalProgramMode of this Program.'
           type: string
           nullable: true
         offers:
-          description: 'The offers of this EducationalOccupationalProgram.'
+          description: 'The offers of this Program.'
           type: string
           nullable: true
         programPrerequisites:
-          description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+          description: 'The programPrerequisites of this Program.'
           type: string
           nullable: true
         programType:
-          description: 'The programType of this EducationalOccupationalProgram.'
+          description: 'The programType of this Program.'
           type: string
           nullable: true
         provider:
-          description: 'The provider of this EducationalOccupationalProgram.'
+          description: 'The provider of this Program.'
           type: string
           nullable: true
         salaryUponCompletion:
-          description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+          description: 'The salaryUponCompletion of this Program.'
           type: string
           nullable: true
         termDuration:
-          description: 'The termDuration of this EducationalOccupationalProgram.'
+          description: 'The termDuration of this Program.'
           type: string
           nullable: true
         termsPerYear:
-          description: 'The termsPerYear of this EducationalOccupationalProgram.'
+          description: 'The termsPerYear of this Program.'
           type: integer
           nullable: true
         dayOfWeek:
-          description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+          description: 'The dayOfWeek of this Program.'
           type: string
           nullable: true
         timeOfDay:
-          description: 'The timeOfDay of this EducationalOccupationalProgram.'
+          description: 'The timeOfDay of this Program.'
           type: string
           nullable: true
         timeToComplete:
-          description: 'The timeToComplete of this EducationalOccupationalProgram.'
+          description: 'The timeToComplete of this Program.'
           type: string
           nullable: true
         trainingSalary:
-          description: 'The trainingSalary of this EducationalOccupationalProgram.'
+          description: 'The trainingSalary of this Program.'
           type: string
           nullable: true
         typicalCreditsPerTerm:
-          description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+          description: 'The typicalCreditsPerTerm of this Program.'
           type: integer
           nullable: true
         participants:
@@ -8440,7 +8464,7 @@ components:
             $ref: '#/components/schemas/Course-write'
     'Program:jsonld-read':
       type: object
-      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
+      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
       properties:
         '@context':
           readOnly: true
@@ -8453,48 +8477,48 @@ components:
           type: string
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Program.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Program.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Program.'
           type: string
           nullable: true
         applicationStartDate:
-          description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+          description: 'The day that people can start to apply for this Program.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         applicationDeadline:
-          description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+          description: 'The day that people can no longer apply for this Program.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         startDate:
-          description: 'The moment this EducationalOccupationalProgram starts.'
+          description: 'The moment this Program starts.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         endDate:
-          description: 'The moment this EducationalOccupationalProgram ends.'
+          description: 'The moment this Program ends.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         financialAidEligible:
-          description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+          description: 'The financialAidEligible of this Program.'
           type: string
           nullable: true
         maximumEnrollment:
@@ -8502,7 +8526,7 @@ components:
           type: integer
           nullable: true
         numberOfCredits:
-          description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+          description: 'The numberOfCredits of this Program.'
           type: integer
           nullable: true
         occupationalCategory:
@@ -8518,55 +8542,55 @@ components:
           type: string
           nullable: true
         educationalProgramMode:
-          description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+          description: 'The educationalProgramMode of this Program.'
           type: string
           nullable: true
         offers:
-          description: 'The offers of this EducationalOccupationalProgram.'
+          description: 'The offers of this Program.'
           type: string
           nullable: true
         programPrerequisites:
-          description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+          description: 'The programPrerequisites of this Program.'
           type: string
           nullable: true
         programType:
-          description: 'The programType of this EducationalOccupationalProgram.'
+          description: 'The programType of this Program.'
           type: string
           nullable: true
         provider:
-          description: 'The provider of this EducationalOccupationalProgram.'
+          description: 'The provider of this Program.'
           type: string
           nullable: true
         salaryUponCompletion:
-          description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+          description: 'The salaryUponCompletion of this Program.'
           type: string
           nullable: true
         termDuration:
-          description: 'The termDuration of this EducationalOccupationalProgram.'
+          description: 'The termDuration of this Program.'
           type: string
           nullable: true
         termsPerYear:
-          description: 'The termsPerYear of this EducationalOccupationalProgram.'
+          description: 'The termsPerYear of this Program.'
           type: integer
           nullable: true
         dayOfWeek:
-          description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+          description: 'The dayOfWeek of this Program.'
           type: string
           nullable: true
         timeOfDay:
-          description: 'The timeOfDay of this EducationalOccupationalProgram.'
+          description: 'The timeOfDay of this Program.'
           type: string
           nullable: true
         timeToComplete:
-          description: 'The timeToComplete of this EducationalOccupationalProgram.'
+          description: 'The timeToComplete of this Program.'
           type: string
           nullable: true
         trainingSalary:
-          description: 'The trainingSalary of this EducationalOccupationalProgram.'
+          description: 'The trainingSalary of this Program.'
           type: string
           nullable: true
         typicalCreditsPerTerm:
-          description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+          description: 'The typicalCreditsPerTerm of this Program.'
           type: integer
           nullable: true
         participants:
@@ -8578,12 +8602,12 @@ components:
           items:
             $ref: '#/components/schemas/Course:jsonld-read'
         dateCreated:
-          description: 'The moment this EducationalOccupationalProgram was created'
+          description: 'The moment this Program was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          description: 'The moment this Program was last Modified'
           type: string
           format: date-time
           nullable: true
@@ -8591,7 +8615,7 @@ components:
         - name
     'Program:jsonld-write':
       type: object
-      description: 'A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
+      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
       required:
         - name
       properties:
@@ -8605,42 +8629,42 @@ components:
           readOnly: true
           type: string
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Program.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Program.'
           type: string
           nullable: true
         applicationStartDate:
-          description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+          description: 'The day that people can start to apply for this Program.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         applicationDeadline:
-          description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+          description: 'The day that people can no longer apply for this Program.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         startDate:
-          description: 'The moment this EducationalOccupationalProgram starts.'
+          description: 'The moment this Program starts.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         endDate:
-          description: 'The moment this EducationalOccupationalProgram ends.'
+          description: 'The moment this Program ends.'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         financialAidEligible:
-          description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+          description: 'The financialAidEligible of this Program.'
           type: string
           nullable: true
         maximumEnrollment:
@@ -8648,7 +8672,7 @@ components:
           type: integer
           nullable: true
         numberOfCredits:
-          description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+          description: 'The numberOfCredits of this Program.'
           type: integer
           nullable: true
         occupationalCategory:
@@ -8664,55 +8688,55 @@ components:
           type: string
           nullable: true
         educationalProgramMode:
-          description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+          description: 'The educationalProgramMode of this Program.'
           type: string
           nullable: true
         offers:
-          description: 'The offers of this EducationalOccupationalProgram.'
+          description: 'The offers of this Program.'
           type: string
           nullable: true
         programPrerequisites:
-          description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+          description: 'The programPrerequisites of this Program.'
           type: string
           nullable: true
         programType:
-          description: 'The programType of this EducationalOccupationalProgram.'
+          description: 'The programType of this Program.'
           type: string
           nullable: true
         provider:
-          description: 'The provider of this EducationalOccupationalProgram.'
+          description: 'The provider of this Program.'
           type: string
           nullable: true
         salaryUponCompletion:
-          description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+          description: 'The salaryUponCompletion of this Program.'
           type: string
           nullable: true
         termDuration:
-          description: 'The termDuration of this EducationalOccupationalProgram.'
+          description: 'The termDuration of this Program.'
           type: string
           nullable: true
         termsPerYear:
-          description: 'The termsPerYear of this EducationalOccupationalProgram.'
+          description: 'The termsPerYear of this Program.'
           type: integer
           nullable: true
         dayOfWeek:
-          description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+          description: 'The dayOfWeek of this Program.'
           type: string
           nullable: true
         timeOfDay:
-          description: 'The timeOfDay of this EducationalOccupationalProgram.'
+          description: 'The timeOfDay of this Program.'
           type: string
           nullable: true
         timeToComplete:
-          description: 'The timeToComplete of this EducationalOccupationalProgram.'
+          description: 'The timeToComplete of this Program.'
           type: string
           nullable: true
         trainingSalary:
-          description: 'The trainingSalary of this EducationalOccupationalProgram.'
+          description: 'The trainingSalary of this Program.'
           type: string
           nullable: true
         typicalCreditsPerTerm:
-          description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+          description: 'The typicalCreditsPerTerm of this Program.'
           type: integer
           nullable: true
         participants:
@@ -8729,16 +8753,16 @@ components:
       properties:
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Result.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Result.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Result.'
           type: string
           nullable: true
         participant:
@@ -8753,12 +8777,12 @@ components:
           items:
             $ref: '#/components/schemas/Review-read'
         dateCreated:
-          description: 'The moment this EducationalOccupationalProgram was created'
+          description: 'The moment this Result was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          description: 'The moment this Result was last Modified'
           type: string
           format: date-time
           nullable: true
@@ -8771,10 +8795,10 @@ components:
         - name
       properties:
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Result.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Result.'
           type: string
           nullable: true
         participant:
@@ -8803,16 +8827,16 @@ components:
           type: string
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Result.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Result.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Result.'
           type: string
           nullable: true
         participant:
@@ -8827,12 +8851,12 @@ components:
           items:
             $ref: '#/components/schemas/Review:jsonld-read'
         dateCreated:
-          description: 'The moment this EducationalOccupationalProgram was created'
+          description: 'The moment this Result was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          description: 'The moment this Result was last Modified'
           type: string
           format: date-time
           nullable: true
@@ -8854,10 +8878,10 @@ components:
           readOnly: true
           type: string
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Result.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Result.'
           type: string
           nullable: true
         participant:
@@ -8877,16 +8901,16 @@ components:
       properties:
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Review.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Review.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Review.'
           type: string
           nullable: true
         result:
@@ -8898,12 +8922,12 @@ components:
           type: integer
           nullable: true
         dateCreated:
-          description: 'The moment this EducationalOccupationalProgram was created'
+          description: 'The moment this Review was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          description: 'The moment this Review was last Modified'
           type: string
           format: date-time
           nullable: true
@@ -8916,10 +8940,10 @@ components:
         - name
       properties:
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Review.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Review.'
           type: string
           nullable: true
         result:
@@ -8945,16 +8969,16 @@ components:
           type: string
         id:
           readOnly: true
-          description: 'The UUID identifier of this participant.'
+          description: 'The UUID identifier of this Review.'
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Review.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Review.'
           type: string
           nullable: true
         result:
@@ -8966,12 +8990,12 @@ components:
           type: integer
           nullable: true
         dateCreated:
-          description: 'The moment this EducationalOccupationalProgram was created'
+          description: 'The moment this Review was created'
           type: string
           format: date-time
           nullable: true
         dateModified:
-          description: 'The moment this EducationalOccupationalProgram was last Modified'
+          description: 'The moment this Review was last Modified'
           type: string
           format: date-time
           nullable: true
@@ -8993,10 +9017,10 @@ components:
           readOnly: true
           type: string
         name:
-          description: 'The name of this EducationalOccupationalProgram.'
+          description: 'The name of this Review.'
           type: string
         description:
-          description: 'The description of this EducationalOccupationalProgram.'
+          description: 'The description of this Review.'
           type: string
           nullable: true
         result:
@@ -9011,50 +9035,52 @@ definitions:
   Activity-read:
     properties:
       id:
-        description: 'The UUID identifier of this participant.'
+        description: 'The UUID identifier of this Activity.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this EducationalOccupationalProgram.'
+        description: 'The name of this Activity.'
         type: string
-        example: 'associate degree informatica'
+        example: Activity1
         maxLength: 255
       description:
-        description: 'The description of this EducationalOccupationalProgram.'
+        description: 'The description of this Activity.'
         type: string
-        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        example: 'Beschrijving van Activity1.'
         maxLength: 255
       educationalUse: []
       dateCreated:
-        description: 'The moment this EducationalOccupationalProgram was created'
+        description: 'The moment this Activity was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        description: 'The moment this Activity was last Modified'
         type: \Datetime
+      course: []
       results: []
     required:
       - name
   Activity-write:
     properties:
       name:
-        description: 'The name of this EducationalOccupationalProgram.'
+        description: 'The name of this Activity.'
         type: string
-        example: 'associate degree informatica'
+        example: Activity1
         maxLength: 255
       description:
-        description: 'The description of this EducationalOccupationalProgram.'
+        description: 'The description of this Activity.'
         type: string
-        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        example: 'Beschrijving van Activity1.'
         maxLength: 255
       educationalUse: []
+      course: []
       results: []
     required:
       - name
   Course-read:
     properties:
       id:
-        description: 'The UUID identifier of this participant.'
+        description: 'The UUID identifier of this Course.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
@@ -9159,7 +9185,7 @@ definitions:
   EducationEvent-read:
     properties:
       id:
-        description: 'The UUID identifier of this participant.'
+        description: 'The UUID identifier of this EducationEvent.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
@@ -9191,12 +9217,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -9237,12 +9263,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       course: []
     required:
@@ -9267,6 +9293,7 @@ definitions:
         type: \Datetime
       programs: []
       courses: []
+      results: []
     required:
       - person
   Participant-write:
@@ -9278,47 +9305,48 @@ definitions:
         maxLength: 255
       programs: []
       courses: []
+      results: []
     required:
       - person
   Program-read:
     properties:
       id:
-        description: 'The UUID identifier of this participant.'
+        description: 'The UUID identifier of this Program.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this EducationalOccupationalProgram.'
+        description: 'The name of this Program.'
         type: string
         example: 'associate degree informatica'
         maxLength: 255
       description:
-        description: 'The description of this EducationalOccupationalProgram.'
+        description: 'The description of this Program.'
         type: string
         example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
         maxLength: 255
       applicationStartDate:
-        description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+        description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       applicationDeadline:
-        description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+        description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       startDate:
-        description: 'The moment this EducationalOccupationalProgram starts.'
+        description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       endDate:
-        description: 'The moment this EducationalOccupationalProgram ends.'
+        description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       financialAidEligible:
-        description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+        description: 'The financialAidEligible of this Program.'
         type: string
         example: 'Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.'
         maxLength: 255
@@ -9327,7 +9355,7 @@ definitions:
         type: int
         example: '100'
       numberOfCredits:
-        description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+        description: 'The numberOfCredits of this Program.'
         type: int
         example: '120'
       occupationalCategory:
@@ -9346,73 +9374,73 @@ definitions:
         example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
         maxLength: 255
       educationalProgramMode:
-        description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+        description: 'The educationalProgramMode of this Program.'
         type: string
         example: full-time
         maxLength: 255
       offers:
-        description: 'The offers of this EducationalOccupationalProgram.'
+        description: 'The offers of this Program.'
         type: string
         example: 'https://pdc.conduction.nl/offers'
         maxLength: 255
       programPrerequisites:
-        description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+        description: 'The programPrerequisites of this Program.'
         type: string
         example: 'Minimaal vmbo diploma gehaald.'
         maxLength: 255
       programType:
-        description: 'The programType of this EducationalOccupationalProgram.'
+        description: 'The programType of this Program.'
         type: string
         example: 'classroom, internship.'
         maxLength: 255
       provider:
-        description: 'The provider of this EducationalOccupationalProgram.'
+        description: 'The provider of this Program.'
         type: string
         example: 'https://wrc.conduction.nl/organizations'
         maxLength: 255
       salaryUponCompletion:
-        description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+        description: 'The salaryUponCompletion of this Program.'
         type: string
         example: €1000
         maxLength: 255
       termDuration:
-        description: 'The termDuration of this EducationalOccupationalProgram.'
+        description: 'The termDuration of this Program.'
         type: string
         example: '2 maanden.'
         maxLength: 255
       termsPerYear:
-        description: 'The termsPerYear of this EducationalOccupationalProgram.'
+        description: 'The termsPerYear of this Program.'
         type: int
         example: '4'
       dayOfWeek:
-        description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+        description: 'The dayOfWeek of this Program.'
         type: string
         example: 'van maandag tot zaterdag.'
         maxLength: 255
       timeOfDay:
-        description: 'The timeOfDay of this EducationalOccupationalProgram.'
+        description: 'The timeOfDay of this Program.'
         type: string
         example: 'Overdag, soms in de avond.'
         maxLength: 255
       timeToComplete:
-        description: 'The timeToComplete of this EducationalOccupationalProgram.'
+        description: 'The timeToComplete of this Program.'
         type: string
         example: '2 jaar.'
         maxLength: 255
       trainingSalary:
-        description: 'The trainingSalary of this EducationalOccupationalProgram.'
+        description: 'The trainingSalary of this Program.'
         type: string
         example: '€300 per maand.'
         maxLength: 255
       typicalCreditsPerTerm:
-        description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+        description: 'The typicalCreditsPerTerm of this Program.'
         type: int
         example: '15'
       dateCreated:
-        description: 'The moment this EducationalOccupationalProgram was created'
+        description: 'The moment this Program was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        description: 'The moment this Program was last Modified'
         type: \Datetime
       participants: []
       courses: []
@@ -9421,37 +9449,37 @@ definitions:
   Program-write:
     properties:
       name:
-        description: 'The name of this EducationalOccupationalProgram.'
+        description: 'The name of this Program.'
         type: string
         example: 'associate degree informatica'
         maxLength: 255
       description:
-        description: 'The description of this EducationalOccupationalProgram.'
+        description: 'The description of this Program.'
         type: string
         example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
         maxLength: 255
       applicationStartDate:
-        description: 'The day that people can start to apply for this EducationalOccupationalProgram.'
+        description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       applicationDeadline:
-        description: 'The day that people can no longer apply for this EducationalOccupationalProgram.'
+        description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       startDate:
-        description: 'The moment this EducationalOccupationalProgram starts.'
+        description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       endDate:
-        description: 'The moment this EducationalOccupationalProgram ends.'
+        description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
         format: date-time
       financialAidEligible:
-        description: 'The financialAidEligible of this EducationalOccupationalProgram.'
+        description: 'The financialAidEligible of this Program.'
         type: string
         example: 'Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.'
         maxLength: 255
@@ -9460,7 +9488,7 @@ definitions:
         type: int
         example: '100'
       numberOfCredits:
-        description: 'The numberOfCredits of this EducationalOccupationalProgram.'
+        description: 'The numberOfCredits of this Program.'
         type: int
         example: '120'
       occupationalCategory:
@@ -9479,66 +9507,66 @@ definitions:
         example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
         maxLength: 255
       educationalProgramMode:
-        description: 'The educationalProgramMode of this EducationalOccupationalProgram.'
+        description: 'The educationalProgramMode of this Program.'
         type: string
         example: full-time
         maxLength: 255
       offers:
-        description: 'The offers of this EducationalOccupationalProgram.'
+        description: 'The offers of this Program.'
         type: string
         example: 'https://pdc.conduction.nl/offers'
         maxLength: 255
       programPrerequisites:
-        description: 'The programPrerequisites of this EducationalOccupationalProgram.'
+        description: 'The programPrerequisites of this Program.'
         type: string
         example: 'Minimaal vmbo diploma gehaald.'
         maxLength: 255
       programType:
-        description: 'The programType of this EducationalOccupationalProgram.'
+        description: 'The programType of this Program.'
         type: string
         example: 'classroom, internship.'
         maxLength: 255
       provider:
-        description: 'The provider of this EducationalOccupationalProgram.'
+        description: 'The provider of this Program.'
         type: string
         example: 'https://wrc.conduction.nl/organizations'
         maxLength: 255
       salaryUponCompletion:
-        description: 'The salaryUponCompletion of this EducationalOccupationalProgram.'
+        description: 'The salaryUponCompletion of this Program.'
         type: string
         example: €1000
         maxLength: 255
       termDuration:
-        description: 'The termDuration of this EducationalOccupationalProgram.'
+        description: 'The termDuration of this Program.'
         type: string
         example: '2 maanden.'
         maxLength: 255
       termsPerYear:
-        description: 'The termsPerYear of this EducationalOccupationalProgram.'
+        description: 'The termsPerYear of this Program.'
         type: int
         example: '4'
       dayOfWeek:
-        description: 'The dayOfWeek of this EducationalOccupationalProgram.'
+        description: 'The dayOfWeek of this Program.'
         type: string
         example: 'van maandag tot zaterdag.'
         maxLength: 255
       timeOfDay:
-        description: 'The timeOfDay of this EducationalOccupationalProgram.'
+        description: 'The timeOfDay of this Program.'
         type: string
         example: 'Overdag, soms in de avond.'
         maxLength: 255
       timeToComplete:
-        description: 'The timeToComplete of this EducationalOccupationalProgram.'
+        description: 'The timeToComplete of this Program.'
         type: string
         example: '2 jaar.'
         maxLength: 255
       trainingSalary:
-        description: 'The trainingSalary of this EducationalOccupationalProgram.'
+        description: 'The trainingSalary of this Program.'
         type: string
         example: '€300 per maand.'
         maxLength: 255
       typicalCreditsPerTerm:
-        description: 'The typicalCreditsPerTerm of this EducationalOccupationalProgram.'
+        description: 'The typicalCreditsPerTerm of this Program.'
         type: int
         example: '15'
       participants: []
@@ -9548,25 +9576,25 @@ definitions:
   Result-read:
     properties:
       id:
-        description: 'The UUID identifier of this participant.'
+        description: 'The UUID identifier of this Result.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this EducationalOccupationalProgram.'
+        description: 'The name of this Result.'
         type: string
-        example: 'associate degree informatica'
+        example: Result1
         maxLength: 255
       description:
-        description: 'The description of this EducationalOccupationalProgram.'
+        description: 'The description of this Result.'
         type: string
-        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        example: 'Beschrijving van Result1.'
         maxLength: 255
       dateCreated:
-        description: 'The moment this EducationalOccupationalProgram was created'
+        description: 'The moment this Result was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        description: 'The moment this Result was last Modified'
         type: \Datetime
       participant: []
       activity: []
@@ -9576,14 +9604,14 @@ definitions:
   Result-write:
     properties:
       name:
-        description: 'The name of this EducationalOccupationalProgram.'
+        description: 'The name of this Result.'
         type: string
-        example: 'associate degree informatica'
+        example: Result1
         maxLength: 255
       description:
-        description: 'The description of this EducationalOccupationalProgram.'
+        description: 'The description of this Result.'
         type: string
-        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        example: 'Beschrijving van Result1.'
         maxLength: 255
       participant: []
       activity: []
@@ -9593,27 +9621,27 @@ definitions:
   Review-read:
     properties:
       id:
-        description: 'The UUID identifier of this participant.'
+        description: 'The UUID identifier of this Review.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this EducationalOccupationalProgram.'
+        description: 'The name of this Review.'
         type: string
-        example: 'associate degree informatica'
+        example: Review1
         maxLength: 255
       description:
-        description: 'The description of this EducationalOccupationalProgram.'
+        description: 'The description of this Review.'
         type: string
-        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        example: 'Beschrijving van Review1.'
         maxLength: 255
       body: []
       rating: []
       dateCreated:
-        description: 'The moment this EducationalOccupationalProgram was created'
+        description: 'The moment this Review was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this EducationalOccupationalProgram was last Modified'
+        description: 'The moment this Review was last Modified'
         type: \Datetime
       result: []
     required:
@@ -9621,14 +9649,14 @@ definitions:
   Review-write:
     properties:
       name:
-        description: 'The name of this EducationalOccupationalProgram.'
+        description: 'The name of this Review.'
         type: string
-        example: 'associate degree informatica'
+        example: Review1
         maxLength: 255
       description:
-        description: 'The description of this EducationalOccupationalProgram.'
+        description: 'The description of this Review.'
         type: string
-        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
+        example: 'Beschrijving van Review1.'
         maxLength: 255
       body: []
       rating: []
@@ -9739,12 +9767,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
     required: []
   AuditTrail-write:
     properties:
@@ -9792,12 +9820,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-15 12:22:07'
+        example: '2020-07-16 12:57:37'
     required: []
   ChangeLog-write:
     properties:
@@ -9817,7 +9845,7 @@ tags:
   -
     name: Course
     description: |
-      A Course is a course within a program in which participants can participate. Based on https://schema.org/Course
+      A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.
       
       
   -
@@ -9835,7 +9863,7 @@ tags:
   -
     name: Program
     description: |
-      A EducationalOccupationalProgram is a program offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram
+      A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.
       
       
   -

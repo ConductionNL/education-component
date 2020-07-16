@@ -4,12 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Activity;
 use App\Entity\Course;
-use App\Entity\EducationalEvent;
 use App\Entity\Participant;
 use App\Entity\Program;
-use App\Entity\Result;
-use App\Entity\Review;
-
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -58,7 +54,7 @@ class ConductionFixtures extends Fixture
         // W
         $course = new Course();
         $course->setName('Introductie');
-        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $course->setDescription('Hier komt een introductie over de tutorials.');
         $program->addCourse($course);
 
         $activity = new Activity();

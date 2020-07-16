@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class EducationEvent
 {
     /**
-     * @var UuidInterface The UUID identifier of this participant.
+     * @var UuidInterface The UUID identifier of this EducationEvent.
      *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
