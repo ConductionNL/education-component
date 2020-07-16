@@ -100,7 +100,7 @@ class Review
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
-    
+
     public function getId(): Uuid
     {
         return $this->id;
