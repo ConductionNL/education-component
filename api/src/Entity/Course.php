@@ -188,7 +188,6 @@ class Course
      */
     private $activities;
 
-
     public function __construct()
     {
         $this->participants = new ArrayCollection();
