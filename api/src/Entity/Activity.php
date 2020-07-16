@@ -74,7 +74,7 @@ class Activity
     private $course;
 
     /**
-     * Could be 'assignment', 'group work' or 'test'
+     * Could be 'assignment', 'group work' or 'test'.
      *
      *
      * @Groups({"read", "write"})

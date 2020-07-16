@@ -4,11 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Activity;
 use App\Entity\Course;
-use App\Entity\EducationalEvent;
 use App\Entity\Participant;
 use App\Entity\Program;
-use App\Entity\Result;
-use App\Entity\Review;
 
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;

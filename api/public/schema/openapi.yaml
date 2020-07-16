@@ -7082,7 +7082,7 @@ components:
         course:
           $ref: '#/components/schemas/Course-read'
         educationalUse:
-          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
         results:
           type: array
@@ -7116,7 +7116,7 @@ components:
         course:
           $ref: '#/components/schemas/Course-write'
         educationalUse:
-          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
         results:
           type: array
@@ -7152,7 +7152,7 @@ components:
         course:
           $ref: '#/components/schemas/Course:jsonld-read'
         educationalUse:
-          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
         results:
           type: array
@@ -7195,7 +7195,7 @@ components:
         course:
           $ref: '#/components/schemas/Course:jsonld-write'
         educationalUse:
-          description: 'Could be ''assignment'', ''group work'' or ''test'''
+          description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
         results:
           type: array
@@ -7581,7 +7581,7 @@ components:
           type: string
     Course-read:
       type: object
-      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       properties:
         id:
           readOnly: true
@@ -7651,7 +7651,7 @@ components:
         - name
     Course-write:
       type: object
-      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       required:
         - name
       properties:
@@ -7704,7 +7704,7 @@ components:
             $ref: '#/components/schemas/Activity-write'
     'Course:jsonld-read':
       type: object
-      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       properties:
         '@context':
           readOnly: true
@@ -7783,7 +7783,7 @@ components:
         - name
     'Course:jsonld-write':
       type: object
-      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course'
+      description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       required:
         - name
       properties:
@@ -8197,7 +8197,7 @@ components:
             $ref: '#/components/schemas/Result:jsonld-write'
     Program-read:
       type: object
-      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
+      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
       properties:
         id:
           readOnly: true
@@ -8339,7 +8339,7 @@ components:
         - name
     Program-write:
       type: object
-      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
+      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
       required:
         - name
       properties:
@@ -8464,7 +8464,7 @@ components:
             $ref: '#/components/schemas/Course-write'
     'Program:jsonld-read':
       type: object
-      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
+      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
       properties:
         '@context':
           readOnly: true
@@ -8615,7 +8615,7 @@ components:
         - name
     'Program:jsonld-write':
       type: object
-      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram'
+      description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
       required:
         - name
       properties:
@@ -9182,6 +9182,97 @@ definitions:
       activities: []
     required:
       - name
+  EducationEvent-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this EducationEvent.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this EducationEvent.'
+        type: string
+        example: 'Les 1 over Github'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationEvent.'
+        type: string
+        example: 'Dit is de eerste online les over Github.'
+        maxLength: 255
+      assesses:
+        description: 'The assesses of this EducationEvent.'
+        type: string
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-07-16 12:55:40'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-07-16 12:55:40'
+        format: date-time
+      dateCreated:
+        description: 'The moment this EducationEvent was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this EducationEvent was last Modified'
+        type: \Datetime
+      course: []
+    required:
+      - name
+  EducationEvent-write:
+    properties:
+      name:
+        description: 'The name of this EducationEvent.'
+        type: string
+        example: 'Les 1 over Github'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationEvent.'
+        type: string
+        example: 'Dit is de eerste online les over Github.'
+        maxLength: 255
+      assesses:
+        description: 'The assesses of this EducationEvent.'
+        type: string
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-07-16 12:55:40'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-07-16 12:55:40'
+        format: date-time
+      course: []
+    required:
+      - name
   Participant-read:
     properties:
       id:
@@ -9237,22 +9328,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -9370,22 +9461,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -9572,97 +9663,6 @@ definitions:
       result: []
     required:
       - name
-  EducationEvent-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this EducationEvent.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this EducationEvent.'
-        type: string
-        example: 'Les 1 over Github'
-        maxLength: 255
-      description:
-        description: 'The description of this EducationEvent.'
-        type: string
-        example: 'Dit is de eerste online les over Github.'
-        maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
-        type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-07-16 12:51:54'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-07-16 12:51:54'
-        format: date-time
-      dateCreated:
-        description: 'The moment this EducationEvent was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this EducationEvent was last Modified'
-        type: \Datetime
-      course: []
-    required:
-      - name
-  EducationEvent-write:
-    properties:
-      name:
-        description: 'The name of this EducationEvent.'
-        type: string
-        example: 'Les 1 over Github'
-        maxLength: 255
-      description:
-        description: 'The description of this EducationEvent.'
-        type: string
-        example: 'Dit is de eerste online les over Github.'
-        maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
-        type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-07-16 12:51:54'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-07-16 12:51:54'
-        format: date-time
-      course: []
-    required:
-      - name
   AuditTrail-read:
     properties:
       id:
@@ -9767,12 +9767,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
     required: []
   AuditTrail-write:
     properties:
@@ -9820,12 +9820,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-16 12:51:54'
+        example: '2020-07-16 12:55:40'
     required: []
   ChangeLog-write:
     properties:
@@ -9845,7 +9845,13 @@ tags:
   -
     name: Course
     description: |
-      A Course is a course within a program in which participants can participate. Based on https://schema.org/Course
+      A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.
+      
+      
+  -
+    name: EducationEvent
+    description: |
+      An EducationEvent is a (online) meeting, college etc. of a course.
       
       
   -
@@ -9857,7 +9863,7 @@ tags:
   -
     name: Program
     description: |
-      A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram
+      A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.
       
       
   -
@@ -9870,12 +9876,6 @@ tags:
     name: Review
     description: |
       
-      
-      
-  -
-    name: EducationEvent
-    description: |
-      An EducationEvent is a (online) meeting, college etc. of a course.
       
       
   -

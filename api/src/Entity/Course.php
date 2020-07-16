@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A Course is a course within a program in which participants can participate. Based on https://schema.org/Course
+ * A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
