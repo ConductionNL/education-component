@@ -52,9 +52,15 @@ class ConductionFixtures extends Fixture
         $program->setDescription('Tijdens dit programma wordt je voorbereid op het online lopen van een stage bij een commonground gemeente of orgnaisatie.');
 
         // W
+        $id = Uuid::fromString('4bb8034c-2f74-4637-801d-9c2c0cb43b92');
         $course = new Course();
         $course->setName('Introductie');
         $course->setDescription('Hier komt een introductie over de tutorials.');
+        $manager->persist($course);
+        $course->setId($id);
+        $manager->persist($course);
+        $manager->flush();
+        $course = $manager->getRepository('App:Course')->findOneBy(['id'=> $id]);
         $program->addCourse($course);
 
         $activity = new Activity();
