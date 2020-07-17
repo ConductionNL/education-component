@@ -50,9 +50,20 @@ class ConductionFixtures extends Fixture
         $program = new Program();
         $program->setName('Test programma');
         $program->setDescription('Dit is een programma om mee te testen.');
+        $program->getProvider($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'6a001c4c-911b-4b29-877d-122e362f519d']));
+        $program->setProgramPrerequisites('Je hebt minimaal een VMBO diploma.');
         $date = new \DateTime();
         $date->sub(new \DateInterval('P5W'));
         $program->setApplicationDeadline($date);
+        $program->setStartDate($date);
+        $program->setOccupationalCategory('MBO');
+        $program->setTimeToComplete('1 jaar');
+        $program->setEducationalProgramMode('full-time');
+        $program->setTrainingSalary('€123 per maand');
+        $program->setOccupationalCredentialAwarded('Software Developer');
+        $program->setEducationalCredentialAwarded('Beschrijving van wat je krijgt bij het halen van dit programma, bijvoorbeeld een diploma, certificaat en/of titel.');
+        $manager->persist($program);
+        $manager->flush();
 
         // Het online stage programma
         $program = new Program();
