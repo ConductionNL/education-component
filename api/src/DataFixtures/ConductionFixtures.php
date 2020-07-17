@@ -46,10 +46,18 @@ class ConductionFixtures extends Fixture
         $manager->flush();
         $testStudent = $manager->getRepository('App:Participant')->findOneBy(['id'=> $id]);
 
+        // Test programma
+        $program = new Program();
+        $program->setName('Test programma');
+        $program->setDescription('Dit is een programma om mee te testen.');
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P5W'));
+        $program->setApplicationDeadline($date);
+
         // Het online stage programma
         $program = new Program();
-        $program->setName('Online commonground stage');
-        $program->setDescription('Tijdens dit programma wordt je voorbereid op het online lopen van een stage bij een commonground gemeente of orgnaisatie.');
+        $program->setName('Voorbereiding online stage');
+        $program->setDescription('Tijdens dit programma wordt je voorbereid op het online lopen van een stage bij een commonground gemeente of organisatie.');
 
         // W
         $id = Uuid::fromString('4bb8034c-2f74-4637-801d-9c2c0cb43b92');
