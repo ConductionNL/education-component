@@ -60,8 +60,26 @@ class ConductionFixtures extends Fixture
         $program->setTimeToComplete('1 jaar');
         $program->setEducationalProgramMode('full-time');
         $program->setTrainingSalary('€123 per maand');
+        $program->setNumberOfCredits('25');
         $program->setOccupationalCredentialAwarded('Software Developer');
         $program->setEducationalCredentialAwarded('Beschrijving van wat je krijgt bij het halen van dit programma, bijvoorbeeld een diploma, certificaat en/of titel.');
+
+        // Test Cursus
+        $course = new Course();
+        $course->setName('Scrum gericht werken en Github');
+        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $course->setCourseCode('SG1');
+        $course->setCoursePrerequisites('Een vmbo diploma of hoger.');
+        $course->setNumberOfCredits(5);
+        $course->setOccupationalCredentialAwarded('Een mooie Conduction sticker en een high five');
+        $program->addCourse($course);
+
+        $activity = new Activity();
+        $activity->setName('Afsluitende test');
+        $activity->setDescription('');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
         $manager->persist($program);
         $manager->flush();
 
@@ -164,22 +182,6 @@ class ConductionFixtures extends Fixture
         $course = new Course();
         $course->setName('Protocomponent');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
-        $program->addCourse($course);
-
-        $activity = new Activity();
-        $activity->setName('Afsluitende test');
-        $activity->setDescription('');
-        $activity->setEducationalUse('test');
-        $course->addActivity($activity);
-
-        // Test Tutorial
-        $course = new Course();
-        $course->setName('Scrum gericht werken en Github');
-        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
-        $course->setCourseCode('SG1');
-        $course->setCoursePrerequisites('Een vmbo diploma of hoger.');
-        $course->setNumberOfCredits(5);
-        $course->setOccupationalCredentialAwarded('Een mooie Conduction sticker en een high five');
         $program->addCourse($course);
 
         $activity = new Activity();
