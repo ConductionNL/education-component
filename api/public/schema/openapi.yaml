@@ -9182,97 +9182,6 @@ definitions:
       activities: []
     required:
       - name
-  EducationEvent-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this EducationEvent.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this EducationEvent.'
-        type: string
-        example: 'Les 1 over Github'
-        maxLength: 255
-      description:
-        description: 'The description of this EducationEvent.'
-        type: string
-        example: 'Dit is de eerste online les over Github.'
-        maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
-        type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-07-17 09:11:04'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-07-17 09:11:04'
-        format: date-time
-      dateCreated:
-        description: 'The moment this EducationEvent was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this EducationEvent was last Modified'
-        type: \Datetime
-      course: []
-    required:
-      - name
-  EducationEvent-write:
-    properties:
-      name:
-        description: 'The name of this EducationEvent.'
-        type: string
-        example: 'Les 1 over Github'
-        maxLength: 255
-      description:
-        description: 'The description of this EducationEvent.'
-        type: string
-        example: 'Dit is de eerste online les over Github.'
-        maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
-        type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-07-17 09:11:04'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-07-17 09:11:04'
-        format: date-time
-      course: []
-    required:
-      - name
   Participant-read:
     properties:
       id:
@@ -9328,22 +9237,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -9461,22 +9370,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -9663,6 +9572,97 @@ definitions:
       result: []
     required:
       - name
+  EducationEvent-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this EducationEvent.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this EducationEvent.'
+        type: string
+        example: 'Les 1 over Github'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationEvent.'
+        type: string
+        example: 'Dit is de eerste online les over Github.'
+        maxLength: 255
+      assesses:
+        description: 'The assesses of this EducationEvent.'
+        type: string
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-07-17 09:25:25'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-07-17 09:25:25'
+        format: date-time
+      dateCreated:
+        description: 'The moment this EducationEvent was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this EducationEvent was last Modified'
+        type: \Datetime
+      course: []
+    required:
+      - name
+  EducationEvent-write:
+    properties:
+      name:
+        description: 'The name of this EducationEvent.'
+        type: string
+        example: 'Les 1 over Github'
+        maxLength: 255
+      description:
+        description: 'The description of this EducationEvent.'
+        type: string
+        example: 'Dit is de eerste online les over Github.'
+        maxLength: 255
+      assesses:
+        description: 'The assesses of this EducationEvent.'
+        type: string
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-07-17 09:25:25'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-07-17 09:25:25'
+        format: date-time
+      course: []
+    required:
+      - name
   AuditTrail-read:
     properties:
       id:
@@ -9767,12 +9767,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
     required: []
   AuditTrail-write:
     properties:
@@ -9820,12 +9820,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-17 09:11:04'
+        example: '2020-07-17 09:25:25'
     required: []
   ChangeLog-write:
     properties:
@@ -9846,12 +9846,6 @@ tags:
     name: Course
     description: |
       A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.
-      
-      
-  -
-    name: EducationEvent
-    description: |
-      An EducationEvent is a (online) meeting, college etc. of a course.
       
       
   -
@@ -9876,6 +9870,12 @@ tags:
     name: Review
     description: |
       
+      
+      
+  -
+    name: EducationEvent
+    description: |
+      An EducationEvent is a (online) meeting, college etc. of a course.
       
       
   -

@@ -3,10 +3,10 @@ entries:
   edu:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-07-17T09:10:31.159232037Z"
+    created: "2020-07-17T09:24:59.911329566Z"
     description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
       interface beschikbaar.&#039;'
-    digest: 21f2b771401530c1fe10c1d9b80b5da8596ca2e470842ea1d0dc5a53d9689eaf
+    digest: 4340607e93b3cda8c9d259e5c0acf24d53985864d5203b125519e41efcbb2ce1
     home: edu.zaakonline.nl
     icon: edu.zaakonline.nl
     name: edu
@@ -16,7 +16,7 @@ entries:
   pc:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-07-17T09:10:31.166546737Z"
+    created: "2020-07-17T09:24:59.922088266Z"
     description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
       interface beschikbaar.&#039;'
     digest: 59e1aab4d007cdf0ee1a87739e0492a63cb5f8f50cb70255856b851e6b9782e9
@@ -26,4 +26,4 @@ entries:
     urls:
     - pc-0.1.0.tgz
     version: 0.1.0
-generated: "2020-07-17T09:10:31.144771837Z"
+generated: "2020-07-17T09:24:59.902764266Z"

@@ -53,6 +53,9 @@ class ConductionFixtures extends Fixture
         $date = new \DateTime();
         $date->sub(new \DateInterval('P5W'));
         $program->setApplicationDeadline($date);
+        $program->setStartDate($date);
+        $manager->persist($program);
+        $manager->flush();
 
         // Het online stage programma
         $program = new Program();
