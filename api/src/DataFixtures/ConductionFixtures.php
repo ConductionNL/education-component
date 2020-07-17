@@ -53,7 +53,7 @@ class ConductionFixtures extends Fixture
         $program->getProvider($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'6a001c4c-911b-4b29-877d-122e362f519d']));
         $program->setProgramPrerequisites('Je hebt minimaal een VMBO diploma.');
         $date = new \DateTime();
-        $date->sub(new \DateInterval('P5W'));
+        $date->add(new \DateInterval('P5W'));
         $program->setApplicationDeadline($date);
         $program->setStartDate($date);
         $program->setOccupationalCategory('MBO');
