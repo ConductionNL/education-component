@@ -210,15 +210,10 @@ class Program
     private $offers;
 
     /**
-     * @var string The programPrerequisites of this Program.
+     * @var array The programPrerequisites of this Program.
      *
-     * @example Minimaal vmbo diploma gehaald.
-     *
-     * @Assert\Length(
-     *     max = 255
-     * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
     private $programPrerequisites;
 
@@ -564,12 +559,12 @@ class Program
         return $this;
     }
 
-    public function getProgramPrerequisites(): ?string
+    public function getProgramPrerequisites(): ?array
     {
         return $this->programPrerequisites;
     }
 
-    public function setProgramPrerequisites(?string $programPrerequisites): self
+    public function setProgramPrerequisites(?array $programPrerequisites): self
     {
         $this->programPrerequisites = $programPrerequisites;
 

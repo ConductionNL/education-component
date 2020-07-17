@@ -9,6 +9,7 @@ use App\Entity\Program;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use phpDocumentor\Reflection\Types\Array_;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -51,7 +52,10 @@ class ConductionFixtures extends Fixture
         $program->setName('Test programma');
         $program->setDescription('Dit is een programma om mee te testen.');
         $program->setProvider($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'6a001c4c-911b-4b29-877d-122e362f519d']));
-        $program->setProgramPrerequisites('Je hebt minimaal een VMBO diploma.');
+        $prerequisites = [];
+        $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
+        $prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'0bf92c4a-0ef3-4184-a14a-4356f735498e']);
+        $program->setProgramPrerequisites($prerequisites);
         $date = new \DateTime();
         $date->add(new \DateInterval('P5W'));
         $program->setApplicationDeadline($date);
@@ -69,7 +73,9 @@ class ConductionFixtures extends Fixture
         $course->setName('Scrum gericht werken en Github');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
         $course->setCourseCode('SG1');
-        $course->setCoursePrerequisites('Een vmbo diploma of hoger.');
+        $prerequisites = [];
+        $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
+        $course->setCoursePrerequisites($prerequisites);
         $course->setNumberOfCredits(5);
         $course->setOccupationalCredentialAwarded('Een mooie Conduction sticker en een high five');
         $program->addCourse($course);
@@ -119,9 +125,15 @@ class ConductionFixtures extends Fixture
         $course->addActivity($activity);
 
         // W
+        $id = Uuid::fromString('0bf92c4a-0ef3-4184-a14a-4356f735498e');
         $course = new Course();
         $course->setName('Agile en Scrum');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $manager->persist($course);
+        $course->setId($id);
+        $manager->persist($course);
+        $manager->flush();
+        $course = $manager->getRepository('App:Course')->findOneBy(['id'=> $id]);
         $program->addCourse($course);
 
         $activity = new Activity();
