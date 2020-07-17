@@ -81,15 +81,10 @@ class Course
     private $courseCode;
 
     /**
-     * @var string The coursePrerequisites of this Course.
+     * @var array The coursePrerequisites of this Course.
      *
-     * @example Een vmbo diploma of hoger.
-     *
-     * @Assert\Length(
-     *     max = 255
-     * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
     private $coursePrerequisites;
 
@@ -244,12 +239,12 @@ class Course
         return $this;
     }
 
-    public function getCoursePrerequisites(): ?string
+    public function getCoursePrerequisites(): ?array
     {
         return $this->coursePrerequisites;
     }
 
-    public function setCoursePrerequisites(?string $coursePrerequisites): self
+    public function setCoursePrerequisites(?array $coursePrerequisites): self
     {
         $this->coursePrerequisites = $coursePrerequisites;
 

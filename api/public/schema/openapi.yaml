@@ -7603,7 +7603,9 @@ components:
           nullable: true
         coursePrerequisites:
           description: 'The coursePrerequisites of this Course.'
-          type: string
+          type: array
+          items:
+            type: string
           nullable: true
         hasCourseInstance:
           description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
@@ -7668,7 +7670,9 @@ components:
           nullable: true
         coursePrerequisites:
           description: 'The coursePrerequisites of this Course.'
-          type: string
+          type: array
+          items:
+            type: string
           nullable: true
         hasCourseInstance:
           description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
@@ -7735,7 +7739,9 @@ components:
           nullable: true
         coursePrerequisites:
           description: 'The coursePrerequisites of this Course.'
-          type: string
+          type: array
+          items:
+            type: string
           nullable: true
         hasCourseInstance:
           description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
@@ -7809,7 +7815,9 @@ components:
           nullable: true
         coursePrerequisites:
           description: 'The coursePrerequisites of this Course.'
-          type: string
+          type: array
+          items:
+            type: string
           nullable: true
         hasCourseInstance:
           description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
@@ -8275,7 +8283,9 @@ components:
           nullable: true
         programPrerequisites:
           description: 'The programPrerequisites of this Program.'
-          type: string
+          type: array
+          items:
+            type: string
           nullable: true
         programType:
           description: 'The programType of this Program.'
@@ -8412,7 +8422,9 @@ components:
           nullable: true
         programPrerequisites:
           description: 'The programPrerequisites of this Program.'
-          type: string
+          type: array
+          items:
+            type: string
           nullable: true
         programType:
           description: 'The programType of this Program.'
@@ -8551,7 +8563,9 @@ components:
           nullable: true
         programPrerequisites:
           description: 'The programPrerequisites of this Program.'
-          type: string
+          type: array
+          items:
+            type: string
           nullable: true
         programType:
           description: 'The programType of this Program.'
@@ -8697,7 +8711,9 @@ components:
           nullable: true
         programPrerequisites:
           description: 'The programPrerequisites of this Program.'
-          type: string
+          type: array
+          items:
+            type: string
           nullable: true
         programType:
           description: 'The programType of this Program.'
@@ -9101,9 +9117,7 @@ definitions:
         maxLength: 255
       coursePrerequisites:
         description: 'The coursePrerequisites of this Course.'
-        type: string
-        example: 'Een vmbo diploma of hoger.'
-        maxLength: 255
+        type: array
       hasCourseInstance:
         description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
         type: string
@@ -9154,9 +9168,7 @@ definitions:
         maxLength: 255
       coursePrerequisites:
         description: 'The coursePrerequisites of this Course.'
-        type: string
-        example: 'Een vmbo diploma of hoger.'
-        maxLength: 255
+        type: array
       hasCourseInstance:
         description: 'An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.'
         type: string
@@ -9237,22 +9249,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -9294,9 +9306,7 @@ definitions:
         maxLength: 255
       programPrerequisites:
         description: 'The programPrerequisites of this Program.'
-        type: string
-        example: 'Minimaal vmbo diploma gehaald.'
-        maxLength: 255
+        type: array
       programType:
         description: 'The programType of this Program.'
         type: string
@@ -9370,22 +9380,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -9427,9 +9437,7 @@ definitions:
         maxLength: 255
       programPrerequisites:
         description: 'The programPrerequisites of this Program.'
-        type: string
-        example: 'Minimaal vmbo diploma gehaald.'
-        maxLength: 255
+        type: array
       programType:
         description: 'The programType of this Program.'
         type: string
@@ -9607,12 +9615,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -9653,12 +9661,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
         format: date-time
       course: []
     required:
@@ -9767,12 +9775,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:05'
     required: []
   AuditTrail-write:
     properties:
@@ -9820,12 +9828,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:06'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-17 11:34:00'
+        example: '2020-07-17 13:57:06'
     required: []
   ChangeLog-write:
     properties:
