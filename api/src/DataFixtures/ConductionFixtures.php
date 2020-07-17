@@ -50,7 +50,7 @@ class ConductionFixtures extends Fixture
         $program = new Program();
         $program->setName('Test programma');
         $program->setDescription('Dit is een programma om mee te testen.');
-        $program->getProvider($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'6a001c4c-911b-4b29-877d-122e362f519d']));
+        $program->setProvider($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'6a001c4c-911b-4b29-877d-122e362f519d']));
         $program->setProgramPrerequisites('Je hebt minimaal een VMBO diploma.');
         $date = new \DateTime();
         $date->add(new \DateInterval('P5W'));
