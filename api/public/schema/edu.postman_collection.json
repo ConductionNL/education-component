@@ -1203,7 +1203,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1.\",\n    \"participant\": \"https://edu.dev.conduction.nl/participants/{{participant}}\"\n}",
+							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1.\",\n    \"participant\": \"{{baseUrl}}/participants/{{participant}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -1809,7 +1809,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1!\",\n    \"participant\": \"https://edu.dev.conduction.nl/participants/{{participant}}\"\n}",
+							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1!\",\n    \"participant\": \"{{baseUrl}}/participants/{{participant}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -2258,7 +2258,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Review1\",\n    \"description\": \"Beschrijving van Review1.\",\n    \"result\": \"https://edu.dev.conduction.nl/results/{{result}}\",\n    \"body\": \"Dit is de body van Review1.\",\n    \"rating\": 8\n}",
+							"raw": "{\n    \"name\": \"Review1\",\n    \"description\": \"Beschrijving van Review1.\",\n    \"result\": \"{{baseUrl}}/results/{{result}}\",\n    \"body\": \"Dit is de body van Review1.\",\n    \"rating\": 8\n}",
 							"options": {
 								"raw": {}
 							}
@@ -2864,7 +2864,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Review1\",\n    \"description\": \"Beschrijving van Review1!\",\n    \"result\": \"https://edu.dev.conduction.nl/results/{{result}}\",\n    \"body\": \"Dit is de body van Review1?\",\n    \"rating\": 6\n}",
+							"raw": "{\n    \"name\": \"Review1\",\n    \"description\": \"Beschrijving van Review1!\",\n    \"result\": \"{{baseUrl}}/results/{{result}}\",\n    \"body\": \"Dit is de body van Review1?\",\n    \"rating\": 6\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3313,7 +3313,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"TEST12345\",\n    \"description\": \"TEST12345\",\n    \"courseCode\": \"TEST12345\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"https://edu.conduction.nl/courses\",\n    \"numberOfCredits\": 0,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
+							"raw": "{\n    \"name\": \"TEST12345\",\n    \"description\": \"TEST12345\",\n    \"courseCode\": \"TEST12345\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"{{baseUrl}}/courses\",\n    \"numberOfCredits\": 0,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3897,7 +3897,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Werken met scrum en Github\",\n    \"description\": \"Deze cursus leert je de basics van werken met scrum en Github.\",\n    \"courseCode\": \"SG123\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"https://edu.conduction.nl/courses\",\n    \"numberOfCredits\": 6,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
+							"raw": "{\n    \"name\": \"Werken met scrum en Github\",\n    \"description\": \"Deze cursus leert je de basics van werken met scrum en Github.\",\n    \"courseCode\": \"SG123\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"{{baseUrl}}/courses\",\n    \"numberOfCredits\": 6,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -4324,7 +4324,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Activity1\",\n    \"description\": \"Beschrijving van Activity1.\",\n    \"educationalUse\": \"educationalUse\",\n    \"course\": \"https://edu.dev.conduction.nl/courses/{{course}}\"\n}",
+							"raw": "{\n    \"name\": \"Activity1\",\n    \"description\": \"Beschrijving van Activity1.\",\n    \"educationalUse\": \"educationalUse\",\n    \"course\": \"{{baseUrl}}/courses/{{course}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -4908,7 +4908,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Activity1\",\n    \"description\": \"Beschrijving van Activity1!\",\n    \"educationalUse\": \"educationalUse?\",\n    \"course\": \"https://edu.dev.conduction.nl/courses/{{course}}\"\n}",
+							"raw": "{\n    \"name\": \"Activity1\",\n    \"description\": \"Beschrijving van Activity1!\",\n    \"educationalUse\": \"educationalUse?\",\n    \"course\": \"{{baseUrl}}/courses/{{course}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -7255,9 +7255,9 @@
 	],
 	"variable": [
 		{
-			"id": "562c14cc-5337-4be9-badd-cecb77d7aca0",
+			"id": "f80c0d6e-a1d1-43f7-a7fb-901ef6c07567",
 			"key": "baseUrl",
-			"value": "edu.dev.conduction.nl"
+			"value": "https://edu.dev.conduction.nl"
 		}
 	],
 	"protocolProfileBehavior": {}
