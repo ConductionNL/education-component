@@ -4222,6 +4222,106 @@ paths:
                   $ref: '#/components/schemas/Participant-read'
       parameters:
         -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[person]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateCreated]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'dateCreated[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: person
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: page
           in: query
           required: false
@@ -9229,12 +9329,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -9275,12 +9375,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       course: []
     required:
@@ -9340,22 +9440,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -9471,22 +9571,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -9775,12 +9875,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
     required: []
   AuditTrail-write:
     properties:
@@ -9828,12 +9928,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-24 08:48:25'
+        example: '2020-07-24 09:26:17'
     required: []
   ChangeLog-write:
     properties:
