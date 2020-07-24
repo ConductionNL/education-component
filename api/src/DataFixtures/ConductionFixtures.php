@@ -47,6 +47,7 @@ class ConductionFixtures extends Fixture
         $testStudent = $manager->getRepository('App:Participant')->findOneBy(['id'=> $id]);
 
         // Test programma
+        $id = Uuid::fromString('d7c49d9f-5e16-4035-8558-9b2aa007aabe');
         $program = new Program();
         $program->setName('Test programma');
         $program->setDescription('Dit is een programma om mee te testen.');
@@ -66,6 +67,11 @@ class ConductionFixtures extends Fixture
         $program->setNumberOfCredits('25');
         $program->setOccupationalCredentialAwarded('Software Developer');
         $program->setEducationalCredentialAwarded('Beschrijving van wat je krijgt bij het halen van dit programma, bijvoorbeeld een diploma, certificaat en/of titel.');
+        $manager->persist($program);
+        $program->setId($id);
+        $manager->persist($program);
+        $manager->flush();
+        $program = $manager->getRepository('App:Program')->findOneBy(['id'=> $id]);
 
         // Test Cursus
         $course = new Course();
@@ -89,9 +95,15 @@ class ConductionFixtures extends Fixture
         $manager->flush();
 
         // Het online stage programma
+        $id = Uuid::fromString('6f408aae-4a35-4ad3-a829-a87627714bca');
         $program = new Program();
         $program->setName('Voorbereiding online stage');
         $program->setDescription('Tijdens dit programma wordt je voorbereid op het online lopen van een stage bij een commonground gemeente of organisatie.');
+        $manager->persist($program);
+        $program->setId($id);
+        $manager->persist($program);
+        $manager->flush();
+        $program = $manager->getRepository('App:Program')->findOneBy(['id'=> $id]);
 
         // W
         $id = Uuid::fromString('4bb8034c-2f74-4637-801d-9c2c0cb43b92');
