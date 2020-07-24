@@ -158,8 +158,8 @@ class Participant
 
     public function addProgram(Program $program): self
     {
-        if (!$this->Programs->contains($program)) {
-            $this->Programs[] = $program;
+        if (!$this->programs->contains($program)) {
+            $this->programs[] = $program;
         }
 
         return $this;
