@@ -296,7 +296,7 @@ class Stage
         return $this->getQuestions()->last();
     }
 
-    public function getPreviousQuestionn($question)
+    public function getPreviousQuestion($question)
     {
         $criteria = Criteria::create()
             ->andWhere(Criteria::expr()->lt('orderNumber', $question->getOrderNumber()));
