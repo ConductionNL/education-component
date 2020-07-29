@@ -144,7 +144,7 @@ class ConductionFixtures extends Fixture
 
         $question = new Question();
         $question->setName('Vraag 3');
-        $question->setDescription('Is dit multiple choice vraag?');
+        $question->setDescription('Is dit een multiple choice vraag?');
         $question->setAnswer('nee');
         $question->setOrderNumber(2);
         $stage->addQuestion($question);
