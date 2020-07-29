@@ -11912,12 +11912,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/test_results{{test_result}}",
+							"raw": "{{baseUrl}}/test_results/{{test_result}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"test_results{{test_result}}"
+								"test_results",
+								"{{test_result}}"
 							]
 						}
 					},
@@ -12496,7 +12497,7 @@
 	],
 	"variable": [
 		{
-			"id": "7ee6b771-d093-403d-9009-8b43137fcf74",
+			"id": "2ad4c132-c39b-4c13-9943-f2361aa5c9ab",
 			"key": "baseUrl",
 			"value": "https://edu.dev.conduction.nl"
 		}
