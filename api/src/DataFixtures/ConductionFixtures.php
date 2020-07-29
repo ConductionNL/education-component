@@ -79,9 +79,9 @@ class ConductionFixtures extends Fixture
 
         // Test Cursus
         $course = new Course();
-        $course->setName('Scrum gericht werken en Github');
-        $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
-        $course->setCourseCode('SG1');
+        $course->setName('Test Cursus');
+        $course->setDescription('Dit is een programma om mee te testen.');
+        $course->setCourseCode('TC1');
         $prerequisites = [];
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         $course->setCoursePrerequisites($prerequisites);
@@ -90,8 +90,20 @@ class ConductionFixtures extends Fixture
         $program->addCourse($course);
 
         $activity = new Activity();
-        $activity->setName('Afsluitende test');
-        $activity->setDescription('');
+        $activity->setName('Test Activiteit');
+        $activity->setDescription('Test beschrijving');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
+        $activity = new Activity();
+        $activity->setName('Test Activiteit2');
+        $activity->setDescription('Test beschrijving');
+        $activity->setEducationalUse('test');
+        $course->addActivity($activity);
+
+        $activity = new Activity();
+        $activity->setName('Test Activiteit3');
+        $activity->setDescription('Test beschrijving');
         $activity->setEducationalUse('test');
         $course->addActivity($activity);
 
@@ -197,6 +209,7 @@ class ConductionFixtures extends Fixture
         $program = new Program();
         $program->setName('Voorbereiding online stage');
         $program->setDescription('Tijdens dit programma wordt je voorbereid op het online lopen van een stage bij een commonground gemeente of organisatie.');
+        $program->setProvider($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'6a001c4c-911b-4b29-877d-122e362f519d']));
         $manager->persist($program);
         $program->setId($id);
         $manager->persist($program);
@@ -208,6 +221,9 @@ class ConductionFixtures extends Fixture
         $course = new Course();
         $course->setName('Introductie');
         $course->setDescription('Hier komt een introductie over de tutorials.');
+        $prerequisites = [];
+        $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
+        $course->setCoursePrerequisites($prerequisites);
         $manager->persist($course);
         $course->setId($id);
         $manager->persist($course);
@@ -238,6 +254,10 @@ class ConductionFixtures extends Fixture
         $course = new Course();
         $course->setName('Agile en Scrum');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $prerequisites = [];
+        $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
+        $prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
+        $course->setCoursePrerequisites($prerequisites);
         $manager->persist($course);
         $course->setId($id);
         $manager->persist($course);
@@ -255,6 +275,10 @@ class ConductionFixtures extends Fixture
         $course = new Course();
         $course->setName('Git en versiebeheer');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $prerequisites = [];
+        $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
+        $prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
+        $course->setCoursePrerequisites($prerequisites);
         $program->addCourse($course);
 
         $activity = new Activity();
@@ -267,6 +291,10 @@ class ConductionFixtures extends Fixture
         $course = new Course();
         $course->setName('Userinterface en NL Design');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $prerequisites = [];
+        $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
+        $prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
+        $course->setCoursePrerequisites($prerequisites);
         $program->addCourse($course);
 
         $activity = new Activity();
@@ -279,6 +307,10 @@ class ConductionFixtures extends Fixture
         $course = new Course();
         $course->setName('Architectuur en componenten');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $prerequisites = [];
+        $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
+        $prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
+        $course->setCoursePrerequisites($prerequisites);
         $program->addCourse($course);
 
         $activity = new Activity();
@@ -291,6 +323,10 @@ class ConductionFixtures extends Fixture
         $course = new Course();
         $course->setName('API Design en Datamodellen');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $prerequisites = [];
+        $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
+        $prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
+        $course->setCoursePrerequisites($prerequisites);
         $program->addCourse($course);
 
         $activity = new Activity();
@@ -303,6 +339,10 @@ class ConductionFixtures extends Fixture
         $course = new Course();
         $course->setName('Protocomponent');
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $prerequisites = [];
+        $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
+        $prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
+        $course->setCoursePrerequisites($prerequisites);
         $program->addCourse($course);
 
         $activity = new Activity();

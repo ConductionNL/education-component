@@ -782,13 +782,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/participants/a3cc3f2e-aca3-4a3d-b2ec-cc910821c0dd",
+							"raw": "{{baseUrl}}/participants/{{participant}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"participants",
-								"a3cc3f2e-aca3-4a3d-b2ec-cc910821c0dd"
+								"{{participant}}"
 							]
 						}
 					},
@@ -7997,13 +7997,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/stages/{{stage}}",
+							"raw": "{{baseUrl}}/tests/{{test}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"stages",
-								"{{stage}}"
+								"tests",
+								"{{test}}"
 							]
 						}
 					},
@@ -9905,12 +9905,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/sections",
+							"raw": "{{baseUrl}}/questions",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"sections"
+								"questions"
 							]
 						}
 					},
@@ -10563,13 +10563,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/sections/{{section}}",
+							"raw": "{{baseUrl}}/questions/{{question}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"sections",
-								"{{section}}"
+								"questions",
+								"{{question}}"
 							]
 						}
 					},
@@ -11912,12 +11912,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/test_results{{test_result}}",
+							"raw": "{{baseUrl}}/test_results/{{test_result}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"test_results{{test_result}}"
+								"test_results",
+								"{{test_result}}"
 							]
 						}
 					},
@@ -12496,7 +12497,7 @@
 	],
 	"variable": [
 		{
-			"id": "ee956648-83e3-4cef-8fac-eea819130594",
+			"id": "2ad4c132-c39b-4c13-9943-f2361aa5c9ab",
 			"key": "baseUrl",
 			"value": "https://edu.dev.conduction.nl"
 		}
