@@ -309,7 +309,7 @@ class Stage
         $criteria = Criteria::create()
             ->andWhere(Criteria::expr()->gt('orderNumber', $question->getOrderNumber()));
 
-        return $this->getQuestions()->matching($criteria)->first;
+        return $this->getQuestions()->matching($criteria)->first();
     }
 
     public function getMaxQuestion()
