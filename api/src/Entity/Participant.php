@@ -103,11 +103,19 @@ class Participant
      */
     private $results;
 
+    /**
+     * @MaxDepth(1)
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity=TestResult::class, mappedBy="participant", orphanRemoval=true)
+     */
+    private $testResults;
+
     public function __construct()
     {
         $this->programs = new ArrayCollection();
         $this->courses = new ArrayCollection();
         $this->results = new ArrayCollection();
+        $this->testResults = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -235,6 +243,37 @@ class Participant
             // set the owning side to null (unless already changed)
             if ($result->getParticipant() === $this) {
                 $result->setParticipant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TestResult[]
+     */
+    public function getTestResults(): Collection
+    {
+        return $this->testResults;
+    }
+
+    public function addTestResult(TestResult $testResult): self
+    {
+        if (!$this->testResults->contains($testResult)) {
+            $this->testResults[] = $testResult;
+            $testResult->setParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTestResult(TestResult $testResult): self
+    {
+        if ($this->testResults->contains($testResult)) {
+            $this->testResults->removeElement($testResult);
+            // set the owning side to null (unless already changed)
+            if ($testResult->getParticipant() === $this) {
+                $testResult->setParticipant(null);
             }
         }
 

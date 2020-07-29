@@ -107,9 +107,17 @@ class Activity
      */
     private $dateModified;
 
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity=Test::class, mappedBy="activity", orphanRemoval=true,cascade={"persist"})
+     * @MaxDepth(1)
+     */
+    private $tests;
+
     public function __construct()
     {
         $this->results = new ArrayCollection();
+        $this->tests = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -223,6 +231,37 @@ class Activity
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Test[]
+     */
+    public function getTests(): Collection
+    {
+        return $this->tests;
+    }
+
+    public function addTest(Test $test): self
+    {
+        if (!$this->tests->contains($test)) {
+            $this->tests[] = $test;
+            $test->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTest(Test $test): self
+    {
+        if ($this->tests->contains($test)) {
+            $this->tests->removeElement($test);
+            // set the owning side to null (unless already changed)
+            if ($test->getActivity() === $this) {
+                $test->setActivity(null);
+            }
+        }
 
         return $this;
     }

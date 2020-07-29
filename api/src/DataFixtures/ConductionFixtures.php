@@ -56,6 +56,7 @@ class ConductionFixtures extends Fixture
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         $prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'0bf92c4a-0ef3-4184-a14a-4356f735498e']);
         $program->setProgramPrerequisites($prerequisites);
+        $manager->persist($program);
         $date = new \DateTime();
         $date->add(new \DateInterval('P5W'));
         $program->setApplicationDeadline($date);
