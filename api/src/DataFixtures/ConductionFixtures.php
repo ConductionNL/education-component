@@ -6,6 +6,9 @@ use App\Entity\Activity;
 use App\Entity\Course;
 use App\Entity\Participant;
 use App\Entity\Program;
+use App\Entity\Question;
+use App\Entity\Stage;
+use App\Entity\Test;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -91,6 +94,100 @@ class ConductionFixtures extends Fixture
         $activity->setDescription('');
         $activity->setEducationalUse('test');
         $course->addActivity($activity);
+
+        // Test Test
+        $test = new Test();
+        $test->setName('Test test');
+        $test->setDescription('Dit is een test om tests mee te testen ;)');
+        $activity->addTest($test);
+        $course->addTest($test);
+
+        $stage = new Stage();
+        $stage->setName('Vragenlijst 1');
+        $stage->setDescription('Beantwoord deze vragen');
+        $stage->setOrderNumber(0);
+
+        $question = new Question();
+        $question->setName('Vraag 1');
+        $question->setDescription('Wat is het antwoord op deze vraag?');
+        $question->setAnswer('Wat');
+        $answerOptions = [];
+        $answerOptions[0] = 'het antwoord';
+        $answerOptions[1] = 'Welke vraag?';
+        $answerOptions[2] = 'Wat';
+        $question->setAnswerOptions($answerOptions);
+        $question->setOrderNumber(0);
+        $stage->addQuestion($question);
+
+        $question = new Question();
+        $question->setName('Vraag 2');
+        $question->setDescription('Is dit een goeie vraag?');
+        $question->setAnswer('ja');
+        $answerOptions = [];
+        $answerOptions[0] = 'ja';
+        $answerOptions[1] = 'nee';
+        $question->setAnswerOptions($answerOptions);
+        $question->setOrderNumber(1);
+        $stage->addQuestion($question);
+
+        $question = new Question();
+        $question->setName('Vraag 3');
+        $question->setDescription('Is dit multiple choice vraag?');
+        $question->setAnswer('nee');
+        $question->setOrderNumber(2);
+        $stage->addQuestion($question);
+
+        $test->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Vragenlijst 2');
+        $stage->setDescription('Beantwoord ook deze vragen');
+        $stage->setOrderNumber(1);
+
+        $question = new Question();
+        $question->setName('Vraag 1');
+        $question->setDescription('Wie heeft deze slechte vragen bedacht?');
+        $question->setAnswer('Wilco Louwerse');
+        $question->setOrderNumber(0);
+        $stage->addQuestion($question);
+
+        $question = new Question();
+        $question->setName('Vraag 2');
+        $question->setDescription('Wie heeft deze slechte vragen beantwoord?');
+        $question->setAnswer('ik');
+        $question->setOrderNumber(1);
+        $stage->addQuestion($question);
+
+        $question = new Question();
+        $question->setName('Vraag 3');
+        $question->setDescription('Geven de mogelijke antwoorden op deze vraag je keuzestress?');
+        $question->setAnswer('ja');
+        $answerOptions = [];
+        $answerOptions[0] = 'ja';
+        $answerOptions[1] = 'nee';
+        $answerOptions[2] = 'misschien';
+        $answerOptions[3] = 'ja, dit zijn echt te veel opties';
+        $answerOptions[4] = 'niet zeker, even aan mijn therapist vragen';
+        $answerOptions[5] = 'nee, dit antwoord is duidelijk de juiste';
+        $answerOptions[6] = '?¿?';
+        $question->setAnswerOptions($answerOptions);
+        $question->setOrderNumber(2);
+        $stage->addQuestion($question);
+
+        $question = new Question();
+        $question->setName('Vraag 4');
+        $question->setDescription('Wat is 1+1?');
+        $question->setAnswer('2');
+        $answerOptions = [];
+        $answerOptions[0] = '0';
+        $answerOptions[1] = '1';
+        $answerOptions[2] = '2';
+        $answerOptions[3] = '3';
+        $question->setAnswerOptions($answerOptions);
+        $question->setOrderNumber(3);
+        $stage->addQuestion($question);
+
+        $test->addStage($stage);
 
         $manager->persist($program);
         $manager->flush();
