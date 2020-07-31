@@ -52,8 +52,8 @@ class ConductionFixtures extends Fixture
         // Test programma
         $id = Uuid::fromString('d7c49d9f-5e16-4035-8558-9b2aa007aabe');
         $program = new Program();
-        $program->setName('Test programma');
-        $program->setDescription('Dit is een programma om mee te testen.');
+        $program->setName('Test tutorial');
+        $program->setDescription('Dit is een tutorial om mee te testen.');
         $program->setProvider($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'6a001c4c-911b-4b29-877d-122e362f519d']));
         $prerequisites = [];
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
@@ -70,7 +70,7 @@ class ConductionFixtures extends Fixture
         $program->setTrainingSalary('€123 per maand');
         $program->setNumberOfCredits('25');
         $program->setOccupationalCredentialAwarded('Software Developer');
-        $program->setEducationalCredentialAwarded('Beschrijving van wat je krijgt bij het halen van dit programma, bijvoorbeeld een diploma, certificaat en/of titel.');
+        $program->setEducationalCredentialAwarded('Beschrijving van wat je krijgt bij het halen van deze tutorial, bijvoorbeeld een diploma, certificaat en/of titel.');
         $manager->persist($program);
         $program->setId($id);
         $manager->persist($program);
@@ -80,7 +80,7 @@ class ConductionFixtures extends Fixture
         // Test Cursus
         $course = new Course();
         $course->setName('Test Cursus');
-        $course->setDescription('Dit is een programma om mee te testen.');
+        $course->setDescription('Dit is een cursus om mee te testen.');
         $course->setCourseCode('TC1');
         $prerequisites = [];
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
@@ -208,7 +208,7 @@ class ConductionFixtures extends Fixture
         $id = Uuid::fromString('6f408aae-4a35-4ad3-a829-a87627714bca');
         $program = new Program();
         $program->setName('Voorbereiding online stage');
-        $program->setDescription('Tijdens dit programma wordt je voorbereid op het online lopen van een stage bij een commonground gemeente of organisatie.');
+        $program->setDescription('Tijdens deze tutorial wordt je voorbereid op het online lopen van een stage bij een commonground gemeente of organisatie.');
         $program->setProvider($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'6a001c4c-911b-4b29-877d-122e362f519d']));
         $manager->persist($program);
         $program->setId($id);
