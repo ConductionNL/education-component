@@ -66,6 +66,15 @@ class Activity
     private $description;
 
     /**
+     * @var bool Denotes if this activity needs a review with a rating before it can be completed.
+     *
+     * @example true
+     *
+     * @Groups({"read"})
+     */
+    private $needsReview = false;
+
+    /**
      * @MaxDepth(1)
      * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="activities")
@@ -154,6 +163,11 @@ class Activity
         $this->description = $description;
 
         return $this;
+    }
+
+    public function getNeedsReview(): ?bool
+    {
+        return $this->needsReview;
     }
 
     public function getCourse(): ?Course

@@ -356,6 +356,13 @@ class Program
     private $courses;
 
     /**
+     * @MaxDepth(1)
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="program")
+     */
+    private $results;
+
+    /**
      * @var Datetime The moment this Program was created
      *
      * @Groups({"read"})
@@ -377,6 +384,7 @@ class Program
     {
         $this->participants = new ArrayCollection();
         $this->courses = new ArrayCollection();
+        $this->results = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -740,6 +748,37 @@ class Program
     {
         if ($this->courses->contains($course)) {
             $this->courses->removeElement($course);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Result[]
+     */
+    public function getResults(): Collection
+    {
+        return $this->results;
+    }
+
+    public function addResult(Result $result): self
+    {
+        if (!$this->results->contains($result)) {
+            $this->results[] = $result;
+            $result->setTest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResult(Result $result): self
+    {
+        if ($this->results->contains($result)) {
+            $this->results->removeElement($result);
+            // set the owning side to null (unless already changed)
+            if ($result->getTest() === $this) {
+                $result->setTest(null);
+            }
         }
 
         return $this;

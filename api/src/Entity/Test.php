@@ -67,6 +67,15 @@ class Test
     private $description;
 
     /**
+     * @var bool Denotes if this test needs a review with a rating before it can be completed.
+     *
+     * @example true
+     *
+     * @Groups({"read"})
+     */
+    private $needsReview = false;
+
+    /**
      * @var Datetime The moment this Test was created
      *
      * @Groups({"read"})
@@ -87,9 +96,9 @@ class Test
     /**
      * @MaxDepth(1)
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=TestResult::class, mappedBy="test")
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="test")
      */
-    private $testResults;
+    private $results;
 
     /**
      * @var Activity The activity that this test belongs to
@@ -98,6 +107,7 @@ class Test
      * @Groups({"read","write"})
      * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="tests")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $activity;
 
@@ -114,7 +124,7 @@ class Test
 
     public function __construct()
     {
-        $this->testResults = new ArrayCollection();
+        $this->results = new ArrayCollection();
         $this->stages = new ArrayCollection();
     }
 
@@ -154,6 +164,11 @@ class Test
         return $this;
     }
 
+    public function getNeedsReview(): ?bool
+    {
+        return $this->needsReview;
+    }
+
     public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateCreated;
@@ -179,30 +194,30 @@ class Test
     }
 
     /**
-     * @return Collection|TestResult[]
+     * @return Collection|Result[]
      */
-    public function getTestResults(): Collection
+    public function getResults(): Collection
     {
-        return $this->testResults;
+        return $this->results;
     }
 
-    public function addTestResult(TestResult $testResult): self
+    public function addResult(Result $result): self
     {
-        if (!$this->testResults->contains($testResult)) {
-            $this->testResults[] = $testResult;
-            $testResult->setTest($this);
+        if (!$this->results->contains($result)) {
+            $this->results[] = $result;
+            $result->setTest($this);
         }
 
         return $this;
     }
 
-    public function removeTestResult(TestResult $testResult): self
+    public function removeResult(Result $result): self
     {
-        if ($this->testResults->contains($testResult)) {
-            $this->testResults->removeElement($testResult);
+        if ($this->results->contains($result)) {
+            $this->results->removeElement($result);
             // set the owning side to null (unless already changed)
-            if ($testResult->getTest() === $this) {
-                $testResult->setTest(null);
+            if ($result->getTest() === $this) {
+                $result->setTest(null);
             }
         }
 
