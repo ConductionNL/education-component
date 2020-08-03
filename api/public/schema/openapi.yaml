@@ -10689,10 +10689,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity-read'
-        tests:
-          type: array
-          items:
-            $ref: '#/components/schemas/Test-read'
       required:
         - name
     Course-write:
@@ -10750,10 +10746,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity-write'
-        tests:
-          type: array
-          items:
-            $ref: '#/components/schemas/Test-write'
     'Course:jsonld-read':
       type: object
       description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
@@ -10833,10 +10825,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity:jsonld-read'
-        tests:
-          type: array
-          items:
-            $ref: '#/components/schemas/Test:jsonld-read'
       required:
         - name
     'Course:jsonld-write':
@@ -10903,10 +10891,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity:jsonld-write'
-        tests:
-          type: array
-          items:
-            $ref: '#/components/schemas/Test:jsonld-write'
     EducationEvent-read:
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -12533,12 +12517,6 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Activity-read'
-        course:
-          description: 'The course that this test belongs to'
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course-read'
         stages:
           description: 'The stages of this test'
           type: array
@@ -12547,14 +12525,12 @@ components:
       required:
         - name
         - activity
-        - course
     Test-write:
       type: object
       description: ''
       required:
         - name
         - activity
-        - course
       properties:
         name:
           description: 'The name of this Test.'
@@ -12573,12 +12549,6 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Activity-write'
-        course:
-          description: 'The course that this test belongs to'
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course-write'
         stages:
           description: 'The stages of this test'
           type: array
@@ -12631,12 +12601,6 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Activity:jsonld-read'
-        course:
-          description: 'The course that this test belongs to'
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course:jsonld-read'
         stages:
           description: 'The stages of this test'
           type: array
@@ -12645,14 +12609,12 @@ components:
       required:
         - name
         - activity
-        - course
     'Test:jsonld-write':
       type: object
       description: ''
       required:
         - name
         - activity
-        - course
       properties:
         '@context':
           readOnly: true
@@ -12680,12 +12642,6 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Activity:jsonld-write'
-        course:
-          description: 'The course that this test belongs to'
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course:jsonld-write'
         stages:
           description: 'The stages of this test'
           type: array
@@ -13035,22 +12991,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13166,22 +13122,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13444,9 +13400,6 @@ definitions:
       activity:
         description: 'The activity that this test belongs to'
         type: \Activity
-      course:
-        description: 'The course that this test belongs to'
-        type: \Course
       stages:
         description: 'The stages of this test'
         type: array
@@ -13468,9 +13421,6 @@ definitions:
       activity:
         description: 'The activity that this test belongs to'
         type: \Activity
-      course:
-        description: 'The course that this test belongs to'
-        type: \Course
       stages:
         description: 'The stages of this test'
         type: array
@@ -13643,12 +13593,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -13689,12 +13639,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
         format: date-time
       course: []
     required:
@@ -13803,12 +13753,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
     required: []
   AuditTrail-write:
     properties:
@@ -13856,12 +13806,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-31 11:49:17'
+        example: '2020-08-03 10:29:04'
     required: []
   ChangeLog-write:
     properties:

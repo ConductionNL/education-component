@@ -102,16 +102,6 @@ class Test
     private $activity;
 
     /**
-     * @var Course The course that this test belongs to
-     *
-     * @MaxDepth(1)
-     * @Groups({"read","write"})
-     * @Assert\NotBlank
-     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="tests")
-     */
-    private $course;
-
-    /**
      * @var array The stages of this test
      *
      * @MaxDepth(1)
@@ -227,18 +217,6 @@ class Test
     public function setActivity(?Activity $activity): self
     {
         $this->activity = $activity;
-
-        return $this;
-    }
-
-    public function getCourse(): ?Course
-    {
-        return $this->course;
-    }
-
-    public function setCourse(?Course $course): self
-    {
-        $this->course = $course;
 
         return $this;
     }
