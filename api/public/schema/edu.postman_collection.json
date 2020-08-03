@@ -7693,7 +7693,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen ;)\",\n    \"activity\": \"{{baseUrl}}/activities/{{activity}}\",\n    \"course\": \"{{baseUrl}}/courses/{{course}}\"\n}\n",
+							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen ;)\",\n    \"activity\": \"{{baseUrl}}/activities/{{activity}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -8279,7 +8279,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen!\",\n    \"activity\": \"{{baseUrl}}/activities/{{activity}}\",\n    \"course\": \"{{baseUrl}}/courses/{{course}}\"\n}",
+							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen!\",\n    \"activity\": \"{{baseUrl}}/activities/{{activity}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -12497,7 +12497,7 @@
 	],
 	"variable": [
 		{
-			"id": "2ad4c132-c39b-4c13-9943-f2361aa5c9ab",
+			"id": "3e8006b6-f0fc-44e6-b01b-0e46ee45964b",
 			"key": "baseUrl",
 			"value": "https://edu.dev.conduction.nl"
 		}
