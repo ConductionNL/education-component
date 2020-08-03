@@ -98,6 +98,7 @@ class Test
      * @Groups({"read","write"})
      * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="tests")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $activity;
 
