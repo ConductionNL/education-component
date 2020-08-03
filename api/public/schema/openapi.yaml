@@ -12127,7 +12127,6 @@ definitions:
       programs: []
       educationEvents: []
       activities: []
-      tests: []
     required:
       - name
   Course-write:
@@ -12174,68 +12173,97 @@ definitions:
       programs: []
       educationEvents: []
       activities: []
-      tests: []
     required:
       - name
-  Result-read:
+  EducationEvent-read:
     properties:
       id:
-        description: 'The UUID identifier of this Result.'
+        description: 'The UUID identifier of this EducationEvent.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this Result.'
+        description: 'The name of this EducationEvent.'
         type: string
-        example: Result1
+        example: 'Les 1 over Github'
         maxLength: 255
       description:
-        description: 'The description of this Result.'
+        description: 'The description of this EducationEvent.'
         type: string
-        example: 'Beschrijving van Result1.'
+        example: 'Dit is de eerste online les over Github.'
         maxLength: 255
-      completionDate:
-        description: 'The moment this Result had status: completed.'
+      assesses:
+        description: 'The assesses of this EducationEvent.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-08-03 12:44:47'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-08-03 12:44:47'
         format: date-time
       dateCreated:
-        description: 'The moment this Result was created'
+        description: 'The moment this EducationEvent was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this Result was last Modified'
+        description: 'The moment this EducationEvent was last Modified'
         type: \Datetime
-      participant: []
-      activity: []
-      test: []
       course: []
-      program: []
-      reviews: []
     required:
       - name
-  Result-write:
+  EducationEvent-write:
     properties:
       name:
-        description: 'The name of this Result.'
+        description: 'The name of this EducationEvent.'
         type: string
-        example: Result1
+        example: 'Les 1 over Github'
         maxLength: 255
       description:
-        description: 'The description of this Result.'
+        description: 'The description of this EducationEvent.'
         type: string
-        example: 'Beschrijving van Result1.'
+        example: 'Dit is de eerste online les over Github.'
         maxLength: 255
-      completionDate:
-        description: 'The moment this Result had status: completed.'
+      assesses:
+        description: 'The assesses of this EducationEvent.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-08-03 12:44:47'
         format: date-time
-      participant: []
-      activity: []
-      test: []
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-08-03 12:44:47'
+        format: date-time
       course: []
-      program: []
-      reviews: []
     required:
       - name
   Participant-read:
@@ -12293,22 +12321,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -12425,22 +12453,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -12536,118 +12564,6 @@ definitions:
       results: []
     required:
       - name
-  Test-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Test.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this Test.'
-        type: string
-        example: Test1
-        maxLength: 255
-      description:
-        description: 'The description of this Test.'
-        type: string
-        example: 'Beschrijving van Test1.'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this Test was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Test was last Modified'
-        type: \Datetime
-      results: []
-      activity:
-        description: 'The activity that this test belongs to'
-        type: \Activity
-      stages:
-        description: 'The stages of this test'
-        type: array
-    required:
-      - name
-  Test-write:
-    properties:
-      name:
-        description: 'The name of this Test.'
-        type: string
-        example: Test1
-        maxLength: 255
-      description:
-        description: 'The description of this Test.'
-        type: string
-        example: 'Beschrijving van Test1.'
-        maxLength: 255
-      results: []
-      activity:
-        description: 'The activity that this test belongs to'
-        type: \Activity
-      stages:
-        description: 'The stages of this test'
-        type: array
-    required:
-      - name
-  Stage-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Stage.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this Stage.'
-        type: string
-        example: Stage1
-        maxLength: 255
-      description:
-        description: 'The description of this Stage.'
-        type: string
-        example: 'Beschrijving van Stage1.'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this Stage was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Stage was last Modified'
-        type: \Datetime
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      test:
-        description: 'The test that this stage belongs to'
-        type: \Test
-      questions:
-        description: 'the questions of this stage'
-        type: \ArrayCollection
-    required:
-      - name
-      - orderNumber
-  Stage-write:
-    properties:
-      name:
-        description: 'The name of this Stage.'
-        type: string
-        example: Stage1
-        maxLength: 255
-      description:
-        description: 'The description of this Stage.'
-        type: string
-        example: 'Beschrijving van Stage1.'
-        maxLength: 255
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      test:
-        description: 'The test that this stage belongs to'
-        type: \Test
-      questions:
-        description: 'the questions of this stage'
-        type: \ArrayCollection
-    required:
-      - name
-      - orderNumber
   Question-read:
     properties:
       id:
@@ -12721,6 +12637,67 @@ definitions:
       - description
       - answer
       - orderNumber
+  Result-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Result.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Result.'
+        type: string
+        example: Result1
+        maxLength: 255
+      description:
+        description: 'The description of this Result.'
+        type: string
+        example: 'Beschrijving van Result1.'
+        maxLength: 255
+      completionDate:
+        description: 'The moment this Result had status: completed.'
+        type: string
+        example: '2020-08-03 12:44:47'
+        format: date-time
+      dateCreated:
+        description: 'The moment this Result was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Result was last Modified'
+        type: \Datetime
+      participant: []
+      activity: []
+      test: []
+      course: []
+      program: []
+      reviews: []
+    required:
+      - name
+  Result-write:
+    properties:
+      name:
+        description: 'The name of this Result.'
+        type: string
+        example: Result1
+        maxLength: 255
+      description:
+        description: 'The description of this Result.'
+        type: string
+        example: 'Beschrijving van Result1.'
+        maxLength: 255
+      completionDate:
+        description: 'The moment this Result had status: completed.'
+        type: string
+        example: '2020-08-03 12:44:47'
+        format: date-time
+      participant: []
+      activity: []
+      test: []
+      course: []
+      program: []
+      reviews: []
+    required:
+      - name
   Review-read:
     properties:
       id:
@@ -12766,95 +12743,116 @@ definitions:
       result: []
     required:
       - name
-  EducationEvent-read:
+  Stage-read:
     properties:
       id:
-        description: 'The UUID identifier of this EducationEvent.'
+        description: 'The UUID identifier of this Stage.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this EducationEvent.'
+        description: 'The name of this Stage.'
         type: string
-        example: 'Les 1 over Github'
+        example: Stage1
         maxLength: 255
       description:
-        description: 'The description of this EducationEvent.'
+        description: 'The description of this Stage.'
         type: string
-        example: 'Dit is de eerste online les over Github.'
+        example: 'Beschrijving van Stage1.'
         maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
-        type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-08-03 12:34:39'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-08-03 12:34:39'
-        format: date-time
       dateCreated:
-        description: 'The moment this EducationEvent was created'
+        description: 'The moment this Stage was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this EducationEvent was last Modified'
+        description: 'The moment this Stage was last Modified'
         type: \Datetime
-      course: []
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      test:
+        description: 'The test that this stage belongs to'
+        type: \Test
+      questions:
+        description: 'the questions of this stage'
+        type: \ArrayCollection
     required:
       - name
-  EducationEvent-write:
+      - orderNumber
+  Stage-write:
     properties:
       name:
-        description: 'The name of this EducationEvent.'
+        description: 'The name of this Stage.'
         type: string
-        example: 'Les 1 over Github'
+        example: Stage1
         maxLength: 255
       description:
-        description: 'The description of this EducationEvent.'
+        description: 'The description of this Stage.'
         type: string
-        example: 'Dit is de eerste online les over Github.'
+        example: 'Beschrijving van Stage1.'
         maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      test:
+        description: 'The test that this stage belongs to'
+        type: \Test
+      questions:
+        description: 'the questions of this stage'
+        type: \ArrayCollection
+    required:
+      - name
+      - orderNumber
+  Test-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Test.'
         type: string
-        example: beoordelingscriteria
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Test.'
+        type: string
+        example: Test1
         maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
+      description:
+        description: 'The description of this Test.'
         type: string
-        example: beginner
+        example: 'Beschrijving van Test1.'
         maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
+      dateCreated:
+        description: 'The moment this Test was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Test was last Modified'
+        type: \Datetime
+      results: []
+      activity:
+        description: 'The activity that this test belongs to'
+        type: \Activity
+      stages:
+        description: 'The stages of this test'
+        type: array
+    required:
+      - name
+  Test-write:
+    properties:
+      name:
+        description: 'The name of this Test.'
         type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        example: Test1
         maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
+      description:
+        description: 'The description of this Test.'
         type: string
-        example: '2020-08-03 12:34:39'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-08-03 12:34:39'
-        format: date-time
-      course: []
+        example: 'Beschrijving van Test1.'
+        maxLength: 255
+      results: []
+      activity:
+        description: 'The activity that this test belongs to'
+        type: \Activity
+      stages:
+        description: 'The stages of this test'
+        type: array
     required:
       - name
   AuditTrail-read:
@@ -12961,12 +12959,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
     required: []
   AuditTrail-write:
     properties:
@@ -13014,12 +13012,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-03 12:34:39'
+        example: '2020-08-03 12:44:47'
     required: []
   ChangeLog-write:
     properties:
@@ -13043,9 +13041,9 @@ tags:
       
       
   -
-    name: Result
+    name: EducationEvent
     description: |
-      
+      An EducationEvent is a (online) meeting, college etc. of a course.
       
       
   -
@@ -13061,19 +13059,13 @@ tags:
       
       
   -
-    name: Test
-    description: |
-      
-      
-      
-  -
-    name: Stage
-    description: |
-      
-      
-      
-  -
     name: Question
+    description: |
+      
+      
+      
+  -
+    name: Result
     description: |
       
       
@@ -13085,9 +13077,15 @@ tags:
       
       
   -
-    name: EducationEvent
+    name: Stage
     description: |
-      An EducationEvent is a (online) meeting, college etc. of a course.
+      
+      
+      
+  -
+    name: Test
+    description: |
+      
       
       
   -
