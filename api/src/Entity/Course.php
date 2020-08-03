@@ -190,20 +190,12 @@ class Course
      */
     private $activities;
 
-    /**
-     * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=Test::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
-     * @MaxDepth(1)
-     */
-    private $tests;
-
     public function __construct()
     {
         $this->participants = new ArrayCollection();
         $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
         $this->activities = new ArrayCollection();
-        $this->tests = new ArrayCollection();
         $this->results = new ArrayCollection();
     }
 
@@ -469,7 +461,7 @@ class Course
     {
         if (!$this->results->contains($result)) {
             $this->results[] = $result;
-            $result->setTest($this);
+            $result->setCourse($this);
         }
 
         return $this;
@@ -480,8 +472,8 @@ class Course
         if ($this->results->contains($result)) {
             $this->results->removeElement($result);
             // set the owning side to null (unless already changed)
-            if ($result->getTest() === $this) {
-                $result->setTest(null);
+            if ($result->getCourse() === $this) {
+                $result->setCourse(null);
             }
         }
 

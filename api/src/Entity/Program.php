@@ -765,7 +765,7 @@ class Program
     {
         if (!$this->results->contains($result)) {
             $this->results[] = $result;
-            $result->setTest($this);
+            $result->setProgram($this);
         }
 
         return $this;
@@ -776,8 +776,8 @@ class Program
         if ($this->results->contains($result)) {
             $this->results->removeElement($result);
             // set the owning side to null (unless already changed)
-            if ($result->getTest() === $this) {
-                $result->setTest(null);
+            if ($result->getProgram() === $this) {
+                $result->setProgram(null);
             }
         }
 
