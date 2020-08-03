@@ -138,6 +138,13 @@ class Course
     private $educationalCredentialAwarded;
 
     /**
+     * @MaxDepth(1)
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="course")
+     */
+    private $results;
+
+    /**
      * @var Datetime The moment this Course was created
      *
      * @Groups({"read"})
@@ -197,6 +204,7 @@ class Course
         $this->educationEvents = new ArrayCollection();
         $this->activities = new ArrayCollection();
         $this->tests = new ArrayCollection();
+        $this->results = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -443,6 +451,37 @@ class Course
             // set the owning side to null (unless already changed)
             if ($activity->getCourse() === $this) {
                 $activity->setCourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Result[]
+     */
+    public function getResults(): Collection
+    {
+        return $this->results;
+    }
+
+    public function addResult(Result $result): self
+    {
+        if (!$this->results->contains($result)) {
+            $this->results[] = $result;
+            $result->setTest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResult(Result $result): self
+    {
+        if ($this->results->contains($result)) {
+            $this->results->removeElement($result);
+            // set the owning side to null (unless already changed)
+            if ($result->getTest() === $this) {
+                $result->setTest(null);
             }
         }
 

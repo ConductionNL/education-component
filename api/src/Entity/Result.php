@@ -66,6 +66,17 @@ class Result
     private $description;
 
     /**
+     * @var DateTime The moment this Result had status: completed.
+     *
+     * @example 25-09-2022 15:00:00
+     *
+     * @Assert\DateTime
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $completionDate;
+
+    /**
      * @MaxDepth(1)
      * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="results")
@@ -79,6 +90,27 @@ class Result
      * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="results")
      */
     private $activity;
+
+    /**
+     * @MaxDepth(1)
+     * @Groups({"read", "write"})
+     * @ORM\ManyToOne(targetEntity=Test::class, inversedBy="results")
+     */
+    private $test;
+
+    /**
+     * @MaxDepth(1)
+     * @Groups({"read", "write"})
+     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="results")
+     */
+    private $course;
+
+    /**
+     * @MaxDepth(1)
+     * @Groups({"read", "write"})
+     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="results")
+     */
+    private $program;
 
     /**
      * @MaxDepth(1)
@@ -146,6 +178,18 @@ class Result
         return $this;
     }
 
+    public function getCompletionDate(): ?\DateTimeInterface
+    {
+        return $this->completionDate;
+    }
+
+    public function setCompletionDate(?\DateTimeInterface $completionDate): self
+    {
+        $this->completionDate = $completionDate;
+
+        return $this;
+    }
+
     public function getParticipant(): ?Participant
     {
         return $this->participant;
@@ -166,6 +210,42 @@ class Result
     public function setActivity(?Activity $activity): self
     {
         $this->activity = $activity;
+
+        return $this;
+    }
+
+    public function getTest(): ?Test
+    {
+        return $this->test;
+    }
+
+    public function setTest(?Test $test): self
+    {
+        $this->test = $test;
+
+        return $this;
+    }
+
+    public function getCourse(): ?Course
+    {
+        return $this->course;
+    }
+
+    public function setCourse(?Course $course): self
+    {
+        $this->course = $course;
+
+        return $this;
+    }
+
+    public function getProgram(): ?Program
+    {
+        return $this->program;
+    }
+
+    public function setProgram(?Program $program): self
+    {
+        $this->program = $program;
 
         return $this;
     }

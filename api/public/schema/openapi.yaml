@@ -8621,737 +8621,6 @@ paths:
             schema:
               $ref: '#/components/schemas/Stage-write'
         description: 'The updated Stage resource'
-  /test_results:
-    get:
-      tags:
-        - TestResult
-      operationId: getTestResultCollection
-      summary: 'Retrieves the collection of TestResult resources.'
-      responses:
-        200:
-          description: 'TestResult collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/TestResult:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/json+ld:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/TestResult:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            application/json+vnd.api:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TestResult-read'
-      parameters:
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-            default: 1
-        -
-          name: limit
-          in: query
-          required: false
-          description: 'The number of items per page'
-          schema:
-            type: integer
-            default: 30
-            minimum: 0
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
-    post:
-      tags:
-        - TestResult
-      operationId: postTestResultCollection
-      summary: 'Creates a TestResult resource.'
-      responses:
-        201:
-          description: 'TestResult resource created'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/TestResult:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/TestResult:jsonld-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-          links:
-            GetTestResultItem:
-              parameters:
-                id: '$response.body#/id'
-              operationId: getTestResultItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /test_results/{id}`.'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/TestResult:jsonld-write'
-          application/json+ld:
-            schema:
-              $ref: '#/components/schemas/TestResult:jsonld-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/json+vnd.api:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-        description: 'The new TestResult resource'
-      parameters:
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-  '/test_results/{id}':
-    get:
-      tags:
-        - TestResult
-      operationId: getTestResultItem
-      summary: 'Retrieves a TestResult resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      responses:
-        200:
-          description: 'TestResult resource response'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/TestResult:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/TestResult:jsonld-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-        404:
-          description: 'Resource not found'
-      produces:
-        - application/health+json
-    delete:
-      tags:
-        - TestResult
-      operationId: deleteTestResultItem
-      summary: 'Removes the TestResult resource.'
-      responses:
-        204:
-          description: 'TestResult resource deleted'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-    put:
-      tags:
-        - TestResult
-      operationId: putTestResultItem
-      summary: 'Replaces the TestResult resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'TestResult resource updated'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/TestResult:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/TestResult:jsonld-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/TestResult:jsonld-write'
-          application/json+ld:
-            schema:
-              $ref: '#/components/schemas/TestResult:jsonld-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/json+hal:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/json+vnd.api:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/health+json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/json+health:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-        description: 'The updated TestResult resource'
-    patch:
-      tags:
-        - TestResult
-      operationId: patchTestResultItem
-      summary: 'Updates the TestResult resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-      responses:
-        200:
-          description: 'TestResult resource updated'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/TestResult:jsonld-read'
-            application/json+ld:
-              schema:
-                $ref: '#/components/schemas/TestResult:jsonld-read'
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+hal:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+vnd.api:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/health+json:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/json+health:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            application/x-yaml:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            text/csv:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/TestResult-read'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/TestResult:jsonld-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/merge-patch+json:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          applications/x-yaml:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/TestResult-write'
-        description: 'The updated TestResult resource'
   /tests:
     get:
       tags:
@@ -10103,6 +9372,10 @@ components:
           description: 'The description of this Activity.'
           type: string
           nullable: true
+        needsReview:
+          readOnly: true
+          description: 'Denotes if this activity needs a review with a rating before it can be completed.'
+          type: boolean
         course:
           $ref: '#/components/schemas/Course-read'
         educationalUse:
@@ -10181,6 +9454,10 @@ components:
           description: 'The description of this Activity.'
           type: string
           nullable: true
+        needsReview:
+          readOnly: true
+          description: 'Denotes if this activity needs a review with a rating before it can be completed.'
+          type: boolean
         course:
           $ref: '#/components/schemas/Course:jsonld-read'
         educationalUse:
@@ -10663,6 +9940,10 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result-read'
         dateCreated:
           description: 'The moment this Course was created'
           type: string
@@ -10730,6 +10011,10 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result-write'
         participants:
           type: array
           items:
@@ -10799,6 +10084,10 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result:jsonld-read'
         dateCreated:
           description: 'The moment this Course was created'
           type: string
@@ -10875,6 +10164,10 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result:jsonld-write'
         participants:
           type: array
           items:
@@ -11143,10 +10436,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result-read'
-        testResults:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResult-read'
       required:
         - person
     Participant-write:
@@ -11170,10 +10459,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result-write'
-        testResults:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResult-write'
     'Participant:jsonld-read':
       type: object
       description: 'A Participant is a person who participates in a Course or an Program.'
@@ -11219,10 +10504,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result:jsonld-read'
-        testResults:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResult:jsonld-read'
       required:
         - person
     'Participant:jsonld-write':
@@ -11255,10 +10536,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result:jsonld-write'
-        testResults:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestResult:jsonld-write'
     Program-read:
       type: object
       description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
@@ -11391,6 +10668,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course-read'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result-read'
         dateCreated:
           description: 'The moment this Program was created'
           type: string
@@ -11530,6 +10811,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course-write'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result-write'
     'Program:jsonld-read':
       type: object
       description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
@@ -11671,6 +10956,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-read'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result:jsonld-read'
         dateCreated:
           description: 'The moment this Program was created'
           type: string
@@ -11819,6 +11108,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-write'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result:jsonld-write'
     Question-read:
       type: object
       description: ''
@@ -12033,6 +11326,13 @@ components:
           description: 'The description of this Result.'
           type: string
           nullable: true
+        completionDate:
+          description: 'The moment this Result had status: completed.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
         participant:
           $ref: '#/components/schemas/Participant-read'
         activity:
@@ -12040,6 +11340,21 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Activity-read'
+        test:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Test-read'
+        course:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-read'
+        program:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Program-read'
         reviews:
           type: array
           items:
@@ -12069,6 +11384,13 @@ components:
           description: 'The description of this Result.'
           type: string
           nullable: true
+        completionDate:
+          description: 'The moment this Result had status: completed.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
         participant:
           $ref: '#/components/schemas/Participant-write'
         activity:
@@ -12076,6 +11398,21 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Activity-write'
+        test:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Test-write'
+        course:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-write'
+        program:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Program-write'
         reviews:
           type: array
           items:
@@ -12107,6 +11444,13 @@ components:
           description: 'The description of this Result.'
           type: string
           nullable: true
+        completionDate:
+          description: 'The moment this Result had status: completed.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
         participant:
           $ref: '#/components/schemas/Participant:jsonld-read'
         activity:
@@ -12114,6 +11458,21 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Activity:jsonld-read'
+        test:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Test:jsonld-read'
+        course:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-read'
+        program:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Program:jsonld-read'
         reviews:
           type: array
           items:
@@ -12152,6 +11511,13 @@ components:
           description: 'The description of this Result.'
           type: string
           nullable: true
+        completionDate:
+          description: 'The moment this Result had status: completed.'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
         participant:
           $ref: '#/components/schemas/Participant:jsonld-write'
         activity:
@@ -12159,6 +11525,21 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Activity:jsonld-write'
+        test:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Test:jsonld-write'
+        course:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-write'
+        program:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Program:jsonld-write'
         reviews:
           type: array
           items:
@@ -12497,6 +11878,10 @@ components:
           description: 'The description of this Test.'
           type: string
           nullable: true
+        needsReview:
+          readOnly: true
+          description: 'Denotes if this test needs a review with a rating before it can be completed.'
+          type: boolean
         dateCreated:
           description: 'The moment this Test was created'
           type: string
@@ -12507,10 +11892,10 @@ components:
           type: string
           format: date-time
           nullable: true
-        testResults:
+        results:
           type: array
           items:
-            $ref: '#/components/schemas/TestResult-read'
+            $ref: '#/components/schemas/Result-read'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity-read'
@@ -12536,10 +11921,10 @@ components:
           description: 'The description of this Test.'
           type: string
           nullable: true
-        testResults:
+        results:
           type: array
           items:
-            $ref: '#/components/schemas/TestResult-write'
+            $ref: '#/components/schemas/Result-write'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity-write'
@@ -12575,6 +11960,10 @@ components:
           description: 'The description of this Test.'
           type: string
           nullable: true
+        needsReview:
+          readOnly: true
+          description: 'Denotes if this test needs a review with a rating before it can be completed.'
+          type: boolean
         dateCreated:
           description: 'The moment this Test was created'
           type: string
@@ -12585,10 +11974,10 @@ components:
           type: string
           format: date-time
           nullable: true
-        testResults:
+        results:
           type: array
           items:
-            $ref: '#/components/schemas/TestResult:jsonld-read'
+            $ref: '#/components/schemas/Result:jsonld-read'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity:jsonld-read'
@@ -12623,10 +12012,10 @@ components:
           description: 'The description of this Test.'
           type: string
           nullable: true
-        testResults:
+        results:
           type: array
           items:
-            $ref: '#/components/schemas/TestResult:jsonld-write'
+            $ref: '#/components/schemas/Result:jsonld-write'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity:jsonld-write'
@@ -12635,142 +12024,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Stage:jsonld-write'
-    TestResult-read:
-      type: object
-      description: ''
-      properties:
-        id:
-          readOnly: true
-          description: 'The UUID identifier of this TestResult.'
-          externalDocs:
-            url: 'http://schema.org/identifier'
-          type: string
-          format: uuid
-        name:
-          description: 'The name of this TestResult.'
-          type: string
-        description:
-          description: 'The description of this TestResult.'
-          type: string
-          nullable: true
-        dateCreated:
-          description: 'The moment this TestResult was created'
-          type: string
-          format: date-time
-          nullable: true
-        dateModified:
-          description: 'The moment this TestResult was last Modified'
-          type: string
-          format: date-time
-          nullable: true
-        test:
-          description: 'The test that this testResult belongs to'
-          $ref: '#/components/schemas/Test-read'
-        participant:
-          description: 'The participant that this testResult belongs to'
-          $ref: '#/components/schemas/Participant-read'
-      required:
-        - name
-        - test
-        - participant
-    TestResult-write:
-      type: object
-      description: ''
-      required:
-        - name
-        - test
-        - participant
-      properties:
-        name:
-          description: 'The name of this TestResult.'
-          type: string
-        description:
-          description: 'The description of this TestResult.'
-          type: string
-          nullable: true
-        test:
-          description: 'The test that this testResult belongs to'
-          $ref: '#/components/schemas/Test-write'
-        participant:
-          description: 'The participant that this testResult belongs to'
-          $ref: '#/components/schemas/Participant-write'
-    'TestResult:jsonld-read':
-      type: object
-      description: ''
-      properties:
-        '@context':
-          readOnly: true
-          type: string
-        '@id':
-          readOnly: true
-          type: string
-        '@type':
-          readOnly: true
-          type: string
-        id:
-          readOnly: true
-          description: 'The UUID identifier of this TestResult.'
-          externalDocs:
-            url: 'http://schema.org/identifier'
-          type: string
-          format: uuid
-        name:
-          description: 'The name of this TestResult.'
-          type: string
-        description:
-          description: 'The description of this TestResult.'
-          type: string
-          nullable: true
-        dateCreated:
-          description: 'The moment this TestResult was created'
-          type: string
-          format: date-time
-          nullable: true
-        dateModified:
-          description: 'The moment this TestResult was last Modified'
-          type: string
-          format: date-time
-          nullable: true
-        test:
-          description: 'The test that this testResult belongs to'
-          $ref: '#/components/schemas/Test:jsonld-read'
-        participant:
-          description: 'The participant that this testResult belongs to'
-          $ref: '#/components/schemas/Participant:jsonld-read'
-      required:
-        - name
-        - test
-        - participant
-    'TestResult:jsonld-write':
-      type: object
-      description: ''
-      required:
-        - name
-        - test
-        - participant
-      properties:
-        '@context':
-          readOnly: true
-          type: string
-        '@id':
-          readOnly: true
-          type: string
-        '@type':
-          readOnly: true
-          type: string
-        name:
-          description: 'The name of this TestResult.'
-          type: string
-        description:
-          description: 'The description of this TestResult.'
-          type: string
-          nullable: true
-        test:
-          description: 'The test that this testResult belongs to'
-          $ref: '#/components/schemas/Test:jsonld-write'
-        participant:
-          description: 'The participant that this testResult belongs to'
-          $ref: '#/components/schemas/Participant:jsonld-write'
 definitions:
   Activity-read:
     properties:
@@ -12869,6 +12122,7 @@ definitions:
       dateModified:
         description: 'The moment this Course was last Modified'
         type: \Datetime
+      results: []
       participants: []
       programs: []
       educationEvents: []
@@ -12915,6 +12169,7 @@ definitions:
         type: string
         example: 'Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.'
         maxLength: 255
+      results: []
       participants: []
       programs: []
       educationEvents: []
@@ -12922,95 +12177,65 @@ definitions:
       tests: []
     required:
       - name
-  EducationEvent-read:
+  Result-read:
     properties:
       id:
-        description: 'The UUID identifier of this EducationEvent.'
+        description: 'The UUID identifier of this Result.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this EducationEvent.'
+        description: 'The name of this Result.'
         type: string
-        example: 'Les 1 over Github'
+        example: Result1
         maxLength: 255
       description:
-        description: 'The description of this EducationEvent.'
+        description: 'The description of this Result.'
         type: string
-        example: 'Dit is de eerste online les over Github.'
+        example: 'Beschrijving van Result1.'
         maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
+      completionDate:
+        description: 'The moment this Result had status: completed.'
         type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-08-03 11:42:41'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
       dateCreated:
-        description: 'The moment this EducationEvent was created'
+        description: 'The moment this Result was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this EducationEvent was last Modified'
+        description: 'The moment this Result was last Modified'
         type: \Datetime
+      participant: []
+      activity: []
+      test: []
       course: []
+      program: []
+      reviews: []
     required:
       - name
-  EducationEvent-write:
+  Result-write:
     properties:
       name:
-        description: 'The name of this EducationEvent.'
+        description: 'The name of this Result.'
         type: string
-        example: 'Les 1 over Github'
+        example: Result1
         maxLength: 255
       description:
-        description: 'The description of this EducationEvent.'
+        description: 'The description of this Result.'
         type: string
-        example: 'Dit is de eerste online les over Github.'
+        example: 'Beschrijving van Result1.'
         maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
+      completionDate:
+        description: 'The moment this Result had status: completed.'
         type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-08-03 11:42:41'
-        format: date-time
+      participant: []
+      activity: []
+      test: []
       course: []
+      program: []
+      reviews: []
     required:
       - name
   Participant-read:
@@ -13034,7 +12259,6 @@ definitions:
       programs: []
       courses: []
       results: []
-      testResults: []
     required:
       - person
   Participant-write:
@@ -13047,7 +12271,6 @@ definitions:
       programs: []
       courses: []
       results: []
-      testResults: []
     required:
       - person
   Program-read:
@@ -13070,22 +12293,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13184,6 +12407,7 @@ definitions:
         type: \Datetime
       participants: []
       courses: []
+      results: []
     required:
       - name
   Program-write:
@@ -13201,22 +12425,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13309,8 +12533,121 @@ definitions:
         example: '15'
       participants: []
       courses: []
+      results: []
     required:
       - name
+  Test-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Test.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Test.'
+        type: string
+        example: Test1
+        maxLength: 255
+      description:
+        description: 'The description of this Test.'
+        type: string
+        example: 'Beschrijving van Test1.'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this Test was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Test was last Modified'
+        type: \Datetime
+      results: []
+      activity:
+        description: 'The activity that this test belongs to'
+        type: \Activity
+      stages:
+        description: 'The stages of this test'
+        type: array
+    required:
+      - name
+  Test-write:
+    properties:
+      name:
+        description: 'The name of this Test.'
+        type: string
+        example: Test1
+        maxLength: 255
+      description:
+        description: 'The description of this Test.'
+        type: string
+        example: 'Beschrijving van Test1.'
+        maxLength: 255
+      results: []
+      activity:
+        description: 'The activity that this test belongs to'
+        type: \Activity
+      stages:
+        description: 'The stages of this test'
+        type: array
+    required:
+      - name
+  Stage-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Stage.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Stage.'
+        type: string
+        example: Stage1
+        maxLength: 255
+      description:
+        description: 'The description of this Stage.'
+        type: string
+        example: 'Beschrijving van Stage1.'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this Stage was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Stage was last Modified'
+        type: \Datetime
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      test:
+        description: 'The test that this stage belongs to'
+        type: \Test
+      questions:
+        description: 'the questions of this stage'
+        type: \ArrayCollection
+    required:
+      - name
+      - orderNumber
+  Stage-write:
+    properties:
+      name:
+        description: 'The name of this Stage.'
+        type: string
+        example: Stage1
+        maxLength: 255
+      description:
+        description: 'The description of this Stage.'
+        type: string
+        example: 'Beschrijving van Stage1.'
+        maxLength: 255
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      test:
+        description: 'The test that this stage belongs to'
+        type: \Test
+      questions:
+        description: 'the questions of this stage'
+        type: \ArrayCollection
+    required:
+      - name
+      - orderNumber
   Question-read:
     properties:
       id:
@@ -13384,51 +12721,6 @@ definitions:
       - description
       - answer
       - orderNumber
-  Result-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Result.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this Result.'
-        type: string
-        example: Result1
-        maxLength: 255
-      description:
-        description: 'The description of this Result.'
-        type: string
-        example: 'Beschrijving van Result1.'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this Result was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Result was last Modified'
-        type: \Datetime
-      participant: []
-      activity: []
-      reviews: []
-    required:
-      - name
-  Result-write:
-    properties:
-      name:
-        description: 'The name of this Result.'
-        type: string
-        example: Result1
-        maxLength: 255
-      description:
-        description: 'The description of this Result.'
-        type: string
-        example: 'Beschrijving van Result1.'
-        maxLength: 255
-      participant: []
-      activity: []
-      reviews: []
-    required:
-      - name
   Review-read:
     properties:
       id:
@@ -13474,167 +12766,95 @@ definitions:
       result: []
     required:
       - name
-  Stage-read:
+  EducationEvent-read:
     properties:
       id:
-        description: 'The UUID identifier of this Stage.'
+        description: 'The UUID identifier of this EducationEvent.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this Stage.'
+        description: 'The name of this EducationEvent.'
         type: string
-        example: Stage1
+        example: 'Les 1 over Github'
         maxLength: 255
       description:
-        description: 'The description of this Stage.'
+        description: 'The description of this EducationEvent.'
         type: string
-        example: 'Beschrijving van Stage1.'
+        example: 'Dit is de eerste online les over Github.'
         maxLength: 255
+      assesses:
+        description: 'The assesses of this EducationEvent.'
+        type: string
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-08-03 12:34:39'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-08-03 12:34:39'
+        format: date-time
       dateCreated:
-        description: 'The moment this Stage was created'
+        description: 'The moment this EducationEvent was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this Stage was last Modified'
+        description: 'The moment this EducationEvent was last Modified'
         type: \Datetime
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      test:
-        description: 'The test that this stage belongs to'
-        type: \Test
-      questions:
-        description: 'the questions of this stage'
-        type: \ArrayCollection
+      course: []
     required:
       - name
-      - orderNumber
-  Stage-write:
+  EducationEvent-write:
     properties:
       name:
-        description: 'The name of this Stage.'
+        description: 'The name of this EducationEvent.'
         type: string
-        example: Stage1
+        example: 'Les 1 over Github'
         maxLength: 255
       description:
-        description: 'The description of this Stage.'
+        description: 'The description of this EducationEvent.'
         type: string
-        example: 'Beschrijving van Stage1.'
+        example: 'Dit is de eerste online les over Github.'
         maxLength: 255
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      test:
-        description: 'The test that this stage belongs to'
-        type: \Test
-      questions:
-        description: 'the questions of this stage'
-        type: \ArrayCollection
-    required:
-      - name
-      - orderNumber
-  Test-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Test.'
+      assesses:
+        description: 'The assesses of this EducationEvent.'
         type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this Test.'
-        type: string
-        example: Test1
+        example: beoordelingscriteria
         maxLength: 255
-      description:
-        description: 'The description of this Test.'
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
         type: string
-        example: 'Beschrijving van Test1.'
+        example: beginner
         maxLength: 255
-      dateCreated:
-        description: 'The moment this Test was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Test was last Modified'
-        type: \Datetime
-      testResults: []
-      activity:
-        description: 'The activity that this test belongs to'
-        type: \Activity
-      stages:
-        description: 'The stages of this test'
-        type: array
-    required:
-      - name
-  Test-write:
-    properties:
-      name:
-        description: 'The name of this Test.'
+      teaches:
+        description: 'The teaches of this EducationEvent.'
         type: string
-        example: Test1
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
         maxLength: 255
-      description:
-        description: 'The description of this Test.'
+      startDate:
+        description: 'The moment this EducationEvent starts.'
         type: string
-        example: 'Beschrijving van Test1.'
-        maxLength: 255
-      testResults: []
-      activity:
-        description: 'The activity that this test belongs to'
-        type: \Activity
-      stages:
-        description: 'The stages of this test'
-        type: array
-    required:
-      - name
-  TestResult-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this TestResult.'
+        example: '2020-08-03 12:34:39'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
         type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this TestResult.'
-        type: string
-        example: TestResult1
-        maxLength: 255
-      description:
-        description: 'The description of this TestResult.'
-        type: string
-        example: 'Beschrijving van TestResult1.'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this TestResult was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this TestResult was last Modified'
-        type: \Datetime
-      test:
-        description: 'The test that this testResult belongs to'
-        type: \Test
-      participant:
-        description: 'The participant that this testResult belongs to'
-        type: \Participant
-    required:
-      - name
-  TestResult-write:
-    properties:
-      name:
-        description: 'The name of this TestResult.'
-        type: string
-        example: TestResult1
-        maxLength: 255
-      description:
-        description: 'The description of this TestResult.'
-        type: string
-        example: 'Beschrijving van TestResult1.'
-        maxLength: 255
-      test:
-        description: 'The test that this testResult belongs to'
-        type: \Test
-      participant:
-        description: 'The participant that this testResult belongs to'
-        type: \Participant
+        example: '2020-08-03 12:34:39'
+        format: date-time
+      course: []
     required:
       - name
   AuditTrail-read:
@@ -13741,12 +12961,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
     required: []
   AuditTrail-write:
     properties:
@@ -13794,12 +13014,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-03 11:42:41'
+        example: '2020-08-03 12:34:39'
     required: []
   ChangeLog-write:
     properties:
@@ -13823,9 +13043,9 @@ tags:
       
       
   -
-    name: EducationEvent
+    name: Result
     description: |
-      An EducationEvent is a (online) meeting, college etc. of a course.
+      
       
       
   -
@@ -13841,19 +13061,7 @@ tags:
       
       
   -
-    name: Question
-    description: |
-      
-      
-      
-  -
-    name: Result
-    description: |
-      
-      
-      
-  -
-    name: Review
+    name: Test
     description: |
       
       
@@ -13865,15 +13073,21 @@ tags:
       
       
   -
-    name: Test
+    name: Question
     description: |
       
       
       
   -
-    name: TestResult
+    name: Review
     description: |
       
+      
+      
+  -
+    name: EducationEvent
+    description: |
+      An EducationEvent is a (online) meeting, college etc. of a course.
       
       
   -

@@ -1018,6 +1018,1017 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "courses",
+			"item": [
+				{
+					"name": "Retrieves the collection of Course resources.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d0b9e5e-ad93-446c-b543-64bf90f1fb61",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// example using response assertions\r",
+									"pm.test(\"response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"// example using pm.response.to.be*\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"    // assert that the status code is 200\r",
+									"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"    // assert that the response has a valid JSON body\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request",
+								"type": "text"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+								"type": "text"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)",
+								"type": "text"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courses",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a Course resource.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9ec3923-4e40-4851-9647-bcb975a24eb4",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"// example using response assertions\r",
+									"pm.test(\"response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"// example using pm.response.to.be*\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"    // assert that the status code is 200\r",
+									"    // pm.response.to.be.created; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"    // assert that the response has a valid JSON body\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Set ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData);\r",
+									"    //var payloadData = JSON.parse(jsonData.Payload); //parsed payload\r",
+									"\r",
+									"    //console.log(payloadData.Id);\r",
+									"\r",
+									"    pm.environment.set(\"course\", jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TEST12345\",\n    \"description\": \"TEST12345\",\n    \"courseCode\": \"TEST12345\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"{{baseUrl}}/courses\",\n    \"numberOfCredits\": 0,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/courses",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Challenge resource created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/challenges",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+						},
+						{
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/challenges",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Invalid input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/challenges",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "courses/{id}",
+			"item": [
+				{
+					"name": "Retrieves a Course resource.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "abddf386-bbfe-40ab-b795-767c3a816bfa",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// example using response assertions\r",
+									"pm.test(\"response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"// example using pm.response.to.be*\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"    // assert that the status code is 200\r",
+									"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"    // assert that the response has a valid JSON body\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courses/{{course}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses",
+								"{{course}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									},
+									{
+										"key": "Link",
+										"value": "",
+										"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges",
+										":id"
+									],
+									"query": [
+										{
+											"key": "extend[]",
+											"value": "<array>"
+										},
+										{
+											"key": "fields[]",
+											"value": "<array>"
+										},
+										{
+											"key": "validOn",
+											"value": "<dateTime>"
+										},
+										{
+											"key": "validFrom",
+											"value": "<dateTime>"
+										},
+										{
+											"key": "validUntil",
+											"value": "<dateTime>"
+										}
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Challenge resource response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									},
+									{
+										"key": "Link",
+										"value": "",
+										"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges",
+										":id"
+									],
+									"query": [
+										{
+											"key": "extend[]",
+											"value": "<array>"
+										},
+										{
+											"key": "fields[]",
+											"value": "<array>"
+										},
+										{
+											"key": "validOn",
+											"value": "<dateTime>"
+										},
+										{
+											"key": "validFrom",
+											"value": "<dateTime>"
+										},
+										{
+											"key": "validUntil",
+											"value": "<dateTime>"
+										}
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Replaces the Course resource.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "06528b50-186f-4727-bf25-1a273b951191",
+								"exec": [
+									"// example using pm.response.to.have\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// example using response assertions\r",
+									"pm.test(\"response should be okay to process\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.not.have.jsonBody(\"error\");\r",
+									"});\r",
+									"\r",
+									"// example using pm.response.to.be*\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"    // assert that the status code is 200\r",
+									"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"    // assert that the response has a valid JSON body\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"description": "The JWT of the entity performing the request",
+								"key": "Authorization",
+								"value": ""
+							},
+							{
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+								"key": "API-Version",
+								"value": ""
+							},
+							{
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+								"key": "X-NLX-Logrecord-ID",
+								"value": ""
+							},
+							{
+								"description": "A process id for purpose registration (doelbinding)",
+								"key": "X-NLX-Request-Process-Id",
+								"value": ""
+							},
+							{
+								"description": "A list of requested data elements",
+								"key": "X-NLX-Request-Data-Elements",
+								"value": ""
+							},
+							{
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+								"key": "X-NLX-Request-Data-Subject",
+								"value": ""
+							},
+							{
+								"description": "A clarification as to why a request has been made  (doelbinding)",
+								"key": "X-NLX-Audit-Clarification",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Werken met scrum en Github\",\n    \"description\": \"Deze cursus leert je de basics van werken met scrum en Github.\",\n    \"courseCode\": \"SG123\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"{{baseUrl}}/courses\",\n    \"numberOfCredits\": 6,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/courses/{{course}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses",
+								"{{course}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid input",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/challenges/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Challenge resource updated",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/challenges/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+						},
+						{
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"description": "The JWT of the entity performing the request"
+									},
+									{
+										"key": "API-Version",
+										"value": "",
+										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+									},
+									{
+										"key": "X-NLX-Logrecord-ID",
+										"value": "",
+										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+									},
+									{
+										"key": "X-NLX-Request-Process-Id",
+										"value": "",
+										"description": "A process id for purpose registration (doelbinding)"
+									},
+									{
+										"key": "X-NLX-Request-Data-Elements",
+										"value": "",
+										"description": "A list of requested data elements"
+									},
+									{
+										"key": "X-NLX-Request-Data-Subject",
+										"value": "",
+										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+									},
+									{
+										"key": "X-NLX-Audit-Clarification",
+										"value": "",
+										"description": "A clarification as to why a request has been made  (doelbinding)"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/challenges/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"challenges",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "results",
 			"item": [
 				{
@@ -1203,7 +2214,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1.\",\n    \"participant\": \"{{baseUrl}}/participants/{{participant}}\"\n}",
+							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1.\",\n    \"participant\": \"{{baseUrl}}/participants/{{participant}}\",\n    \"course\": \"{{baseUrl}}/courses/{{course}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3123,1017 +4134,6 @@
 							""
 						]
 					}
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "courses",
-			"item": [
-				{
-					"name": "Retrieves the collection of Course resources.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "9d0b9e5e-ad93-446c-b543-64bf90f1fb61",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"    // assert that the status code is 200\r",
-									"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"    // assert that the response has a valid JSON body\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"description": "The JWT of the entity performing the request",
-								"type": "text"
-							},
-							{
-								"key": "API-Version",
-								"value": "",
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
-								"type": "text"
-							},
-							{
-								"key": "X-NLX-Logrecord-ID",
-								"value": "",
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
-								"type": "text"
-							},
-							{
-								"key": "X-NLX-Request-Process-Id",
-								"value": "",
-								"description": "A process id for purpose registration (doelbinding)",
-								"type": "text"
-							},
-							{
-								"key": "X-NLX-Request-Data-Elements",
-								"value": "",
-								"description": "A list of requested data elements",
-								"type": "text"
-							},
-							{
-								"key": "X-NLX-Request-Data-Subject",
-								"value": "",
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
-								"type": "text"
-							},
-							{
-								"key": "X-NLX-Audit-Clarification",
-								"value": "",
-								"description": "A clarification as to why a request has been made  (doelbinding)",
-								"type": "text"
-							},
-							{
-								"key": "Link",
-								"value": "",
-								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Creates a Course resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "e9ec3923-4e40-4851-9647-bcb975a24eb4",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"    // assert that the status code is 200\r",
-									"    // pm.response.to.be.created; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"    // assert that the response has a valid JSON body\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Set ID\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    console.log(jsonData);\r",
-									"    //var payloadData = JSON.parse(jsonData.Payload); //parsed payload\r",
-									"\r",
-									"    //console.log(payloadData.Id);\r",
-									"\r",
-									"    pm.environment.set(\"course\", jsonData.id);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"description": "The JWT of the entity performing the request"
-							},
-							{
-								"key": "API-Version",
-								"value": "",
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-							},
-							{
-								"key": "X-NLX-Logrecord-ID",
-								"value": "",
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-							},
-							{
-								"key": "X-NLX-Request-Process-Id",
-								"value": "",
-								"description": "A process id for purpose registration (doelbinding)"
-							},
-							{
-								"key": "X-NLX-Request-Data-Elements",
-								"value": "",
-								"description": "A list of requested data elements"
-							},
-							{
-								"key": "X-NLX-Request-Data-Subject",
-								"value": "",
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-							},
-							{
-								"key": "X-NLX-Audit-Clarification",
-								"value": "",
-								"description": "A clarification as to why a request has been made  (doelbinding)"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"TEST12345\",\n    \"description\": \"TEST12345\",\n    \"courseCode\": \"TEST12345\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"{{baseUrl}}/courses\",\n    \"numberOfCredits\": 0,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
-							"options": {
-								"raw": {}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/courses",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Challenge resource created",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/challenges",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"challenges"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/ld+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
-						},
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/challenges",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"challenges"
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/challenges",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"challenges"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "courses/{id}",
-			"item": [
-				{
-					"name": "Retrieves a Course resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "abddf386-bbfe-40ab-b795-767c3a816bfa",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"    // assert that the status code is 200\r",
-									"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"    // assert that the response has a valid JSON body\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"description": "The JWT of the entity performing the request"
-							},
-							{
-								"key": "API-Version",
-								"value": "",
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-							},
-							{
-								"key": "X-NLX-Logrecord-ID",
-								"value": "",
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-							},
-							{
-								"key": "X-NLX-Request-Process-Id",
-								"value": "",
-								"description": "A process id for purpose registration (doelbinding)"
-							},
-							{
-								"key": "X-NLX-Request-Data-Elements",
-								"value": "",
-								"description": "A list of requested data elements"
-							},
-							{
-								"key": "X-NLX-Request-Data-Subject",
-								"value": "",
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-							},
-							{
-								"key": "X-NLX-Audit-Clarification",
-								"value": "",
-								"description": "A clarification as to why a request has been made  (doelbinding)"
-							},
-							{
-								"key": "Link",
-								"value": "",
-								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									},
-									{
-										"key": "Link",
-										"value": "",
-										"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"challenges",
-										":id"
-									],
-									"query": [
-										{
-											"key": "extend[]",
-											"value": "<array>"
-										},
-										{
-											"key": "fields[]",
-											"value": "<array>"
-										},
-										{
-											"key": "validOn",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validFrom",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validUntil",
-											"value": "<dateTime>"
-										}
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Challenge resource response",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									},
-									{
-										"key": "Link",
-										"value": "",
-										"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"challenges",
-										":id"
-									],
-									"query": [
-										{
-											"key": "extend[]",
-											"value": "<array>"
-										},
-										{
-											"key": "fields[]",
-											"value": "<array>"
-										},
-										{
-											"key": "validOn",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validFrom",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validUntil",
-											"value": "<dateTime>"
-										}
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/ld+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Replaces the Course resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "06528b50-186f-4727-bf25-1a273b951191",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"    // assert that the status code is 200\r",
-									"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"    // assert that the response has a valid JSON body\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"description": "The JWT of the entity performing the request",
-								"key": "Authorization",
-								"value": ""
-							},
-							{
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
-								"key": "API-Version",
-								"value": ""
-							},
-							{
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
-								"key": "X-NLX-Logrecord-ID",
-								"value": ""
-							},
-							{
-								"description": "A process id for purpose registration (doelbinding)",
-								"key": "X-NLX-Request-Process-Id",
-								"value": ""
-							},
-							{
-								"description": "A list of requested data elements",
-								"key": "X-NLX-Request-Data-Elements",
-								"value": ""
-							},
-							{
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
-								"key": "X-NLX-Request-Data-Subject",
-								"value": ""
-							},
-							{
-								"description": "A clarification as to why a request has been made  (doelbinding)",
-								"key": "X-NLX-Audit-Clarification",
-								"value": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Werken met scrum en Github\",\n    \"description\": \"Deze cursus leert je de basics van werken met scrum en Github.\",\n    \"courseCode\": \"SG123\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"{{baseUrl}}/courses\",\n    \"numberOfCredits\": 6,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
-							"options": {
-								"raw": {}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/courses/{{course}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"{{course}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/challenges/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"challenges",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Challenge resource updated",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/challenges/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"challenges",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/ld+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
-						},
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"catchPhrase\": \"<string>\",\n    \"dateClose\": \"<dateTime>\",\n    \"submitters\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"pitches\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"dateSubmitted\": \"<dateTime>\",\n            \"challenge\": {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"catchPhrase\": \"<string>\",\n                \"dateClose\": \"<dateTime>\",\n                \"submitters\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"pitches\": [\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    },\n                    {\n                        \"value\": \"<Circular reference to #/components/schemas/Pitch-write detected>\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/challenges/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"challenges",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -11107,1355 +11107,6 @@
 				}
 			],
 			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "tests results",
-			"item": [
-				{
-					"name": "Retrieves the collection of TestResult resources.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "a835d95d-9552-4ddf-9761-94c198c18c6d",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"description": "The JWT of the entity performing the request"
-							},
-							{
-								"key": "API-Version",
-								"value": "",
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-							},
-							{
-								"key": "X-NLX-Logrecord-ID",
-								"value": "",
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-							},
-							{
-								"key": "X-NLX-Request-Process-Id",
-								"value": "",
-								"description": "A process id for purpose registration (doelbinding)"
-							},
-							{
-								"key": "X-NLX-Request-Data-Elements",
-								"value": "",
-								"description": "A list of requested data elements"
-							},
-							{
-								"key": "X-NLX-Request-Data-Subject",
-								"value": "",
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-							},
-							{
-								"key": "X-NLX-Audit-Clarification",
-								"value": "",
-								"description": "A clarification as to why a request has been made  (doelbinding)"
-							},
-							{
-								"key": "Link",
-								"value": "",
-								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/test_results",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"test_results"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Stage collection response",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									},
-									{
-										"key": "Link",
-										"value": "",
-										"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/stages?start=<boolean>&order[id]=<string>&order[name]=<string>&order[description]=<string>&order[icon]=<string>&order[options]=<string>&order[validation]=<string>&order[property]=<string>&order[slug]=<string>&order[start]=<string>&order[dateCreated]=<string>&order[dateModified]=<string>&dateCreated[before]=<string>&dateCreated[strictly_before]=<string>&dateCreated[after]=<string>&dateCreated[strictly_after]=<string>&dateModified[before]=<string>&dateModified[strictly_before]=<string>&dateModified[after]=<string>&dateModified[strictly_after]=<string>&id=<string>&id[]=<string>&id[]=<string>&name=<string>&name[]=<string>&name[]=<string>&description=<string>&description[]=<string>&description[]=<string>&icon=<string>&icon[]=<string>&icon[]=<string>&options=<string>&options[]=<string>&options[]=<string>&validation=<string>&validation[]=<string>&validation[]=<string>&property=<string>&property[]=<string>&property[]=<string>&slug=<string>&slug[]=<string>&slug[]=<string>&start=<boolean>&start[]=<boolean>&start[]=<boolean>&dateCreated=<string>&dateCreated[]=<string>&dateModified=<string>&dateModified[]=<string>&page=1&extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"stages"
-									],
-									"query": [
-										{
-											"key": "start",
-											"value": "<boolean>"
-										},
-										{
-											"key": "order[id]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[name]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[description]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[icon]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[options]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[validation]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[property]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[slug]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[start]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[dateCreated]",
-											"value": "<string>"
-										},
-										{
-											"key": "order[dateModified]",
-											"value": "<string>"
-										},
-										{
-											"key": "dateCreated[before]",
-											"value": "<string>"
-										},
-										{
-											"key": "dateCreated[strictly_before]",
-											"value": "<string>"
-										},
-										{
-											"key": "dateCreated[after]",
-											"value": "<string>"
-										},
-										{
-											"key": "dateCreated[strictly_after]",
-											"value": "<string>"
-										},
-										{
-											"key": "dateModified[before]",
-											"value": "<string>"
-										},
-										{
-											"key": "dateModified[strictly_before]",
-											"value": "<string>"
-										},
-										{
-											"key": "dateModified[after]",
-											"value": "<string>"
-										},
-										{
-											"key": "dateModified[strictly_after]",
-											"value": "<string>"
-										},
-										{
-											"key": "id",
-											"value": "<string>"
-										},
-										{
-											"key": "id[]",
-											"value": "<string>"
-										},
-										{
-											"key": "id[]",
-											"value": "<string>"
-										},
-										{
-											"key": "name",
-											"value": "<string>"
-										},
-										{
-											"key": "name[]",
-											"value": "<string>"
-										},
-										{
-											"key": "name[]",
-											"value": "<string>"
-										},
-										{
-											"key": "description",
-											"value": "<string>"
-										},
-										{
-											"key": "description[]",
-											"value": "<string>"
-										},
-										{
-											"key": "description[]",
-											"value": "<string>"
-										},
-										{
-											"key": "icon",
-											"value": "<string>"
-										},
-										{
-											"key": "icon[]",
-											"value": "<string>"
-										},
-										{
-											"key": "icon[]",
-											"value": "<string>"
-										},
-										{
-											"key": "options",
-											"value": "<string>"
-										},
-										{
-											"key": "options[]",
-											"value": "<string>"
-										},
-										{
-											"key": "options[]",
-											"value": "<string>"
-										},
-										{
-											"key": "validation",
-											"value": "<string>"
-										},
-										{
-											"key": "validation[]",
-											"value": "<string>"
-										},
-										{
-											"key": "validation[]",
-											"value": "<string>"
-										},
-										{
-											"key": "property",
-											"value": "<string>"
-										},
-										{
-											"key": "property[]",
-											"value": "<string>"
-										},
-										{
-											"key": "property[]",
-											"value": "<string>"
-										},
-										{
-											"key": "slug",
-											"value": "<string>"
-										},
-										{
-											"key": "slug[]",
-											"value": "<string>"
-										},
-										{
-											"key": "slug[]",
-											"value": "<string>"
-										},
-										{
-											"key": "start",
-											"value": "<boolean>"
-										},
-										{
-											"key": "start[]",
-											"value": "<boolean>"
-										},
-										{
-											"key": "start[]",
-											"value": "<boolean>"
-										},
-										{
-											"key": "dateCreated",
-											"value": "<string>"
-										},
-										{
-											"key": "dateCreated[]",
-											"value": "<string>"
-										},
-										{
-											"key": "dateModified",
-											"value": "<string>"
-										},
-										{
-											"key": "dateModified[]",
-											"value": "<string>"
-										},
-										{
-											"key": "page",
-											"value": "1"
-										},
-										{
-											"key": "extend[]",
-											"value": "<array>"
-										},
-										{
-											"key": "fields[]",
-											"value": "<array>"
-										},
-										{
-											"key": "validOn",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validFrom",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validUntil",
-											"value": "<dateTime>"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/ld+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"hydra:member\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<uuid>\",\n   \"description\": \"<string>\",\n   \"icon\": \"<string>\",\n   \"options\": \"<string>\",\n   \"validation\": \"<string>\",\n   \"next\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"previous\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"property\": \"<string>\",\n   \"slug\": \"<string>\",\n   \"start\": \"<boolean>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"sections\": [\n    {\n     \"name\": \"<string>\",\n     \"@context\": \"<string>\",\n     \"@id\": \"<string>\",\n     \"@type\": \"<string>\",\n     \"id\": \"<uuid>\",\n     \"description\": \"<string>\",\n     \"properties\": [\n      \"<string>\",\n      \"<string>\"\n     ],\n     \"stage\": {\n      \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n     },\n     \"dateCreated\": \"<dateTime>\",\n     \"dateModified\": \"<dateTime>\",\n     \"start\": \"<boolean>\"\n    },\n    {\n     \"name\": \"<string>\",\n     \"@context\": \"<string>\",\n     \"@id\": \"<string>\",\n     \"@type\": \"<string>\",\n     \"id\": \"<uuid>\",\n     \"description\": \"<string>\",\n     \"properties\": [\n      \"<string>\",\n      \"<string>\"\n     ],\n     \"stage\": {\n      \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n     },\n     \"dateCreated\": \"<dateTime>\",\n     \"dateModified\": \"<dateTime>\",\n     \"start\": \"<boolean>\"\n    }\n   ]\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<uuid>\",\n   \"description\": \"<string>\",\n   \"icon\": \"<string>\",\n   \"options\": \"<string>\",\n   \"validation\": \"<string>\",\n   \"next\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"previous\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"property\": \"<string>\",\n   \"slug\": \"<string>\",\n   \"start\": \"<boolean>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"sections\": [\n    {\n     \"name\": \"<string>\",\n     \"@context\": \"<string>\",\n     \"@id\": \"<string>\",\n     \"@type\": \"<string>\",\n     \"id\": \"<uuid>\",\n     \"description\": \"<string>\",\n     \"properties\": [\n      \"<string>\",\n      \"<string>\"\n     ],\n     \"stage\": {\n      \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n     },\n     \"dateCreated\": \"<dateTime>\",\n     \"dateModified\": \"<dateTime>\",\n     \"start\": \"<boolean>\"\n    },\n    {\n     \"name\": \"<string>\",\n     \"@context\": \"<string>\",\n     \"@id\": \"<string>\",\n     \"@type\": \"<string>\",\n     \"id\": \"<uuid>\",\n     \"description\": \"<string>\",\n     \"properties\": [\n      \"<string>\",\n      \"<string>\"\n     ],\n     \"stage\": {\n      \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n     },\n     \"dateCreated\": \"<dateTime>\",\n     \"dateModified\": \"<dateTime>\",\n     \"start\": \"<boolean>\"\n    }\n   ]\n  }\n ],\n \"hydra:totalItems\": \"<integer>\",\n \"hydra:view\": {\n  \"@id\": \"<iri-reference>\",\n  \"@type\": \"<string>\",\n  \"hydra:first\": \"<iri-reference>\",\n  \"hydra:last\": \"<iri-reference>\",\n  \"hydra:next\": \"<iri-reference>\"\n },\n \"hydra:search\": {\n  \"@type\": \"<string>\",\n  \"hydra:template\": \"<string>\",\n  \"hydra:variableRepresentation\": \"<string>\",\n  \"hydra:mapping\": [\n   {\n    \"@type\": \"<string>\",\n    \"variable\": \"<string>\",\n    \"property\": \"<string>\",\n    \"required\": \"<boolean>\"\n   },\n   {\n    \"@type\": \"<string>\",\n    \"variable\": \"<string>\",\n    \"property\": \"<string>\",\n    \"required\": \"<boolean>\"\n   }\n  ]\n }\n}"
-						}
-					]
-				},
-				{
-					"name": "Creates a TestResult resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "53c1c09a-15d9-442f-b8b2-2caef099868b",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     // pm.response.to.be.created; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});\r",
-									"\r",
-									"\r",
-									"pm.test(\"Set ID\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    console.log(jsonData);\r",
-									"    //var payloadData = JSON.parse(jsonData.Payload); //parsed payload\r",
-									"\r",
-									"    //console.log(payloadData.Id);\r",
-									"\r",
-									"    pm.environment.set(\"test_result\", jsonData.id);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"description": "The JWT of the entity performing the request"
-							},
-							{
-								"key": "API-Version",
-								"value": "",
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-							},
-							{
-								"key": "X-NLX-Logrecord-ID",
-								"value": "",
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-							},
-							{
-								"key": "X-NLX-Request-Process-Id",
-								"value": "",
-								"description": "A process id for purpose registration (doelbinding)"
-							},
-							{
-								"key": "X-NLX-Request-Data-Elements",
-								"value": "",
-								"description": "A list of requested data elements"
-							},
-							{
-								"key": "X-NLX-Request-Data-Subject",
-								"value": "",
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-							},
-							{
-								"key": "X-NLX-Audit-Clarification",
-								"value": "",
-								"description": "A clarification as to why a request has been made  (doelbinding)"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen ;)\",\n    \"test\": \"{{baseUrl}}/tests/{{test}}\",\n    \"participant\": \"{{baseUrl}}/participants/{{participant}}\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/test_results",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"test_results"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"icon\": \"<string>\",\n    \"options\": \"<string>\",\n    \"next\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"previous\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"property\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"start\": \"<boolean>\",\n    \"sections\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/stages",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"stages"
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Stage resource created",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"icon\": \"<string>\",\n    \"options\": \"<string>\",\n    \"next\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"previous\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"property\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"start\": \"<boolean>\",\n    \"sections\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/stages",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"stages"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/ld+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<uuid>\",\n \"description\": \"<string>\",\n \"icon\": \"<string>\",\n \"options\": \"<string>\",\n \"validation\": \"<string>\",\n \"next\": {\n  \"name\": \"<string>\",\n  \"@context\": \"<string>\",\n  \"@id\": \"<string>\",\n  \"@type\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"options\": \"<string>\",\n  \"validation\": \"<string>\",\n  \"next\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"previous\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"property\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"start\": \"<boolean>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"dateModified\": \"<dateTime>\",\n  \"sections\": [\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   },\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   }\n  ]\n },\n \"previous\": {\n  \"name\": \"<string>\",\n  \"@context\": \"<string>\",\n  \"@id\": \"<string>\",\n  \"@type\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"options\": \"<string>\",\n  \"validation\": \"<string>\",\n  \"next\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"previous\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"property\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"start\": \"<boolean>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"dateModified\": \"<dateTime>\",\n  \"sections\": [\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   },\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   }\n  ]\n },\n \"property\": \"<string>\",\n \"slug\": \"<string>\",\n \"start\": \"<boolean>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"sections\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<uuid>\",\n   \"description\": \"<string>\",\n   \"properties\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"stage\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"start\": \"<boolean>\"\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<uuid>\",\n   \"description\": \"<string>\",\n   \"properties\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"stage\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"start\": \"<boolean>\"\n  }\n ]\n}"
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"icon\": \"<string>\",\n    \"options\": \"<string>\",\n    \"next\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"previous\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"property\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"start\": \"<boolean>\",\n    \"sections\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/stages",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"stages"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				}
-			],
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "d545913d-a19e-4339-a293-a5b49a358206",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "f2e05059-a20d-4b5d-8109-f6baaaae4e3b",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "test results/{id}",
-			"item": [
-				{
-					"name": "Retrieves a TestResult resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "a4554c16-4cbc-4c63-b4bd-4d0de2a92353",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"description": "The JWT of the entity performing the request"
-							},
-							{
-								"key": "API-Version",
-								"value": "",
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-							},
-							{
-								"key": "X-NLX-Logrecord-ID",
-								"value": "",
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-							},
-							{
-								"key": "X-NLX-Request-Process-Id",
-								"value": "",
-								"description": "A process id for purpose registration (doelbinding)"
-							},
-							{
-								"key": "X-NLX-Request-Data-Elements",
-								"value": "",
-								"description": "A list of requested data elements"
-							},
-							{
-								"key": "X-NLX-Request-Data-Subject",
-								"value": "",
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-							},
-							{
-								"key": "X-NLX-Audit-Clarification",
-								"value": "",
-								"description": "A clarification as to why a request has been made  (doelbinding)"
-							},
-							{
-								"key": "Link",
-								"value": "",
-								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/test_results/{{test_result}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"test_results",
-								"{{test_result}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									},
-									{
-										"key": "Link",
-										"value": "",
-										"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/stages/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"stages",
-										":id"
-									],
-									"query": [
-										{
-											"key": "extend[]",
-											"value": "<array>"
-										},
-										{
-											"key": "fields[]",
-											"value": "<array>"
-										},
-										{
-											"key": "validOn",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validFrom",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validUntil",
-											"value": "<dateTime>"
-										}
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Stage resource response",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									},
-									{
-										"key": "Link",
-										"value": "",
-										"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/stages/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"stages",
-										":id"
-									],
-									"query": [
-										{
-											"key": "extend[]",
-											"value": "<array>"
-										},
-										{
-											"key": "fields[]",
-											"value": "<array>"
-										},
-										{
-											"key": "validOn",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validFrom",
-											"value": "<dateTime>"
-										},
-										{
-											"key": "validUntil",
-											"value": "<dateTime>"
-										}
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/ld+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<uuid>\",\n \"description\": \"<string>\",\n \"icon\": \"<string>\",\n \"options\": \"<string>\",\n \"validation\": \"<string>\",\n \"next\": {\n  \"name\": \"<string>\",\n  \"@context\": \"<string>\",\n  \"@id\": \"<string>\",\n  \"@type\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"options\": \"<string>\",\n  \"validation\": \"<string>\",\n  \"next\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"previous\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"property\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"start\": \"<boolean>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"dateModified\": \"<dateTime>\",\n  \"sections\": [\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   },\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   }\n  ]\n },\n \"previous\": {\n  \"name\": \"<string>\",\n  \"@context\": \"<string>\",\n  \"@id\": \"<string>\",\n  \"@type\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"options\": \"<string>\",\n  \"validation\": \"<string>\",\n  \"next\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"previous\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"property\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"start\": \"<boolean>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"dateModified\": \"<dateTime>\",\n  \"sections\": [\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   },\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   }\n  ]\n },\n \"property\": \"<string>\",\n \"slug\": \"<string>\",\n \"start\": \"<boolean>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"sections\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<uuid>\",\n   \"description\": \"<string>\",\n   \"properties\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"stage\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"start\": \"<boolean>\"\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<uuid>\",\n   \"description\": \"<string>\",\n   \"properties\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"stage\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"start\": \"<boolean>\"\n  }\n ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Replaces the TestResult resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "5d668c21-b343-4147-9046-cf94fcfb643f",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"description": "The JWT of the entity performing the request"
-							},
-							{
-								"key": "API-Version",
-								"value": "",
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-							},
-							{
-								"key": "X-NLX-Logrecord-ID",
-								"value": "",
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-							},
-							{
-								"key": "X-NLX-Request-Process-Id",
-								"value": "",
-								"description": "A process id for purpose registration (doelbinding)"
-							},
-							{
-								"key": "X-NLX-Request-Data-Elements",
-								"value": "",
-								"description": "A list of requested data elements"
-							},
-							{
-								"key": "X-NLX-Request-Data-Subject",
-								"value": "",
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-							},
-							{
-								"key": "X-NLX-Audit-Clarification",
-								"value": "",
-								"description": "A clarification as to why a request has been made  (doelbinding)"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen\",\n    \"test\": \"{{baseUrl}}/tests/{{test}}\",\n    \"participant\": \"{{baseUrl}}/participants/{{participant}}\"\n}\n",
-							"options": {
-								"raw": {}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/test_results/{{test_result}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"test_results",
-								"{{test_result}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"icon\": \"<string>\",\n    \"options\": \"<string>\",\n    \"next\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"previous\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"property\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"start\": \"<boolean>\",\n    \"sections\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/stages/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"stages",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Stage resource updated",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"icon\": \"<string>\",\n    \"options\": \"<string>\",\n    \"next\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"previous\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"property\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"start\": \"<boolean>\",\n    \"sections\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/stages/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"stages",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/ld+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<uuid>\",\n \"description\": \"<string>\",\n \"icon\": \"<string>\",\n \"options\": \"<string>\",\n \"validation\": \"<string>\",\n \"next\": {\n  \"name\": \"<string>\",\n  \"@context\": \"<string>\",\n  \"@id\": \"<string>\",\n  \"@type\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"options\": \"<string>\",\n  \"validation\": \"<string>\",\n  \"next\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"previous\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"property\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"start\": \"<boolean>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"dateModified\": \"<dateTime>\",\n  \"sections\": [\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   },\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   }\n  ]\n },\n \"previous\": {\n  \"name\": \"<string>\",\n  \"@context\": \"<string>\",\n  \"@id\": \"<string>\",\n  \"@type\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"options\": \"<string>\",\n  \"validation\": \"<string>\",\n  \"next\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"previous\": {\n   \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n  },\n  \"property\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"start\": \"<boolean>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"dateModified\": \"<dateTime>\",\n  \"sections\": [\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   },\n   {\n    \"name\": \"<string>\",\n    \"@context\": \"<string>\",\n    \"@id\": \"<string>\",\n    \"@type\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"description\": \"<string>\",\n    \"properties\": [\n     \"<string>\",\n     \"<string>\"\n    ],\n    \"stage\": {\n     \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n    },\n    \"dateCreated\": \"<dateTime>\",\n    \"dateModified\": \"<dateTime>\",\n    \"start\": \"<boolean>\"\n   }\n  ]\n },\n \"property\": \"<string>\",\n \"slug\": \"<string>\",\n \"start\": \"<boolean>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"sections\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<uuid>\",\n   \"description\": \"<string>\",\n   \"properties\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"stage\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"start\": \"<boolean>\"\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<uuid>\",\n   \"description\": \"<string>\",\n   \"properties\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"stage\": {\n    \"value\": \"<Circular reference to #/components/schemas/Stage:jsonld-read detected>\"\n   },\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"start\": \"<boolean>\"\n  }\n ]\n}"
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"icon\": \"<string>\",\n    \"options\": \"<string>\",\n    \"next\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"previous\": {\n        \"icon\": \"<string>\",\n        \"options\": \"<string>\",\n        \"next\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"previous\": {\n            \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n        },\n        \"property\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"start\": \"<boolean>\",\n        \"sections\": [\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            },\n            {\n                \"name\": \"<string>\",\n                \"description\": \"<string>\",\n                \"properties\": [\n                    \"<string>\",\n                    \"<string>\"\n                ],\n                \"stage\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n                },\n                \"start\": \"<boolean>\",\n                \"next\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                },\n                \"previous\": {\n                    \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n                }\n            }\n        ]\n    },\n    \"property\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"start\": \"<boolean>\",\n    \"sections\": [\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        },\n        {\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"properties\": [\n                \"<string>\",\n                \"<string>\"\n            ],\n            \"stage\": {\n                \"value\": \"<Circular reference to #/components/schemas/Stage-write detected>\"\n            },\n            \"start\": \"<boolean>\",\n            \"next\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            },\n            \"previous\": {\n                \"value\": \"<Circular reference to #/components/schemas/Section-write detected>\"\n            }\n        }\n    ]\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/stages/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"stages",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				}
-			],
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "c3c9f841-2ab1-4310-9c49-bc593efd9416",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "e3081096-5898-4201-b182-1a8033524804",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			],
-			"protocolProfileBehavior": {}
 		}
 	],
 	"auth": {
@@ -12497,7 +11148,7 @@
 	],
 	"variable": [
 		{
-			"id": "3e8006b6-f0fc-44e6-b01b-0e46ee45964b",
+			"id": "e3730457-9761-433f-9db4-59e02afbd0c0",
 			"key": "baseUrl",
 			"value": "https://edu.dev.conduction.nl"
 		}
