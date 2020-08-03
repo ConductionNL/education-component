@@ -448,35 +448,4 @@ class Course
 
         return $this;
     }
-
-    /**
-     * @return Collection|Test[]
-     */
-    public function getTests(): Collection
-    {
-        return $this->tests;
-    }
-
-    public function addTest(Test $test): self
-    {
-        if (!$this->tests->contains($test)) {
-            $this->tests[] = $test;
-            $test->setCourse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTest(Test $test): self
-    {
-        if ($this->tests->contains($test)) {
-            $this->tests->removeElement($test);
-            // set the owning side to null (unless already changed)
-            if ($test->getCourse() === $this) {
-                $test->setCourse(null);
-            }
-        }
-
-        return $this;
-    }
 }

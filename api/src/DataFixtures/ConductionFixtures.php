@@ -112,7 +112,6 @@ class ConductionFixtures extends Fixture
         $test->setName('Test test');
         $test->setDescription('Dit is een test om tests mee te testen ;)');
         $activity->addTest($test);
-        $course->addTest($test);
 
         $stage = new Stage();
         $stage->setName('Vragenlijst 1');
@@ -201,6 +200,25 @@ class ConductionFixtures extends Fixture
 
         $test->addStage($stage);
 
+        $manager->persist($program);
+        $manager->flush();
+
+        // Test programma deadline
+        $id = Uuid::fromString('cd399f79-ac21-4a4e-ab3a-7ecc536fc8ca');
+        $program = new Program();
+        $program->setName('Deadline test tutorial');
+        $program->setDescription('Dit is een tutorial om mee te testen of de deadline is verlopen melding goed werkt.');
+        $program->setProvider($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'6a001c4c-911b-4b29-877d-122e362f519d']));
+        $manager->persist($program);
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P1D'));
+        $program->setApplicationDeadline($date);
+        $program->setStartDate($date);
+        $manager->persist($program);
+        $program->setId($id);
+        $manager->persist($program);
+        $manager->flush();
+        $program = $manager->getRepository('App:Program')->findOneBy(['id'=> $id]);
         $manager->persist($program);
         $manager->flush();
 
