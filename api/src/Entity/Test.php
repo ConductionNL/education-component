@@ -71,7 +71,8 @@ class Test
      *
      * @example true
      *
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean")
      */
     private $needsReview = false;
 
@@ -167,6 +168,13 @@ class Test
     public function getNeedsReview(): ?bool
     {
         return $this->needsReview;
+    }
+
+    public function setNeedsReview(?bool $needsReview): self
+    {
+        $this->needsReview = $needsReview;
+
+        return $this;
     }
 
     public function getDateCreated(): ?\DateTimeInterface
