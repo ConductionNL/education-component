@@ -77,11 +77,11 @@ class ConductionFixtures extends Fixture
         $manager->flush();
         $program = $manager->getRepository('App:Program')->findOneBy(['id'=> $id]);
 
-        // Test Cursus
+        // Test Tutorial
         $course = new Course();
-        $course->setName('Test Cursus');
-        $course->setDescription('Dit is een cursus om mee te testen.');
-        $course->setCourseCode('TC1');
+        $course->setName('Test Tutorial');
+        $course->setDescription('Dit is een tutorial om mee te testen.');
+        $course->setCourseCode('TT1');
         $prerequisites = [];
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         $course->setCoursePrerequisites($prerequisites);
