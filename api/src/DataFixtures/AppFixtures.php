@@ -20,12 +20,8 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        if (
-            // If build all fixtures is true we build all the fixtures
-            !$this->params->get('app_build_all_fixtures') &&
-            // Specific domain names
-            $this->params->get('app_domain') != 'conduction.nl' && strpos($this->params->get('app_domain'), 'conduction.nl') == false
-        ) {
+        // Lets make sure we only run these fixtures on larping enviroment
+        if (strpos($this->params->get('app_domain'), 'conduction.nl') == false) {
             return false;
         }
 
