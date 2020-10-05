@@ -11439,12 +11439,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/participants/{{course}}",
+					"raw": "{{baseUrl}}/courses/{{course}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"participants",
+						"courses",
 						"{{course}}"
 					]
 				}
@@ -11707,12 +11707,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/participants/{{result}}",
+					"raw": "{{baseUrl}}/results/{{result}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"participants",
+						"results",
 						"{{result}}"
 					]
 				}
@@ -11975,12 +11975,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/participants/{{review}}",
+					"raw": "{{baseUrl}}/reviews/{{review}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"participants",
+						"reviews",
 						"{{review}}"
 					]
 				}
@@ -12243,12 +12243,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/participants/{{activity}}",
+					"raw": "{{baseUrl}}/activities/{{activity}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"participants",
+						"activities",
 						"{{activity}}"
 					]
 				}
@@ -12511,12 +12511,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/participants/{{educationEvent}}",
+					"raw": "{{baseUrl}}/education_events/{{educationEvent}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"participants",
+						"education_events",
 						"{{educationEvent}}"
 					]
 				}
@@ -12779,12 +12779,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/participants/{{program}}",
+					"raw": "{{baseUrl}}/programs/{{program}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"participants",
+						"programs",
 						"{{program}}"
 					]
 				}
@@ -13047,12 +13047,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/participants/{{test}}",
+					"raw": "{{baseUrl}}/tests/{{test}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"participants",
+						"tests",
 						"{{test}}"
 					]
 				}
@@ -13315,12 +13315,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/participants/{{stage}}",
+					"raw": "{{baseUrl}}/stages/{{stage}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"participants",
+						"stages",
 						"{{stage}}"
 					]
 				}
@@ -13583,12 +13583,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/participants/{{question}}",
+					"raw": "{{baseUrl}}/questions/{{question}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"participants",
+						"questions",
 						"{{question}}"
 					]
 				}
@@ -13828,7 +13828,7 @@
 	],
 	"variable": [
 		{
-			"id": "4ab6f47e-c133-427a-9e58-1e8e9859920e",
+			"id": "cd397063-77d8-4570-9384-599abb6f1e62",
 			"key": "baseUrl",
 			"value": "localhost"
 		}
