@@ -11118,23 +11118,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -11400,23 +11386,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -11682,23 +11654,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -11964,23 +11922,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -12246,23 +12190,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -12528,23 +12458,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -12810,23 +12726,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -13092,23 +12994,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -13374,23 +13262,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -13656,23 +13530,9 @@
 						"exec": [
 							"// example using pm.response.to.have\r",
 							"pm.test(\"response is ok\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"\r",
-							"// example using response assertions\r",
-							"pm.test(\"response should be okay to process\", function () {\r",
-							"    pm.response.to.not.be.error;\r",
-							"    pm.response.to.not.have.jsonBody(\"error\");\r",
-							"});\r",
-							"\r",
-							"// example using pm.response.to.be*\r",
-							"pm.test(\"response must be valid and have a body\", function () {\r",
-							"    // assert that the status code is 200\r",
-							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-							"    // assert that the response has a valid JSON body\r",
-							"    pm.response.to.be.withBody;\r",
-							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -13968,7 +13828,7 @@
 	],
 	"variable": [
 		{
-			"id": "2617118e-96f3-487d-af44-96d594ada65d",
+			"id": "87283ca1-76fe-4501-8aa1-e8d861041f1f",
 			"key": "baseUrl",
 			"value": "https://edu.dev.conduction.nl"
 		}
