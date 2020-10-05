@@ -12211,7 +12211,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       dateCreated:
         description: 'The moment this Result was created'
@@ -12242,7 +12242,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       participant: []
       activity: []
@@ -12307,22 +12307,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -12439,22 +12439,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -12823,12 +12823,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -12869,12 +12869,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
         format: date-time
       course: []
     required:
@@ -12983,12 +12983,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
     required: []
   AuditTrail-write:
     properties:
@@ -13036,12 +13036,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-05 08:37:00'
+        example: '2020-10-05 09:13:52'
     required: []
   ChangeLog-write:
     properties:
