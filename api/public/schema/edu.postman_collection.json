@@ -776,7 +776,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"courses\": \n    [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ]\n}",
+							"raw": "{\n    \"person\": \"https://cc.conduction.nl/people\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -1787,7 +1787,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Werken met scrum en Github\",\n    \"description\": \"Deze cursus leert je de basics van werken met scrum en Github.\",\n    \"courseCode\": \"SG123\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"{{baseUrl}}/courses\",\n    \"numberOfCredits\": 6,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
+							"raw": "{\n    \"name\": \"Werken met scrum en Github\",\n    \"description\": \"Deze cursus leert je de basics van werken met scrum en Github.\",\n    \"courseCode\": \"SG123\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"/courses\",\n    \"numberOfCredits\": 6,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -2214,7 +2214,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1.\",\n    \"participant\": \"{{baseUrl}}/participants/{{participant}}\",\n    \"course\": \"{{baseUrl}}/courses/{{course}}\"\n}",
+							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1.\",\n    \"participant\": \"/participants/{{participant}}\",\n    \"course\": \"/courses/{{course}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -2820,7 +2820,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1!\",\n    \"participant\": \"{{baseUrl}}/participants/{{participant}}\"\n}",
+							"raw": "{\n    \"name\": \"Result1\",\n    \"description\": \"Beschrijving van Result1!\",\n    \"participant\": \"/participants/{{participant}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3269,7 +3269,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Review1\",\n    \"description\": \"Beschrijving van Review1.\",\n    \"result\": \"{{baseUrl}}/results/{{result}}\",\n    \"body\": \"Dit is de body van Review1.\",\n    \"rating\": 8\n}",
+							"raw": "{\n    \"name\": \"Review1\",\n    \"description\": \"Beschrijving van Review1.\",\n    \"result\": \"/results/{{result}}\",\n    \"body\": \"Dit is de body van Review1.\",\n    \"rating\": 8\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3875,7 +3875,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Review1\",\n    \"description\": \"Beschrijving van Review1!\",\n    \"result\": \"{{baseUrl}}/results/{{result}}\",\n    \"body\": \"Dit is de body van Review1?\",\n    \"rating\": 6\n}",
+							"raw": "{\n    \"name\": \"Review1\",\n    \"description\": \"Beschrijving van Review1!\",\n    \"result\": \"/results/{{result}}\",\n    \"body\": \"Dit is de body van Review1?\",\n    \"rating\": 6\n}",
 							"options": {
 								"raw": {}
 							}
@@ -4324,7 +4324,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Activity1\",\n    \"description\": \"Beschrijving van Activity1.\",\n    \"educationalUse\": \"educationalUse\",\n    \"course\": \"{{baseUrl}}/courses/{{course}}\"\n}",
+							"raw": "{\n    \"name\": \"Activity1\",\n    \"description\": \"Beschrijving van Activity1.\",\n    \"educationalUse\": \"educationalUse\",\n    \"course\": \"/courses/{{course}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -4908,7 +4908,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Activity1\",\n    \"description\": \"Beschrijving van Activity1!\",\n    \"educationalUse\": \"educationalUse?\",\n    \"course\": \"{{baseUrl}}/courses/{{course}}\"\n}",
+							"raw": "{\n    \"name\": \"Activity1\",\n    \"description\": \"Beschrijving van Activity1!\",\n    \"educationalUse\": \"educationalUse?\",\n    \"course\": \"/courses/{{course}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -7693,7 +7693,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen ;)\",\n    \"activity\": \"{{baseUrl}}/activities/{{activity}}\"\n}\n",
+							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen ;)\",\n    \"activity\": \"/activities/{{activity}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -8279,7 +8279,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen!\",\n    \"activity\": \"{{baseUrl}}/activities/{{activity}}\"\n}",
+							"raw": "{\n    \"name\": \"Test test\",\n    \"description\": \"Deze test is om mee te testen!\",\n    \"activity\": \"/activities/{{activity}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -8998,7 +8998,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Vragenlijst 1\",\n    \"description\": \"Beantwoord deze vragen\",\n    \"start\": true,\n    \"test\": \"{{baseUrl}}/tests/{{test}}\",\n    \"orderNumber\": 0\n}\n",
+							"raw": "{\n    \"name\": \"Vragenlijst 1\",\n    \"description\": \"Beantwoord deze vragen\",\n    \"start\": true,\n    \"test\": \"/tests/{{test}}\",\n    \"orderNumber\": 0\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -9584,7 +9584,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Vragenlijst 1\",\n    \"description\": \"Beantwoord deze vragen:\",\n    \"start\": true,\n    \"test\": \"{{baseUrl}}/tests/{{test}}\",\n    \"orderNumber\": 0\n}\n",
+							"raw": "{\n    \"name\": \"Vragenlijst 1\",\n    \"description\": \"Beantwoord deze vragen:\",\n    \"start\": true,\n    \"test\": \"/tests/{{test}}\",\n    \"orderNumber\": 0\n}\n",
 							"options": {
 								"raw": {}
 							}
@@ -10239,7 +10239,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Vraag 1\",\n    \"description\": \"Wat is het antwoord op deze vraag?\",\n    \"answer\": \"Wat\",\n    \"answerOptions\": [\n        \"het antwoord\",\n        \"Welke vraag?\",\n        \"Wat\"\n    ],\n    \"start\": true,\n    \"stage\": \"{{baseUrl}}/stages/{{stage}}\",\n    \"orderNumber\": 0\n}",
+							"raw": "{\n    \"name\": \"Vraag 1\",\n    \"description\": \"Wat is het antwoord op deze vraag?\",\n    \"answer\": \"Wat\",\n    \"answerOptions\": [\n        \"het antwoord\",\n        \"Welke vraag?\",\n        \"Wat\"\n    ],\n    \"start\": true,\n    \"stage\": \"/stages/{{stage}}\",\n    \"orderNumber\": 0\n}",
 							"options": {
 								"raw": {}
 							}
@@ -10845,7 +10845,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Vraag 1\",\n    \"description\": \"Wat is het antwoord op deze vraag?\",\n    \"answer\": \"Wat\",\n    \"answerOptions\": [\n        \"Welke vraag?\",\n        \"Wat\"\n    ],\n    \"stage\": \"{{baseUrl}}/stages/{{stage}}\",\n    \"orderNumber\": 0\n}",
+							"raw": "{\n    \"name\": \"Vraag 1\",\n    \"description\": \"Wat is het antwoord op deze vraag?\",\n    \"answer\": \"Wat\",\n    \"answerOptions\": [\n        \"Welke vraag?\",\n        \"Wat\"\n    ],\n    \"stage\": \"/stages/{{stage}}\",\n    \"orderNumber\": 0\n}",
 							"options": {
 								"raw": {}
 							}
@@ -11148,7 +11148,7 @@
 	],
 	"variable": [
 		{
-			"id": "e3730457-9761-433f-9db4-59e02afbd0c0",
+			"id": "ffc265db-23ec-4483-a307-a209a0651e7d",
 			"key": "baseUrl",
 			"value": "https://edu.dev.conduction.nl"
 		}
