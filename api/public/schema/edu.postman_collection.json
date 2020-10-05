@@ -1203,7 +1203,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"TEST12345\",\n    \"description\": \"TEST12345\",\n    \"courseCode\": \"TEST12345\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"{{baseUrl}}/courses\",\n    \"numberOfCredits\": 0,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
+							"raw": "{\n    \"name\": \"TEST12345\",\n    \"description\": \"TEST12345\",\n    \"courseCode\": \"TEST12345\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"/courses\",\n    \"numberOfCredits\": 0,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -11107,6 +11107,2826 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Removes the Participant resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "646fb122-2081-4723-9863-840facee99c5",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{participant}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{participant}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Removes the Course resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00f0285b-6926-4083-9da7-b60c729c0f55",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{course}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{course}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Removes the Result resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "152990e6-ab3f-4a87-a0d4-bdeab56c5972",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{result}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{result}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Removes the Review resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad606c07-d67c-4d6f-a872-3c103feda256",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{review}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{review}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				},
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Removes the Activity resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bfb304de-0c8f-4543-8050-31c5793116e9",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{activity}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{activity}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Removes the EducationEvent resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2547fed1-23b0-42ec-8343-7eebb101947c",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{educationEvent}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{educationEvent}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Removes the Program resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "982fa23d-20a0-4864-95f9-4a041d62cd50",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{program}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{program}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				},
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Removes the Test resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a5d81ad8-f239-413f-92a0-7b88684d15e9",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{test}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{test}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Removes the Stage resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75b3f4f8-5e7d-4908-8c54-ce89a0b2aba0",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{stage}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{stage}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				},
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Removes the Question resource.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7ddbc4d7-9802-41ca-9c42-ed0cd6873bf6",
+						"exec": [
+							"// example using pm.response.to.have\r",
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// example using response assertions\r",
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"// example using pm.response.to.be*\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"    // assert that the status code is 200\r",
+							"    pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+							"    // assert that the response has a valid JSON body\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"description": "The JWT of the entity performing the request",
+						"key": "Authorization",
+						"value": ""
+					},
+					{
+						"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)",
+						"key": "API-Version",
+						"value": ""
+					},
+					{
+						"description": "A  globally unique id of the request, which makes a request traceable throughout the network.",
+						"key": "X-NLX-Logrecord-ID",
+						"value": ""
+					},
+					{
+						"description": "A process id for purpose registration (doelbinding)",
+						"key": "X-NLX-Request-Process-Id",
+						"value": ""
+					},
+					{
+						"description": "A list of requested data elements",
+						"key": "X-NLX-Request-Data-Elements",
+						"value": ""
+					},
+					{
+						"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`",
+						"key": "X-NLX-Request-Data-Subject",
+						"value": ""
+					},
+					{
+						"description": "A clarification as to why a request has been made  (doelbinding)",
+						"key": "X-NLX-Audit-Clarification",
+						"value": ""
+					},
+					{
+						"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\"",
+						"key": "Link",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/participants/{{question}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"participants",
+						"{{question}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resource not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Challenge resource response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"description": "The JWT of the entity performing the request"
+							},
+							{
+								"key": "API-Version",
+								"value": "",
+								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
+							},
+							{
+								"key": "X-NLX-Logrecord-ID",
+								"value": "",
+								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
+							},
+							{
+								"key": "X-NLX-Request-Process-Id",
+								"value": "",
+								"description": "A process id for purpose registration (doelbinding)"
+							},
+							{
+								"key": "X-NLX-Request-Data-Elements",
+								"value": "",
+								"description": "A list of requested data elements"
+							},
+							{
+								"key": "X-NLX-Request-Data-Subject",
+								"value": "",
+								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
+							},
+							{
+								"key": "X-NLX-Audit-Clarification",
+								"value": "",
+								"description": "A clarification as to why a request has been made  (doelbinding)"
+							},
+							{
+								"key": "Link",
+								"value": "",
+								"description": "A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel=\"hub\""
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/challenges/:id?extend[]=<array>&fields[]=<array>&validOn=<dateTime>&validFrom=<dateTime>&validUntil=<dateTime>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"challenges",
+								":id"
+							],
+							"query": [
+								{
+									"key": "extend[]",
+									"value": "<array>"
+								},
+								{
+									"key": "fields[]",
+									"value": "<array>"
+								},
+								{
+									"key": "validOn",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validFrom",
+									"value": "<dateTime>"
+								},
+								{
+									"key": "validUntil",
+									"value": "<dateTime>"
+								}
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"name\": \"<string>\",\n \"@context\": \"<string>\",\n \"@id\": \"<string>\",\n \"@type\": \"<string>\",\n \"id\": \"<string>\",\n \"description\": \"<string>\",\n \"catchPhrase\": \"<string>\",\n \"dateClose\": \"<dateTime>\",\n \"dateCreated\": \"<dateTime>\",\n \"dateModified\": \"<dateTime>\",\n \"submitters\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"pitches\": [\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  },\n  {\n   \"name\": \"<string>\",\n   \"@context\": \"<string>\",\n   \"@id\": \"<string>\",\n   \"@type\": \"<string>\",\n   \"id\": \"<string>\",\n   \"description\": \"<string>\",\n   \"dateSubmitted\": \"<dateTime>\",\n   \"dateCreated\": \"<dateTime>\",\n   \"dateModified\": \"<dateTime>\",\n   \"challenge\": {\n    \"value\": \"<Circular reference to #/components/schemas/Challenge:jsonld-read detected>\"\n   }\n  }\n ]\n}"
+				}
+			]
 		}
 	],
 	"auth": {
@@ -11148,7 +13968,7 @@
 	],
 	"variable": [
 		{
-			"id": "ffc265db-23ec-4483-a307-a209a0651e7d",
+			"id": "2617118e-96f3-487d-af44-96d594ada65d",
 			"key": "baseUrl",
 			"value": "https://edu.dev.conduction.nl"
 		}
