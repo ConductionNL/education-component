@@ -13828,9 +13828,9 @@
 	],
 	"variable": [
 		{
-			"id": "87283ca1-76fe-4501-8aa1-e8d861041f1f",
+			"id": "4ab6f47e-c133-427a-9e58-1e8e9859920e",
 			"key": "baseUrl",
-			"value": "https://edu.dev.conduction.nl"
+			"value": "localhost"
 		}
 	],
 	"protocolProfileBehavior": {}
