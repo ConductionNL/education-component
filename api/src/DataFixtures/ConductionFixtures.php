@@ -39,7 +39,6 @@ class ConductionFixtures extends Fixture
         ) {
             return false;
         }
-        
         // Test Student
         $id = Uuid::fromString('2b7b60ab-d3db-4164-901d-3c4230e1db82');
         $testStudent = new Participant();
