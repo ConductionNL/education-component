@@ -34,8 +34,8 @@ class ConductionFixtures extends Fixture
         if (
             // If build all fixtures is true we build all the fixtures
             !$this->params->get('app_build_all_fixtures') &&
-            // Specific domain names
-            $this->params->get('app_domain') != 'conduction.nl' && strpos($this->params->get('app_domain'), 'conduction.nl') == false
+            $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
             return false;
         }
