@@ -5941,7 +5941,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"name\": \"Les 2 over Github\",\n\"description\": \"Dit is de eerste online les over Github.\",\n\"assesses\": \"beoordelingscriteria\",\n\"educationalLevel\": \"advanced\",\n\"teaches\": \"In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.\",\n\"startDate\": \"2020-07-13T13:00:00Z\",\n\"endDate\": \"2020-07-13T15:00:00Z\"\n}",
+							"raw": "{\n\"name\": \"Les 2 over Github\",\n\"description\": \"Dit is de eerste online les over Github.\",\n\"assesses\": \"beoordelingscriteria\",\n\"educationalLevel\": \"advanced\",\n\"teaches\": \"In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -13828,7 +13828,7 @@
 	],
 	"variable": [
 		{
-			"id": "bc4dde1c-4a77-43b2-b556-ce434904166c",
+			"id": "5480882e-ad39-4dde-942f-e101af6b7f58",
 			"key": "baseUrl",
 			"value": "localhost"
 		}
