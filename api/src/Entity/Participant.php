@@ -32,7 +32,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"person":"exact"})
+ * @ApiFilter(SearchFilter::class, properties={"person":"exact","courses.id":"exact","programs.id":"exact","results.id":"exact"})
  */
 class Participant
 {
@@ -53,7 +53,7 @@ class Participant
     /**
      * @var string The contact of this Participant.
      *
-     * @example https://cc.conduction.nl/people
+     * @example https://cc.zuid-drecht.nl/people/{{uuid}]
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -63,24 +63,6 @@ class Participant
      * @ORM\Column(type="string", length=255)
      */
     private $person;
-
-    /**
-     * @var Datetime The moment this Participant was created
-     *
-     * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $dateCreated;
-
-    /**
-     * @var Datetime The moment this Participant was last Modified
-     *
-     * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $dateModified;
 
     /**
      * @Groups({"read","write"})
@@ -102,6 +84,24 @@ class Participant
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", orphanRemoval=true)
      */
     private $results;
+
+    /**
+     * @var Datetime The moment this Participant was created
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateCreated;
+
+    /**
+     * @var Datetime The moment this Participant was last Modified
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateModified;
 
     public function __construct()
     {
