@@ -9583,18 +9583,23 @@ components:
         route:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         endpoint:
           description: 'The endpoint that the request was made to'
           type: string
+          nullable: true
         method:
           description: 'The method that was used'
           type: string
+          nullable: true
         accept:
           description: 'The contentType that was reqousted'
           type: string
+          nullable: true
         contentType:
           description: 'The contentType that was suplieds'
           type: string
+          nullable: true
         content:
           description: 'The moment this request was created'
           type: string
@@ -9602,6 +9607,7 @@ components:
         ip:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         session:
           description: 'The moment this request was created'
           type: string
@@ -9713,18 +9719,23 @@ components:
         route:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         endpoint:
           description: 'The endpoint that the request was made to'
           type: string
+          nullable: true
         method:
           description: 'The method that was used'
           type: string
+          nullable: true
         accept:
           description: 'The contentType that was reqousted'
           type: string
+          nullable: true
         contentType:
           description: 'The contentType that was suplieds'
           type: string
+          nullable: true
         content:
           description: 'The moment this request was created'
           type: string
@@ -9732,6 +9743,7 @@ components:
         ip:
           description: 'The moment this request was created'
           type: string
+          nullable: true
         session:
           description: 'The moment this request was created'
           type: string
@@ -12983,12 +12995,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-12 11:48:35'
+        example: '2020-10-15 11:55:08'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-12 11:48:35'
+        example: '2020-10-15 11:55:08'
     required: []
   AuditTrail-write:
     properties:
@@ -13036,12 +13048,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-12 11:48:35'
+        example: '2020-10-15 11:55:08'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-12 11:48:35'
+        example: '2020-10-15 11:55:08'
     required: []
   ChangeLog-write:
     properties:
