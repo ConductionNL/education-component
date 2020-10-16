@@ -5335,7 +5335,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"name\": \"Les 1 over Github\",\n\"description\": \"Dit is de eerste online les over Github.\",\n\"assesses\": \"beoordelingscriteria\",\n\"educationalLevel\": \"beginner\",\n\"teaches\": \"In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.\",\n\"startDate\": \"2020-07-13T13:00:00Z\",\n\"endDate\": \"2020-07-13T15:00:00Z\",\n\"course\": \"/courses/{{course}}\"\n}",
+							"raw": "{\n\"name\": \"Les 1 over Github\",\n\"description\": \"Dit is de eerste online les over Github.\",\n\"assesses\": \"beoordelingscriteria\",\n\"educationalLevel\": \"beginner\",\n\"teaches\": \"In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.\",\n\"course\": \"/courses/{{course}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -13828,7 +13828,7 @@
 	],
 	"variable": [
 		{
-			"id": "8f720e9e-2631-4a9c-a0a8-b61c62fa3add",
+			"id": "bc4dde1c-4a77-43b2-b556-ce434904166c",
 			"key": "baseUrl",
 			"value": "localhost"
 		}

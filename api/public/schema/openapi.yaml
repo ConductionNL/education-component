@@ -9436,7 +9436,7 @@ components:
   schemas:
     Activity-read:
       type: object
-      description: 'An activity like a class on a cource'
+      description: 'An activity like a class on a cource.'
       properties:
         id:
           readOnly: true
@@ -9482,7 +9482,7 @@ components:
         - name
     Activity-write:
       type: object
-      description: 'An activity like a class on a cource'
+      description: 'An activity like a class on a cource.'
       required:
         - name
       properties:
@@ -9511,7 +9511,7 @@ components:
             $ref: '#/components/schemas/Test-write'
     'Activity:jsonld-read':
       type: object
-      description: 'An activity like a class on a cource'
+      description: 'An activity like a class on a cource.'
       properties:
         '@context':
           readOnly: true
@@ -9566,7 +9566,7 @@ components:
         - name
     'Activity:jsonld-write':
       type: object
-      description: 'An activity like a class on a cource'
+      description: 'An activity like a class on a cource.'
       required:
         - name
       properties:
@@ -11778,7 +11778,7 @@ components:
           nullable: true
     Stage-read:
       type: object
-      description: 'A stage within a test'
+      description: 'A stage within a test.'
       properties:
         id:
           readOnly: true
@@ -11833,7 +11833,7 @@ components:
         - orderNumber
     Stage-write:
       type: object
-      description: 'A stage within a test'
+      description: 'A stage within a test.'
       required:
         - name
         - test
@@ -11859,7 +11859,7 @@ components:
           type: integer
     'Stage:jsonld-read':
       type: object
-      description: 'A stage within a test'
+      description: 'A stage within a test.'
       properties:
         '@context':
           readOnly: true
@@ -11923,7 +11923,7 @@ components:
         - orderNumber
     'Stage:jsonld-write':
       type: object
-      description: 'A stage within a test'
+      description: 'A stage within a test.'
       required:
         - name
         - test
@@ -12303,7 +12303,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       dateCreated:
         description: 'The moment this Result was created'
@@ -12334,7 +12334,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       participant: []
       activity: []
@@ -12399,22 +12399,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -12531,22 +12531,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -12915,12 +12915,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -12961,12 +12961,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
         format: date-time
       course: []
     required:
@@ -13075,12 +13075,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
     required: []
   AuditTrail-write:
     properties:
@@ -13128,12 +13128,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-16 08:55:13'
+        example: '2020-10-16 09:21:22'
     required: []
   ChangeLog-write:
     properties:
@@ -13147,7 +13147,7 @@ tags:
   -
     name: Activity
     description: |
-      An activity like a class on a cource
+      An activity like a class on a cource.
       
       
   -
@@ -13183,7 +13183,7 @@ tags:
   -
     name: Stage
     description: |
-      A stage within a test
+      A stage within a test.
       
       
   -
