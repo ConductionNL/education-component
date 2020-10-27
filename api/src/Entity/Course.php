@@ -55,6 +55,21 @@ class Course
     private $name;
 
     /**
+     * @var string The uri of the submitter (organization)
+     *
+     * @example https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9
+     *
+     * @Assert\Url
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $organization;
+
+    /**
      * @var string The description of this Course.
      *
      * @example Deze cursus leert je de basics van werken met scrum en Github.
@@ -235,6 +250,18 @@ class Course
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getOrganization(): ?string
+    {
+        return $this->organization;
+    }
+
+    public function setOrganization(?string $organization): self
+    {
+        $this->organization = $organization;
 
         return $this;
     }
