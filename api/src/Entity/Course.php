@@ -190,6 +190,22 @@ class Course
      */
     private $activities;
 
+    /**
+     * @var array An array of URLs pointing to skills related to this course
+     *
+     * @ORM\Column(type="simple_array", nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $skills = [];
+
+    /**
+     * @var array An array of URLs pointing to competences related to this course
+     *
+     * @ORM\Column(type="simple_array", nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $competences = [];
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
@@ -327,6 +343,30 @@ class Course
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    public function getSkills(): ?array
+    {
+        return $this->skills;
+    }
+
+    public function setSkills(?array $skills): self
+    {
+        $this->skills = $skills;
+
+        return $this;
+    }
+
+    public function getCompetences(): ?array
+    {
+        return $this->competences;
+    }
+
+    public function setCompetences(?array $competences): self
+    {
+        $this->competences = $competences;
 
         return $this;
     }
