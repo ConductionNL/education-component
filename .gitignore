@@ -9,4 +9,3 @@ api/helm/kubeconfig.yaml
 
 api/helm/*-kubeconfig.yaml
 api/helm/kubeconfig*
-api/helm/ec-0.1.0.tgz

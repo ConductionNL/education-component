@@ -3,10 +3,10 @@ publiccodeYmlVersion: "0.2"
 name: edu
 applicationSuite: commonground
 url: "https://github.com/ConductionNL/education-component"
-landingURL: "edu.conduction.nl" 
+landingURL: "edu.zaakonline.nl" 
 isBasedOn: "https://github.com/ConductionNL/Proto-component-commonground.git" 
-softwareVersion: "V.0.1"
-releaseDate: "2020-04-08"
+softwareVersion: "V1.0"
+releaseDate: "2020-16-10"
 logo: edu.zaakonline.nl 
 monochromeLogo: img/logo-mono.svg
 
@@ -67,7 +67,7 @@ description:
 #          is and why one should need it.
 
     documentation: "https://github.com/ConductionNL/education-component/blob/master/README.md"
-    apiDocumentation: "edu.conduction.nl"
+    apiDocumentation: "edu.zaakonline.nl"
 #
 #    features:
 #       - Very important feature
