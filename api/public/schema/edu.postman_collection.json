@@ -1203,7 +1203,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"TEST12345\",\n    \"description\": \"TEST12345\",\n    \"courseCode\": \"TEST12345\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"/courses\",\n    \"numberOfCredits\": 0,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
+							"raw": "{\n    \"name\": \"TEST12345\",\n    \"description\": \"TEST12345\",\n    \"courseCode\": \"TEST12345\",\n    \"organization\": \"https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"/courses\",\n    \"numberOfCredits\": 0,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -1787,7 +1787,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Werken met scrum en Github\",\n    \"description\": \"Deze cursus leert je de basics van werken met scrum en Github.\",\n    \"courseCode\": \"SG123\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"/courses\",\n    \"numberOfCredits\": 6,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
+							"raw": "{\n    \"name\": \"Werken met scrum en Github\",\n    \"description\": \"Deze cursus leert je de basics van werken met scrum en Github.\",\n    \"courseCode\": \"SG123\",\n    \"organization\": \"https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9\",\n    \"coursePrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\"\n    ],\n    \"hasCourseInstance\": \"/courses\",\n    \"numberOfCredits\": 6,\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -13828,7 +13828,7 @@
 	],
 	"variable": [
 		{
-			"id": "67965d00-aff2-43f7-992e-20c3ef862cc0",
+			"id": "74408d5a-8803-432a-803d-c8fd3197ebe5",
 			"key": "baseUrl",
 			"value": "localhost"
 		}
