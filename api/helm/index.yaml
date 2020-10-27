@@ -3,14 +3,14 @@ entries:
   edu:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2020-10-05T09:21:26.911507Z"
+    created: "2020-10-16T14:15:43.6515363Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: 19e349721461a9ce0cd3dfb286d30d869b21f882440d05b02ad00da4b5a36abc
+    digest: 370e820cf0ed22ee7298f287dba18506810a1fe915fb51115732f51bf5a7367b
     home: edu.zaakonline.nl
     icon: edu.zaakonline.nl
     name: edu
     urls:
     - edu-0.1.0.tgz
     version: 0.1.0
-generated: "2020-10-05T09:21:26.9037418Z"
+generated: "2020-10-16T14:15:43.6410831Z"

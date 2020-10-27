@@ -5335,7 +5335,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"name\": \"Les 1 over Github\",\n\"description\": \"Dit is de eerste online les over Github.\",\n\"assesses\": \"beoordelingscriteria\",\n\"educationalLevel\": \"beginner\",\n\"teaches\": \"In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.\",\n\"startDate\": \"2020-07-13T13:00:00Z\",\n\"endDate\": \"2020-07-13T15:00:00Z\",\n\"course\": \"/courses/{{course}}\"\n}",
+							"raw": "{\n\"name\": \"Les 1 over Github\",\n\"description\": \"Dit is de eerste online les over Github.\",\n\"assesses\": \"beoordelingscriteria\",\n\"educationalLevel\": \"beginner\",\n\"teaches\": \"In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.\",\n\"course\": \"/courses/{{course}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -5941,7 +5941,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"name\": \"Les 2 over Github\",\n\"description\": \"Dit is de eerste online les over Github.\",\n\"assesses\": \"beoordelingscriteria\",\n\"educationalLevel\": \"advanced\",\n\"teaches\": \"In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.\",\n\"startDate\": \"2020-07-13T13:00:00Z\",\n\"endDate\": \"2020-07-13T15:00:00Z\"\n}",
+							"raw": "{\n\"name\": \"Les 2 over Github\",\n\"description\": \"Dit is de eerste online les over Github.\",\n\"assesses\": \"beoordelingscriteria\",\n\"educationalLevel\": \"advanced\",\n\"teaches\": \"In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -6390,7 +6390,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"associate degree informatica\",\n    \"description\": \"Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.\",\n    \"applicationStartDate\": \"2020-07-13T12:00:00Z\",\n    \"applicationDeadline\": \"2020-09-25T20:00:00Z\",\n    \"startDate\": \"2020-09-25T13:00:00Z\",\n    \"endDate\": \"2022-09-25T15:00:00Z\",\n    \"financialAidEligible\": \"Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.\",\n    \"maximumEnrollment\": 100,\n    \"numberOfCredits\": 120,\n    \"occupationalCategory\": \"HBO\",\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.\",\n    \"educationalProgramMode\": \"full-time\",\n    \"offers\": \"https://pdc.conduction.nl/offers\",\n    \"programPrerequisites\": [\n        \"https://edu.dev.conduction.nl/courses/4bb8034c-2f74-4637-801d-9c2c0cb43b92\",\n        \"https://edu.dev.conduction.nl/courses/0bf92c4a-0ef3-4184-a14a-4356f735498e\"\n    ],\n    \"programType\": \"classroom, internship.\",\n    \"provider\": \"https://wrc.conduction.nl/organizations\",\n    \"salaryUponCompletion\": \"€1000\",\n    \"termDuration\": \"2 maanden\",\n    \"termsPerYear\": 4,\n    \"dayOfWeek\": \"van maandag tot zondag\",\n    \"timeOfDay\": \"Overdag, soms in de avond\",\n    \"timeToComplete\": \"2 jaar\",\n    \"trainingSalary\": \"€300 per maand\",\n    \"typicalCreditsPerTerm\": 15\n}",
+							"raw": "{\n    \"name\": \"associate degree informatica\",\n    \"description\": \"Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.\",\n    \"financialAidEligible\": \"Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.\",\n    \"maximumEnrollment\": 100,\n    \"numberOfCredits\": 120,\n    \"occupationalCategory\": \"HBO\",\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.\",\n    \"educationalProgramMode\": \"full-time\",\n    \"offers\": \"https://pdc.conduction.nl/offers\",\n    \"programType\": \"classroom, internship.\",\n    \"provider\": \"https://wrc.conduction.nl/organizations\",\n    \"salaryUponCompletion\": \"€1000\",\n    \"termDuration\": \"2 maanden\",\n    \"termsPerYear\": 4,\n    \"dayOfWeek\": \"van maandag tot zondag\",\n    \"timeOfDay\": \"Overdag, soms in de avond\",\n    \"timeToComplete\": \"2 jaar\",\n    \"trainingSalary\": \"€300 per maand\",\n    \"typicalCreditsPerTerm\": 15\n}",
 							"options": {
 								"raw": {}
 							}
@@ -6974,19 +6974,19 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"applicationDeadline\": \"2020-08-27T7:00:00Z\"\n}",
+							"raw": "{\n    \"name\": \"associate degree informatica\",\n    \"description\": \"Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.\",\n    \"financialAidEligible\": \"Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.\",\n    \"maximumEnrollment\": 150,\n    \"numberOfCredits\": 200,\n    \"occupationalCategory\": \"HBO\",\n    \"occupationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.\",\n    \"educationalCredentialAwarded\": \"Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.\",\n    \"educationalProgramMode\": \"full-time\",\n    \"offers\": \"https://pdc.conduction.nl/offers\",\n    \"programType\": \"classroom, internship.\",\n    \"provider\": \"https://wrc.conduction.nl/organizations\",\n    \"salaryUponCompletion\": \"€1000\",\n    \"termDuration\": \"2 maanden\",\n    \"termsPerYear\": 4,\n    \"dayOfWeek\": \"van maandag tot zondag\",\n    \"timeOfDay\": \"Overdag, soms in de avond\",\n    \"timeToComplete\": \"2 jaar\",\n    \"trainingSalary\": \"€300 per maand\",\n    \"typicalCreditsPerTerm\": 15\n}",
 							"options": {
 								"raw": {}
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/programs/d7c49d9f-5e16-4035-8558-9b2aa007aabe",
+							"raw": "{{baseUrl}}/programs/{{program}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"programs",
-								"d7c49d9f-5e16-4035-8558-9b2aa007aabe"
+								"{{program}}"
 							]
 						}
 					},
@@ -13828,7 +13828,7 @@
 	],
 	"variable": [
 		{
-			"id": "8f720e9e-2631-4a9c-a0a8-b61c62fa3add",
+			"id": "67965d00-aff2-43f7-992e-20c3ef862cc0",
 			"key": "baseUrl",
 			"value": "localhost"
 		}

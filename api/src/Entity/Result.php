@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\ResultRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,6 +23,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
  * )
  * @ORM\Entity(repositoryClass=ResultRepository::class)
+ *
+ * @ApiFilter(SearchFilter::class, properties={"participant.id":"exact","activity.id":"exact"})
  */
 class Result
 {
