@@ -407,14 +407,14 @@ class Course
         return $this;
     }
 
-    public function getCompetences(): ?array
+    public function getTeaches(): ?array
     {
-        return $this->competences;
+        return $this->teaches;
     }
 
-    public function setCompetences(?array $competences): self
+    public function setTeaches(?array $teaches): self
     {
-        $this->competences = $competences;
+        $this->teaches = $teaches;
 
         return $this;
     }
