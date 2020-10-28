@@ -214,12 +214,33 @@ class Course
     private $skills = [];
 
     /**
-     * @var array An array of URLs pointing to competences related to this course
+     * @var array An array of URLs pointing to competences this course teaches the participant
      *
      * @ORM\Column(type="simple_array", nullable=true)
      * @Groups({"read","write"})
      */
-    private $competences = [];
+    private $teaches = [];
+
+    /**
+     * @var array An array of URLs pointing to products from the pdc related to this course
+     *
+     * @ORM\Column(type="simple_array", nullable=true)
+     * @Groups({"read","write"})
+     */
+    private $products = [];
+
+    /**
+     * @var string The Type of this course.
+     *
+     * @example Elearning, Readthrough, Skilltest.
+     *
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $additionalType;
 
     public function __construct()
     {
@@ -394,6 +415,30 @@ class Course
     public function setCompetences(?array $competences): self
     {
         $this->competences = $competences;
+
+        return $this;
+    }
+
+    public function getProducts(): ?array
+    {
+        return $this->products;
+    }
+
+    public function setProducts(?array $products): self
+    {
+        $this->products = $products;
+
+        return $this;
+    }
+
+    public function getAdditionalType(): ?string
+    {
+        return $this->additionalType;
+    }
+
+    public function setAdditionalType(?string $additionalType): self
+    {
+        $this->additionalType = $additionalType;
 
         return $this;
     }
