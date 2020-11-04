@@ -103,11 +103,17 @@ class Participant
      */
     private $dateModified;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
+     */
+    private $groups;
+
     public function __construct()
     {
         $this->programs = new ArrayCollection();
         $this->courses = new ArrayCollection();
         $this->results = new ArrayCollection();
+        $this->groups = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -236,6 +242,34 @@ class Participant
             if ($result->getParticipant() === $this) {
                 $result->setParticipant(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getGroups(): Collection
+    {
+        return $this->groups;
+    }
+
+    public function addGroups(Group $groups): self
+    {
+        if (!$this->e->contains($groups)) {
+            $this->e[] = $groups;
+            $groups->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroups(Group $groups): self
+    {
+        if ($this->e->contains($groups)) {
+            $this->e->removeElement($groups);
+            $groups->removeParticipant($this);
         }
 
         return $this;
