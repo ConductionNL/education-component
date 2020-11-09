@@ -258,7 +258,7 @@ class Course
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $video;
+    private ?string $video;
 
     public function __construct()
     {
