@@ -246,6 +246,20 @@ class Course
      */
     private ?string $additionalType;
 
+    /**
+     * @var string The url linking to a video which belongs to this course
+     *
+     * @example https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9
+     *
+     * @Assert\Url
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $video;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
@@ -443,6 +457,18 @@ class Course
     public function setAdditionalType(?string $additionalType): self
     {
         $this->additionalType = $additionalType;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?string $video): self
+    {
+        $this->video = $video;
 
         return $this;
     }
