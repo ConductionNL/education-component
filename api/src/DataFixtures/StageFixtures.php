@@ -90,6 +90,7 @@ class StageFixtures extends Fixture
         $course->setAdditionalType('Setup');
         $course->setNumberOfCredits(5);
         $course->setOccupationalCredentialAwarded('Een mooie Conduction sticker en een high five');
+        $course->setTimeRequired('10 minuten');
         $program->addCourse($course);
 
         $activity = new Activity();
@@ -247,6 +248,7 @@ class StageFixtures extends Fixture
         //$prerequisites = [];
         //$prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
         //$course->setCoursePrerequisites($prerequisites);
+        $course->setTimeRequired('50 minuten');
         $manager->persist($course);
         $course->setId($id);
         $manager->persist($course);
@@ -283,6 +285,7 @@ class StageFixtures extends Fixture
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         //$prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
         $course->setCoursePrerequisites($prerequisites);
+        $course->setTimeRequired('50 minuten');
         $manager->persist($course);
         $course->setId($id);
         $manager->persist($course);
@@ -305,6 +308,7 @@ class StageFixtures extends Fixture
         $prerequisites = [];
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         //$prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
+        $course->setTimeRequired('70 minuten');
         $course->setCoursePrerequisites($prerequisites);
         $program->addCourse($course);
 
@@ -324,6 +328,7 @@ class StageFixtures extends Fixture
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         //$prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
         $course->setCoursePrerequisites($prerequisites);
+        $course->setTimeRequired('50 minuten');
         $program->addCourse($course);
 
         $activity = new Activity();
@@ -341,6 +346,7 @@ class StageFixtures extends Fixture
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         //$prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
         $course->setCoursePrerequisites($prerequisites);
+        $course->setTimeRequired('50 minuten');
         $program->addCourse($course);
 
         $activity = new Activity();
@@ -359,6 +365,7 @@ class StageFixtures extends Fixture
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         //$prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
         $course->setCoursePrerequisites($prerequisites);
+        $course->setTimeRequired('120 minuten');
         $program->addCourse($course);
 
         $activity = new Activity();
@@ -377,6 +384,7 @@ class StageFixtures extends Fixture
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         //$prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
         $course->setCoursePrerequisites($prerequisites);
+        $course->setTimeRequired('50 minuten');
         $program->addCourse($course);
 
         $activity = new Activity();
