@@ -87,6 +87,16 @@ class Course
     private ?string $description;
 
     /**
+     * @var string The actual content of this Course.
+     *
+     * @example Github is echt awsome
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $text;
+
+    /**
      * @var string The courseCode of this Course.
      *
      * @example SG123
@@ -313,6 +323,18 @@ class Course
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    public function setText(?string $text): self
+    {
+        $this->text = $text;
 
         return $this;
     }
