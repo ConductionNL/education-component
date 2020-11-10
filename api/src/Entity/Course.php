@@ -270,6 +270,19 @@ class Course
      */
     private ?string $video;
 
+    /**
+     * @var string The time Required to complete this Course.
+     *
+     * @example Deze cursus leert je de basics van werken met scrum en Github. Based on schema.org
+     *
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $timeRequired;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
@@ -491,6 +504,18 @@ class Course
     public function setVideo(?string $video): self
     {
         $this->video = $video;
+
+        return $this;
+    }
+
+    public function getTimeRequired(): ?string
+    {
+        return $this->timeRequired;
+    }
+
+    public function setTimeRequired(?string $timeRequired): self
+    {
+        $this->timeRequired = $timeRequired;
 
         return $this;
     }
