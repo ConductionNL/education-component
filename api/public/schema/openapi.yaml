@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/edu-php) 
     - Datamodel: [postman](/schema/edu.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
   /activities:
@@ -2759,6 +2759,12 @@ paths:
                 items:
                   $ref: '#/components/schemas/Course-read'
       parameters:
+        -
+          name: additionalType
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: page
           in: query
@@ -10006,6 +10012,11 @@ components:
         name:
           description: 'The name of this Course.'
           type: string
+        organization:
+          description: 'The uri of the submitter (organization)'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
         description:
           description: 'The description of this Course.'
           type: string
@@ -10066,16 +10077,45 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity-read'
+        skills:
+          description: 'An array of URLs pointing to skills related to this course'
+          type: array
+          items:
+            type: string
+          nullable: true
+        competences:
+          description: 'An array of URLs pointing to competences this course teaches the participant'
+          type: array
+          items:
+            type: string
+          nullable: true
+        products:
+          description: 'An array of URLs pointing to products from the pdc related to this course'
+          type: array
+          items:
+            type: string
+          nullable: true
+        additionalType:
+          description: 'The Type of this course.'
+          type: string
+          nullable: true
       required:
         - name
+        - organization
     Course-write:
       type: object
       description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       required:
         - name
+        - organization
       properties:
         name:
           description: 'The name of this Course.'
+          type: string
+        organization:
+          description: 'The uri of the submitter (organization)'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
         description:
           description: 'The description of this Course.'
@@ -10127,6 +10167,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity-write'
+        skills:
+          description: 'An array of URLs pointing to skills related to this course'
+          type: array
+          items:
+            type: string
+          nullable: true
+        competences:
+          description: 'An array of URLs pointing to competences this course teaches the participant'
+          type: array
+          items:
+            type: string
+          nullable: true
+        products:
+          description: 'An array of URLs pointing to products from the pdc related to this course'
+          type: array
+          items:
+            type: string
+          nullable: true
+        additionalType:
+          description: 'The Type of this course.'
+          type: string
+          nullable: true
     'Course:jsonld-read':
       type: object
       description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
@@ -10149,6 +10211,11 @@ components:
           format: uuid
         name:
           description: 'The name of this Course.'
+          type: string
+        organization:
+          description: 'The uri of the submitter (organization)'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
         description:
           description: 'The description of this Course.'
@@ -10210,13 +10277,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity:jsonld-read'
+        skills:
+          description: 'An array of URLs pointing to skills related to this course'
+          type: array
+          items:
+            type: string
+          nullable: true
+        competences:
+          description: 'An array of URLs pointing to competences this course teaches the participant'
+          type: array
+          items:
+            type: string
+          nullable: true
+        products:
+          description: 'An array of URLs pointing to products from the pdc related to this course'
+          type: array
+          items:
+            type: string
+          nullable: true
+        additionalType:
+          description: 'The Type of this course.'
+          type: string
+          nullable: true
       required:
         - name
+        - organization
     'Course:jsonld-write':
       type: object
       description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
       required:
         - name
+        - organization
       properties:
         '@context':
           readOnly: true
@@ -10229,6 +10320,11 @@ components:
           type: string
         name:
           description: 'The name of this Course.'
+          type: string
+        organization:
+          description: 'The uri of the submitter (organization)'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
         description:
           description: 'The description of this Course.'
@@ -10280,6 +10376,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity:jsonld-write'
+        skills:
+          description: 'An array of URLs pointing to skills related to this course'
+          type: array
+          items:
+            type: string
+          nullable: true
+        competences:
+          description: 'An array of URLs pointing to competences this course teaches the participant'
+          type: array
+          items:
+            type: string
+          nullable: true
+        products:
+          description: 'An array of URLs pointing to products from the pdc related to this course'
+          type: array
+          items:
+            type: string
+          nullable: true
+        additionalType:
+          description: 'The Type of this course.'
+          type: string
+          nullable: true
     EducationEvent-read:
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -12192,6 +12310,12 @@ definitions:
         type: string
         example: 'Werken met scrum en Github'
         maxLength: 255
+      organization:
+        description: 'The uri of the submitter (organization)'
+        type: string
+        example: 'https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9'
+        format: url
+        maxLength: 255
       description:
         description: 'The description of this Course.'
         type: string
@@ -12230,6 +12354,20 @@ definitions:
       dateModified:
         description: 'The moment this Course was last Modified'
         type: \Datetime
+      skills:
+        description: 'An array of URLs pointing to skills related to this course'
+        type: array
+      competences:
+        description: 'An array of URLs pointing to competences this course teaches the participant'
+        type: array
+      products:
+        description: 'An array of URLs pointing to products from the pdc related to this course'
+        type: array
+      additionalType:
+        description: 'The Type of this course.'
+        type: string
+        example: 'Elearning, Readthrough, Skilltest.'
+        maxLength: 255
       results: []
       participants: []
       programs: []
@@ -12237,12 +12375,19 @@ definitions:
       activities: []
     required:
       - name
+      - organization
   Course-write:
     properties:
       name:
         description: 'The name of this Course.'
         type: string
         example: 'Werken met scrum en Github'
+        maxLength: 255
+      organization:
+        description: 'The uri of the submitter (organization)'
+        type: string
+        example: 'https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9'
+        format: url
         maxLength: 255
       description:
         description: 'The description of this Course.'
@@ -12276,6 +12421,20 @@ definitions:
         type: string
         example: 'Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.'
         maxLength: 255
+      skills:
+        description: 'An array of URLs pointing to skills related to this course'
+        type: array
+      competences:
+        description: 'An array of URLs pointing to competences this course teaches the participant'
+        type: array
+      products:
+        description: 'An array of URLs pointing to products from the pdc related to this course'
+        type: array
+      additionalType:
+        description: 'The Type of this course.'
+        type: string
+        example: 'Elearning, Readthrough, Skilltest.'
+        maxLength: 255
       results: []
       participants: []
       programs: []
@@ -12283,6 +12442,7 @@ definitions:
       activities: []
     required:
       - name
+      - organization
   EducationEvent-read:
     properties:
       id:
@@ -12318,12 +12478,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -12364,12 +12524,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       course: []
     required:
@@ -12429,22 +12589,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -12561,22 +12721,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -12765,7 +12925,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       dateCreated:
         description: 'The moment this Result was created'
@@ -12796,7 +12956,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-10-16 14:16:54'
+        example: '2020-10-30 12:31:41'
         format: date-time
       participant: []
       activity: []
@@ -13075,12 +13235,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-16 14:16:55'
+        example: '2020-10-30 12:31:41'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-16 14:16:55'
+        example: '2020-10-30 12:31:41'
     required: []
   AuditTrail-write:
     properties:
@@ -13128,12 +13288,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-16 14:16:55'
+        example: '2020-10-30 12:31:41'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-16 14:16:55'
+        example: '2020-10-30 12:31:41'
     required: []
   ChangeLog-write:
     properties:
