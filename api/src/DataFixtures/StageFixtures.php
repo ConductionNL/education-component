@@ -245,6 +245,7 @@ class StageFixtures extends Fixture
         $course->setOrganization($this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'organizations', 'id' => 'c571bdad-f34c-4e24-94e7-74629cfaccc9']));
         $course->setDescription('Hier komt een introductie over de tutorials.');
         $course->setAdditionalType('setup');
+        $course->setVideo('https://youtu.be/umb7BJLkhZc');
         //$prerequisites = [];
         //$prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
         //$course->setCoursePrerequisites($prerequisites);
@@ -342,6 +343,7 @@ class StageFixtures extends Fixture
         $course->setName('Architectuur en componenten');
         $course->setOrganization($this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'organizations', 'id' => 'c571bdad-f34c-4e24-94e7-74629cfaccc9']));
         $course->setDescription('Deze tutorial leert je scrum gericht werken door onder andere Github.');
+        $course->setVideo('https://youtu.be/s7wmiS2mSXY');
         $prerequisites = [];
         $prerequisites[0] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'courses', 'id'=>'4bb8034c-2f74-4637-801d-9c2c0cb43b92']);
         //$prerequisites[1] = $this->commonGroundService->cleanUrl(['component'=>'edu', 'type'=>'programs', 'id'=>'6f408aae-4a35-4ad3-a829-a87627714bca']);
