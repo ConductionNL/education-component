@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\ProgramRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -343,15 +344,15 @@ class Program
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="programs")
-     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program")
+     * @ApiSubresource(maxDepth=1)
      */
     private $participants;
 
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist"})
-     * @MaxDepth(1)
+     * @ApiSubresource(maxDepth=1)
      */
     private $courses;
 
@@ -711,7 +712,7 @@ class Program
     {
         if (!$this->participants->contains($participant)) {
             $this->participants[] = $participant;
-            $participant->Program($this);
+            $participant->setProgram($this);
         }
 
         return $this;
@@ -720,7 +721,7 @@ class Program
     public function removeParticipant(Participant $participant): self
     {
         if ($this->participants->contains($participant)) {
-            $this->participants->removeElement($participant);
+            $this->participants->setElement(null);
             $participant->Program($this);
         }
 

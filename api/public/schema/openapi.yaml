@@ -3410,6 +3410,709 @@ paths:
             schema:
               $ref: '#/components/schemas/Course-write'
         description: 'The updated Course resource'
+  '/courses/{id}/activities':
+    get:
+      tags:
+        - Activity
+        - Course
+      operationId: api_courses_activities_get_subresource
+      summary: 'Retrieves the collection of Activity resources.'
+      responses:
+        200:
+          description: 'Activity collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity-read'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+  '/courses/{id}/participants':
+    get:
+      tags:
+        - Participant
+        - Course
+      operationId: api_courses_participants_get_subresource
+      summary: 'Retrieves the collection of Participant resources.'
+      responses:
+        200:
+          description: 'Participant collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[person]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateCreated]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'dateCreated[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: person
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: results.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'results.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+  '/courses/{id}/results':
+    get:
+      tags:
+        - Result
+        - Course
+      operationId: api_courses_results_get_subresource
+      summary: 'Retrieves the collection of Result resources.'
+      responses:
+        200:
+          description: 'Result collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: participant.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'participant.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: activity.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'activity.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
   /education_events:
     get:
       tags:
@@ -5059,38 +5762,6 @@ paths:
           style: form
           explode: true
         -
-          name: courses.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'courses.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: programs.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'programs.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: results.id
           in: query
           required: false
@@ -5751,6 +6422,223 @@ paths:
             schema:
               $ref: '#/components/schemas/Participant-write'
         description: 'The updated Participant resource'
+  '/participants/{id}/results':
+    get:
+      tags:
+        - Result
+        - Participant
+      operationId: api_participants_results_get_subresource
+      summary: 'Retrieves the collection of Result resources.'
+      responses:
+        200:
+          description: 'Result collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Result-read'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: participant.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'participant.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: activity.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'activity.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
   /programs:
     get:
       tags:
@@ -6482,6 +7370,498 @@ paths:
             schema:
               $ref: '#/components/schemas/Program-write'
         description: 'The updated Program resource'
+  '/programs/{id}/courses':
+    get:
+      tags:
+        - Course
+        - Program
+      operationId: api_programs_courses_get_subresource
+      summary: 'Retrieves the collection of Course resources.'
+      responses:
+        200:
+          description: 'Course collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Course:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Course:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course-read'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: additionalType
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+  '/programs/{id}/participants':
+    get:
+      tags:
+        - Participant
+        - Program
+      operationId: api_programs_participants_get_subresource
+      summary: 'Retrieves the collection of Participant resources.'
+      responses:
+        200:
+          description: 'Participant collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant-read'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[person]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateCreated]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'dateCreated[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: person
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: results.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'results.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
   /questions:
     get:
       tags:
@@ -10796,10 +12176,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant-read'
         programs:
           type: array
           items:
@@ -10808,10 +12184,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-read'
-        activities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Activity-read'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -10900,10 +12272,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result-write'
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant-write'
         programs:
           type: array
           items:
@@ -10912,10 +12280,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-write'
-        activities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Activity-write'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -11024,10 +12388,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant:jsonld-read'
         programs:
           type: array
           items:
@@ -11036,10 +12396,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-read'
-        activities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Activity:jsonld-read'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -11137,10 +12493,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result:jsonld-write'
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant:jsonld-write'
         programs:
           type: array
           items:
@@ -11149,10 +12501,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-write'
-        activities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Activity:jsonld-write'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -11535,14 +12883,18 @@ components:
         person:
           description: 'The contact of this Participant.'
           type: string
-        programs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Program-read'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course-read'
+        program:
+          writeOnly: true
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Program-read'
+        course:
+          writeOnly: true
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-read'
         results:
           type: array
           items:
@@ -11568,14 +12920,18 @@ components:
         person:
           description: 'The contact of this Participant.'
           type: string
-        programs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Program-write'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course-write'
+        program:
+          writeOnly: true
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Program-write'
+        course:
+          writeOnly: true
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-write'
         results:
           type: array
           items:
@@ -11603,14 +12959,18 @@ components:
         person:
           description: 'The contact of this Participant.'
           type: string
-        programs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Program:jsonld-read'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course:jsonld-read'
+        program:
+          writeOnly: true
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Program:jsonld-read'
+        course:
+          writeOnly: true
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-read'
         results:
           type: array
           items:
@@ -11645,14 +13005,18 @@ components:
         person:
           description: 'The contact of this Participant.'
           type: string
-        programs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Program:jsonld-write'
-        courses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Course:jsonld-write'
+        program:
+          writeOnly: true
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Program:jsonld-write'
+        course:
+          writeOnly: true
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-write'
         results:
           type: array
           items:
@@ -12455,7 +13819,10 @@ components:
           format: date-time
           nullable: true
         participant:
-          $ref: '#/components/schemas/Participant-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Participant-read'
         activity:
           nullable: true
           anyOf:
@@ -12513,7 +13880,10 @@ components:
           format: date-time
           nullable: true
         participant:
-          $ref: '#/components/schemas/Participant-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Participant-write'
         activity:
           nullable: true
           anyOf:
@@ -12573,7 +13943,10 @@ components:
           format: date-time
           nullable: true
         participant:
-          $ref: '#/components/schemas/Participant:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Participant:jsonld-read'
         activity:
           nullable: true
           anyOf:
@@ -12640,7 +14013,10 @@ components:
           format: date-time
           nullable: true
         participant:
-          $ref: '#/components/schemas/Participant:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Participant:jsonld-write'
         activity:
           nullable: true
           anyOf:
@@ -13291,10 +14667,8 @@ definitions:
         example: 'Deze cursus leert je de basics van werken met scrum en Github. Based on schema.org'
         maxLength: 255
       results: []
-      participants: []
       programs: []
       educationEvents: []
-      activities: []
     required:
       - name
       - organization
@@ -13373,72 +14747,141 @@ definitions:
         example: 'Deze cursus leert je de basics van werken met scrum en Github. Based on schema.org'
         maxLength: 255
       results: []
-      participants: []
       programs: []
       educationEvents: []
-      activities: []
     required:
       - name
       - organization
-  Result-read:
+  EducationEvent-read:
     properties:
       id:
-        description: 'The UUID identifier of this Result.'
+        description: 'The UUID identifier of this EducationEvent.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this Result.'
+        description: 'The name of this EducationEvent.'
         type: string
-        example: Result1
+        example: 'Les 1 over Github'
         maxLength: 255
       description:
-        description: 'The description of this Result.'
+        description: 'The description of this EducationEvent.'
         type: string
-        example: 'Beschrijving van Result1.'
+        example: 'Dit is de eerste online les over Github.'
         maxLength: 255
-      completionDate:
-        description: 'The moment this Result had status: completed.'
+      assesses:
+        description: 'The assesses of this EducationEvent.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-11-17 12:52:37'
+        format: date-time
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-11-17 12:52:37'
         format: date-time
       dateCreated:
-        description: 'The moment this Result was created'
+        description: 'The moment this EducationEvent was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this Result was last Modified'
+        description: 'The moment this EducationEvent was last Modified'
         type: \Datetime
-      participant: []
-      activity: []
-      test: []
       course: []
-      program: []
-      reviews: []
     required:
       - name
-  Result-write:
+  EducationEvent-write:
     properties:
       name:
-        description: 'The name of this Result.'
+        description: 'The name of this EducationEvent.'
         type: string
-        example: Result1
+        example: 'Les 1 over Github'
         maxLength: 255
       description:
-        description: 'The description of this Result.'
+        description: 'The description of this EducationEvent.'
         type: string
-        example: 'Beschrijving van Result1.'
+        example: 'Dit is de eerste online les over Github.'
         maxLength: 255
-      completionDate:
-        description: 'The moment this Result had status: completed.'
+      assesses:
+        description: 'The assesses of this EducationEvent.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: beoordelingscriteria
+        maxLength: 255
+      educationalLevel:
+        description: 'The educationalLevel of this EducationEvent.'
+        type: string
+        example: beginner
+        maxLength: 255
+      teaches:
+        description: 'The teaches of this EducationEvent.'
+        type: string
+        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
+        maxLength: 255
+      startDate:
+        description: 'The moment this EducationEvent starts.'
+        type: string
+        example: '2020-11-17 12:52:37'
         format: date-time
-      participant: []
-      activity: []
-      test: []
+      endDate:
+        description: 'The moment this EducationEvent ends.'
+        type: string
+        example: '2020-11-17 12:52:37'
+        format: date-time
       course: []
-      program: []
-      reviews: []
+    required:
+      - name
+  Group-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Group.'
+        type: string
+        example: A213
+        maxLength: 255
+      description:
+        description: 'The description of this Group.'
+        type: string
+        example: 'Deze group werkt samen aan werken met scrum en Github.'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this Participant was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Participant was last Modified'
+        type: \Datetime
+      participants: []
+    required:
+      - name
+  Group-write:
+    properties:
+      name:
+        description: 'The name of this Group.'
+        type: string
+        example: A213
+        maxLength: 255
+      description:
+        description: 'The description of this Group.'
+        type: string
+        example: 'Deze group werkt samen aan werken met scrum en Github.'
+        maxLength: 255
+      participants: []
     required:
       - name
   Participant-read:
@@ -13459,8 +14902,8 @@ definitions:
       dateModified:
         description: 'The moment this Participant was last Modified'
         type: \Datetime
-      programs: []
-      courses: []
+      program: []
+      course: []
       results: []
     required:
       - person
@@ -13471,8 +14914,8 @@ definitions:
         type: string
         example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
         maxLength: 255
-      programs: []
-      courses: []
+      program: []
+      course: []
       results: []
     required:
       - person
@@ -13496,22 +14939,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13628,22 +15071,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13739,126 +15182,6 @@ definitions:
       results: []
     required:
       - name
-  Test-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Test.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this Test.'
-        type: string
-        example: Test1
-        maxLength: 255
-      description:
-        description: 'The description of this Test.'
-        type: string
-        example: 'Beschrijving van Test1.'
-        maxLength: 255
-      needsReview:
-        description: 'Denotes if this test needs a review with a rating before it can be completed.'
-        type: bool
-        example: 'true'
-      dateCreated:
-        description: 'The moment this Test was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Test was last Modified'
-        type: \Datetime
-      results: []
-      activity:
-        description: 'The activity that this test belongs to'
-        type: \Activity
-      stages:
-        description: 'The stages of this test'
-        type: array
-    required:
-      - name
-  Test-write:
-    properties:
-      name:
-        description: 'The name of this Test.'
-        type: string
-        example: Test1
-        maxLength: 255
-      description:
-        description: 'The description of this Test.'
-        type: string
-        example: 'Beschrijving van Test1.'
-        maxLength: 255
-      needsReview:
-        description: 'Denotes if this test needs a review with a rating before it can be completed.'
-        type: bool
-        example: 'true'
-      results: []
-      activity:
-        description: 'The activity that this test belongs to'
-        type: \Activity
-      stages:
-        description: 'The stages of this test'
-        type: array
-    required:
-      - name
-  Stage-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Stage.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this Stage.'
-        type: string
-        example: Stage1
-        maxLength: 255
-      description:
-        description: 'The description of this Stage.'
-        type: string
-        example: 'Beschrijving van Stage1.'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this Stage was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Stage was last Modified'
-        type: \Datetime
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      test:
-        description: 'The test that this stage belongs to'
-        type: \Test
-      questions:
-        description: 'the questions of this stage'
-        type: \ArrayCollection
-    required:
-      - name
-      - orderNumber
-  Stage-write:
-    properties:
-      name:
-        description: 'The name of this Stage.'
-        type: string
-        example: Stage1
-        maxLength: 255
-      description:
-        description: 'The description of this Stage.'
-        type: string
-        example: 'Beschrijving van Stage1.'
-        maxLength: 255
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      test:
-        description: 'The test that this stage belongs to'
-        type: \Test
-      questions:
-        description: 'the questions of this stage'
-        type: \ArrayCollection
-    required:
-      - name
-      - orderNumber
   Question-read:
     properties:
       id:
@@ -13932,6 +15255,67 @@ definitions:
       - description
       - answer
       - orderNumber
+  Result-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Result.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Result.'
+        type: string
+        example: Result1
+        maxLength: 255
+      description:
+        description: 'The description of this Result.'
+        type: string
+        example: 'Beschrijving van Result1.'
+        maxLength: 255
+      completionDate:
+        description: 'The moment this Result had status: completed.'
+        type: string
+        example: '2020-11-17 12:52:37'
+        format: date-time
+      dateCreated:
+        description: 'The moment this Result was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Result was last Modified'
+        type: \Datetime
+      participant: []
+      activity: []
+      test: []
+      course: []
+      program: []
+      reviews: []
+    required:
+      - name
+  Result-write:
+    properties:
+      name:
+        description: 'The name of this Result.'
+        type: string
+        example: Result1
+        maxLength: 255
+      description:
+        description: 'The description of this Result.'
+        type: string
+        example: 'Beschrijving van Result1.'
+        maxLength: 255
+      completionDate:
+        description: 'The moment this Result had status: completed.'
+        type: string
+        example: '2020-11-17 12:52:37'
+        format: date-time
+      participant: []
+      activity: []
+      test: []
+      course: []
+      program: []
+      reviews: []
+    required:
+      - name
   Review-read:
     properties:
       id:
@@ -13977,136 +15361,124 @@ definitions:
       result: []
     required:
       - name
-  EducationEvent-read:
+  Stage-read:
     properties:
       id:
-        description: 'The UUID identifier of this EducationEvent.'
+        description: 'The UUID identifier of this Stage.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this EducationEvent.'
+        description: 'The name of this Stage.'
         type: string
-        example: 'Les 1 over Github'
+        example: Stage1
         maxLength: 255
       description:
-        description: 'The description of this EducationEvent.'
+        description: 'The description of this Stage.'
         type: string
-        example: 'Dit is de eerste online les over Github.'
+        example: 'Beschrijving van Stage1.'
         maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
-        type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-11-16 12:41:01'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-11-16 12:41:01'
-        format: date-time
       dateCreated:
-        description: 'The moment this EducationEvent was created'
+        description: 'The moment this Stage was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this EducationEvent was last Modified'
+        description: 'The moment this Stage was last Modified'
         type: \Datetime
-      course: []
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      test:
+        description: 'The test that this stage belongs to'
+        type: \Test
+      questions:
+        description: 'the questions of this stage'
+        type: \ArrayCollection
     required:
       - name
-  EducationEvent-write:
+      - orderNumber
+  Stage-write:
     properties:
       name:
-        description: 'The name of this EducationEvent.'
+        description: 'The name of this Stage.'
         type: string
-        example: 'Les 1 over Github'
+        example: Stage1
         maxLength: 255
       description:
-        description: 'The description of this EducationEvent.'
+        description: 'The description of this Stage.'
         type: string
-        example: 'Dit is de eerste online les over Github.'
+        example: 'Beschrijving van Stage1.'
         maxLength: 255
-      assesses:
-        description: 'The assesses of this EducationEvent.'
-        type: string
-        example: beoordelingscriteria
-        maxLength: 255
-      educationalLevel:
-        description: 'The educationalLevel of this EducationEvent.'
-        type: string
-        example: beginner
-        maxLength: 255
-      teaches:
-        description: 'The teaches of this EducationEvent.'
-        type: string
-        example: 'In deze eerste les zal je de basics leren van Github zoals het clonen van en repository.'
-        maxLength: 255
-      startDate:
-        description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2020-11-16 12:41:01'
-        format: date-time
-      endDate:
-        description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2020-11-16 12:41:01'
-        format: date-time
-      course: []
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      test:
+        description: 'The test that this stage belongs to'
+        type: \Test
+      questions:
+        description: 'the questions of this stage'
+        type: \ArrayCollection
     required:
       - name
-  Group-read:
+      - orderNumber
+  Test-read:
     properties:
       id:
-        description: 'The UUID identifier of this Participant.'
+        description: 'The UUID identifier of this Test.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this Group.'
+        description: 'The name of this Test.'
         type: string
-        example: A213
+        example: Test1
         maxLength: 255
       description:
-        description: 'The description of this Group.'
+        description: 'The description of this Test.'
         type: string
-        example: 'Deze group werkt samen aan werken met scrum en Github.'
+        example: 'Beschrijving van Test1.'
         maxLength: 255
+      needsReview:
+        description: 'Denotes if this test needs a review with a rating before it can be completed.'
+        type: bool
+        example: 'true'
       dateCreated:
-        description: 'The moment this Participant was created'
+        description: 'The moment this Test was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this Participant was last Modified'
+        description: 'The moment this Test was last Modified'
         type: \Datetime
-      participants: []
+      results: []
+      activity:
+        description: 'The activity that this test belongs to'
+        type: \Activity
+      stages:
+        description: 'The stages of this test'
+        type: array
     required:
       - name
-  Group-write:
+  Test-write:
     properties:
       name:
-        description: 'The name of this Group.'
+        description: 'The name of this Test.'
         type: string
-        example: A213
+        example: Test1
         maxLength: 255
       description:
-        description: 'The description of this Group.'
+        description: 'The description of this Test.'
         type: string
-        example: 'Deze group werkt samen aan werken met scrum en Github.'
+        example: 'Beschrijving van Test1.'
         maxLength: 255
-      participants: []
+      needsReview:
+        description: 'Denotes if this test needs a review with a rating before it can be completed.'
+        type: bool
+        example: 'true'
+      results: []
+      activity:
+        description: 'The activity that this test belongs to'
+        type: \Activity
+      stages:
+        description: 'The stages of this test'
+        type: array
     required:
       - name
   AuditTrail-read:
@@ -14213,12 +15585,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
     required: []
   AuditTrail-write:
     properties:
@@ -14266,12 +15638,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-16 12:41:01'
+        example: '2020-11-17 12:52:37'
     required: []
   ChangeLog-write:
     properties:
@@ -14295,9 +15667,15 @@ tags:
       
       
   -
-    name: Result
+    name: EducationEvent
     description: |
+      An EducationEvent is a (online) meeting, college etc. of a course.
       
+      
+  -
+    name: Group
+    description: |
+      An activity like a class on a cource.
       
       
   -
@@ -14313,19 +15691,13 @@ tags:
       
       
   -
-    name: Test
-    description: |
-      
-      
-      
-  -
-    name: Stage
-    description: |
-      A stage within a test.
-      
-      
-  -
     name: Question
+    description: |
+      
+      
+      
+  -
+    name: Result
     description: |
       
       
@@ -14337,15 +15709,15 @@ tags:
       
       
   -
-    name: EducationEvent
+    name: Stage
     description: |
-      An EducationEvent is a (online) meeting, college etc. of a course.
+      A stage within a test.
       
       
   -
-    name: Group
+    name: Test
     description: |
-      An activity like a class on a cource.
+      
       
       
   -

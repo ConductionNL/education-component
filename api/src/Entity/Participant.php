@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
@@ -66,22 +67,22 @@ class Participant
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Program::class, inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $programs;
+    private $program;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $courses;
+    private $course;
 
     /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", orphanRemoval=true)
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant")
+     * @ApiSubresource(maxDepth=1)
      */
     private $results;
 
@@ -110,10 +111,8 @@ class Participant
 
     public function __construct()
     {
-        $this->programs = new ArrayCollection();
-        $this->courses = new ArrayCollection();
-        $this->results = new ArrayCollection();
         $this->groups = new ArrayCollection();
+        $this->results = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -172,20 +171,9 @@ class Participant
         return $this->programs;
     }
 
-    public function addProgram(Program $program): self
+    public function setProgram(Program $program): self
     {
-        if (!$this->programs->contains($program)) {
-            $this->programs[] = $program;
-        }
-
-        return $this;
-    }
-
-    public function removeProgram(Program $program): self
-    {
-        if ($this->programs->contains($program)) {
-            $this->programs->removeElement($program);
-        }
+        $this->program = $program;
 
         return $this;
     }
@@ -198,20 +186,9 @@ class Participant
         return $this->courses;
     }
 
-    public function addCourse(Course $course): self
+    public function setCourse(Course $course): self
     {
-        if (!$this->courses->contains($course)) {
-            $this->courses[] = $course;
-        }
-
-        return $this;
-    }
-
-    public function removeCourse(Course $course): self
-    {
-        if ($this->courses->contains($course)) {
-            $this->courses->removeElement($course);
-        }
+        $this->course = $course;
 
         return $this;
     }

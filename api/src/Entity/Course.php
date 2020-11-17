@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\CourseRepository;
 use DateTime;
@@ -167,7 +168,7 @@ class Course
     private ?string $educationalCredentialAwarded;
 
     /**
-     * @MaxDepth(1)
+     * @ApiSubresource(maxDepth=1)
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="course")
      */
@@ -192,8 +193,8 @@ class Course
     private ?DateTime $dateModified;
 
     /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="courses")
+     * @ApiSubresource(maxDepth=1)
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course")
      * @MaxDepth(1)
      */
     private Collection $participants;
@@ -213,7 +214,7 @@ class Course
     private Collection $educationEvents;
 
     /**
-     * @Groups({"read","write"})
+     * @ApiSubresource(maxDepth=1)
      * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)
      */
@@ -532,7 +533,7 @@ class Course
     {
         if (!$this->participants->contains($participant)) {
             $this->participants[] = $participant;
-            $participant->addCourse($this);
+            $participant->setCourse($this);
         }
 
         return $this;
@@ -542,7 +543,7 @@ class Course
     {
         if ($this->participants->contains($participant)) {
             $this->participants->removeElement($participant);
-            $participant->removeCourse($this);
+            $participant->setCourse(null);
         }
 
         return $this;
