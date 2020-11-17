@@ -13,9 +13,7 @@ on:
             - development
 
 jobs:
-
     build:
-
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v1
@@ -73,9 +71,9 @@ jobs:
             #  run: docker-compose exec -T php bin/console doctrine:schema:validate
             - name: Security Checks
               run: docker-compose exec -T php composer req sensiolabs/security-checker
-            - name: Run Postman Tests
-              if: contains( github.ref, 'master' ) == false && contains( github.base_ref, 'master' ) == false
-              run: newman run api/public/schema/*.postman_collection.json
+            #- name: Run Postman Tests
+            #  if: contains( github.ref, 'master' ) == false && contains( github.base_ref, 'master' ) == false
+            #  run: newman run api/public/schema/*.postman_collection.json
             - name: Add docker tags
               if: github.ref == 'refs/heads/master'
               run: |
