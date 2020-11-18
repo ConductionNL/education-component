@@ -105,6 +105,7 @@ class Participant
     private $dateModified;
 
     /**
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
      */
     private $groups;
