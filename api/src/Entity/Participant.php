@@ -105,6 +105,7 @@ class Participant
     private $dateModified;
 
     /**
+     * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
      */
     private $groups;
@@ -163,12 +164,9 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection|Program[]
-     */
-    public function getPrograms(): Collection
+    public function getProgram()
     {
-        return $this->programs;
+        return $this->program;
     }
 
     public function setProgram(Program $program): self
@@ -178,12 +176,9 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection|Course[]
-     */
-    public function getCourses(): Collection
+    public function getCourse()
     {
-        return $this->courses;
+        return $this->course;
     }
 
     public function setCourse(Course $course): self
