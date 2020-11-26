@@ -102,6 +102,22 @@ paths:
                   $ref: '#/components/schemas/Activity-read'
       parameters:
         -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: page
           in: query
           required: false
@@ -3506,6 +3522,22 @@ paths:
           schema:
             type: string
         -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: page
           in: query
           required: false
@@ -3782,6 +3814,38 @@ paths:
             type: string
         -
           name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: program.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'program.id[]'
           in: query
           required: false
           schema:
@@ -5753,6 +5817,38 @@ paths:
             type: string
         -
           name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: program.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'program.id[]'
           in: query
           required: false
           schema:
@@ -7748,6 +7844,38 @@ paths:
             type: string
         -
           name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: program.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'program.id[]'
           in: query
           required: false
           schema:
@@ -12184,6 +12312,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-read'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity-read'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -12280,6 +12412,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-write'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity-write'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -12396,6 +12532,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-read'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity:jsonld-read'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -12501,6 +12641,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-write'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity:jsonld-write'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -12884,13 +13028,11 @@ components:
           description: 'The contact of this Participant.'
           type: string
         program:
-          writeOnly: true
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Program-read'
         course:
-          writeOnly: true
           nullable: true
           anyOf:
             -
@@ -12909,6 +13051,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group-read'
       required:
         - person
     Participant-write:
@@ -12921,13 +13067,11 @@ components:
           description: 'The contact of this Participant.'
           type: string
         program:
-          writeOnly: true
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Program-write'
         course:
-          writeOnly: true
           nullable: true
           anyOf:
             -
@@ -12936,6 +13080,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result-write'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group-write'
     'Participant:jsonld-read':
       type: object
       description: 'A Participant is a person who participates in a Course or an Program.'
@@ -12960,13 +13108,11 @@ components:
           description: 'The contact of this Participant.'
           type: string
         program:
-          writeOnly: true
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Program:jsonld-read'
         course:
-          writeOnly: true
           nullable: true
           anyOf:
             -
@@ -12985,6 +13131,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group:jsonld-read'
       required:
         - person
     'Participant:jsonld-write':
@@ -13006,13 +13156,11 @@ components:
           description: 'The contact of this Participant.'
           type: string
         program:
-          writeOnly: true
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Program:jsonld-write'
         course:
-          writeOnly: true
           nullable: true
           anyOf:
             -
@@ -13021,6 +13169,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result:jsonld-write'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group:jsonld-write'
     Program-read:
       type: object
       description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
@@ -14669,6 +14821,7 @@ definitions:
       results: []
       programs: []
       educationEvents: []
+      activities: []
     required:
       - name
       - organization
@@ -14749,6 +14902,7 @@ definitions:
       results: []
       programs: []
       educationEvents: []
+      activities: []
     required:
       - name
       - organization
@@ -14787,12 +14941,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -14833,12 +14987,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       course: []
     required:
@@ -14905,6 +15059,7 @@ definitions:
       program: []
       course: []
       results: []
+      groups: []
     required:
       - person
   Participant-write:
@@ -14917,6 +15072,7 @@ definitions:
       program: []
       course: []
       results: []
+      groups: []
     required:
       - person
   Program-read:
@@ -14939,22 +15095,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15071,22 +15227,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15275,7 +15431,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       dateCreated:
         description: 'The moment this Result was created'
@@ -15306,7 +15462,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
         format: date-time
       participant: []
       activity: []
@@ -15585,12 +15741,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
     required: []
   AuditTrail-write:
     properties:
@@ -15638,12 +15794,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-17 12:52:37'
+        example: '2020-11-20 14:31:56'
     required: []
   ChangeLog-write:
     properties:

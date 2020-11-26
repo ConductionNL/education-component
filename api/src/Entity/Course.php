@@ -214,6 +214,7 @@ class Course
     private Collection $educationEvents;
 
     /**
+     * @Groups({"read","write"})
      * @ApiSubresource(maxDepth=1)
      * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)
