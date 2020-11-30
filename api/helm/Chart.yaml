@@ -3,5 +3,8 @@ appVersion: V1.0
 description: 'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'
 name: edu
 version: 0.1.0
-home: edu.zaakonline.nl
-icon: edu.zaakonline.nl
+dependencies:
+    - name: postgresql
+      version: 8.6.4
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      condition: postgresql.enabled
