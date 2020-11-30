@@ -27,7 +27,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass=CourseRepository::class)
  *
- * @ApiFilter(SearchFilter::class, properties={"additionalType": "iexact"})
+ * @ApiFilter(SearchFilter::class, properties={"additionalType": "iexact", "organization": "iexact"})
  */
 class Course
 {
@@ -214,6 +214,7 @@ class Course
     private Collection $educationEvents;
 
     /**
+     * @Groups({"read","write"})
      * @ApiSubresource(maxDepth=1)
      * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)

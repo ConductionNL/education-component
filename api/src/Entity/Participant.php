@@ -33,7 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"person":"exact","courses.id":"exact","programs.id":"exact","results.id":"exact"})
+ * @ApiFilter(SearchFilter::class, properties={"person":"exact","course.id":"exact","program.id":"exact","results.id":"exact"})
  */
 class Participant
 {
@@ -164,12 +164,9 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection|Program[]
-     */
-    public function getPrograms(): Collection
+    public function getProgram()
     {
-        return $this->programs;
+        return $this->program;
     }
 
     public function setProgram(Program $program): self
@@ -179,12 +176,9 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection|Course[]
-     */
-    public function getCourses(): Collection
+    public function getCourse()
     {
-        return $this->courses;
+        return $this->course;
     }
 
     public function setCourse(Course $course): self

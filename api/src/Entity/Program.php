@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\ProgramRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -24,6 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
  * )
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
+ * @ApiFilter(SearchFilter::class, properties={"provider": "iexact"})
  */
 class Program
 {

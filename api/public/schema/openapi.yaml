@@ -102,6 +102,22 @@ paths:
                   $ref: '#/components/schemas/Activity-read'
       parameters:
         -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: page
           in: query
           required: false
@@ -3506,6 +3522,22 @@ paths:
           schema:
             type: string
         -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: page
           in: query
           required: false
@@ -3782,6 +3814,38 @@ paths:
             type: string
         -
           name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: program.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'program.id[]'
           in: query
           required: false
           schema:
@@ -5753,6 +5817,38 @@ paths:
             type: string
         -
           name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: program.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'program.id[]'
           in: query
           required: false
           schema:
@@ -7748,6 +7844,38 @@ paths:
             type: string
         -
           name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'course.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: program.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'program.id[]'
           in: query
           required: false
           schema:
@@ -12184,6 +12312,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-read'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity-read'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -12280,6 +12412,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent-write'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity-write'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -12396,6 +12532,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-read'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity:jsonld-read'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -12501,6 +12641,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EducationEvent:jsonld-write'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity:jsonld-write'
         skills:
           description: 'An array of URLs pointing to skills related to this course'
           type: array
@@ -12884,13 +13028,11 @@ components:
           description: 'The contact of this Participant.'
           type: string
         program:
-          writeOnly: true
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Program-read'
         course:
-          writeOnly: true
           nullable: true
           anyOf:
             -
@@ -12925,13 +13067,11 @@ components:
           description: 'The contact of this Participant.'
           type: string
         program:
-          writeOnly: true
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Program-write'
         course:
-          writeOnly: true
           nullable: true
           anyOf:
             -
@@ -12968,13 +13108,11 @@ components:
           description: 'The contact of this Participant.'
           type: string
         program:
-          writeOnly: true
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Program:jsonld-read'
         course:
-          writeOnly: true
           nullable: true
           anyOf:
             -
@@ -13018,13 +13156,11 @@ components:
           description: 'The contact of this Participant.'
           type: string
         program:
-          writeOnly: true
           nullable: true
           anyOf:
             -
               $ref: '#/components/schemas/Program:jsonld-write'
         course:
-          writeOnly: true
           nullable: true
           anyOf:
             -
@@ -14685,6 +14821,7 @@ definitions:
       results: []
       programs: []
       educationEvents: []
+      activities: []
     required:
       - name
       - organization
@@ -14765,6 +14902,7 @@ definitions:
       results: []
       programs: []
       educationEvents: []
+      activities: []
     required:
       - name
       - organization
