@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/edu-php) 
     - Datamodel: [postman](/schema/edu.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /activities:
@@ -2782,6 +2782,12 @@ paths:
           schema:
             type: string
         -
+          name: organization
+          in: query
+          required: false
+          schema:
+            type: string
+        -
           name: page
           in: query
           required: false
@@ -3759,6 +3765,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[status]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateOfAcceptance]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[motivation]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'dateCreated[before]'
           in: query
           required: false
@@ -3802,6 +3835,30 @@ paths:
             type: string
         -
           name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[strictly_after]'
           in: query
           required: false
           schema:
@@ -5762,6 +5819,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[status]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateOfAcceptance]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[motivation]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'dateCreated[before]'
           in: query
           required: false
@@ -5805,6 +5889,30 @@ paths:
             type: string
         -
           name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[strictly_after]'
           in: query
           required: false
           schema:
@@ -6822,6 +6930,12 @@ paths:
                   $ref: '#/components/schemas/Program-read'
       parameters:
         -
+          name: provider
+          in: query
+          required: false
+          schema:
+            type: string
+        -
           name: page
           in: query
           required: false
@@ -7568,6 +7682,12 @@ paths:
           schema:
             type: string
         -
+          name: organization
+          in: query
+          required: false
+          schema:
+            type: string
+        -
           name: page
           in: query
           required: false
@@ -7789,6 +7909,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[status]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateOfAcceptance]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[motivation]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'dateCreated[before]'
           in: query
           required: false
@@ -7832,6 +7979,30 @@ paths:
             type: string
         -
           name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateOfAcceptance[strictly_after]'
           in: query
           required: false
           schema:
@@ -13055,6 +13226,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Group-read'
+        status:
+          description: 'The status of this Participant.'
+          type: string
+          nullable: true
+        dateOfAcceptance:
+          description: 'The date of acceptance of this Participant.'
+          type: string
+          format: date-time
+          nullable: true
+        motivation:
+          description: 'The motivation of this Participant.'
+          type: string
+          nullable: true
       required:
         - person
     Participant-write:
@@ -13084,6 +13268,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Group-write'
+        status:
+          description: 'The status of this Participant.'
+          type: string
+          nullable: true
+        dateOfAcceptance:
+          description: 'The date of acceptance of this Participant.'
+          type: string
+          format: date-time
+          nullable: true
+        motivation:
+          description: 'The motivation of this Participant.'
+          type: string
+          nullable: true
     'Participant:jsonld-read':
       type: object
       description: 'A Participant is a person who participates in a Course or an Program.'
@@ -13135,6 +13332,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Group:jsonld-read'
+        status:
+          description: 'The status of this Participant.'
+          type: string
+          nullable: true
+        dateOfAcceptance:
+          description: 'The date of acceptance of this Participant.'
+          type: string
+          format: date-time
+          nullable: true
+        motivation:
+          description: 'The motivation of this Participant.'
+          type: string
+          nullable: true
       required:
         - person
     'Participant:jsonld-write':
@@ -13173,6 +13383,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Group:jsonld-write'
+        status:
+          description: 'The status of this Participant.'
+          type: string
+          nullable: true
+        dateOfAcceptance:
+          description: 'The date of acceptance of this Participant.'
+          type: string
+          format: date-time
+          nullable: true
+        motivation:
+          description: 'The motivation of this Participant.'
+          type: string
+          nullable: true
     Program-read:
       type: object
       description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
@@ -14941,12 +15164,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -14987,12 +15210,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       course: []
     required:
@@ -15056,6 +15279,18 @@ definitions:
       dateModified:
         description: 'The moment this Participant was last Modified'
         type: \Datetime
+      status:
+        description: 'The status of this Participant.'
+        type: string
+        example: pending
+      dateOfAcceptance:
+        description: 'The date of acceptance of this Participant.'
+        type: \Datetime
+        example: 15-10-2020
+      motivation:
+        description: 'The motivation of this Participant.'
+        type: string
+        example: 'I love learning.'
       program: []
       course: []
       results: []
@@ -15069,6 +15304,18 @@ definitions:
         type: string
         example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
         maxLength: 255
+      status:
+        description: 'The status of this Participant.'
+        type: string
+        example: pending
+      dateOfAcceptance:
+        description: 'The date of acceptance of this Participant.'
+        type: \Datetime
+        example: 15-10-2020
+      motivation:
+        description: 'The motivation of this Participant.'
+        type: string
+        example: 'I love learning.'
       program: []
       course: []
       results: []
@@ -15095,22 +15342,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15227,22 +15474,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15431,7 +15678,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       dateCreated:
         description: 'The moment this Result was created'
@@ -15462,7 +15709,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
         format: date-time
       participant: []
       activity: []
@@ -15741,12 +15988,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
     required: []
   AuditTrail-write:
     properties:
@@ -15794,12 +16041,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-30 12:40:13'
+        example: '2020-12-04 13:06:15'
     required: []
   ChangeLog-write:
     properties:

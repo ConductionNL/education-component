@@ -110,6 +110,37 @@ class Participant
      */
     private $groups;
 
+    /**
+     * @var string The status of this Participant.
+     *
+     * @example pending
+     *
+     * @Groups({"read", "write"})
+     * @Assert\Choice({"pending", "accepted", "rejected"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var Datetime The date of acceptance of this Participant.
+     *
+     * @example 15-10-2020
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateOfAcceptance;
+
+    /**
+     * @var string The motivation of this Participant.
+     *
+     * @example I love learning.
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $motivation;
+
     public function __construct()
     {
         $this->groups = new ArrayCollection();
@@ -243,6 +274,42 @@ class Participant
             $this->e->removeElement($groups);
             $groups->removeParticipant($this);
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getDateOfAcceptance(): ?\DateTimeInterface
+    {
+        return $this->dateOfAcceptance;
+    }
+
+    public function setDateOfAcceptance(?\DateTimeInterface $dateOfAcceptance): self
+    {
+        $this->dateOfAcceptance = $dateOfAcceptance;
+
+        return $this;
+    }
+
+    public function getMotivation(): ?string
+    {
+        return $this->motivation;
+    }
+
+    public function setMotivation(?string $motivation): self
+    {
+        $this->motivation = $motivation;
 
         return $this;
     }
