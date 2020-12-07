@@ -3,14 +3,37 @@ entries:
   edu:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2020-10-27T12:28:33.7191119Z"
+    created: "2020-12-07T14:49:32.5534987Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: 77cfa1dbecf33a65e9cc959b60e9bc9e9ff0a92c89b568864b218578d67e391b
+    digest: 23c2cf74b94858c0262f8381cb37d5cc02413e7e64cb2f3156f562ea68f9fb30
     home: edu.zaakonline.nl
     icon: edu.zaakonline.nl
     name: edu
     urls:
     - edu-0.1.0.tgz
     version: 0.1.0
-generated: "2020-10-27T12:28:33.6551098Z"
+  postgresql:
+  - apiVersion: v1
+    appVersion: 11.7.0
+    created: "2020-12-07T14:49:32.568125Z"
+    deprecated: true
+    description: DEPRECATED Chart for PostgreSQL, an object-relational database management
+      system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
+    digest: 00745b88e84403be696b7514c6e8c02710d81eb6074876b0700fa28fd47a9b43
+    home: https://www.postgresql.org/
+    icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-110x117.png
+    keywords:
+    - postgresql
+    - postgres
+    - database
+    - sql
+    - replication
+    - cluster
+    name: postgresql
+    sources:
+    - https://github.com/bitnami/bitnami-docker-postgresql
+    urls:
+    - charts/postgresql-8.6.4.tgz
+    version: 8.6.4
+generated: "2020-12-07T14:49:32.5465938Z"

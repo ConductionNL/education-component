@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\CourseRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -23,6 +26,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
  * )
  * @ORM\Entity(repositoryClass=CourseRepository::class)
+ *
+ * @ApiFilter(SearchFilter::class, properties={"additionalType": "iexact", "organization": "iexact"})
  */
 class Course
 {
@@ -38,7 +43,7 @@ class Course
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
+    private UuidInterface $id;
 
     /**
      * @var string The name of this Course.
@@ -52,7 +57,7 @@ class Course
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string The uri of the submitter (organization)
@@ -67,7 +72,7 @@ class Course
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
-    private $organization;
+    private string $organization;
 
     /**
      * @var string The description of this Course.
@@ -80,7 +85,17 @@ class Course
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $description;
+    private ?string $description;
+
+    /**
+     * @var string The actual content of this Course.
+     *
+     * @example Github is echt awsome
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $text;
 
     /**
      * @var string The courseCode of this Course.
@@ -93,7 +108,7 @@ class Course
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $courseCode;
+    private ?string $courseCode;
 
     /**
      * @var array The coursePrerequisites of this Course.
@@ -101,7 +116,7 @@ class Course
      * @Groups({"read", "write"})
      * @ORM\Column(type="array", nullable=true)
      */
-    private $coursePrerequisites;
+    private ?array $coursePrerequisites;
 
     /**
      * @var string An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.
@@ -114,7 +129,7 @@ class Course
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $hasCourseInstance;
+    private ?string $hasCourseInstance;
 
     /**
      * @var int The numberOfCredits of this Course.
@@ -124,7 +139,7 @@ class Course
      * @Groups({"read","write"})
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $numberOfCredits;
+    private ?int $numberOfCredits;
 
     /**
      * @var string A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.
@@ -137,7 +152,7 @@ class Course
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $occupationalCredentialAwarded;
+    private ?string $occupationalCredentialAwarded;
 
     /**
      * @var string A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.
@@ -150,14 +165,14 @@ class Course
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $educationalCredentialAwarded;
+    private ?string $educationalCredentialAwarded;
 
     /**
-     * @MaxDepth(1)
+     * @ApiSubresource(maxDepth=1)
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="course")
      */
-    private $results;
+    private Collection $results;
 
     /**
      * @var Datetime The moment this Course was created
@@ -166,7 +181,7 @@ class Course
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $dateCreated;
+    private ?DateTime $dateCreated;
 
     /**
      * @var Datetime The moment this Course was last Modified
@@ -175,35 +190,36 @@ class Course
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $dateModified;
+    private ?DateTime $dateModified;
 
     /**
-     * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="courses")
+     * @ApiSubresource(maxDepth=1)
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course")
      * @MaxDepth(1)
      */
-    private $participants;
+    private Collection $participants;
 
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Program::class, mappedBy="courses", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $programs;
+    private Collection $programs;
 
     /**
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity=EducationEvent::class, mappedBy="course", orphanRemoval=true, cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $educationEvents;
+    private Collection $educationEvents;
 
     /**
      * @Groups({"read","write"})
+     * @ApiSubresource(maxDepth=1)
      * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $activities;
+    private Collection $activities;
 
     /**
      * @var array An array of URLs pointing to skills related to this course
@@ -211,15 +227,63 @@ class Course
      * @ORM\Column(type="simple_array", nullable=true)
      * @Groups({"read","write"})
      */
-    private $skills = [];
+    private ?array $skills = [];
 
     /**
-     * @var array An array of URLs pointing to competences related to this course
+     * @var array An array of URLs pointing to competences this course teaches the participant
      *
      * @ORM\Column(type="simple_array", nullable=true)
      * @Groups({"read","write"})
      */
-    private $competences = [];
+    private ?array $competences = [];
+
+    /**
+     * @var array An array of URLs pointing to products from the pdc related to this course
+     *
+     * @ORM\Column(type="simple_array", nullable=true)
+     * @Groups({"read","write"})
+     */
+    private ?array $products = [];
+
+    /**
+     * @var string The Type of this course.
+     *
+     * @example Elearning, Readthrough, Skilltest.
+     *
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $additionalType;
+
+    /**
+     * @var string The url linking to a video which belongs to this course
+     *
+     * @example https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9
+     *
+     * @Assert\Url
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $video;
+
+    /**
+     * @var string The time Required to complete this Course.
+     *
+     * @example Deze cursus leert je de basics van werken met scrum en Github. Based on schema.org
+     *
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $timeRequired;
 
     public function __construct()
     {
@@ -274,6 +338,18 @@ class Course
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    public function setText(?string $text): self
+    {
+        $this->text = $text;
 
         return $this;
     }
@@ -398,6 +474,54 @@ class Course
         return $this;
     }
 
+    public function getProducts(): ?array
+    {
+        return $this->products;
+    }
+
+    public function setProducts(?array $products): self
+    {
+        $this->products = $products;
+
+        return $this;
+    }
+
+    public function getAdditionalType(): ?string
+    {
+        return $this->additionalType;
+    }
+
+    public function setAdditionalType(?string $additionalType): self
+    {
+        $this->additionalType = $additionalType;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?string $video): self
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    public function getTimeRequired(): ?string
+    {
+        return $this->timeRequired;
+    }
+
+    public function setTimeRequired(?string $timeRequired): self
+    {
+        $this->timeRequired = $timeRequired;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Participant[]
      */
@@ -410,7 +534,7 @@ class Course
     {
         if (!$this->participants->contains($participant)) {
             $this->participants[] = $participant;
-            $participant->addCourse($this);
+            $participant->setCourse($this);
         }
 
         return $this;
@@ -420,7 +544,7 @@ class Course
     {
         if ($this->participants->contains($participant)) {
             $this->participants->removeElement($participant);
-            $participant->removeCourse($this);
+            $participant->setCourse(null);
         }
 
         return $this;

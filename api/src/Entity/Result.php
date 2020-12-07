@@ -81,10 +81,9 @@ class Result
     private $completionDate;
 
     /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
+     * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="results")
-     * @ORM\JoinColumn(nullable=false)
+     * @MaxDepth(1)
      */
     private $participant;
 
@@ -194,12 +193,12 @@ class Result
         return $this;
     }
 
-    public function getParticipant(): ?Participant
+    public function getParticipant(): ?string
     {
         return $this->participant;
     }
 
-    public function setParticipant(?Participant $participant): self
+    public function setParticipant(Participant $participant): self
     {
         $this->participant = $participant;
 

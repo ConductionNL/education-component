@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
@@ -32,7 +33,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"person":"exact","courses.id":"exact","programs.id":"exact","results.id":"exact"})
+ * @ApiFilter(SearchFilter::class, properties={"person":"exact","course.id":"exact","program.id":"exact","results.id":"exact"})
  */
 class Participant
 {
@@ -66,22 +67,22 @@ class Participant
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Program::class, inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $programs;
+    private $program;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $courses;
+    private $course;
 
     /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", orphanRemoval=true)
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant")
+     * @ApiSubresource(maxDepth=1)
      */
     private $results;
 
@@ -103,11 +104,53 @@ class Participant
      */
     private $dateModified;
 
+    /**
+     * @var string The status of this Participant.
+     *
+     * @example pending
+     *
+     * @Groups({"read", "write"})
+     * @Assert\Choice({"pending", "accepted", "rejected"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var Datetime The date of acceptance of this Participant.
+     *
+     * @example 15-10-2020
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateOfAcceptance;
+
+    /**
+     * @var string The motivation of this Participant.
+     *
+     * @example I love learning.
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $motivation;
+
+    /**
+     * @var string The group(s) of this Participant.
+     *
+     * @example "/groups/id"
+     *
+     * @Groups({"read", "write"})
+     * @ORM\ManyToMany(targetEntity=Group::class, inversedBy="participants")
+     * @MaxDepth(1)
+     */
+    private $groupColumns;
+
     public function __construct()
     {
-        $this->programs = new ArrayCollection();
-        $this->courses = new ArrayCollection();
+        $this->groups = new ArrayCollection();
         $this->results = new ArrayCollection();
+        $this->groupColumns = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -158,54 +201,26 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection|Program[]
-     */
-    public function getPrograms(): Collection
+    public function getProgram()
     {
-        return $this->programs;
+        return $this->program;
     }
 
-    public function addProgram(Program $program): self
+    public function setProgram(Program $program): self
     {
-        if (!$this->programs->contains($program)) {
-            $this->programs[] = $program;
-        }
+        $this->program = $program;
 
         return $this;
     }
 
-    public function removeProgram(Program $program): self
+    public function getCourse()
     {
-        if ($this->programs->contains($program)) {
-            $this->programs->removeElement($program);
-        }
-
-        return $this;
+        return $this->course;
     }
 
-    /**
-     * @return Collection|Course[]
-     */
-    public function getCourses(): Collection
+    public function setCourse(Course $course): self
     {
-        return $this->courses;
-    }
-
-    public function addCourse(Course $course): self
-    {
-        if (!$this->courses->contains($course)) {
-            $this->courses[] = $course;
-        }
-
-        return $this;
-    }
-
-    public function removeCourse(Course $course): self
-    {
-        if ($this->courses->contains($course)) {
-            $this->courses->removeElement($course);
-        }
+        $this->course = $course;
 
         return $this;
     }
@@ -236,6 +251,68 @@ class Participant
             if ($result->getParticipant() === $this) {
                 $result->setParticipant(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getDateOfAcceptance(): ?\DateTimeInterface
+    {
+        return $this->dateOfAcceptance;
+    }
+
+    public function setDateOfAcceptance(?\DateTimeInterface $dateOfAcceptance): self
+    {
+        $this->dateOfAcceptance = $dateOfAcceptance;
+
+        return $this;
+    }
+
+    public function getMotivation(): ?string
+    {
+        return $this->motivation;
+    }
+
+    public function setMotivation(?string $motivation): self
+    {
+        $this->motivation = $motivation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getGroupColumns(): Collection
+    {
+        return $this->groupColumns;
+    }
+
+    public function addGroupColumn(Group $groupColumn): self
+    {
+        if (!$this->groupColumns->contains($groupColumn)) {
+            $this->groupColumns[] = $groupColumn;
+        }
+
+        return $this;
+    }
+
+    public function removeGroupColumn(Group $groupColumn): self
+    {
+        if ($this->groupColumns->contains($groupColumn)) {
+            $this->groupColumns->removeElement($groupColumn);
         }
 
         return $this;
