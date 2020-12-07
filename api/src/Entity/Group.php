@@ -163,6 +163,12 @@ class Group
     {
         if (!$this->participants->contains($participant)) {
             $this->participants[] = $participant;
+            $participant->addGroupColumn($this);
+        }
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
             $participant->setGroupColumn($this);
         }
 
