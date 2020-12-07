@@ -138,7 +138,7 @@ class Participant
     /**
      * @var string The group(s) of this Participant.
      *
-     * @example ["/groups/id"]
+     * @example "/groups/id"
      *
      * @Groups({"read", "write"})
      * @ORM\ManyToMany(targetEntity=Group::class, inversedBy="participants")

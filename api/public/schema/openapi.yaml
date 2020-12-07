@@ -13236,6 +13236,7 @@ components:
           type: string
           nullable: true
         groupColumns:
+          description: 'The group(s) of this Participant.'
           type: array
           items:
             $ref: '#/components/schemas/Group-read'
@@ -13278,6 +13279,7 @@ components:
           type: string
           nullable: true
         groupColumns:
+          description: 'The group(s) of this Participant.'
           type: array
           items:
             $ref: '#/components/schemas/Group-write'
@@ -13342,6 +13344,7 @@ components:
           type: string
           nullable: true
         groupColumns:
+          description: 'The group(s) of this Participant.'
           type: array
           items:
             $ref: '#/components/schemas/Group:jsonld-read'
@@ -13393,6 +13396,7 @@ components:
           type: string
           nullable: true
         groupColumns:
+          description: 'The group(s) of this Participant.'
           type: array
           items:
             $ref: '#/components/schemas/Group:jsonld-write'
@@ -15164,12 +15168,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -15210,12 +15214,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       course: []
     required:
@@ -15294,7 +15298,10 @@ definitions:
       program: []
       course: []
       results: []
-      groupColumns: []
+      groupColumns:
+        description: 'The group(s) of this Participant.'
+        type: string
+        example: '"/groups/id"'
     required:
       - person
   Participant-write:
@@ -15319,7 +15326,10 @@ definitions:
       program: []
       course: []
       results: []
-      groupColumns: []
+      groupColumns:
+        description: 'The group(s) of this Participant.'
+        type: string
+        example: '"/groups/id"'
     required:
       - person
   Program-read:
@@ -15342,22 +15352,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15474,22 +15484,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15678,7 +15688,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       dateCreated:
         description: 'The moment this Result was created'
@@ -15709,7 +15719,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
         format: date-time
       participant: []
       activity: []
@@ -15988,12 +15998,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
     required: []
   AuditTrail-write:
     properties:
@@ -16041,12 +16051,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-07 14:02:43'
+        example: '2020-12-07 14:51:13'
     required: []
   ChangeLog-write:
     properties:
