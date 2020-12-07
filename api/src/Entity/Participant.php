@@ -136,15 +136,11 @@ class Participant
     private $motivation;
 
     /**
-     * @var string The group(s) of this Participant.
-     *
-     * @example "/groups/id"
-     *
      * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity=Group::class, inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $groupColumns;
+    private $groupColumn;
 
     public function __construct()
     {
@@ -292,28 +288,14 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection|Group[]
-     */
-    public function getGroupColumns(): Collection
+    public function getGroupColumn(): ?Group
     {
-        return $this->groupColumns;
+        return $this->groupColumn;
     }
 
-    public function addGroupColumn(Group $groupColumn): self
+    public function setGroupColumn(?Group $groupColumn): self
     {
-        if (!$this->groupColumns->contains($groupColumn)) {
-            $this->groupColumns[] = $groupColumn;
-        }
-
-        return $this;
-    }
-
-    public function removeGroupColumn(Group $groupColumn): self
-    {
-        if ($this->groupColumns->contains($groupColumn)) {
-            $this->groupColumns->removeElement($groupColumn);
-        }
+        $this->groupColumn = $groupColumn;
 
         return $this;
     }
