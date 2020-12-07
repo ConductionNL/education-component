@@ -105,12 +105,6 @@ class Participant
     private $dateModified;
 
     /**
-     * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
-     */
-    private $groups;
-
-    /**
      * @var string The status of this Participant.
      *
      * @example pending
@@ -141,10 +135,22 @@ class Participant
      */
     private $motivation;
 
+    /**
+     * @var string The group(s) of this Participant.
+     *
+     * @example "/groups/id"
+     *
+     * @Groups({"read", "write"})
+     * @ORM\ManyToMany(targetEntity=Group::class, inversedBy="participants")
+     * @MaxDepth(1)
+     */
+    private $groupColumns;
+
     public function __construct()
     {
         $this->groups = new ArrayCollection();
         $this->results = new ArrayCollection();
+        $this->groupColumns = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -250,34 +256,6 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection|Group[]
-     */
-    public function getGroups(): Collection
-    {
-        return $this->groups;
-    }
-
-    public function addGroups(Group $groups): self
-    {
-        if (!$this->e->contains($groups)) {
-            $this->e[] = $groups;
-            $groups->addParticipant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGroups(Group $groups): self
-    {
-        if ($this->e->contains($groups)) {
-            $this->e->removeElement($groups);
-            $groups->removeParticipant($this);
-        }
-
-        return $this;
-    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -310,6 +288,32 @@ class Participant
     public function setMotivation(?string $motivation): self
     {
         $this->motivation = $motivation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getGroupColumns(): Collection
+    {
+        return $this->groupColumns;
+    }
+
+    public function addGroupColumn(Group $groupColumn): self
+    {
+        if (!$this->groupColumns->contains($groupColumn)) {
+            $this->groupColumns[] = $groupColumn;
+        }
+
+        return $this;
+    }
+
+    public function removeGroupColumn(Group $groupColumn): self
+    {
+        if ($this->groupColumns->contains($groupColumn)) {
+            $this->groupColumns->removeElement($groupColumn);
+        }
 
         return $this;
     }
