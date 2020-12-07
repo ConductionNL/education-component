@@ -13082,10 +13082,6 @@ components:
           description: 'The description of this Group.'
           type: string
           nullable: true
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant-read'
         dateCreated:
           description: 'The moment this Participant was created'
           type: string
@@ -13096,6 +13092,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-read'
       required:
         - name
     Group-write:
@@ -13142,10 +13142,6 @@ components:
           description: 'The description of this Group.'
           type: string
           nullable: true
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant:jsonld-read'
         dateCreated:
           description: 'The moment this Participant was created'
           type: string
@@ -13156,6 +13152,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-read'
       required:
         - name
     'Group:jsonld-write':
@@ -13222,10 +13222,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group-read'
         status:
           description: 'The status of this Participant.'
           type: string
@@ -13239,6 +13235,10 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
+        groupColumns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group-read'
       required:
         - person
     Participant-write:
@@ -13264,10 +13264,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result-write'
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group-write'
         status:
           description: 'The status of this Participant.'
           type: string
@@ -13281,6 +13277,10 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
+        groupColumns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group-write'
     'Participant:jsonld-read':
       type: object
       description: 'A Participant is a person who participates in a Course or an Program.'
@@ -13328,10 +13328,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group:jsonld-read'
         status:
           description: 'The status of this Participant.'
           type: string
@@ -13345,6 +13341,10 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
+        groupColumns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group:jsonld-read'
       required:
         - person
     'Participant:jsonld-write':
@@ -13379,10 +13379,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Result:jsonld-write'
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group:jsonld-write'
         status:
           description: 'The status of this Participant.'
           type: string
@@ -13396,6 +13392,10 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
+        groupColumns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group:jsonld-write'
     Program-read:
       type: object
       description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
@@ -15164,12 +15164,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -15210,12 +15210,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       course: []
     required:
@@ -15294,7 +15294,7 @@ definitions:
       program: []
       course: []
       results: []
-      groups: []
+      groupColumns: []
     required:
       - person
   Participant-write:
@@ -15319,7 +15319,7 @@ definitions:
       program: []
       course: []
       results: []
-      groups: []
+      groupColumns: []
     required:
       - person
   Program-read:
@@ -15342,22 +15342,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15474,22 +15474,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15678,7 +15678,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       dateCreated:
         description: 'The moment this Result was created'
@@ -15709,7 +15709,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
         format: date-time
       participant: []
       activity: []
@@ -15988,12 +15988,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
     required: []
   AuditTrail-write:
     properties:
@@ -16041,12 +16041,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-04 13:06:15'
+        example: '2020-12-07 14:02:43'
     required: []
   ChangeLog-write:
     properties:
