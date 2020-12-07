@@ -68,13 +68,6 @@ class Group
      */
     private $description;
 
-//    /**
-//     * @Groups({"read","write"})
-//     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="groups")
-//     * @MaxDepth(1)
-//     */
-//    private $participants;
-
     /**
      * @var Datetime The moment this Participant was created
      *
@@ -95,7 +88,7 @@ class Group
 
     /**
      * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="groupColumns")
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="groupColumn")
      * @MaxDepth(1)
      */
     private $participants;
@@ -170,7 +163,7 @@ class Group
     {
         if (!$this->participants->contains($participant)) {
             $this->participants[] = $participant;
-            $participant->addGroupColumn($this);
+            $participant->setGroupColumn($this);
         }
 
         return $this;
@@ -180,7 +173,10 @@ class Group
     {
         if ($this->participants->contains($participant)) {
             $this->participants->removeElement($participant);
-            $participant->removeGroupColumn($this);
+            // set the owning side to null (unless already changed)
+            if ($participant->getGroupColumn() === $this) {
+                $participant->setGroupColumn(null);
+            }
         }
 
         return $this;
