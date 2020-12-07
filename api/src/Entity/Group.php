@@ -158,31 +158,31 @@ class Group
         return $this;
     }
 
-/**
- * @return Collection|Participant[]
- */
-public function getParticipants(): Collection
-{
-    return $this->participants;
-}
-
-public function addParticipant(Participant $participant): self
-{
-    if (!$this->participants->contains($participant)) {
-        $this->participants[] = $participant;
-        $participant->addGroupColumn($this);
+    /**
+     * @return Collection|Participant[]
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
     }
 
-    return $this;
-}
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+            $participant->addGroupColumn($this);
+        }
 
-public function removeParticipant(Participant $participant): self
-{
-    if ($this->participants->contains($participant)) {
-        $this->participants->removeElement($participant);
-        $participant->removeGroupColumn($this);
+        return $this;
     }
 
-    return $this;
-}
+    public function removeParticipant(Participant $participant): self
+    {
+        if ($this->participants->contains($participant)) {
+            $this->participants->removeElement($participant);
+            $participant->removeGroupColumn($this);
+        }
+
+        return $this;
+    }
 }
