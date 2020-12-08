@@ -140,12 +140,12 @@ class Participant
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $groupColumn;
+    private $participantGroup;
 
     public function __construct()
     {
         $this->results = new ArrayCollection();
-        $this->groupColumns = new ArrayCollection();
+        $this->participantGroups = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -287,14 +287,14 @@ class Participant
         return $this;
     }
 
-    public function getGroupColumn(): ?Group
+    public function getParticipantGroup(): ?Group
     {
-        return $this->groupColumn;
+        return $this->participantGroup;
     }
 
-    public function setGroupColumn(?Group $groupColumn): self
+    public function setParticipantGroup(?Group $participantGroup): self
     {
-        $this->groupColumn = $groupColumn;
+        $this->participantGroup = $participantGroup;
 
         return $this;
     }
