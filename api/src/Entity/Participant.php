@@ -138,9 +138,10 @@ class Participant
     /**
      * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
+     * @ORM\Column(name="group_column", nullable=true);
      * @MaxDepth(1)
      */
-    private $groupColumn;
+    private $group;
 
     public function __construct()
     {
@@ -288,14 +289,14 @@ class Participant
         return $this;
     }
 
-    public function getGroupColumn(): ?Group
+    public function getGroup(): ?Group
     {
-        return $this->groupColumn;
+        return $this->group;
     }
 
-    public function setGroupColumn(?Group $groupColumn): self
+    public function setGroup(?Group $group): self
     {
-        $this->groupColumn = $groupColumn;
+        $this->group = $group;
 
         return $this;
     }
