@@ -3792,6 +3792,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[group]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'dateCreated[before]'
           in: query
           required: false
@@ -5838,6 +5847,15 @@ paths:
               - desc
         -
           name: 'order[motivation]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[group]'
           in: query
           required: false
           schema:
@@ -7928,6 +7946,15 @@ paths:
               - desc
         -
           name: 'order[motivation]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[group]'
           in: query
           required: false
           schema:
@@ -13235,11 +13262,9 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
-        groupColumn:
+        group:
+          type: string
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Group-read'
       required:
         - person
     Participant-write:
@@ -13278,11 +13303,9 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
-        groupColumn:
+        group:
+          type: string
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Group-write'
     'Participant:jsonld-read':
       type: object
       description: 'A Participant is a person who participates in a Course or an Program.'
@@ -13343,11 +13366,9 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
-        groupColumn:
+        group:
+          type: string
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Group:jsonld-read'
       required:
         - person
     'Participant:jsonld-write':
@@ -13395,11 +13416,9 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
-        groupColumn:
+        group:
+          type: string
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Group:jsonld-write'
     Program-read:
       type: object
       description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
@@ -15168,12 +15187,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -15214,12 +15233,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       course: []
     required:
@@ -15295,10 +15314,10 @@ definitions:
         description: 'The motivation of this Participant.'
         type: string
         example: 'I love learning.'
+      group: []
       program: []
       course: []
       results: []
-      groupColumn: []
     required:
       - person
   Participant-write:
@@ -15320,10 +15339,10 @@ definitions:
         description: 'The motivation of this Participant.'
         type: string
         example: 'I love learning.'
+      group: []
       program: []
       course: []
       results: []
-      groupColumn: []
     required:
       - person
   Program-read:
@@ -15346,22 +15365,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15478,22 +15497,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15682,7 +15701,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       dateCreated:
         description: 'The moment this Result was created'
@@ -15713,7 +15732,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
         format: date-time
       participant: []
       activity: []
@@ -15992,12 +16011,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
     required: []
   AuditTrail-write:
     properties:
@@ -16045,12 +16064,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-07 16:42:56'
+        example: '2020-12-08 08:45:26'
     required: []
   ChangeLog-write:
     properties:
