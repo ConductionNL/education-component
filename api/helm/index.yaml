@@ -3,10 +3,10 @@ entries:
   edu:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2020-12-08T09:01:51.7826476Z"
+    created: "2020-12-08T09:35:37.3735657Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: 6d77ec762421545d6376b1a10493b6abdfd5f89d59a50b1195ae8af9fe010140
+    digest: f58b27c958f700972ab9fc018ae36cd1e84512d9e2251f2ac05d6e8a175e05bc
     home: edu.zaakonline.nl
     icon: edu.zaakonline.nl
     name: edu
@@ -16,7 +16,7 @@ entries:
   postgresql:
   - apiVersion: v1
     appVersion: 11.7.0
-    created: "2020-12-08T09:01:51.791787Z"
+    created: "2020-12-08T09:35:37.384594Z"
     deprecated: true
     description: DEPRECATED Chart for PostgreSQL, an object-relational database management
       system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
@@ -36,4 +36,4 @@ entries:
     urls:
     - charts/postgresql-8.6.4.tgz
     version: 8.6.4
-generated: "2020-12-08T09:01:51.7775191Z"
+generated: "2020-12-08T09:35:37.3674698Z"

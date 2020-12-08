@@ -88,7 +88,7 @@ class Group
 
     /**
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="group")
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="groupColumn")
      * @MaxDepth(1)
      */
     private $participants;
@@ -163,7 +163,7 @@ class Group
     {
         if (!$this->participants->contains($participant)) {
             $this->participants[] = $participant;
-            $participant->setGroup($this);
+            $participant->setGroupColumn($this);
         }
 
         return $this;
@@ -174,8 +174,8 @@ class Group
         if ($this->participants->contains($participant)) {
             $this->participants->removeElement($participant);
             // set the owning side to null (unless already changed)
-            if ($participant->getGroup() === $this) {
-                $participant->setGroup(null);
+            if ($participant->getGroupColumn() === $this) {
+                $participant->setGroupColumn(null);
             }
         }
 
