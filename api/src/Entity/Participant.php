@@ -145,9 +145,7 @@ class Participant
 
     public function __construct()
     {
-        $this->groups = new ArrayCollection();
         $this->results = new ArrayCollection();
-        $this->groupColumns = new ArrayCollection();
     }
 
     public function getId(): Uuid
