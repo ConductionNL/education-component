@@ -26,7 +26,10 @@ outputTypes:
   - text/html
 
 platforms:
-  - web
+    - web
+    - haven
+    - nlx
+    - gaia-x
 
 categories:
   - it-development 
@@ -113,4 +116,7 @@ dependsOn:
   open:
     - name: Kubernetes
       versionMin: "1.15.5-do.1"
-
+      
+installations:
+    - type: helm
+      url: "https://github.com/ConductionNL/education-component/raw/master/api/helm/edu-0.1.0.tgz"
