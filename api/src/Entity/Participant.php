@@ -105,15 +105,47 @@ class Participant
     private $dateModified;
 
     /**
+     * @var string The status of this Participant.
+     *
+     * @example pending
+     *
      * @Groups({"read", "write"})
-     * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
+     * @Assert\Choice({"pending", "accepted", "rejected"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $groups;
+    private $status;
+
+    /**
+     * @var Datetime The date of acceptance of this Participant.
+     *
+     * @example 15-10-2020
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateOfAcceptance;
+
+    /**
+     * @var string The motivation of this Participant.
+     *
+     * @example I love learning.
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $motivation;
+
+    /**
+     * @Groups({"read", "write"})
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
+     * @MaxDepth(1)
+     */
+    private $participantGroup;
 
     public function __construct()
     {
-        $this->groups = new ArrayCollection();
         $this->results = new ArrayCollection();
+        $this->participantGroups = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -219,30 +251,50 @@ class Participant
         return $this;
     }
 
-    /**
-     * @return Collection|Group[]
-     */
-    public function getGroups(): Collection
+    public function getStatus(): ?string
     {
-        return $this->groups;
+        return $this->status;
     }
 
-    public function addGroups(Group $groups): self
+    public function setStatus(?string $status): self
     {
-        if (!$this->e->contains($groups)) {
-            $this->e[] = $groups;
-            $groups->addParticipant($this);
-        }
+        $this->status = $status;
 
         return $this;
     }
 
-    public function removeGroups(Group $groups): self
+    public function getDateOfAcceptance(): ?\DateTimeInterface
     {
-        if ($this->e->contains($groups)) {
-            $this->e->removeElement($groups);
-            $groups->removeParticipant($this);
-        }
+        return $this->dateOfAcceptance;
+    }
+
+    public function setDateOfAcceptance(?\DateTimeInterface $dateOfAcceptance): self
+    {
+        $this->dateOfAcceptance = $dateOfAcceptance;
+
+        return $this;
+    }
+
+    public function getMotivation(): ?string
+    {
+        return $this->motivation;
+    }
+
+    public function setMotivation(?string $motivation): self
+    {
+        $this->motivation = $motivation;
+
+        return $this;
+    }
+
+    public function getParticipantGroup(): ?Group
+    {
+        return $this->participantGroup;
+    }
+
+    public function setParticipantGroup(?Group $participantGroup): self
+    {
+        $this->participantGroup = $participantGroup;
 
         return $this;
     }
