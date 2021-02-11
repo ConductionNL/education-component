@@ -120,3 +120,4 @@ dependsOn:
 installations:
     - type: helm
       url: "https://raw.githubusercontent.com/ConductionNL/education-component/master/api/helm/"
+
