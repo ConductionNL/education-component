@@ -193,7 +193,7 @@ class Result
         return $this;
     }
 
-    public function getParticipant(): ?string
+    public function getParticipant(): ?Participant
     {
         return $this->participant;
     }
