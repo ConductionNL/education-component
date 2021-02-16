@@ -100,13 +100,6 @@ class Activity
     private $educationalUse;
 
     /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="activity")
-     */
-    private Collection $results;
-
-    /**
      * @var Datetime The moment this Activity was created
      *
      * @Groups({"read"})
@@ -133,7 +126,6 @@ class Activity
 
     public function __construct()
     {
-        $this->results = new ArrayCollection();
         $this->tests = new ArrayCollection();
     }
 
@@ -205,37 +197,6 @@ class Activity
     public function setEducationalUse(string $educationalUse): self
     {
         $this->educationalUse = $educationalUse;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Result[]
-     */
-    public function getResults(): Collection
-    {
-        return $this->results;
-    }
-
-    public function addResult(Result $result): self
-    {
-        if (!$this->results->contains($result)) {
-            $this->results[] = $result;
-            $result->setActivity($this);
-        }
-
-        return $this;
-    }
-
-    public function removeResult(Result $result): self
-    {
-        if ($this->results->contains($result)) {
-            $this->results->removeElement($result);
-            // set the owning side to null (unless already changed)
-            if ($result->getActivity() === $this) {
-                $result->setActivity(null);
-            }
-        }
 
         return $this;
     }

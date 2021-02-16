@@ -7395,22 +7395,6 @@ paths:
           style: form
           explode: true
         -
-          name: activity.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'activity.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: page
           in: query
           required: false
@@ -10276,10 +10260,6 @@ components:
         educationalUse:
           description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-read'
         dateCreated:
           description: 'The moment this Activity was created'
           type: string
@@ -10317,10 +10297,6 @@ components:
         educationalUse:
           description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-write'
         tests:
           type: array
           items:
@@ -10360,10 +10336,6 @@ components:
         educationalUse:
           description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-read'
         dateCreated:
           description: 'The moment this Activity was created'
           type: string
@@ -10410,10 +10382,6 @@ components:
         educationalUse:
           description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-write'
         tests:
           type: array
           items:
@@ -10861,10 +10829,6 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-read'
         dateCreated:
           description: 'The moment this Course was created'
           type: string
@@ -10971,10 +10935,6 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-write'
         programs:
           type: array
           items:
@@ -11081,10 +11041,6 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-read'
         dateCreated:
           description: 'The moment this Course was created'
           type: string
@@ -11200,10 +11156,6 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-write'
         programs:
           type: array
           items:
@@ -11932,10 +11884,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course-read'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-read'
         dateCreated:
           description: 'The moment this Program was created'
           type: string
@@ -12075,10 +12023,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course-write'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-write'
     'Program:jsonld-read':
       type: object
       description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
@@ -12220,10 +12164,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-read'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-read'
         dateCreated:
           description: 'The moment this Program was created'
           type: string
@@ -12372,10 +12312,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-write'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-write'
     Question-read:
       type: object
       description: ''
@@ -12602,26 +12538,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Participant-read'
-        activity:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Activity-read'
-        test:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Test-read'
-        course:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course-read'
-        program:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Program-read'
+        resource:
+          description: 'The resource of which this result is a result.'
+          type: string
         reviews:
           type: array
           items:
@@ -12638,11 +12557,13 @@ components:
           nullable: true
       required:
         - name
+        - resource
     Result-write:
       type: object
       description: ''
       required:
         - name
+        - resource
       properties:
         name:
           description: 'The name of this Result.'
@@ -12663,26 +12584,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Participant-write'
-        activity:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Activity-write'
-        test:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Test-write'
-        course:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course-write'
-        program:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Program-write'
+        resource:
+          description: 'The resource of which this result is a result.'
+          type: string
         reviews:
           type: array
           items:
@@ -12726,26 +12630,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Participant:jsonld-read'
-        activity:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Activity:jsonld-read'
-        test:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Test:jsonld-read'
-        course:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course:jsonld-read'
-        program:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Program:jsonld-read'
+        resource:
+          description: 'The resource of which this result is a result.'
+          type: string
         reviews:
           type: array
           items:
@@ -12762,11 +12649,13 @@ components:
           nullable: true
       required:
         - name
+        - resource
     'Result:jsonld-write':
       type: object
       description: ''
       required:
         - name
+        - resource
       properties:
         '@context':
           readOnly: true
@@ -12796,26 +12685,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Participant:jsonld-write'
-        activity:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Activity:jsonld-write'
-        test:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Test:jsonld-write'
-        course:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course:jsonld-write'
-        program:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Program:jsonld-write'
+        resource:
+          description: 'The resource of which this result is a result.'
+          type: string
         reviews:
           type: array
           items:
@@ -13167,10 +13039,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-read'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity-read'
@@ -13199,10 +13067,6 @@ components:
         needsReview:
           description: 'Denotes if this test needs a review with a rating before it can be completed.'
           type: boolean
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-write'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity-write'
@@ -13251,10 +13115,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-read'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity:jsonld-read'
@@ -13292,10 +13152,6 @@ components:
         needsReview:
           description: 'Denotes if this test needs a review with a rating before it can be completed.'
           type: boolean
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-write'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity:jsonld-write'
@@ -13334,7 +13190,6 @@ definitions:
         description: 'The moment this Activity was last Modified'
         type: \Datetime
       course: []
-      results: []
       tests: []
     required:
       - name
@@ -13356,7 +13211,6 @@ definitions:
         example: 'true'
       educationalUse: []
       course: []
-      results: []
       tests: []
     required:
       - name
@@ -13445,7 +13299,6 @@ definitions:
         type: string
         example: 'Deze cursus leert je de basics van werken met scrum en Github. Based on schema.org'
         maxLength: 255
-      results: []
       programs: []
       educationEvents: []
       activities: []
@@ -13526,7 +13379,6 @@ definitions:
         type: string
         example: 'Deze cursus leert je de basics van werken met scrum en Github. Based on schema.org'
         maxLength: 255
-      results: []
       programs: []
       educationEvents: []
       activities: []
@@ -13568,12 +13420,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -13614,12 +13466,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       course: []
     required:
@@ -13746,22 +13598,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13860,7 +13712,6 @@ definitions:
         type: \Datetime
       participants: []
       courses: []
-      results: []
     required:
       - name
   Program-write:
@@ -13878,22 +13729,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13986,7 +13837,6 @@ definitions:
         example: '15'
       participants: []
       courses: []
-      results: []
     required:
       - name
   Question-read:
@@ -14082,8 +13932,13 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
+      resource:
+        description: 'The resource of which this result is a result.'
+        type: string
+        example: 'https://zuid-drecht.nl/api/v1/edu/tests/{{uuid}}'
+        maxLength: 255
       dateCreated:
         description: 'The moment this Result was created'
         type: \Datetime
@@ -14091,13 +13946,10 @@ definitions:
         description: 'The moment this Result was last Modified'
         type: \Datetime
       participant: []
-      activity: []
-      test: []
-      course: []
-      program: []
       reviews: []
     required:
       - name
+      - resource
   Result-write:
     properties:
       name:
@@ -14113,16 +13965,18 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:44'
         format: date-time
+      resource:
+        description: 'The resource of which this result is a result.'
+        type: string
+        example: 'https://zuid-drecht.nl/api/v1/edu/tests/{{uuid}}'
+        maxLength: 255
       participant: []
-      activity: []
-      test: []
-      course: []
-      program: []
       reviews: []
     required:
       - name
+      - resource
   Review-read:
     properties:
       id:
@@ -14254,7 +14108,6 @@ definitions:
       dateModified:
         description: 'The moment this Test was last Modified'
         type: \Datetime
-      results: []
       activity:
         description: 'The activity that this test belongs to'
         type: \Activity
@@ -14279,7 +14132,6 @@ definitions:
         description: 'Denotes if this test needs a review with a rating before it can be completed.'
         type: bool
         example: 'true'
-      results: []
       activity:
         description: 'The activity that this test belongs to'
         type: \Activity
@@ -14392,12 +14244,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:45'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:45'
     required: []
   AuditTrail-write:
     properties:
@@ -14445,12 +14297,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:45'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-16 12:16:11'
+        example: '2021-02-16 12:36:45'
     required: []
   ChangeLog-write:
     properties:
