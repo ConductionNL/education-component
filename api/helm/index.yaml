@@ -3,10 +3,10 @@ entries:
   edu:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-02-11T11:25:58.0640717Z"
+    created: "2021-02-16T09:41:44.9163409Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: c92596be9f783619081b54f758bb0a29374dcbd0e49163724f34ba3b19eee31f
+    digest: 35ad7c3f8bb9a0d336306dfa684707a2b83c3dcf99c96de831f0e53cb35fb35f
     home: edu.zaakonline.nl
     icon: edu.zaakonline.nl
     name: edu
@@ -18,7 +18,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-02-11T11:25:58.0758194Z"
+    created: "2021-02-16T09:41:44.9292282Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -47,4 +47,4 @@ entries:
     urls:
     - charts/postgresql-10.1.1.tgz
     version: 10.1.1
-generated: "2021-02-11T11:25:58.0494989Z"
+generated: "2021-02-16T09:41:44.9017944Z"

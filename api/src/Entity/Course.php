@@ -168,7 +168,7 @@ class Course
     private ?string $educationalCredentialAwarded;
 
     /**
-     * @ApiSubresource(maxDepth=1)
+     * @MaxDepth(1)
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="course")
      */
@@ -193,7 +193,6 @@ class Course
     private ?DateTime $dateModified;
 
     /**
-     * @ApiSubresource(maxDepth=1)
      * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course")
      * @MaxDepth(1)
      */
@@ -215,7 +214,6 @@ class Course
 
     /**
      * @Groups({"read","write"})
-     * @ApiSubresource(maxDepth=1)
      * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)
      */

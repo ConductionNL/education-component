@@ -82,7 +82,7 @@ class Participant
     /**
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant")
-     * @ApiSubresource(maxDepth=1)
+     * @MaxDepth(1)
      */
     private $results;
 

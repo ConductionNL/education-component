@@ -348,14 +348,14 @@ class Program
     /**
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program")
-     * @ApiSubresource(maxDepth=1)
+     * @MaxDepth(1)
      */
     private $participants;
 
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist"})
-     * @ApiSubresource(maxDepth=1)
+     * @MaxDepth(1)
      */
     private $courses;
 
