@@ -91,7 +91,7 @@ class Group
      * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="participantGroup")
      * @MaxDepth(1)
      */
-    private $participants;
+    private Collection $participants;
 
     public function __construct()
     {

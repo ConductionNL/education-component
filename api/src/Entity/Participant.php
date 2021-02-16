@@ -70,21 +70,21 @@ class Participant
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $program;
+    private Program $program;
 
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $course;
+    private Course $course;
 
     /**
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant")
-     * @ApiSubresource(maxDepth=1)
+     * @MaxDepth(1)
      */
-    private $results;
+    private Collection $results;
 
     /**
      * @var Datetime The moment this Participant was created
@@ -140,12 +140,11 @@ class Participant
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private $participantGroup;
+    private Group $participantGroup;
 
     public function __construct()
     {
         $this->results = new ArrayCollection();
-        $this->participantGroups = new ArrayCollection();
     }
 
     public function getId(): Uuid
