@@ -88,32 +88,18 @@ class Result
     private $participant;
 
     /**
-     * @MaxDepth(1)
+     * @var string The resource of which this result is a result.
+     *
+     * @example https://zuid-drecht.nl/api/v1/edu/tests/{{uuid}}
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="results")
+     * @ORM\Column(type="string", length=255)
      */
-    private $activity;
-
-    /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Test::class, inversedBy="results")
-     */
-    private $test;
-
-    /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="results")
-     */
-    private $course;
-
-    /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="results")
-     */
-    private $program;
+    private $resource;
 
     /**
      * @MaxDepth(1)
@@ -205,50 +191,14 @@ class Result
         return $this;
     }
 
-    public function getActivity(): ?Activity
+    public function getResource(): ?string
     {
-        return $this->activity;
+        return $this->resource;
     }
 
-    public function setActivity(?Activity $activity): self
+    public function setResource(string $resource): self
     {
-        $this->activity = $activity;
-
-        return $this;
-    }
-
-    public function getTest(): ?Test
-    {
-        return $this->test;
-    }
-
-    public function setTest(?Test $test): self
-    {
-        $this->test = $test;
-
-        return $this;
-    }
-
-    public function getCourse(): ?Course
-    {
-        return $this->course;
-    }
-
-    public function setCourse(?Course $course): self
-    {
-        $this->course = $course;
-
-        return $this;
-    }
-
-    public function getProgram(): ?Program
-    {
-        return $this->program;
-    }
-
-    public function setProgram(?Program $program): self
-    {
-        $this->program = $program;
+        $this->resource = $resource;
 
         return $this;
     }
