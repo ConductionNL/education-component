@@ -88,7 +88,7 @@ class Activity
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="activities")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $course;
+    private Course $course;
 
     /**
      * Could be 'assignment', 'group work' or 'test'.
@@ -104,7 +104,7 @@ class Activity
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="activity")
      */
-    private $results;
+    private Collection $results;
 
     /**
      * @var Datetime The moment this Activity was created
@@ -129,7 +129,7 @@ class Activity
      * @ORM\OneToMany(targetEntity=Test::class, mappedBy="activity", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $tests;
+    private Collection $tests;
 
     public function __construct()
     {

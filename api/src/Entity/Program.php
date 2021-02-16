@@ -348,23 +348,23 @@ class Program
     /**
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program")
-     * @ApiSubresource(maxDepth=1)
+     * @MaxDepth(1)
      */
-    private $participants;
+    private Collection $participants;
 
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist"})
-     * @ApiSubresource(maxDepth=1)
+     * @MaxDepth(1)
      */
-    private $courses;
+    private Collection $courses;
 
     /**
      * @MaxDepth(1)
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="program")
      */
-    private $results;
+    private Collection $results;
 
     /**
      * @var Datetime The moment this Program was created
