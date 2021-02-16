@@ -120,7 +120,7 @@ class Result
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="result", orphanRemoval=true)
      */
-    private $reviews;
+    private Collection $reviews;
 
     /**
      * @var Datetime The moment this Result was created

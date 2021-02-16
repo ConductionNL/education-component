@@ -350,21 +350,21 @@ class Program
      * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program")
      * @MaxDepth(1)
      */
-    private $participants;
+    private Collection $participants;
 
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private $courses;
+    private Collection $courses;
 
     /**
      * @MaxDepth(1)
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=Result::class, mappedBy="program")
      */
-    private $results;
+    private Collection $results;
 
     /**
      * @var Datetime The moment this Program was created
