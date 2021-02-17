@@ -1,16 +1,16 @@
 openapi: 3.0.2
 info:
-  title: 'Education Component'
+  title: ''
   version: V1.0
   description: |
     API Details
-    - Component: Education Component
-    - Reference: edu
+    - Component: 
+    - Reference: education-component
     - Enviroment: dev
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/education-component) / [zip](https://github.com/ConductionNL/education-component/archive/master.zip)
-    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/edu-php) 
-    - Datamodel: [postman](schema/edu.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
+    - Docker Image: [online]() 
+    - Datamodel: [postman](schema/education-component.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
     Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
@@ -13420,12 +13420,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -13466,12 +13466,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       course: []
     required:
@@ -13598,22 +13598,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13729,22 +13729,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13932,7 +13932,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -13965,7 +13965,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-16 12:36:44'
+        example: '2021-02-17 21:37:54'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14244,12 +14244,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-16 12:36:45'
+        example: '2021-02-17 21:37:54'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-16 12:36:45'
+        example: '2021-02-17 21:37:54'
     required: []
   AuditTrail-write:
     properties:
@@ -14297,12 +14297,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-16 12:36:45'
+        example: '2021-02-17 21:37:54'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-16 12:36:45'
+        example: '2021-02-17 21:37:54'
     required: []
   ChangeLog-write:
     properties:
@@ -14410,7 +14410,7 @@ host: irc.zaakonline.nl
 servers:
   -
     name: zuid-drecht.nl
-    url: edu.dev.zuid-drecht.nl
+    url: education-component.dev.zuid-drecht.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
