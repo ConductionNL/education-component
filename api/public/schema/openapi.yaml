@@ -5,11 +5,11 @@ info:
   description: |
     API Details
     - Component: 
-    - Reference: education
+    - Reference: education-component
     - Enviroment: dev
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/education-component) / [zip](https://github.com/ConductionNL/education-component/archive/master.zip)
-    - Datamodel: [postman](schema/education.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
+    - Datamodel: [postman](schema/education-component.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
     Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
@@ -13471,12 +13471,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       person:
         description: 'The person of this education event.'
@@ -13524,12 +13524,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       person:
         description: 'The person of this education event.'
@@ -13663,22 +13663,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13794,22 +13794,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13997,7 +13997,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14030,7 +14030,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-18 15:24:59'
+        example: '2021-02-18 20:05:40'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14309,12 +14309,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-18 15:25:00'
+        example: '2021-02-18 20:05:40'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-18 15:25:00'
+        example: '2021-02-18 20:05:40'
     required: []
   AuditTrail-write:
     properties:
@@ -14362,12 +14362,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-18 15:25:00'
+        example: '2021-02-18 20:05:40'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-18 15:25:00'
+        example: '2021-02-18 20:05:40'
     required: []
   ChangeLog-write:
     properties:
@@ -14475,7 +14475,7 @@ host: irc.zaakonline.nl
 servers:
   -
     name: zuid-drecht.nl
-    url: education.dev.zuid-drecht.nl
+    url: education-component.dev.zuid-drecht.nl
 externalDocs:
   -
     description: 'OAS Documentatie'

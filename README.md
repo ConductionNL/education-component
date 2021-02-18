@@ -1,4 +1,4 @@
-# edu
+# education
 
 Description
 ----

@@ -1,9 +1,35 @@
 apiVersion: v1
 entries:
+  education:
+  - apiVersion: v1
+    appVersion: V1.0
+    created: "2021-02-18T20:04:28.1192024Z"
+    description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
+      beschikbaar.
+    digest: f9a9559932cd3167e3c19c1d1df2a554f4aaa698bb5e4651e7030fd3b9ac08e0
+    home: https://www.conduction.nl
+    icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
+    keywords:
+    - commonground
+    - haven
+    - nlx
+    - component
+    maintainers:
+    - email: ruben@conduction.nl
+      name: Ruben van der Linde
+    - email: info@conduction.nl
+      name: Conduction
+    name: education
+    sources:
+    - https://commonground.conduction.nl/
+    - https://www.commonground.nl/
+    urls:
+    - education-0.1.0.tgz
+    version: 0.1.0
   education-component:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-02-18T15:23:48.1670288Z"
+    created: "2021-02-18T20:04:28.1345215Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
     digest: 183192fd8063a0f04ec7de48914b87b71b358f921c082e6f53c67785c0200219
@@ -31,7 +57,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-02-18T15:23:48.1793404Z"
+    created: "2021-02-18T20:04:28.1469523Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -60,4 +86,4 @@ entries:
     urls:
     - charts/postgresql-10.1.1.tgz
     version: 10.1.1
-generated: "2021-02-18T15:23:48.1462321Z"
+generated: "2021-02-18T20:04:28.1077901Z"
