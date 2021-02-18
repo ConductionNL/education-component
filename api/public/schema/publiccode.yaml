@@ -1,6 +1,6 @@
 publiccodeYmlVersion: "0.2"
 
-name: education-component
+name: education
 applicationSuite: commonground
 url: "https://github.com/ConductionNL/education-component"
 landingURL: "edu.zaakonline.nl"
