@@ -3519,6 +3519,22 @@ paths:
                   $ref: '#/components/schemas/EducationEvent-read'
       parameters:
         -
+          name: person
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: page
           in: query
           required: false
@@ -11244,6 +11260,11 @@ components:
           type: string
           format: date-time
           nullable: true
+        person:
+          description: 'The person of this education event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
         dateCreated:
           description: 'The moment this EducationEvent was created'
           type: string
@@ -11255,14 +11276,19 @@ components:
           format: date-time
           nullable: true
         course:
-          $ref: '#/components/schemas/Course-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-read'
       required:
         - name
+        - person
     EducationEvent-write:
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
       required:
         - name
+        - person
       properties:
         name:
           description: 'The name of this EducationEvent.'
@@ -11297,8 +11323,16 @@ components:
           type: string
           format: date-time
           nullable: true
+        person:
+          description: 'The person of this education event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
         course:
-          $ref: '#/components/schemas/Course-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-write'
     'EducationEvent:jsonld-read':
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -11352,6 +11386,11 @@ components:
           type: string
           format: date-time
           nullable: true
+        person:
+          description: 'The person of this education event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
         dateCreated:
           description: 'The moment this EducationEvent was created'
           type: string
@@ -11363,14 +11402,19 @@ components:
           format: date-time
           nullable: true
         course:
-          $ref: '#/components/schemas/Course:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-read'
       required:
         - name
+        - person
     'EducationEvent:jsonld-write':
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
       required:
         - name
+        - person
       properties:
         '@context':
           readOnly: true
@@ -11414,8 +11458,16 @@ components:
           type: string
           format: date-time
           nullable: true
+        person:
+          description: 'The person of this education event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
         course:
-          $ref: '#/components/schemas/Course:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-write'
     Group-read:
       type: object
       description: 'An activity like a class on a cource.'
@@ -13420,13 +13472,19 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
+      person:
+        description: 'The person of this education event.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}}'
+        format: url
+        maxLength: 255
       dateCreated:
         description: 'The moment this EducationEvent was created'
         type: \Datetime
@@ -13436,6 +13494,7 @@ definitions:
       course: []
     required:
       - name
+      - person
   EducationEvent-write:
     properties:
       name:
@@ -13466,16 +13525,23 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
+      person:
+        description: 'The person of this education event.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}}'
+        format: url
+        maxLength: 255
       course: []
     required:
       - name
+      - person
   Group-read:
     properties:
       id:
@@ -13598,22 +13664,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13729,22 +13795,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13932,7 +13998,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -13965,7 +14031,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14244,12 +14310,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
     required: []
   AuditTrail-write:
     properties:
@@ -14297,12 +14363,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-17 21:37:54'
+        example: '2021-02-18 12:42:26'
     required: []
   ChangeLog-write:
     properties:
