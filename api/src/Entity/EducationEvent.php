@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\EducationEventRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,6 +23,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
  * )
  * @ORM\Entity(repositoryClass=EducationEventRepository::class)
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "person": "exact"
+ * })
  */
 class EducationEvent
 {
@@ -127,6 +132,21 @@ class EducationEvent
     private $endDate;
 
     /**
+     * @var string The person of this education event.
+     *
+     * @example https://cc.zuid-drecht.nl/people/{{uuid}}
+     *
+     * @Assert\Url
+     * @Assert\NotNull()
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $person;
+
+    /**
      * @var Datetime The moment this EducationEvent was created
      *
      * @Groups({"read"})
@@ -147,7 +167,6 @@ class EducationEvent
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="educationEvents")
-     * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
      */
     private $course;
@@ -244,6 +263,18 @@ class EducationEvent
     public function setEndDate(\DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getPerson(): ?string
+    {
+        return $this->person;
+    }
+
+    public function setPerson(string $person): self
+    {
+        $this->person = $person;
 
         return $this;
     }
