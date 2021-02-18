@@ -11,8 +11,8 @@ settings:
   repro: https://github.com/ConductionNL/education-component
   demo: edu.zaakonline.nl
   domain: zuid-drecht.nl
-  subdomain: edu
-  subpath: edu
+  subdomain: education-component
+  subpath: education-component
   subpathRouting: true
   env: dev
   web: false
