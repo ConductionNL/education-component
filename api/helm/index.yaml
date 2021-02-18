@@ -3,10 +3,10 @@ entries:
   education-component:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-02-18T14:33:26.1231761Z"
+    created: "2021-02-18T15:15:05.1900243Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: 19dc1791c580e2bd8c061d8c486e70a956d59da1cb991a8674e175e86a50ee49
+    digest: 7c322a6622e45a23412b9d5914705f5e565a0f0e56cf4664bca0dac72e70584a
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -31,7 +31,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-02-18T14:33:26.1367486Z"
+    created: "2021-02-18T15:15:05.2086118Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -60,4 +60,4 @@ entries:
     urls:
     - charts/postgresql-10.1.1.tgz
     version: 10.1.1
-generated: "2021-02-18T14:33:26.1139342Z"
+generated: "2021-02-18T15:15:05.1751352Z"
