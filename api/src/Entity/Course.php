@@ -168,13 +168,6 @@ class Course
     private ?string $educationalCredentialAwarded;
 
     /**
-     * @ApiSubresource(maxDepth=1)
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="course")
-     */
-    private Collection $results;
-
-    /**
      * @var Datetime The moment this Course was created
      *
      * @Groups({"read"})
@@ -193,7 +186,6 @@ class Course
     private ?DateTime $dateModified;
 
     /**
-     * @ApiSubresource(maxDepth=1)
      * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course")
      * @MaxDepth(1)
      */
@@ -215,7 +207,6 @@ class Course
 
     /**
      * @Groups({"read","write"})
-     * @ApiSubresource(maxDepth=1)
      * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)
      */
@@ -291,7 +282,6 @@ class Course
         $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
         $this->activities = new ArrayCollection();
-        $this->results = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -634,37 +624,6 @@ class Course
             // set the owning side to null (unless already changed)
             if ($activity->getCourse() === $this) {
                 $activity->setCourse(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Result[]
-     */
-    public function getResults(): Collection
-    {
-        return $this->results;
-    }
-
-    public function addResult(Result $result): self
-    {
-        if (!$this->results->contains($result)) {
-            $this->results[] = $result;
-            $result->setCourse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeResult(Result $result): self
-    {
-        if ($this->results->contains($result)) {
-            $this->results->removeElement($result);
-            // set the owning side to null (unless already changed)
-            if ($result->getCourse() === $this) {
-                $result->setCourse(null);
             }
         }
 

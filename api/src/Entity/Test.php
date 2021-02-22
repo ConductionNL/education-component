@@ -95,13 +95,6 @@ class Test
     private $dateModified;
 
     /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="test")
-     */
-    private $results;
-
-    /**
      * @var Activity The activity that this test belongs to
      *
      * @MaxDepth(1)
@@ -125,7 +118,6 @@ class Test
 
     public function __construct()
     {
-        $this->results = new ArrayCollection();
         $this->stages = new ArrayCollection();
     }
 
@@ -197,37 +189,6 @@ class Test
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Result[]
-     */
-    public function getResults(): Collection
-    {
-        return $this->results;
-    }
-
-    public function addResult(Result $result): self
-    {
-        if (!$this->results->contains($result)) {
-            $this->results[] = $result;
-            $result->setTest($this);
-        }
-
-        return $this;
-    }
-
-    public function removeResult(Result $result): self
-    {
-        if ($this->results->contains($result)) {
-            $this->results->removeElement($result);
-            // set the owning side to null (unless already changed)
-            if ($result->getTest() === $this) {
-                $result->setTest(null);
-            }
-        }
 
         return $this;
     }

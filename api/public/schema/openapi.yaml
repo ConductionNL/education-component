@@ -1,16 +1,15 @@
 openapi: 3.0.2
 info:
-  title: 'Education Component'
+  title: ''
   version: V1.0
   description: |
     API Details
-    - Component: Education Component
-    - Reference: edu
+    - Component: 
+    - Reference: education-component
     - Enviroment: dev
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/education-component) / [zip](https://github.com/ConductionNL/education-component/archive/master.zip)
-    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/edu-php) 
-    - Datamodel: [postman](/schema/edu.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
+    - Datamodel: [postman](schema/education-component.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
     Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
@@ -32,7 +31,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -42,7 +41,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -779,7 +778,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/AuditTrail:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -789,7 +788,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/AuditTrail:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -1800,7 +1799,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/ChangeLog:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -1810,7 +1809,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/ChangeLog:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -2706,7 +2705,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Course:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -2716,7 +2715,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Course:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -3432,808 +3431,6 @@ paths:
             schema:
               $ref: '#/components/schemas/Course-write'
         description: 'The updated Course resource'
-  '/courses/{id}/activities':
-    get:
-      tags:
-        - Activity
-        - Course
-      operationId: api_courses_activities_get_subresource
-      summary: 'Retrieves the collection of Activity resources.'
-      responses:
-        200:
-          description: 'Activity collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/json+ld:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Activity:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            application/json+vnd.api:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Activity-read'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: course.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'course.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-            default: 1
-        -
-          name: limit
-          in: query
-          required: false
-          description: 'The number of items per page'
-          schema:
-            type: integer
-            default: 30
-            minimum: 0
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
-  '/courses/{id}/participants':
-    get:
-      tags:
-        - Participant
-        - Course
-      operationId: api_courses_participants_get_subresource
-      summary: 'Retrieves the collection of Participant resources.'
-      responses:
-        200:
-          description: 'Participant collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/json+ld:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/json+vnd.api:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: 'order[id]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[person]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[dateCreated]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[dateModified]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[status]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[dateOfAcceptance]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[motivation]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'dateCreated[before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[strictly_before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[strictly_after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[strictly_before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[strictly_after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateOfAcceptance[before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateOfAcceptance[strictly_before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateOfAcceptance[after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateOfAcceptance[strictly_after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: person
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'person[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: course.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'course.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: program.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'program.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: results.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'results.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-            default: 1
-        -
-          name: limit
-          in: query
-          required: false
-          description: 'The number of items per page'
-          schema:
-            type: integer
-            default: 30
-            minimum: 0
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
-  '/courses/{id}/results':
-    get:
-      tags:
-        - Result
-        - Course
-      operationId: api_courses_results_get_subresource
-      summary: 'Retrieves the collection of Result resources.'
-      responses:
-        200:
-          description: 'Result collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/json+ld:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/json+vnd.api:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: participant.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'participant.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: activity.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'activity.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-            default: 1
-        -
-          name: limit
-          in: query
-          required: false
-          description: 'The number of items per page'
-          schema:
-            type: integer
-            default: 30
-            minimum: 0
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
   /education_events:
     get:
       tags:
@@ -4251,7 +3448,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/EducationEvent:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -4261,7 +3458,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/EducationEvent:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -4320,6 +3517,22 @@ paths:
                 items:
                   $ref: '#/components/schemas/EducationEvent-read'
       parameters:
+        -
+          name: person
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'person[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
         -
           name: page
           in: query
@@ -4982,7 +4195,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Group:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -4992,7 +4205,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Group:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -5713,7 +4926,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -5723,7 +4936,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -6626,223 +5839,6 @@ paths:
             schema:
               $ref: '#/components/schemas/Participant-write'
         description: 'The updated Participant resource'
-  '/participants/{id}/results':
-    get:
-      tags:
-        - Result
-        - Participant
-      operationId: api_participants_results_get_subresource
-      summary: 'Retrieves the collection of Result resources.'
-      responses:
-        200:
-          description: 'Result collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/json+ld:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/json+vnd.api:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Result-read'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: participant.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'participant.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: activity.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'activity.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-            default: 1
-        -
-          name: limit
-          in: query
-          required: false
-          description: 'The number of items per page'
-          schema:
-            type: integer
-            default: 30
-            minimum: 0
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
   /programs:
     get:
       tags:
@@ -6860,7 +5856,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Program:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -6870,7 +5866,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Program:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -7580,587 +6576,6 @@ paths:
             schema:
               $ref: '#/components/schemas/Program-write'
         description: 'The updated Program resource'
-  '/programs/{id}/courses':
-    get:
-      tags:
-        - Course
-        - Program
-      operationId: api_programs_courses_get_subresource
-      summary: 'Retrieves the collection of Course resources.'
-      responses:
-        200:
-          description: 'Course collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Course:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/json+ld:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Course:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            application/json+vnd.api:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Course-read'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: additionalType
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: organization
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-            default: 1
-        -
-          name: limit
-          in: query
-          required: false
-          description: 'The number of items per page'
-          schema:
-            type: integer
-            default: 30
-            minimum: 0
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
-  '/programs/{id}/participants':
-    get:
-      tags:
-        - Participant
-        - Program
-      operationId: api_programs_participants_get_subresource
-      summary: 'Retrieves the collection of Participant resources.'
-      responses:
-        200:
-          description: 'Participant collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/json+ld:
-              schema:
-                type: object
-                properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Participant:jsonld-read' } }
-                  'hydra:totalItems': { type: integer, minimum: 0 }
-                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
-                required:
-                  - 'hydra:member'
-            application/hal+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/json+hal:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/vnd.api+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/json+vnd.api:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/health+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/json+health:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            application/x-yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Participant-read'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        -
-          name: 'order[id]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[person]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[dateCreated]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[dateModified]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[status]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[dateOfAcceptance]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[motivation]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'dateCreated[before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[strictly_before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[strictly_after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[strictly_before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[strictly_after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateOfAcceptance[before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateOfAcceptance[strictly_before]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateOfAcceptance[after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateOfAcceptance[strictly_after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: person
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'person[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: course.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'course.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: program.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'program.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: results.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'results.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: page
-          in: query
-          required: false
-          description: 'The collection page number'
-          schema:
-            type: integer
-            default: 1
-        -
-          name: limit
-          in: query
-          required: false
-          description: 'The number of items per page'
-          schema:
-            type: integer
-            default: 30
-            minimum: 0
-        -
-          name: Authorization
-          description: 'The JWT of the entity performing the request'
-          in: header
-        -
-          name: API-Version
-          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
-          example: 1.0.1
-          in: header
-        -
-          name: X-NLX-Logrecord-ID
-          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
-          in: header
-        -
-          name: X-NLX-Request-Process-Id
-          description: 'A process id for purpose registration (doelbinding)'
-          in: header
-        -
-          name: X-NLX-Request-Data-Elements
-          description: 'A list of requested data elements'
-          in: header
-        -
-          name: X-NLX-Request-Data-Subject
-          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
-          in: header
-        -
-          name: X-NLX-Audit-Clarification
-          description: 'A clarification as to why a request has been made  (doelbinding)'
-          in: header
-        -
-          name: Link
-          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
-          in: header
-        -
-          name: 'extend[]'
-          required: false
-          description: 'An array of nested objects to include in the return object'
-          in: query
-          schema:
-            type: array
-        -
-          name: 'fields[]'
-          required: false
-          description: 'An array of fields to return in output, wil return all fields is not supplied'
-          in: query
-          schema:
-            type: array
-        -
-          name: validOn
-          required: false
-          description: 'Returns object as valid on a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validFrom
-          required: false
-          description: 'Returns objects valid from a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-        -
-          name: validUntil
-          required: false
-          description: 'Returns objects valid until a given date time'
-          schema:
-            type: string
-            format: date-time
-          in: query
-      produces:
-        - application/health+json
   /questions:
     get:
       tags:
@@ -8178,7 +6593,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Question:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -8188,7 +6603,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Question:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -8909,7 +7324,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -8919,7 +7334,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Result:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -8986,22 +7401,6 @@ paths:
             type: string
         -
           name: 'participant.id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: activity.id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'activity.id[]'
           in: query
           required: false
           schema:
@@ -9672,7 +8071,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Review:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -9682,7 +8081,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Review:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -10403,7 +8802,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Stage:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -10413,7 +8812,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Stage:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -11134,7 +9533,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Test:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/json+ld:
@@ -11144,7 +9543,7 @@ paths:
                   'hydra:member': { type: array, items: { $ref: '#/components/schemas/Test:jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
-                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
                 required:
                   - 'hydra:member'
             application/hal+json:
@@ -11876,10 +10275,6 @@ components:
         educationalUse:
           description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-read'
         dateCreated:
           description: 'The moment this Activity was created'
           type: string
@@ -11917,10 +10312,6 @@ components:
         educationalUse:
           description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-write'
         tests:
           type: array
           items:
@@ -11960,10 +10351,6 @@ components:
         educationalUse:
           description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-read'
         dateCreated:
           description: 'The moment this Activity was created'
           type: string
@@ -12010,10 +10397,6 @@ components:
         educationalUse:
           description: 'Could be ''assignment'', ''group work'' or ''test''.'
           type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-write'
         tests:
           type: array
           items:
@@ -12461,10 +10844,6 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-read'
         dateCreated:
           description: 'The moment this Course was created'
           type: string
@@ -12571,10 +10950,6 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-write'
         programs:
           type: array
           items:
@@ -12681,10 +11056,6 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-read'
         dateCreated:
           description: 'The moment this Course was created'
           type: string
@@ -12800,10 +11171,6 @@ components:
           description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
           type: string
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-write'
         programs:
           type: array
           items:
@@ -12892,6 +11259,11 @@ components:
           type: string
           format: date-time
           nullable: true
+        person:
+          description: 'The person of this education event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
         dateCreated:
           description: 'The moment this EducationEvent was created'
           type: string
@@ -12903,14 +11275,19 @@ components:
           format: date-time
           nullable: true
         course:
-          $ref: '#/components/schemas/Course-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-read'
       required:
         - name
+        - person
     EducationEvent-write:
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
       required:
         - name
+        - person
       properties:
         name:
           description: 'The name of this EducationEvent.'
@@ -12945,8 +11322,16 @@ components:
           type: string
           format: date-time
           nullable: true
+        person:
+          description: 'The person of this education event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
         course:
-          $ref: '#/components/schemas/Course-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-write'
     'EducationEvent:jsonld-read':
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -13000,6 +11385,11 @@ components:
           type: string
           format: date-time
           nullable: true
+        person:
+          description: 'The person of this education event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
         dateCreated:
           description: 'The moment this EducationEvent was created'
           type: string
@@ -13011,14 +11401,19 @@ components:
           format: date-time
           nullable: true
         course:
-          $ref: '#/components/schemas/Course:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-read'
       required:
         - name
+        - person
     'EducationEvent:jsonld-write':
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
       required:
         - name
+        - person
       properties:
         '@context':
           readOnly: true
@@ -13062,8 +11457,16 @@ components:
           type: string
           format: date-time
           nullable: true
+        person:
+          description: 'The person of this education event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
         course:
-          $ref: '#/components/schemas/Course:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-write'
     Group-read:
       type: object
       description: 'An activity like a class on a cource.'
@@ -13532,10 +11935,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course-read'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-read'
         dateCreated:
           description: 'The moment this Program was created'
           type: string
@@ -13675,10 +12074,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course-write'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-write'
     'Program:jsonld-read':
       type: object
       description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
@@ -13820,10 +12215,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-read'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-read'
         dateCreated:
           description: 'The moment this Program was created'
           type: string
@@ -13972,10 +12363,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Course:jsonld-write'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-write'
     Question-read:
       type: object
       description: ''
@@ -14202,26 +12589,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Participant-read'
-        activity:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Activity-read'
-        test:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Test-read'
-        course:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course-read'
-        program:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Program-read'
+        resource:
+          description: 'The resource of which this result is a result.'
+          type: string
         reviews:
           type: array
           items:
@@ -14238,11 +12608,13 @@ components:
           nullable: true
       required:
         - name
+        - resource
     Result-write:
       type: object
       description: ''
       required:
         - name
+        - resource
       properties:
         name:
           description: 'The name of this Result.'
@@ -14263,26 +12635,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Participant-write'
-        activity:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Activity-write'
-        test:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Test-write'
-        course:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course-write'
-        program:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Program-write'
+        resource:
+          description: 'The resource of which this result is a result.'
+          type: string
         reviews:
           type: array
           items:
@@ -14326,26 +12681,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Participant:jsonld-read'
-        activity:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Activity:jsonld-read'
-        test:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Test:jsonld-read'
-        course:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course:jsonld-read'
-        program:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Program:jsonld-read'
+        resource:
+          description: 'The resource of which this result is a result.'
+          type: string
         reviews:
           type: array
           items:
@@ -14362,11 +12700,13 @@ components:
           nullable: true
       required:
         - name
+        - resource
     'Result:jsonld-write':
       type: object
       description: ''
       required:
         - name
+        - resource
       properties:
         '@context':
           readOnly: true
@@ -14396,26 +12736,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Participant:jsonld-write'
-        activity:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Activity:jsonld-write'
-        test:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Test:jsonld-write'
-        course:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Course:jsonld-write'
-        program:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Program:jsonld-write'
+        resource:
+          description: 'The resource of which this result is a result.'
+          type: string
         reviews:
           type: array
           items:
@@ -14767,10 +13090,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-read'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity-read'
@@ -14799,10 +13118,6 @@ components:
         needsReview:
           description: 'Denotes if this test needs a review with a rating before it can be completed.'
           type: boolean
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result-write'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity-write'
@@ -14851,10 +13166,6 @@ components:
           type: string
           format: date-time
           nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-read'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity:jsonld-read'
@@ -14892,10 +13203,6 @@ components:
         needsReview:
           description: 'Denotes if this test needs a review with a rating before it can be completed.'
           type: boolean
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result:jsonld-write'
         activity:
           description: 'The activity that this test belongs to'
           $ref: '#/components/schemas/Activity:jsonld-write'
@@ -14934,7 +13241,6 @@ definitions:
         description: 'The moment this Activity was last Modified'
         type: \Datetime
       course: []
-      results: []
       tests: []
     required:
       - name
@@ -14956,7 +13262,6 @@ definitions:
         example: 'true'
       educationalUse: []
       course: []
-      results: []
       tests: []
     required:
       - name
@@ -15045,7 +13350,6 @@ definitions:
         type: string
         example: 'Deze cursus leert je de basics van werken met scrum en Github. Based on schema.org'
         maxLength: 255
-      results: []
       programs: []
       educationEvents: []
       activities: []
@@ -15126,7 +13430,6 @@ definitions:
         type: string
         example: 'Deze cursus leert je de basics van werken met scrum en Github. Based on schema.org'
         maxLength: 255
-      results: []
       programs: []
       educationEvents: []
       activities: []
@@ -15168,13 +13471,19 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
+      person:
+        description: 'The person of this education event.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}}'
+        format: url
+        maxLength: 255
       dateCreated:
         description: 'The moment this EducationEvent was created'
         type: \Datetime
@@ -15184,6 +13493,7 @@ definitions:
       course: []
     required:
       - name
+      - person
   EducationEvent-write:
     properties:
       name:
@@ -15214,16 +13524,23 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
+      person:
+        description: 'The person of this education event.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}}'
+        format: url
+        maxLength: 255
       course: []
     required:
       - name
+      - person
   Group-read:
     properties:
       id:
@@ -15346,22 +13663,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15460,7 +13777,6 @@ definitions:
         type: \Datetime
       participants: []
       courses: []
-      results: []
     required:
       - name
   Program-write:
@@ -15478,22 +13794,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -15586,7 +13902,6 @@ definitions:
         example: '15'
       participants: []
       courses: []
-      results: []
     required:
       - name
   Question-read:
@@ -15682,8 +13997,13 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
+      resource:
+        description: 'The resource of which this result is a result.'
+        type: string
+        example: 'https://zuid-drecht.nl/api/v1/edu/tests/{{uuid}}'
+        maxLength: 255
       dateCreated:
         description: 'The moment this Result was created'
         type: \Datetime
@@ -15691,13 +14011,10 @@ definitions:
         description: 'The moment this Result was last Modified'
         type: \Datetime
       participant: []
-      activity: []
-      test: []
-      course: []
-      program: []
       reviews: []
     required:
       - name
+      - resource
   Result-write:
     properties:
       name:
@@ -15713,16 +14030,18 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
         format: date-time
+      resource:
+        description: 'The resource of which this result is a result.'
+        type: string
+        example: 'https://zuid-drecht.nl/api/v1/edu/tests/{{uuid}}'
+        maxLength: 255
       participant: []
-      activity: []
-      test: []
-      course: []
-      program: []
       reviews: []
     required:
       - name
+      - resource
   Review-read:
     properties:
       id:
@@ -15854,7 +14173,6 @@ definitions:
       dateModified:
         description: 'The moment this Test was last Modified'
         type: \Datetime
-      results: []
       activity:
         description: 'The activity that this test belongs to'
         type: \Activity
@@ -15879,7 +14197,6 @@ definitions:
         description: 'Denotes if this test needs a review with a rating before it can be completed.'
         type: bool
         example: 'true'
-      results: []
       activity:
         description: 'The activity that this test belongs to'
         type: \Activity
@@ -15992,12 +14309,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
     required: []
   AuditTrail-write:
     properties:
@@ -16045,12 +14362,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-08 16:12:06'
+        example: '2021-02-19 14:22:05'
     required: []
   ChangeLog-write:
     properties:
@@ -16158,7 +14475,7 @@ host: irc.zaakonline.nl
 servers:
   -
     name: zuid-drecht.nl
-    url: edu.dev.zuid-drecht.nl
+    url: education-component.dev.zuid-drecht.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
