@@ -1,4 +1,4 @@
-# education
+# education-component
 
 Description
 ----
