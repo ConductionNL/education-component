@@ -1,13 +1,13 @@
 publiccodeYmlVersion: "0.2"
 
-name: education-component
+name: edu
 applicationSuite: commonground
 url: "https://github.com/ConductionNL/education-component"
 landingURL: "edu.zaakonline.nl"
 isBasedOn: "https://github.com/ConductionNL/Proto-component-commonground.git"
 softwareVersion: "V1.0"
-releaseDate: "2021-19-02"
-logo: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
+releaseDate: "2021-16-02"
+logo: edu.zaakonline.nl
 monochromeLogo: img/logo-mono.svg
 
 inputTypes:
