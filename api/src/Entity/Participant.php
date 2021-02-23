@@ -76,14 +76,14 @@ class Participant
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private Program $program;
+    private ?Program $program;
 
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private Course $course;
+    private ?Course $course;
 
     /**
      * @Groups({"read","write"})
@@ -146,7 +146,7 @@ class Participant
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private Group $participantGroup;
+    private ?Group $participantGroup;
 
     public function __construct()
     {

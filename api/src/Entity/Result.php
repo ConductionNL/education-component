@@ -88,7 +88,7 @@ class Result
      * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="results")
      * @MaxDepth(1)
      */
-    private $participant;
+    private ?Participant $participant;
 
     /**
      * @var string The resource of which this result is a result.
