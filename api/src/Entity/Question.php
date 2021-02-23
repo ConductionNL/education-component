@@ -146,7 +146,7 @@ class Question
      * @ORM\ManyToOne(targetEntity=Stage::class, inversedBy="questions")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $stage;
+    private ?Stage $stage;
 
     /**
      * @var int The place in the order where the question should be rendered
