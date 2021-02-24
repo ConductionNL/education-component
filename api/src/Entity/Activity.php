@@ -88,7 +88,7 @@ class Activity
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="activities")
      * @ORM\JoinColumn(nullable=false)
      */
-    private Course $course;
+    private ?Course $course;
 
     /**
      * Could be 'assignment', 'group work' or 'test'.

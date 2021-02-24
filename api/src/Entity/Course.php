@@ -27,7 +27,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass=CourseRepository::class)
  *
- * @ApiFilter(SearchFilter::class, properties={"additionalType": "iexact", "organization": "iexact"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "additionalType": "iexact",
+ *     "organization": "iexact"
+ * })
  */
 class Course
 {

@@ -169,7 +169,7 @@ class EducationEvent
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="educationEvents")
      * @MaxDepth(1)
      */
-    private $course;
+    private ?Course $course;
 
     public function getId(): Uuid
     {

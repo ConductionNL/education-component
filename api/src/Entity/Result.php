@@ -24,7 +24,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass=ResultRepository::class)
  *
- * @ApiFilter(SearchFilter::class, properties={"participant.id":"exact","activity.id":"exact"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "participant.id":"exact",
+ *     "participant.person":"exact"
+ * })
  */
 class Result
 {
@@ -85,7 +88,7 @@ class Result
      * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="results")
      * @MaxDepth(1)
      */
-    private $participant;
+    private ?Participant $participant;
 
     /**
      * @var string The resource of which this result is a result.

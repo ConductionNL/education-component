@@ -33,7 +33,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"person":"exact","course.id":"exact","program.id":"exact","results.id":"exact"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "person":"exact",
+ *     "course.id":"exact",
+ *     "program.id":"exact",
+ *     "results.id":"exact",
+ *     "status":"exact"
+ * })
  */
 class Participant
 {
@@ -70,14 +76,14 @@ class Participant
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private Program $program;
+    private ?Program $program;
 
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private Course $course;
+    private ?Course $course;
 
     /**
      * @Groups({"read","write"})
@@ -140,7 +146,7 @@ class Participant
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private Group $participantGroup;
+    private ?Group $participantGroup;
 
     public function __construct()
     {

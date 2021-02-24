@@ -103,7 +103,7 @@ class Test
      * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="tests")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $activity;
+    private ?Activity $activity;
 
     /**
      * @var array The stages of this test
