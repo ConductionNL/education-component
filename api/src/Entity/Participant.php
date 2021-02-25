@@ -116,7 +116,7 @@ class Participant
      * @example pending
      *
      * @Groups({"read", "write"})
-     * @Assert\Choice({"pending", "accepted", "rejected"})
+     * @Assert\Choice({"pending", "accepted", "rejected", "completed", "active"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $status;
