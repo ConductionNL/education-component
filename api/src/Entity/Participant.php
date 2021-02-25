@@ -122,6 +122,20 @@ class Participant
     private $status;
 
     /**
+     * @var string The mentor of this Participant.
+     *
+     * @example https://zuid-drecht.nl/api/v1/cc/person/{id}
+     *
+     * @Assert\Url()
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $mentor;
+
+    /**
      * @var Datetime The date of acceptance of this Participant.
      *
      * @example 15-10-2020
@@ -264,6 +278,18 @@ class Participant
     public function setStatus(?string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getMentor(): ?string
+    {
+        return $this->mentor;
+    }
+
+    public function setMentor(?string $mentor): self
+    {
+        $this->mentor = $mentor;
 
         return $this;
     }
