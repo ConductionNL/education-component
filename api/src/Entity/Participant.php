@@ -33,7 +33,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"person":"exact","course.id":"exact","program.id":"exact","results.id":"exact","status":"exact"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "person":"exact",
+ *     "course.id":"exact",
+ *     "program.id":"exact",
+ *     "results.id":"exact",
+ *     "status":"exact"
+ * })
  */
 class Participant
 {
@@ -70,14 +76,14 @@ class Participant
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private Program $program;
+    private ?Program $program;
 
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private Course $course;
+    private ?Course $course;
 
     /**
      * @Groups({"read","write"})
@@ -110,10 +116,24 @@ class Participant
      * @example pending
      *
      * @Groups({"read", "write"})
-     * @Assert\Choice({"pending", "accepted", "rejected"})
+     * @Assert\Choice({"pending", "accepted", "rejected", "completed", "active"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $status;
+
+    /**
+     * @var string The mentor of this Participant.
+     *
+     * @example https://zuid-drecht.nl/api/v1/cc/person/{id}
+     *
+     * @Assert\Url()
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $mentor;
 
     /**
      * @var Datetime The date of acceptance of this Participant.
@@ -140,7 +160,7 @@ class Participant
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
      * @MaxDepth(1)
      */
-    private Group $participantGroup;
+    private ?Group $participantGroup;
 
     public function __construct()
     {
@@ -258,6 +278,18 @@ class Participant
     public function setStatus(?string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getMentor(): ?string
+    {
+        return $this->mentor;
+    }
+
+    public function setMentor(?string $mentor): self
+    {
+        $this->mentor = $mentor;
 
         return $this;
     }

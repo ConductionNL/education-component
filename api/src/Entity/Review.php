@@ -69,7 +69,7 @@ class Review
      * @ORM\ManyToOne(targetEntity=Result::class, inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $result;
+    private ?Result $result;
 
     /**
      * @Groups({"read", "write"})
