@@ -142,13 +142,6 @@ class Participant
     private $motivation;
 
     /**
-     * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
-     * @MaxDepth(1)
-     */
-    private ?Group $participantGroup;
-
-    /**
      * @var string The mentor of this Participant.
      *
      * @example https://cc.zuid-drecht.nl/people/{{uuid}]
@@ -203,9 +196,15 @@ class Participant
      */
     private $type;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
+     */
+    private $participantGroup;
+
     public function __construct()
     {
         $this->results = new ArrayCollection();
+        $this->participantGroup = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -347,18 +346,6 @@ class Participant
         return $this;
     }
 
-    public function getParticipantGroup(): ?Group
-    {
-        return $this->participantGroup;
-    }
-
-    public function setParticipantGroup(?Group $participantGroup): self
-    {
-        $this->participantGroup = $participantGroup;
-
-        return $this;
-    }
-
     public function getMentor(): ?string
     {
         return $this->mentor;
@@ -415,6 +402,33 @@ class Participant
     public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getParticipantGroup(): Collection
+    {
+        return $this->participantGroup;
+    }
+
+    public function addParticipantGroup(Group $participantGroup): self
+    {
+        if (!$this->participantGroup->contains($participantGroup)) {
+            $this->participantGroup[] = $participantGroup;
+            $participantGroup->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipantGroup(Group $participantGroup): self
+    {
+        if ($this->participantGroup->removeElement($participantGroup)) {
+            $participantGroup->removeParticipant($this);
+        }
 
         return $this;
     }

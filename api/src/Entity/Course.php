@@ -279,12 +279,18 @@ class Course
      */
     private ?string $timeRequired;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="course")
+     */
+    private $courseGroup;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
         $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
         $this->activities = new ArrayCollection();
+        $this->courseGroup = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -627,6 +633,36 @@ class Course
             // set the owning side to null (unless already changed)
             if ($activity->getCourse() === $this) {
                 $activity->setCourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getCourseGroup(): Collection
+    {
+        return $this->courseGroup;
+    }
+
+    public function addCourseGroup(Group $courseGroup): self
+    {
+        if (!$this->courseGroup->contains($courseGroup)) {
+            $this->courseGroup[] = $courseGroup;
+            $courseGroup->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCourseGroup(Group $courseGroup): self
+    {
+        if ($this->courseGroup->removeElement($courseGroup)) {
+            // set the owning side to null (unless already changed)
+            if ($courseGroup->getCourse() === $this) {
+                $courseGroup->setCourse(null);
             }
         }
 
