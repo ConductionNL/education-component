@@ -116,7 +116,7 @@ class Participant
      * @example pending
      *
      * @Groups({"read", "write"})
-     * @Assert\Choice({"pending", "accepted", "rejected"})
+     * @Assert\Choice({"pending", "accepted", "rejected", "completed", "active"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $status;
@@ -142,15 +142,69 @@ class Participant
     private $motivation;
 
     /**
+     * @var string The mentor of this Participant.
+     *
+     * @example https://cc.zuid-drecht.nl/people/{{uuid}]
+     *
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
-     * @MaxDepth(1)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?Group $participantGroup;
+    private $mentor;
+
+    /**
+     * @var DateTime The moment this participation starts.
+     *
+     * @example 13-07-2020 13:00:00
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?DateTime $startDate;
+
+    /**
+     * @var DateTime The moment this participation ends.
+     *
+     * @example 13-07-2020 13:00:00
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?DateTime $endDate;
+
+    /**
+     * @var string the Organization that referred the participant
+     *
+     *  @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $referredBy;
+
+    /**
+     * @var string The type of this Participant.
+     *
+     *  @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
+     */
+    private $participantGroup;
 
     public function __construct()
     {
         $this->results = new ArrayCollection();
+        $this->participantGroup = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -292,14 +346,89 @@ class Participant
         return $this;
     }
 
-    public function getParticipantGroup(): ?Group
+    public function getMentor(): ?string
+    {
+        return $this->mentor;
+    }
+
+    public function setMentor(?string $mentor): self
+    {
+        $this->mentor = $mentor;
+
+        return $this;
+    }
+
+    public function getStartDate(): ?\DateTimeInterface
+    {
+        return $this->startDate;
+    }
+
+    public function setStartDate(?\DateTimeInterface $startDate): self
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(?\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getReferredBy(): ?string
+    {
+        return $this->referredBy;
+    }
+
+    public function setReferredBy(?string $referredBy): self
+    {
+        $this->referredBy = $referredBy;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getParticipantGroup(): Collection
     {
         return $this->participantGroup;
     }
 
-    public function setParticipantGroup(?Group $participantGroup): self
+    public function addParticipantGroup(Group $participantGroup): self
     {
-        $this->participantGroup = $participantGroup;
+        if (!$this->participantGroup->contains($participantGroup)) {
+            $this->participantGroup[] = $participantGroup;
+            $participantGroup->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipantGroup(Group $participantGroup): self
+    {
+        if ($this->participantGroup->removeElement($participantGroup)) {
+            $participantGroup->removeParticipant($this);
+        }
 
         return $this;
     }
