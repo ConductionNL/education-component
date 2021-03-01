@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\GroupRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -24,6 +26,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Table(name="group_table")
  * @ORM\Entity(repositoryClass=GroupRepository::class)
+ *
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "mentors": "partial"
+ * })
  */
 class Group
 {
