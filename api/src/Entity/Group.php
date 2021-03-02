@@ -85,7 +85,7 @@ class Group
     /**
      *
      * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="courseGroup")
+     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="courseGroups")
      * @MaxDepth(1)
      */
     private ?Course $course;
