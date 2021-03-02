@@ -134,21 +134,6 @@ class EducationEvent
     private $endDate;
 
     /**
-     * @var string The person of this education event.
-     *
-     * @example https://cc.zuid-drecht.nl/people/{{uuid}}
-     *
-     * @Assert\Url
-     * @Assert\NotNull()
-     * @Assert\Length(
-     *     max = 255
-     * )
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $person;
-
-    /**
      * @var Datetime The moment this EducationEvent was created
      *
      * @Groups({"read"})
@@ -277,18 +262,6 @@ class EducationEvent
     public function setEndDate(\DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
-
-        return $this;
-    }
-
-    public function getPerson(): ?string
-    {
-        return $this->person;
-    }
-
-    public function setPerson(string $person): self
-    {
-        $this->person = $person;
 
         return $this;
     }
