@@ -347,14 +347,14 @@ class Program
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program")
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program", cascade={"remove"})
      * @MaxDepth(1)
      */
     private Collection $participants;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist","remove"})
      * @MaxDepth(1)
      */
     private Collection $courses;
