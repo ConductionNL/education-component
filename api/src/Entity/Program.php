@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\ProgramRepository;
 use DateTime;
@@ -347,14 +346,14 @@ class Program
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program")
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program", cascade={"remove"})
      * @MaxDepth(1)
      */
     private Collection $participants;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist","remove"})
      * @MaxDepth(1)
      */
     private Collection $courses;

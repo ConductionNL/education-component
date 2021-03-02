@@ -4265,6 +4265,12 @@ paths:
                   $ref: '#/components/schemas/Group-read'
       parameters:
         -
+          name: mentors
+          in: query
+          required: false
+          schema:
+            type: string
+        -
           name: page
           in: query
           required: false
@@ -5059,6 +5065,51 @@ paths:
               - asc
               - desc
         -
+          name: 'order[mentor]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[startDate]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[endDate]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[referredBy]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[type]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'dateCreated[before]'
           in: query
           required: false
@@ -5126,6 +5177,54 @@ paths:
             type: string
         -
           name: 'dateOfAcceptance[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'startDate[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'startDate[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'startDate[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'startDate[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'endDate[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'endDate[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'endDate[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'endDate[strictly_after]'
           in: query
           required: false
           schema:
@@ -5202,6 +5301,22 @@ paths:
             type: string
         -
           name: 'status[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: mentor
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'mentor[]'
           in: query
           required: false
           schema:
@@ -10930,6 +11045,10 @@ components:
           description: 'The time Required to complete this Course.'
           type: string
           nullable: true
+        courseGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group-read'
       required:
         - name
         - organization
@@ -11026,6 +11145,10 @@ components:
           description: 'The time Required to complete this Course.'
           type: string
           nullable: true
+        courseGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group-write'
     'Course:jsonld-read':
       type: object
       description: 'A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.'
@@ -11142,6 +11265,10 @@ components:
           description: 'The time Required to complete this Course.'
           type: string
           nullable: true
+        courseGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group:jsonld-read'
       required:
         - name
         - organization
@@ -11247,6 +11374,10 @@ components:
           description: 'The time Required to complete this Course.'
           type: string
           nullable: true
+        courseGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group:jsonld-write'
     EducationEvent-read:
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -11311,6 +11442,10 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Course-read'
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-read'
       required:
         - name
         - person
@@ -11364,6 +11499,10 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Course-write'
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-write'
     'EducationEvent:jsonld-read':
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -11437,6 +11576,10 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Course:jsonld-read'
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-read'
       required:
         - name
         - person
@@ -11499,6 +11642,10 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/Course:jsonld-write'
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-write'
     Group-read:
       type: object
       description: 'An activity like a class on a cource.'
@@ -11517,6 +11664,33 @@ components:
           description: 'The description of this Group.'
           type: string
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant-read'
+        course:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-read'
+        startDate:
+          description: 'The moment this group starts.'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this group ends.'
+          type: string
+          format: date-time
+          nullable: true
+        minParticipations:
+          description: 'The minimum number of participants who may be enrolled in the group.'
+          type: integer
+          nullable: true
+        maxParticipations:
+          description: 'The maximum number of participants who may be enrolled in the group.'
+          type: integer
+          nullable: true
         dateCreated:
           description: 'The moment this Participant was created'
           type: string
@@ -11527,10 +11701,12 @@ components:
           type: string
           format: date-time
           nullable: true
-        participants:
+        mentors:
+          description: 'The mentors of this group.'
           type: array
           items:
-            $ref: '#/components/schemas/Participant-read'
+            type: string
+          nullable: true
       required:
         - name
     Group-write:
@@ -11550,6 +11726,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant-write'
+        course:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course-write'
+        startDate:
+          description: 'The moment this group starts.'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this group ends.'
+          type: string
+          format: date-time
+          nullable: true
+        minParticipations:
+          description: 'The minimum number of participants who may be enrolled in the group.'
+          type: integer
+          nullable: true
+        maxParticipations:
+          description: 'The maximum number of participants who may be enrolled in the group.'
+          type: integer
+          nullable: true
+        mentors:
+          description: 'The mentors of this group.'
+          type: array
+          items:
+            type: string
+          nullable: true
     'Group:jsonld-read':
       type: object
       description: 'An activity like a class on a cource.'
@@ -11577,6 +11782,33 @@ components:
           description: 'The description of this Group.'
           type: string
           nullable: true
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant:jsonld-read'
+        course:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-read'
+        startDate:
+          description: 'The moment this group starts.'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this group ends.'
+          type: string
+          format: date-time
+          nullable: true
+        minParticipations:
+          description: 'The minimum number of participants who may be enrolled in the group.'
+          type: integer
+          nullable: true
+        maxParticipations:
+          description: 'The maximum number of participants who may be enrolled in the group.'
+          type: integer
+          nullable: true
         dateCreated:
           description: 'The moment this Participant was created'
           type: string
@@ -11587,10 +11819,12 @@ components:
           type: string
           format: date-time
           nullable: true
-        participants:
+        mentors:
+          description: 'The mentors of this group.'
           type: array
           items:
-            $ref: '#/components/schemas/Participant:jsonld-read'
+            type: string
+          nullable: true
       required:
         - name
     'Group:jsonld-write':
@@ -11619,6 +11853,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant:jsonld-write'
+        course:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Course:jsonld-write'
+        startDate:
+          description: 'The moment this group starts.'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this group ends.'
+          type: string
+          format: date-time
+          nullable: true
+        minParticipations:
+          description: 'The minimum number of participants who may be enrolled in the group.'
+          type: integer
+          nullable: true
+        maxParticipations:
+          description: 'The maximum number of participants who may be enrolled in the group.'
+          type: integer
+          nullable: true
+        mentors:
+          description: 'The mentors of this group.'
+          type: array
+          items:
+            type: string
+          nullable: true
     Participant-read:
       type: object
       description: 'A Participant is a person who participates in a Course or an Program.'
@@ -11670,11 +11933,46 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
-        participantGroup:
+        mentor:
+          description: 'The mentor of this Participant.'
+          type: string
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Group-read'
+        startDate:
+          description: 'The moment this participation starts.'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this participation ends.'
+          type: string
+          format: date-time
+          nullable: true
+        referredBy:
+          description: |
+            the Organization that referred the participant
+            
+             @Assert\Length(
+                max = 255
+            )
+          type: string
+          nullable: true
+        type:
+          description: |
+            The type of this Participant.
+            
+             @Assert\Length(
+                max = 255
+            )
+          type: string
+          nullable: true
+        participantGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group-read'
+        educationEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationEvent-read'
       required:
         - person
     Participant-write:
@@ -11713,11 +12011,46 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
-        participantGroup:
+        mentor:
+          description: 'The mentor of this Participant.'
+          type: string
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Group-write'
+        startDate:
+          description: 'The moment this participation starts.'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this participation ends.'
+          type: string
+          format: date-time
+          nullable: true
+        referredBy:
+          description: |
+            the Organization that referred the participant
+            
+             @Assert\Length(
+                max = 255
+            )
+          type: string
+          nullable: true
+        type:
+          description: |
+            The type of this Participant.
+            
+             @Assert\Length(
+                max = 255
+            )
+          type: string
+          nullable: true
+        participantGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group-write'
+        educationEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationEvent-write'
     'Participant:jsonld-read':
       type: object
       description: 'A Participant is a person who participates in a Course or an Program.'
@@ -11778,11 +12111,46 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
-        participantGroup:
+        mentor:
+          description: 'The mentor of this Participant.'
+          type: string
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Group:jsonld-read'
+        startDate:
+          description: 'The moment this participation starts.'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this participation ends.'
+          type: string
+          format: date-time
+          nullable: true
+        referredBy:
+          description: |
+            the Organization that referred the participant
+            
+             @Assert\Length(
+                max = 255
+            )
+          type: string
+          nullable: true
+        type:
+          description: |
+            The type of this Participant.
+            
+             @Assert\Length(
+                max = 255
+            )
+          type: string
+          nullable: true
+        participantGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group:jsonld-read'
+        educationEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationEvent:jsonld-read'
       required:
         - person
     'Participant:jsonld-write':
@@ -11830,11 +12198,46 @@ components:
           description: 'The motivation of this Participant.'
           type: string
           nullable: true
-        participantGroup:
+        mentor:
+          description: 'The mentor of this Participant.'
+          type: string
           nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Group:jsonld-write'
+        startDate:
+          description: 'The moment this participation starts.'
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: 'The moment this participation ends.'
+          type: string
+          format: date-time
+          nullable: true
+        referredBy:
+          description: |
+            the Organization that referred the participant
+            
+             @Assert\Length(
+                max = 255
+            )
+          type: string
+          nullable: true
+        type:
+          description: |
+            The type of this Participant.
+            
+             @Assert\Length(
+                max = 255
+            )
+          type: string
+          nullable: true
+        participantGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group:jsonld-write'
+        educationEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationEvent:jsonld-write'
     Program-read:
       type: object
       description: 'A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.'
@@ -13385,6 +13788,7 @@ definitions:
       programs: []
       educationEvents: []
       activities: []
+      courseGroups: []
     required:
       - name
       - organization
@@ -13465,6 +13869,7 @@ definitions:
       programs: []
       educationEvents: []
       activities: []
+      courseGroups: []
     required:
       - name
       - organization
@@ -13503,12 +13908,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       person:
         description: 'The person of this education event.'
@@ -13523,6 +13928,7 @@ definitions:
         description: 'The moment this EducationEvent was last Modified'
         type: \Datetime
       course: []
+      participants: []
     required:
       - name
       - person
@@ -13556,12 +13962,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       person:
         description: 'The person of this education event.'
@@ -13570,6 +13976,7 @@ definitions:
         format: url
         maxLength: 255
       course: []
+      participants: []
     required:
       - name
       - person
@@ -13590,13 +13997,32 @@ definitions:
         type: string
         example: 'Deze group werkt samen aan werken met scrum en Github.'
         maxLength: 255
+      startDate:
+        description: 'The moment this group starts.'
+        type: \DateTime
+      endDate:
+        description: 'The moment this group ends.'
+        type: \DateTime
+      minParticipations:
+        description: 'The minimum number of participants who may be enrolled in the group.'
+        type: int
+        example: '100'
+      maxParticipations:
+        description: 'The maximum number of participants who may be enrolled in the group.'
+        type: int
+        example: '120'
       dateCreated:
         description: 'The moment this Participant was created'
         type: \Datetime
       dateModified:
         description: 'The moment this Participant was last Modified'
         type: \Datetime
+      mentors:
+        description: 'The mentors of this group.'
+        type: array
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
       participants: []
+      course: []
     required:
       - name
   Group-write:
@@ -13611,7 +14037,26 @@ definitions:
         type: string
         example: 'Deze group werkt samen aan werken met scrum en Github.'
         maxLength: 255
+      startDate:
+        description: 'The moment this group starts.'
+        type: \DateTime
+      endDate:
+        description: 'The moment this group ends.'
+        type: \DateTime
+      minParticipations:
+        description: 'The minimum number of participants who may be enrolled in the group.'
+        type: int
+        example: '100'
+      maxParticipations:
+        description: 'The maximum number of participants who may be enrolled in the group.'
+        type: int
+        example: '120'
+      mentors:
+        description: 'The mentors of this group.'
+        type: array
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
       participants: []
+      course: []
     required:
       - name
   Participant-read:
@@ -13644,10 +14089,40 @@ definitions:
         description: 'The motivation of this Participant.'
         type: string
         example: 'I love learning.'
+      mentor:
+        description: 'The mentor of this Participant.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
+        maxLength: 255
+      startDate:
+        description: 'The moment this participation starts.'
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
+      endDate:
+        description: 'The moment this participation ends.'
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
+      referredBy:
+        description: |
+          the Organization that referred the participant
+          
+           @Assert\Length(
+              max = 255
+          )
+        type: string
+      type:
+        description: |
+          The type of this Participant.
+          
+           @Assert\Length(
+              max = 255
+          )
+        type: string
       program: []
       course: []
       results: []
-      participantGroup: []
+      participantGroups: []
+      educationEvents: []
     required:
       - person
   Participant-write:
@@ -13669,10 +14144,40 @@ definitions:
         description: 'The motivation of this Participant.'
         type: string
         example: 'I love learning.'
+      mentor:
+        description: 'The mentor of this Participant.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
+        maxLength: 255
+      startDate:
+        description: 'The moment this participation starts.'
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
+      endDate:
+        description: 'The moment this participation ends.'
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
+      referredBy:
+        description: |
+          the Organization that referred the participant
+          
+           @Assert\Length(
+              max = 255
+          )
+        type: string
+      type:
+        description: |
+          The type of this Participant.
+          
+           @Assert\Length(
+              max = 255
+          )
+        type: string
       program: []
       course: []
       results: []
-      participantGroup: []
+      participantGroups: []
+      educationEvents: []
     required:
       - person
   Program-read:
@@ -13695,22 +14200,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -13826,22 +14331,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -14029,7 +14534,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14062,7 +14567,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14341,12 +14846,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
     required: []
   AuditTrail-write:
     properties:
@@ -14394,12 +14899,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-23 12:51:35'
+        example: '2021-03-02 08:52:07'
     required: []
   ChangeLog-write:
     properties:

@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
@@ -38,7 +37,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     "course.id":"exact",
  *     "program.id":"exact",
  *     "results.id":"exact",
- *     "status":"exact"
+ *     "status":"exact",
+ *     "mentor":"exact"
  * })
  */
 class Participant
@@ -87,7 +87,7 @@ class Participant
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant")
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", cascade={"remove"})
      * @MaxDepth(1)
      */
     private Collection $results;
@@ -122,20 +122,6 @@ class Participant
     private $status;
 
     /**
-     * @var string The mentor of this Participant.
-     *
-     * @example https://zuid-drecht.nl/api/v1/cc/person/{id}
-     *
-     * @Assert\Url()
-     * @Assert\Length(
-     *     max = 255
-     * )
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $mentor;
-
-    /**
      * @var Datetime The date of acceptance of this Participant.
      *
      * @example 15-10-2020
@@ -156,15 +142,79 @@ class Participant
     private $motivation;
 
     /**
+     * @var string The mentor of this Participant.
+     *
+     * @example https://cc.zuid-drecht.nl/people/{{uuid}]
+     *
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="participants")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $mentor;
+
+    /**
+     * @var DateTime The moment this participation starts.
+     *
+     * @example 13-07-2020 13:00:00
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?DateTime $startDate;
+
+    /**
+     * @var DateTime The moment this participation ends.
+     *
+     * @example 13-07-2020 13:00:00
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?DateTime $endDate;
+
+    /**
+     * @var string the Organization that referred the participant
+     *
+     *  @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $referredBy;
+
+    /**
+     * @var string The type of this Participant.
+     *
+     *  @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
      * @MaxDepth(1)
      */
-    private ?Group $participantGroup;
+    private $participantGroups;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=EducationEvent::class, mappedBy="participants")
+     * @MaxDepth(1)
+     */
+    private $educationEvents;
 
     public function __construct()
     {
         $this->results = new ArrayCollection();
+        $this->participantGroups = new ArrayCollection();
+        $this->educationEvents = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -282,18 +332,6 @@ class Participant
         return $this;
     }
 
-    public function getMentor(): ?string
-    {
-        return $this->mentor;
-    }
-
-    public function setMentor(?string $mentor): self
-    {
-        $this->mentor = $mentor;
-
-        return $this;
-    }
-
     public function getDateOfAcceptance(): ?\DateTimeInterface
     {
         return $this->dateOfAcceptance;
@@ -318,14 +356,116 @@ class Participant
         return $this;
     }
 
-    public function getParticipantGroup(): ?Group
+    public function getMentor(): ?string
     {
-        return $this->participantGroup;
+        return $this->mentor;
     }
 
-    public function setParticipantGroup(?Group $participantGroup): self
+    public function setMentor(?string $mentor): self
     {
-        $this->participantGroup = $participantGroup;
+        $this->mentor = $mentor;
+
+        return $this;
+    }
+
+    public function getStartDate(): ?\DateTimeInterface
+    {
+        return $this->startDate;
+    }
+
+    public function setStartDate(?\DateTimeInterface $startDate): self
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(?\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getReferredBy(): ?string
+    {
+        return $this->referredBy;
+    }
+
+    public function setReferredBy(?string $referredBy): self
+    {
+        $this->referredBy = $referredBy;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getParticipantGroups(): Collection
+    {
+        return $this->participantGroups;
+    }
+
+    public function addParticipantGroup(Group $participantGroup): self
+    {
+        if (!$this->participantGroups->contains($participantGroup)) {
+            $this->participantGroups[] = $participantGroup;
+            $participantGroup->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipantGroup(Group $participantGroup): self
+    {
+        if ($this->participantGroups->removeElement($participantGroup)) {
+            $participantGroup->removeParticipant($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EducationEvent[]
+     */
+    public function getEducationEvents(): Collection
+    {
+        return $this->educationEvents;
+    }
+
+    public function addEducationEvent(EducationEvent $educationEvent): self
+    {
+        if (!$this->educationEvents->contains($educationEvent)) {
+            $this->educationEvents[] = $educationEvent;
+            $educationEvent->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEducationEvent(EducationEvent $educationEvent): self
+    {
+        if ($this->educationEvents->removeElement($educationEvent)) {
+            $educationEvent->removeParticipant($this);
+        }
 
         return $this;
     }
