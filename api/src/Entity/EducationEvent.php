@@ -174,7 +174,6 @@ class EducationEvent
     private ?Course $course;
 
     /**
-     *
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="educationEvent")
      * @MaxDepth(1)
