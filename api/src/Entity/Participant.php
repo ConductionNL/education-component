@@ -88,7 +88,7 @@ class Participant
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant")
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", cascade={"remove"})
      * @MaxDepth(1)
      */
     private Collection $results;

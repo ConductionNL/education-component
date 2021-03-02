@@ -189,7 +189,7 @@ class Course
     private ?DateTime $dateModified;
 
     /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course")
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course", cascade={"remove"})
      * @MaxDepth(1)
      */
     private Collection $participants;
