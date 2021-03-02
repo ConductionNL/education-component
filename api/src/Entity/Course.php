@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\CourseRepository;
 use DateTime;
@@ -189,7 +188,7 @@ class Course
     private ?DateTime $dateModified;
 
     /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course")
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course", cascade={"remove"})
      * @MaxDepth(1)
      */
     private Collection $participants;
@@ -279,12 +278,20 @@ class Course
      */
     private ?string $timeRequired;
 
+    /**
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="course", cascade={"remove"})
+     * @MaxDepth(1)
+     */
+    private Collection $courseGroups;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
         $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
         $this->activities = new ArrayCollection();
+        $this->courseGroups = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -627,6 +634,36 @@ class Course
             // set the owning side to null (unless already changed)
             if ($activity->getCourse() === $this) {
                 $activity->setCourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Group[]
+     */
+    public function getCourseGroups(): Collection
+    {
+        return $this->courseGroups;
+    }
+
+    public function addCourseGroup(Group $courseGroup): self
+    {
+        if (!$this->courseGroups->contains($courseGroup)) {
+            $this->courseGroups[] = $courseGroup;
+            $courseGroup->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCourseGroup(Group $courseGroup): self
+    {
+        if ($this->courseGroups->removeElement($courseGroup)) {
+            // set the owning side to null (unless already changed)
+            if ($courseGroup->getCourse() === $this) {
+                $courseGroup->setCourse(null);
             }
         }
 
