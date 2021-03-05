@@ -75,7 +75,6 @@ class Group
     private $description;
 
     /**
-     *
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="participantGroup", cascade={"remove"})
      * @MaxDepth(1)
@@ -83,9 +82,8 @@ class Group
     private Collection $participants;
 
     /**
-     *
      * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="courseGroup")
+     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="courseGroups")
      * @MaxDepth(1)
      */
     private ?Course $course;
@@ -307,5 +305,4 @@ class Group
 
         return $this;
     }
-
 }

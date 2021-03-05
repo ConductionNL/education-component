@@ -7,6 +7,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\EducationEventRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -132,21 +134,6 @@ class EducationEvent
     private $endDate;
 
     /**
-     * @var string The person of this education event.
-     *
-     * @example https://cc.zuid-drecht.nl/people/{{uuid}}
-     *
-     * @Assert\Url
-     * @Assert\NotNull()
-     * @Assert\Length(
-     *     max = 255
-     * )
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $person;
-
-    /**
      * @var Datetime The moment this EducationEvent was created
      *
      * @Groups({"read"})
@@ -170,6 +157,18 @@ class EducationEvent
      * @MaxDepth(1)
      */
     private ?Course $course;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="educationEvent")
+     * @MaxDepth(1)
+     */
+    private Collection $participants;
+
+    public function __construct()
+    {
+        $this->participants = new ArrayCollection();
+    }
 
     public function getId(): Uuid
     {
@@ -267,18 +266,6 @@ class EducationEvent
         return $this;
     }
 
-    public function getPerson(): ?string
-    {
-        return $this->person;
-    }
-
-    public function setPerson(string $person): self
-    {
-        $this->person = $person;
-
-        return $this;
-    }
-
     public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateCreated;
@@ -311,6 +298,30 @@ class EducationEvent
     public function setCourse(?Course $course): self
     {
         $this->course = $course;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participant[]
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): self
+    {
+        $this->participants->removeElement($participant);
 
         return $this;
     }

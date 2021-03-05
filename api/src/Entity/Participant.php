@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
@@ -198,14 +197,24 @@ class Participant
     private $type;
 
     /**
+     * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
+     * @MaxDepth(1)
      */
-    private $participantGroup;
+    private $participantGroups;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=EducationEvent::class, mappedBy="participants")
+     * @MaxDepth(1)
+     */
+    private $educationEvents;
 
     public function __construct()
     {
         $this->results = new ArrayCollection();
-        $this->participantGroup = new ArrayCollection();
+        $this->participantGroups = new ArrayCollection();
+        $this->educationEvents = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -410,15 +419,15 @@ class Participant
     /**
      * @return Collection|Group[]
      */
-    public function getParticipantGroup(): Collection
+    public function getParticipantGroups(): Collection
     {
-        return $this->participantGroup;
+        return $this->participantGroups;
     }
 
     public function addParticipantGroup(Group $participantGroup): self
     {
-        if (!$this->participantGroup->contains($participantGroup)) {
-            $this->participantGroup[] = $participantGroup;
+        if (!$this->participantGroups->contains($participantGroup)) {
+            $this->participantGroups[] = $participantGroup;
             $participantGroup->addParticipant($this);
         }
 
@@ -427,8 +436,35 @@ class Participant
 
     public function removeParticipantGroup(Group $participantGroup): self
     {
-        if ($this->participantGroup->removeElement($participantGroup)) {
+        if ($this->participantGroups->removeElement($participantGroup)) {
             $participantGroup->removeParticipant($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EducationEvent[]
+     */
+    public function getEducationEvents(): Collection
+    {
+        return $this->educationEvents;
+    }
+
+    public function addEducationEvent(EducationEvent $educationEvent): self
+    {
+        if (!$this->educationEvents->contains($educationEvent)) {
+            $this->educationEvents[] = $educationEvent;
+            $educationEvent->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEducationEvent(EducationEvent $educationEvent): self
+    {
+        if ($this->educationEvents->removeElement($educationEvent)) {
+            $educationEvent->removeParticipant($this);
         }
 
         return $this;

@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\CourseRepository;
 use DateTime;
@@ -280,9 +279,11 @@ class Course
     private ?string $timeRequired;
 
     /**
-     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="course")
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="course", cascade={"remove"})
+     * @MaxDepth(1)
      */
-    private $courseGroup;
+    private Collection $courseGroups;
 
     public function __construct()
     {
@@ -290,7 +291,7 @@ class Course
         $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
         $this->activities = new ArrayCollection();
-        $this->courseGroup = new ArrayCollection();
+        $this->courseGroups = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -642,15 +643,15 @@ class Course
     /**
      * @return Collection|Group[]
      */
-    public function getCourseGroup(): Collection
+    public function getCourseGroups(): Collection
     {
-        return $this->courseGroup;
+        return $this->courseGroups;
     }
 
     public function addCourseGroup(Group $courseGroup): self
     {
-        if (!$this->courseGroup->contains($courseGroup)) {
-            $this->courseGroup[] = $courseGroup;
+        if (!$this->courseGroups->contains($courseGroup)) {
+            $this->courseGroups[] = $courseGroup;
             $courseGroup->setCourse($this);
         }
 
@@ -659,7 +660,7 @@ class Course
 
     public function removeCourseGroup(Group $courseGroup): self
     {
-        if ($this->courseGroup->removeElement($courseGroup)) {
+        if ($this->courseGroups->removeElement($courseGroup)) {
             // set the owning side to null (unless already changed)
             if ($courseGroup->getCourse() === $this) {
                 $courseGroup->setCourse(null);
