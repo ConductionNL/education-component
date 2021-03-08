@@ -167,26 +167,11 @@ class EducationEvent
     private Collection $participants;
 
     /**
-     * @var string The mentor of this Participant.
-     *
-     * @example https://cc.zuid-drecht.nl/people/{{uuid}]
-     *
-     * @Assert\Length(
-     *     max = 255
-     * )
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $mentor;
-
-    /**
      * @var string An organizer of an Event.
      *
      * @example https://cc.zuid-drecht.nl/people/{{uuid}]
      *
-     * @Assert\Length(
-     *     max = 255
-     * )
+     * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
