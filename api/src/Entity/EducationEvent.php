@@ -159,11 +159,23 @@ class EducationEvent
     private ?Course $course;
 
     /**
+     *
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="educationEvent")
      * @MaxDepth(1)
      */
     private Collection $participants;
+
+    /**
+     * @var string An organizer of an Event.
+     *
+     * @example https://cc.zuid-drecht.nl/people/{{uuid}]
+     *
+     * @Assert\Url
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $organizer;
 
     public function __construct()
     {
@@ -322,6 +334,18 @@ class EducationEvent
     public function removeParticipant(Participant $participant): self
     {
         $this->participants->removeElement($participant);
+
+        return $this;
+    }
+
+    public function getOrganizer(): ?string
+    {
+        return $this->organizer;
+    }
+
+    public function setOrganizer(?string $organizer): self
+    {
+        $this->organizer = $organizer;
 
         return $this;
     }
