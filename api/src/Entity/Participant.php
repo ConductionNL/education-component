@@ -146,6 +146,7 @@ class Participant
      *
      * @example https://cc.zuid-drecht.nl/people/{{uuid}]
      *
+     * @Assert\Url
      * @Assert\Length(
      *     max = 255
      * )

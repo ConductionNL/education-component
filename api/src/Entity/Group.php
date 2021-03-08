@@ -147,6 +147,7 @@ class Group
      *
      * @example https://cc.zuid-drecht.nl/people/{{uuid}]
      *
+     * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="array", nullable=true)
      */
