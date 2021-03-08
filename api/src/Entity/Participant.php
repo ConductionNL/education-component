@@ -146,9 +146,7 @@ class Participant
      *
      * @example https://cc.zuid-drecht.nl/people/{{uuid}]
      *
-     * @Assert\Length(
-     *     max = 255
-     * )
+     * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */

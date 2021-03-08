@@ -11425,6 +11425,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant-read'
+        organizer:
+          description: 'An organizer of an Event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - name
     EducationEvent-write:
@@ -11475,6 +11481,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant-write'
+        organizer:
+          description: 'An organizer of an Event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
     'EducationEvent:jsonld-read':
       type: object
       description: 'An EducationEvent is a (online) meeting, college etc. of a course.'
@@ -11547,6 +11559,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant:jsonld-read'
+        organizer:
+          description: 'An organizer of an Event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - name
     'EducationEvent:jsonld-write':
@@ -11606,6 +11624,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant:jsonld-write'
+        organizer:
+          description: 'An organizer of an Event.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
     Group-read:
       type: object
       description: 'An activity like a class on a cource.'
@@ -11895,6 +11919,8 @@ components:
           nullable: true
         mentor:
           description: 'The mentor of this Participant.'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
           nullable: true
         startDate:
@@ -11973,6 +11999,8 @@ components:
           nullable: true
         mentor:
           description: 'The mentor of this Participant.'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
           nullable: true
         startDate:
@@ -12073,6 +12101,8 @@ components:
           nullable: true
         mentor:
           description: 'The mentor of this Participant.'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
           nullable: true
         startDate:
@@ -12160,6 +12190,8 @@ components:
           nullable: true
         mentor:
           description: 'The mentor of this Participant.'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
           nullable: true
         startDate:
@@ -13868,12 +13900,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -13881,6 +13913,11 @@ definitions:
       dateModified:
         description: 'The moment this EducationEvent was last Modified'
         type: \Datetime
+      organizer:
+        description: 'An organizer of an Event.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
+        format: url
       course: []
       participants: []
     required:
@@ -13915,13 +13952,18 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
+      organizer:
+        description: 'An organizer of an Event.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
+        format: url
       course: []
       participants: []
     required:
@@ -14039,7 +14081,7 @@ definitions:
         description: 'The mentor of this Participant.'
         type: string
         example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
-        maxLength: 255
+        format: url
       startDate:
         description: 'The moment this participation starts.'
         type: \DateTime
@@ -14094,7 +14136,7 @@ definitions:
         description: 'The mentor of this Participant.'
         type: string
         example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
-        maxLength: 255
+        format: url
       startDate:
         description: 'The moment this participation starts.'
         type: \DateTime
@@ -14146,22 +14188,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -14277,22 +14319,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -14480,7 +14522,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14513,7 +14555,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14792,12 +14834,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
     required: []
   AuditTrail-write:
     properties:
@@ -14845,12 +14887,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-03-02 09:17:03'
+        example: '2021-03-08 15:50:19'
     required: []
   ChangeLog-write:
     properties:
