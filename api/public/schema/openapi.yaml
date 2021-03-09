@@ -13639,59 +13639,492 @@ components:
           items:
             $ref: '#/components/schemas/Stage:jsonld-write'
 definitions:
-  Activity-read:
+  Participant-read:
     properties:
       id:
-        description: 'The UUID identifier of this Activity.'
+        description: 'The UUID identifier of this Participant.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      person:
+        description: 'The contact of this Participant.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this Participant was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Participant was last Modified'
+        type: \Datetime
+      status:
+        description: 'The status of this Participant.'
+        type: string
+        example: pending
+      dateOfAcceptance:
+        description: 'The date of acceptance of this Participant.'
+        type: \Datetime
+        example: 15-10-2020
+      motivation:
+        description: 'The motivation of this Participant.'
+        type: string
+        example: 'I love learning.'
+      mentor:
+        description: 'The mentor of this Participant.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
+        format: url
+      startDate:
+        description: 'The moment this participation starts.'
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
+      endDate:
+        description: 'The moment this participation ends.'
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
+      referredBy:
+        description: |
+          the Organization that referred the participant
+          
+           @Assert\Length(
+              max = 255
+          )
+        type: string
+      type:
+        description: |
+          The type of this Participant.
+          
+           @Assert\Length(
+              max = 255
+          )
+        type: string
+      program: []
+      course: []
+      results: []
+      participantGroups: []
+      educationEvents: []
+    required:
+      - person
+  Participant-write:
+    properties:
+      person:
+        description: 'The contact of this Participant.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
+        maxLength: 255
+      status:
+        description: 'The status of this Participant.'
+        type: string
+        example: pending
+      dateOfAcceptance:
+        description: 'The date of acceptance of this Participant.'
+        type: \Datetime
+        example: 15-10-2020
+      motivation:
+        description: 'The motivation of this Participant.'
+        type: string
+        example: 'I love learning.'
+      mentor:
+        description: 'The mentor of this Participant.'
+        type: string
+        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
+        format: url
+      startDate:
+        description: 'The moment this participation starts.'
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
+      endDate:
+        description: 'The moment this participation ends.'
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
+      referredBy:
+        description: |
+          the Organization that referred the participant
+          
+           @Assert\Length(
+              max = 255
+          )
+        type: string
+      type:
+        description: |
+          The type of this Participant.
+          
+           @Assert\Length(
+              max = 255
+          )
+        type: string
+      program: []
+      course: []
+      results: []
+      participantGroups: []
+      educationEvents: []
+    required:
+      - person
+  Program-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Program.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this Activity.'
+        description: 'The name of this Program.'
         type: string
-        example: Activity1
+        example: 'associate degree informatica'
         maxLength: 255
       description:
-        description: 'The description of this Activity.'
+        description: 'The description of this Program.'
         type: string
-        example: 'Beschrijving van Activity1.'
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
         maxLength: 255
-      needsReview:
-        description: 'Denotes if this activity needs a review with a rating before it can be completed.'
-        type: bool
-        example: 'true'
-      educationalUse: []
+      applicationStartDate:
+        description: 'The day that people can start to apply for this Program.'
+        type: string
+        example: '2021-03-09 09:45:51'
+        format: date-time
+      applicationDeadline:
+        description: 'The day that people can no longer apply for this Program.'
+        type: string
+        example: '2021-03-09 09:45:51'
+        format: date-time
+      startDate:
+        description: 'The moment this Program starts.'
+        type: string
+        example: '2021-03-09 09:45:51'
+        format: date-time
+      endDate:
+        description: 'The moment this Program ends.'
+        type: string
+        example: '2021-03-09 09:45:51'
+        format: date-time
+      financialAidEligible:
+        description: 'The financialAidEligible of this Program.'
+        type: string
+        example: 'Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.'
+        maxLength: 255
+      maximumEnrollment:
+        description: 'The maximum number of students who may be enrolled in the program..'
+        type: int
+        example: '100'
+      numberOfCredits:
+        description: 'The numberOfCredits of this Program.'
+        type: int
+        example: '120'
+      occupationalCategory:
+        description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
+        type: string
+        example: HBO
+        maxLength: 255
+      occupationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
+        maxLength: 255
+      educationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
+        maxLength: 255
+      educationalProgramMode:
+        description: 'The educationalProgramMode of this Program.'
+        type: string
+        example: full-time
+        maxLength: 255
+      offers:
+        description: 'The offers of this Program.'
+        type: string
+        example: 'https://pdc.conduction.nl/offers'
+        maxLength: 255
+      programPrerequisites:
+        description: 'The programPrerequisites of this Program.'
+        type: array
+      programType:
+        description: 'The programType of this Program.'
+        type: string
+        example: 'classroom, internship.'
+        maxLength: 255
+      provider:
+        description: 'The provider of this Program.'
+        type: string
+        example: 'https://wrc.conduction.nl/organizations'
+        maxLength: 255
+      salaryUponCompletion:
+        description: 'The salaryUponCompletion of this Program.'
+        type: string
+        example: €1000
+        maxLength: 255
+      termDuration:
+        description: 'The termDuration of this Program.'
+        type: string
+        example: '2 maanden.'
+        maxLength: 255
+      termsPerYear:
+        description: 'The termsPerYear of this Program.'
+        type: int
+        example: '4'
+      dayOfWeek:
+        description: 'The dayOfWeek of this Program.'
+        type: string
+        example: 'van maandag tot zaterdag.'
+        maxLength: 255
+      timeOfDay:
+        description: 'The timeOfDay of this Program.'
+        type: string
+        example: 'Overdag, soms in de avond.'
+        maxLength: 255
+      timeToComplete:
+        description: 'The timeToComplete of this Program.'
+        type: string
+        example: '2 jaar.'
+        maxLength: 255
+      trainingSalary:
+        description: 'The trainingSalary of this Program.'
+        type: string
+        example: '€300 per maand.'
+        maxLength: 255
+      typicalCreditsPerTerm:
+        description: 'The typicalCreditsPerTerm of this Program.'
+        type: int
+        example: '15'
       dateCreated:
-        description: 'The moment this Activity was created'
+        description: 'The moment this Program was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this Activity was last Modified'
+        description: 'The moment this Program was last Modified'
         type: \Datetime
-      course: []
-      tests: []
+      participants: []
+      courses: []
     required:
       - name
-  Activity-write:
+  Program-write:
     properties:
       name:
-        description: 'The name of this Activity.'
+        description: 'The name of this Program.'
         type: string
-        example: Activity1
+        example: 'associate degree informatica'
         maxLength: 255
       description:
-        description: 'The description of this Activity.'
+        description: 'The description of this Program.'
         type: string
-        example: 'Beschrijving van Activity1.'
+        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
         maxLength: 255
-      needsReview:
-        description: 'Denotes if this activity needs a review with a rating before it can be completed.'
-        type: bool
-        example: 'true'
-      educationalUse: []
-      course: []
-      tests: []
+      applicationStartDate:
+        description: 'The day that people can start to apply for this Program.'
+        type: string
+        example: '2021-03-09 09:45:51'
+        format: date-time
+      applicationDeadline:
+        description: 'The day that people can no longer apply for this Program.'
+        type: string
+        example: '2021-03-09 09:45:51'
+        format: date-time
+      startDate:
+        description: 'The moment this Program starts.'
+        type: string
+        example: '2021-03-09 09:45:51'
+        format: date-time
+      endDate:
+        description: 'The moment this Program ends.'
+        type: string
+        example: '2021-03-09 09:45:51'
+        format: date-time
+      financialAidEligible:
+        description: 'The financialAidEligible of this Program.'
+        type: string
+        example: 'Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.'
+        maxLength: 255
+      maximumEnrollment:
+        description: 'The maximum number of students who may be enrolled in the program..'
+        type: int
+        example: '100'
+      numberOfCredits:
+        description: 'The numberOfCredits of this Program.'
+        type: int
+        example: '120'
+      occupationalCategory:
+        description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
+        type: string
+        example: HBO
+        maxLength: 255
+      occupationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
+        maxLength: 255
+      educationalCredentialAwarded:
+        description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
+        type: string
+        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
+        maxLength: 255
+      educationalProgramMode:
+        description: 'The educationalProgramMode of this Program.'
+        type: string
+        example: full-time
+        maxLength: 255
+      offers:
+        description: 'The offers of this Program.'
+        type: string
+        example: 'https://pdc.conduction.nl/offers'
+        maxLength: 255
+      programPrerequisites:
+        description: 'The programPrerequisites of this Program.'
+        type: array
+      programType:
+        description: 'The programType of this Program.'
+        type: string
+        example: 'classroom, internship.'
+        maxLength: 255
+      provider:
+        description: 'The provider of this Program.'
+        type: string
+        example: 'https://wrc.conduction.nl/organizations'
+        maxLength: 255
+      salaryUponCompletion:
+        description: 'The salaryUponCompletion of this Program.'
+        type: string
+        example: €1000
+        maxLength: 255
+      termDuration:
+        description: 'The termDuration of this Program.'
+        type: string
+        example: '2 maanden.'
+        maxLength: 255
+      termsPerYear:
+        description: 'The termsPerYear of this Program.'
+        type: int
+        example: '4'
+      dayOfWeek:
+        description: 'The dayOfWeek of this Program.'
+        type: string
+        example: 'van maandag tot zaterdag.'
+        maxLength: 255
+      timeOfDay:
+        description: 'The timeOfDay of this Program.'
+        type: string
+        example: 'Overdag, soms in de avond.'
+        maxLength: 255
+      timeToComplete:
+        description: 'The timeToComplete of this Program.'
+        type: string
+        example: '2 jaar.'
+        maxLength: 255
+      trainingSalary:
+        description: 'The trainingSalary of this Program.'
+        type: string
+        example: '€300 per maand.'
+        maxLength: 255
+      typicalCreditsPerTerm:
+        description: 'The typicalCreditsPerTerm of this Program.'
+        type: int
+        example: '15'
+      participants: []
+      courses: []
     required:
       - name
+  Review-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Review.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Review.'
+        type: string
+        example: Review1
+        maxLength: 255
+      description:
+        description: 'The description of this Review.'
+        type: string
+        example: 'Beschrijving van Review1.'
+        maxLength: 255
+      body: []
+      rating: []
+      dateCreated:
+        description: 'The moment this Review was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Review was last Modified'
+        type: \Datetime
+      result: []
+    required:
+      - name
+  Review-write:
+    properties:
+      name:
+        description: 'The name of this Review.'
+        type: string
+        example: Review1
+        maxLength: 255
+      description:
+        description: 'The description of this Review.'
+        type: string
+        example: 'Beschrijving van Review1.'
+        maxLength: 255
+      body: []
+      rating: []
+      result: []
+    required:
+      - name
+  Stage-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Stage.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Stage.'
+        type: string
+        example: Stage1
+        maxLength: 255
+      description:
+        description: 'The description of this Stage.'
+        type: string
+        example: 'Beschrijving van Stage1.'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this Stage was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Stage was last Modified'
+        type: \Datetime
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      test:
+        description: 'The test that this stage belongs to'
+        type: \Test
+      questions:
+        description: 'the questions of this stage'
+        type: \ArrayCollection
+    required:
+      - name
+      - orderNumber
+  Stage-write:
+    properties:
+      name:
+        description: 'The name of this Stage.'
+        type: string
+        example: Stage1
+        maxLength: 255
+      description:
+        description: 'The description of this Stage.'
+        type: string
+        example: 'Beschrijving van Stage1.'
+        maxLength: 255
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      test:
+        description: 'The test that this stage belongs to'
+        type: \Test
+      questions:
+        description: 'the questions of this stage'
+        type: \ArrayCollection
+    required:
+      - name
+      - orderNumber
   Course-read:
     properties:
       id:
@@ -13900,12 +14333,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-03-08 15:50:19'
+        example: '2021-03-09 09:45:51'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-03-08 15:50:19'
+        example: '2021-03-09 09:45:51'
         format: date-time
       dateCreated:
         description: 'The moment this EducationEvent was created'
@@ -13952,12 +14385,12 @@ definitions:
       startDate:
         description: 'The moment this EducationEvent starts.'
         type: string
-        example: '2021-03-08 15:50:19'
+        example: '2021-03-09 09:45:51'
         format: date-time
       endDate:
         description: 'The moment this EducationEvent ends.'
         type: string
-        example: '2021-03-08 15:50:19'
+        example: '2021-03-09 09:45:51'
         format: date-time
       organizer:
         description: 'An organizer of an Event.'
@@ -13966,6 +14399,65 @@ definitions:
         format: url
       course: []
       participants: []
+    required:
+      - name
+  Test-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this Test.'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this Test.'
+        type: string
+        example: Test1
+        maxLength: 255
+      description:
+        description: 'The description of this Test.'
+        type: string
+        example: 'Beschrijving van Test1.'
+        maxLength: 255
+      needsReview:
+        description: 'Denotes if this test needs a review with a rating before it can be completed.'
+        type: bool
+        example: 'true'
+      dateCreated:
+        description: 'The moment this Test was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this Test was last Modified'
+        type: \Datetime
+      activity:
+        description: 'The activity that this test belongs to'
+        type: \Activity
+      stages:
+        description: 'The stages of this test'
+        type: array
+    required:
+      - name
+  Test-write:
+    properties:
+      name:
+        description: 'The name of this Test.'
+        type: string
+        example: Test1
+        maxLength: 255
+      description:
+        description: 'The description of this Test.'
+        type: string
+        example: 'Beschrijving van Test1.'
+        maxLength: 255
+      needsReview:
+        description: 'Denotes if this test needs a review with a rating before it can be completed.'
+        type: bool
+        example: 'true'
+      activity:
+        description: 'The activity that this test belongs to'
+        type: \Activity
+      stages:
+        description: 'The stages of this test'
+        type: array
     required:
       - name
   Group-read:
@@ -14045,388 +14537,6 @@ definitions:
         example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
       participants: []
       course: []
-    required:
-      - name
-  Participant-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Participant.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      person:
-        description: 'The contact of this Participant.'
-        type: string
-        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this Participant was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Participant was last Modified'
-        type: \Datetime
-      status:
-        description: 'The status of this Participant.'
-        type: string
-        example: pending
-      dateOfAcceptance:
-        description: 'The date of acceptance of this Participant.'
-        type: \Datetime
-        example: 15-10-2020
-      motivation:
-        description: 'The motivation of this Participant.'
-        type: string
-        example: 'I love learning.'
-      mentor:
-        description: 'The mentor of this Participant.'
-        type: string
-        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
-        format: url
-      startDate:
-        description: 'The moment this participation starts.'
-        type: \DateTime
-        example: '13-07-2020 13:00:00'
-      endDate:
-        description: 'The moment this participation ends.'
-        type: \DateTime
-        example: '13-07-2020 13:00:00'
-      referredBy:
-        description: |
-          the Organization that referred the participant
-          
-           @Assert\Length(
-              max = 255
-          )
-        type: string
-      type:
-        description: |
-          The type of this Participant.
-          
-           @Assert\Length(
-              max = 255
-          )
-        type: string
-      program: []
-      course: []
-      results: []
-      participantGroups: []
-      educationEvents: []
-    required:
-      - person
-  Participant-write:
-    properties:
-      person:
-        description: 'The contact of this Participant.'
-        type: string
-        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
-        maxLength: 255
-      status:
-        description: 'The status of this Participant.'
-        type: string
-        example: pending
-      dateOfAcceptance:
-        description: 'The date of acceptance of this Participant.'
-        type: \Datetime
-        example: 15-10-2020
-      motivation:
-        description: 'The motivation of this Participant.'
-        type: string
-        example: 'I love learning.'
-      mentor:
-        description: 'The mentor of this Participant.'
-        type: string
-        example: 'https://cc.zuid-drecht.nl/people/{{uuid}]'
-        format: url
-      startDate:
-        description: 'The moment this participation starts.'
-        type: \DateTime
-        example: '13-07-2020 13:00:00'
-      endDate:
-        description: 'The moment this participation ends.'
-        type: \DateTime
-        example: '13-07-2020 13:00:00'
-      referredBy:
-        description: |
-          the Organization that referred the participant
-          
-           @Assert\Length(
-              max = 255
-          )
-        type: string
-      type:
-        description: |
-          The type of this Participant.
-          
-           @Assert\Length(
-              max = 255
-          )
-        type: string
-      program: []
-      course: []
-      results: []
-      participantGroups: []
-      educationEvents: []
-    required:
-      - person
-  Program-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Program.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this Program.'
-        type: string
-        example: 'associate degree informatica'
-        maxLength: 255
-      description:
-        description: 'The description of this Program.'
-        type: string
-        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
-        maxLength: 255
-      applicationStartDate:
-        description: 'The day that people can start to apply for this Program.'
-        type: string
-        example: '2021-03-08 15:50:19'
-        format: date-time
-      applicationDeadline:
-        description: 'The day that people can no longer apply for this Program.'
-        type: string
-        example: '2021-03-08 15:50:19'
-        format: date-time
-      startDate:
-        description: 'The moment this Program starts.'
-        type: string
-        example: '2021-03-08 15:50:19'
-        format: date-time
-      endDate:
-        description: 'The moment this Program ends.'
-        type: string
-        example: '2021-03-08 15:50:19'
-        format: date-time
-      financialAidEligible:
-        description: 'The financialAidEligible of this Program.'
-        type: string
-        example: 'Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.'
-        maxLength: 255
-      maximumEnrollment:
-        description: 'The maximum number of students who may be enrolled in the program..'
-        type: int
-        example: '100'
-      numberOfCredits:
-        description: 'The numberOfCredits of this Program.'
-        type: int
-        example: '120'
-      occupationalCategory:
-        description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
-        type: string
-        example: HBO
-        maxLength: 255
-      occupationalCredentialAwarded:
-        description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
-        type: string
-        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
-        maxLength: 255
-      educationalCredentialAwarded:
-        description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
-        type: string
-        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
-        maxLength: 255
-      educationalProgramMode:
-        description: 'The educationalProgramMode of this Program.'
-        type: string
-        example: full-time
-        maxLength: 255
-      offers:
-        description: 'The offers of this Program.'
-        type: string
-        example: 'https://pdc.conduction.nl/offers'
-        maxLength: 255
-      programPrerequisites:
-        description: 'The programPrerequisites of this Program.'
-        type: array
-      programType:
-        description: 'The programType of this Program.'
-        type: string
-        example: 'classroom, internship.'
-        maxLength: 255
-      provider:
-        description: 'The provider of this Program.'
-        type: string
-        example: 'https://wrc.conduction.nl/organizations'
-        maxLength: 255
-      salaryUponCompletion:
-        description: 'The salaryUponCompletion of this Program.'
-        type: string
-        example: €1000
-        maxLength: 255
-      termDuration:
-        description: 'The termDuration of this Program.'
-        type: string
-        example: '2 maanden.'
-        maxLength: 255
-      termsPerYear:
-        description: 'The termsPerYear of this Program.'
-        type: int
-        example: '4'
-      dayOfWeek:
-        description: 'The dayOfWeek of this Program.'
-        type: string
-        example: 'van maandag tot zaterdag.'
-        maxLength: 255
-      timeOfDay:
-        description: 'The timeOfDay of this Program.'
-        type: string
-        example: 'Overdag, soms in de avond.'
-        maxLength: 255
-      timeToComplete:
-        description: 'The timeToComplete of this Program.'
-        type: string
-        example: '2 jaar.'
-        maxLength: 255
-      trainingSalary:
-        description: 'The trainingSalary of this Program.'
-        type: string
-        example: '€300 per maand.'
-        maxLength: 255
-      typicalCreditsPerTerm:
-        description: 'The typicalCreditsPerTerm of this Program.'
-        type: int
-        example: '15'
-      dateCreated:
-        description: 'The moment this Program was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Program was last Modified'
-        type: \Datetime
-      participants: []
-      courses: []
-    required:
-      - name
-  Program-write:
-    properties:
-      name:
-        description: 'The name of this Program.'
-        type: string
-        example: 'associate degree informatica'
-        maxLength: 255
-      description:
-        description: 'The description of this Program.'
-        type: string
-        example: 'Deze studie leert je in 2 jaar tijd informatica skills op HBO denkniveau.'
-        maxLength: 255
-      applicationStartDate:
-        description: 'The day that people can start to apply for this Program.'
-        type: string
-        example: '2021-03-08 15:50:19'
-        format: date-time
-      applicationDeadline:
-        description: 'The day that people can no longer apply for this Program.'
-        type: string
-        example: '2021-03-08 15:50:19'
-        format: date-time
-      startDate:
-        description: 'The moment this Program starts.'
-        type: string
-        example: '2021-03-08 15:50:19'
-        format: date-time
-      endDate:
-        description: 'The moment this Program ends.'
-        type: string
-        example: '2021-03-08 15:50:19'
-        format: date-time
-      financialAidEligible:
-        description: 'The financialAidEligible of this Program.'
-        type: string
-        example: 'Een beschrijving of verwijzing naar een programma voor financiële steun dat studenten kunnen gebruiken om het collegegeld of de kosten voor het programma te betalen.'
-        maxLength: 255
-      maximumEnrollment:
-        description: 'The maximum number of students who may be enrolled in the program..'
-        type: int
-        example: '100'
-      numberOfCredits:
-        description: 'The numberOfCredits of this Program.'
-        type: int
-        example: '120'
-      occupationalCategory:
-        description: 'A category describing the job, preferably using a term from a taxonomy such as BLS O*NET-SOC, ISCO-08 or similar.'
-        type: string
-        example: HBO
-        maxLength: 255
-      occupationalCredentialAwarded:
-        description: 'A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.'
-        type: string
-        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
-        maxLength: 255
-      educationalCredentialAwarded:
-        description: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.'
-        type: string
-        example: 'Beschrijving van wat je krijgt bij het halen van deze studie, bijvoorbeeld een diploma.'
-        maxLength: 255
-      educationalProgramMode:
-        description: 'The educationalProgramMode of this Program.'
-        type: string
-        example: full-time
-        maxLength: 255
-      offers:
-        description: 'The offers of this Program.'
-        type: string
-        example: 'https://pdc.conduction.nl/offers'
-        maxLength: 255
-      programPrerequisites:
-        description: 'The programPrerequisites of this Program.'
-        type: array
-      programType:
-        description: 'The programType of this Program.'
-        type: string
-        example: 'classroom, internship.'
-        maxLength: 255
-      provider:
-        description: 'The provider of this Program.'
-        type: string
-        example: 'https://wrc.conduction.nl/organizations'
-        maxLength: 255
-      salaryUponCompletion:
-        description: 'The salaryUponCompletion of this Program.'
-        type: string
-        example: €1000
-        maxLength: 255
-      termDuration:
-        description: 'The termDuration of this Program.'
-        type: string
-        example: '2 maanden.'
-        maxLength: 255
-      termsPerYear:
-        description: 'The termsPerYear of this Program.'
-        type: int
-        example: '4'
-      dayOfWeek:
-        description: 'The dayOfWeek of this Program.'
-        type: string
-        example: 'van maandag tot zaterdag.'
-        maxLength: 255
-      timeOfDay:
-        description: 'The timeOfDay of this Program.'
-        type: string
-        example: 'Overdag, soms in de avond.'
-        maxLength: 255
-      timeToComplete:
-        description: 'The timeToComplete of this Program.'
-        type: string
-        example: '2 jaar.'
-        maxLength: 255
-      trainingSalary:
-        description: 'The trainingSalary of this Program.'
-        type: string
-        example: '€300 per maand.'
-        maxLength: 255
-      typicalCreditsPerTerm:
-        description: 'The typicalCreditsPerTerm of this Program.'
-        type: int
-        example: '15'
-      participants: []
-      courses: []
     required:
       - name
   Question-read:
@@ -14522,7 +14632,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-03-08 15:50:19'
+        example: '2021-03-09 09:45:51'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14555,7 +14665,7 @@ definitions:
       completionDate:
         description: 'The moment this Result had status: completed.'
         type: string
-        example: '2021-03-08 15:50:19'
+        example: '2021-03-09 09:45:51'
         format: date-time
       resource:
         description: 'The resource of which this result is a result.'
@@ -14567,169 +14677,112 @@ definitions:
     required:
       - name
       - resource
-  Review-read:
+  Activity-read:
     properties:
       id:
-        description: 'The UUID identifier of this Review.'
+        description: 'The UUID identifier of this Activity.'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
-        description: 'The name of this Review.'
+        description: 'The name of this Activity.'
         type: string
-        example: Review1
+        example: Activity1
         maxLength: 255
       description:
-        description: 'The description of this Review.'
+        description: 'The description of this Activity.'
         type: string
-        example: 'Beschrijving van Review1.'
-        maxLength: 255
-      body: []
-      rating: []
-      dateCreated:
-        description: 'The moment this Review was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Review was last Modified'
-        type: \Datetime
-      result: []
-    required:
-      - name
-  Review-write:
-    properties:
-      name:
-        description: 'The name of this Review.'
-        type: string
-        example: Review1
-        maxLength: 255
-      description:
-        description: 'The description of this Review.'
-        type: string
-        example: 'Beschrijving van Review1.'
-        maxLength: 255
-      body: []
-      rating: []
-      result: []
-    required:
-      - name
-  Stage-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Stage.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this Stage.'
-        type: string
-        example: Stage1
-        maxLength: 255
-      description:
-        description: 'The description of this Stage.'
-        type: string
-        example: 'Beschrijving van Stage1.'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this Stage was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this Stage was last Modified'
-        type: \Datetime
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      test:
-        description: 'The test that this stage belongs to'
-        type: \Test
-      questions:
-        description: 'the questions of this stage'
-        type: \ArrayCollection
-    required:
-      - name
-      - orderNumber
-  Stage-write:
-    properties:
-      name:
-        description: 'The name of this Stage.'
-        type: string
-        example: Stage1
-        maxLength: 255
-      description:
-        description: 'The description of this Stage.'
-        type: string
-        example: 'Beschrijving van Stage1.'
-        maxLength: 255
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      test:
-        description: 'The test that this stage belongs to'
-        type: \Test
-      questions:
-        description: 'the questions of this stage'
-        type: \ArrayCollection
-    required:
-      - name
-      - orderNumber
-  Test-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this Test.'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this Test.'
-        type: string
-        example: Test1
-        maxLength: 255
-      description:
-        description: 'The description of this Test.'
-        type: string
-        example: 'Beschrijving van Test1.'
+        example: 'Beschrijving van Activity1.'
         maxLength: 255
       needsReview:
-        description: 'Denotes if this test needs a review with a rating before it can be completed.'
+        description: 'Denotes if this activity needs a review with a rating before it can be completed.'
         type: bool
         example: 'true'
+      educationalUse: []
       dateCreated:
-        description: 'The moment this Test was created'
+        description: 'The moment this Activity was created'
         type: \Datetime
       dateModified:
-        description: 'The moment this Test was last Modified'
+        description: 'The moment this Activity was last Modified'
         type: \Datetime
-      activity:
-        description: 'The activity that this test belongs to'
-        type: \Activity
-      stages:
-        description: 'The stages of this test'
-        type: array
+      course: []
+      tests: []
     required:
       - name
-  Test-write:
+  Activity-write:
     properties:
       name:
-        description: 'The name of this Test.'
+        description: 'The name of this Activity.'
         type: string
-        example: Test1
+        example: Activity1
         maxLength: 255
       description:
-        description: 'The description of this Test.'
+        description: 'The description of this Activity.'
         type: string
-        example: 'Beschrijving van Test1.'
+        example: 'Beschrijving van Activity1.'
         maxLength: 255
       needsReview:
-        description: 'Denotes if this test needs a review with a rating before it can be completed.'
+        description: 'Denotes if this activity needs a review with a rating before it can be completed.'
         type: bool
         example: 'true'
-      activity:
-        description: 'The activity that this test belongs to'
-        type: \Activity
-      stages:
-        description: 'The stages of this test'
-        type: array
+      educationalUse: []
+      course: []
+      tests: []
     required:
       - name
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2021-03-09 09:45:51'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2021-03-09 09:45:51'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
   AuditTrail-read:
     properties:
       id:
@@ -14834,12 +14887,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-03-08 15:50:19'
+        example: '2021-03-09 09:45:51'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-03-08 15:50:19'
+        example: '2021-03-09 09:45:51'
     required: []
   AuditTrail-write:
     properties:
@@ -14849,84 +14902,7 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2021-03-08 15:50:19'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2021-03-08 15:50:19'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
 tags:
-  -
-    name: Activity
-    description: |
-      An activity like a class on a cource.
-      
-      
-  -
-    name: Course
-    description: |
-      A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.
-      
-      
-  -
-    name: EducationEvent
-    description: |
-      An EducationEvent is a (online) meeting, college etc. of a course.
-      
-      
-  -
-    name: Group
-    description: |
-      An activity like a class on a cource.
-      
-      
   -
     name: Participant
     description: |
@@ -14937,18 +14913,6 @@ tags:
     name: Program
     description: |
       A Program is a EducationalOccupationalProgram offered by an institution which determines the learning progress to achieve an outcome, usually a credential like a degree or certificate. Based on https://schema.org/EducationalOccupationalProgram.
-      
-      
-  -
-    name: Question
-    description: |
-      
-      
-      
-  -
-    name: Result
-    description: |
-      
       
       
   -
@@ -14964,19 +14928,55 @@ tags:
       
       
   -
+    name: Course
+    description: |
+      A Course is a course within a program in which participants can participate. Based on https://schema.org/Course.
+      
+      
+  -
+    name: EducationEvent
+    description: |
+      An EducationEvent is a (online) meeting, college etc. of a course.
+      
+      
+  -
     name: Test
     description: |
       
       
       
   -
-    name: AuditTrail
+    name: Group
+    description: |
+      An activity like a class on a cource.
+      
+      
+  -
+    name: Question
+    description: |
+      
+      
+      
+  -
+    name: Result
+    description: |
+      
+      
+      
+  -
+    name: Activity
+    description: |
+      An activity like a class on a cource.
+      
+      
+  -
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
@@ -14987,15 +14987,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -
