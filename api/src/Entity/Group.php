@@ -76,7 +76,7 @@ class Group
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="participantGroup", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="participantGroups", cascade={"remove"})
      * @MaxDepth(1)
      */
     private Collection $participants;

@@ -160,7 +160,7 @@ class EducationEvent
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="educationEvent")
+     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="educationEvents")
      * @MaxDepth(1)
      */
     private Collection $participants;
