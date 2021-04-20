@@ -116,7 +116,6 @@ class EducationEvent
      *
      * @example 13-07-2020 13:00:00
      *
-     * @Assert\DateTime
      * @Groups({"read", "write"})
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -127,7 +126,6 @@ class EducationEvent
      *
      * @example 13-07-2020 15:00:00
      *
-     * @Assert\DateTime
      * @Groups({"read", "write"})
      * @ORM\Column(type="datetime", nullable=true)
      */
