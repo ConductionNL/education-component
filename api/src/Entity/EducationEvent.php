@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass=EducationEventRepository::class)
  * @ApiFilter(SearchFilter::class, properties={
- *     "participant.id": "exact"
+ *     "participants.id": "exact"
  * })
  */
 class EducationEvent
