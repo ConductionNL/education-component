@@ -28,7 +28,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiFilter(SearchFilter::class, properties={
  *     "additionalType": "iexact",
- *     "organization": "iexact"
+ *     "organization": "iexact",
+ *     "id": "partial"
  * })
  */
 class Course
