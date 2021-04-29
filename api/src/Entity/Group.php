@@ -34,7 +34,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiFilter(DateFilter::class, properties = {
  *     "startDate", "endDate"
- *     }
+ *     })
  */
 class Group
 {
