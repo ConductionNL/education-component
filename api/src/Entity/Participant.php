@@ -39,7 +39,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     "results.id":"exact",
  *     "status":"exact",
  *     "mentor":"exact",
- *     "id": "exact"
+ *     "id": "exact",
+ *     "program.provider": "iexact"
  * })
  */
 class Participant
