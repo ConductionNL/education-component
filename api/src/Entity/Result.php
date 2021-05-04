@@ -77,7 +77,6 @@ class Result
      *
      * @example 25-09-2022 15:00:00
      *
-     * @Assert\DateTime
      * @Groups({"read", "write"})
      * @ORM\Column(type="datetime", nullable=true)
      */
