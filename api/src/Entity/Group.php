@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use App\Repository\GroupRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -28,8 +29,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=GroupRepository::class)
  *
  * @ApiFilter(SearchFilter::class, properties={
- *     "mentors": "partial"
+ *     "mentors": "partial",
+ *     "course.id": "partial"
  * })
+ *
+ * @ApiFilter(DateFilter::class, properties = {
+ *     "startDate", "endDate"
+ *     })
  */
 class Group
 {

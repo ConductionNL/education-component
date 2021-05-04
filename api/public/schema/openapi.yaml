@@ -2787,6 +2787,12 @@ paths:
           schema:
             type: string
         -
+          name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
           name: page
           in: query
           required: false
@@ -3517,6 +3523,22 @@ paths:
                 items:
                   $ref: '#/components/schemas/EducationEvent-read'
       parameters:
+        -
+          name: participants.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'participants.id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
         -
           name: page
           in: query
@@ -4250,6 +4272,60 @@ paths:
       parameters:
         -
           name: mentors
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: course.id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'startDate[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'startDate[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'startDate[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'startDate[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'endDate[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'endDate[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'endDate[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'endDate[strictly_after]'
           in: query
           required: false
           schema:
@@ -5309,6 +5385,28 @@ paths:
               type: string
           style: form
           explode: true
+        -
+          name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: program.provider
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: page
           in: query
@@ -11394,15 +11492,11 @@ components:
           nullable: true
         startDate:
           description: 'The moment this EducationEvent starts.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         endDate:
           description: 'The moment this EducationEvent ends.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -11460,15 +11554,11 @@ components:
           nullable: true
         startDate:
           description: 'The moment this EducationEvent starts.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         endDate:
           description: 'The moment this EducationEvent ends.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -11528,15 +11618,11 @@ components:
           nullable: true
         startDate:
           description: 'The moment this EducationEvent starts.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         endDate:
           description: 'The moment this EducationEvent ends.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -11603,15 +11689,11 @@ components:
           nullable: true
         startDate:
           description: 'The moment this EducationEvent starts.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         endDate:
           description: 'The moment this EducationEvent ends.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -13006,8 +13088,6 @@ components:
           nullable: true
         completionDate:
           description: 'The moment this Result had status: completed.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -13052,8 +13132,6 @@ components:
           nullable: true
         completionDate:
           description: 'The moment this Result had status: completed.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -13098,8 +13176,6 @@ components:
           nullable: true
         completionDate:
           description: 'The moment this Result had status: completed.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -13153,8 +13229,6 @@ components:
           nullable: true
         completionDate:
           description: 'The moment this Result had status: completed.'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -13899,14 +13973,12 @@ definitions:
         maxLength: 255
       startDate:
         description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2021-04-19 15:11:38'
-        format: date-time
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
       endDate:
         description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2021-04-19 15:11:38'
-        format: date-time
+        type: \DateTime
+        example: '13-07-2020 15:00:00'
       dateCreated:
         description: 'The moment this EducationEvent was created'
         type: \Datetime
@@ -13951,14 +14023,12 @@ definitions:
         maxLength: 255
       startDate:
         description: 'The moment this EducationEvent starts.'
-        type: string
-        example: '2021-04-19 15:11:38'
-        format: date-time
+        type: \DateTime
+        example: '13-07-2020 13:00:00'
       endDate:
         description: 'The moment this EducationEvent ends.'
-        type: string
-        example: '2021-04-19 15:11:38'
-        format: date-time
+        type: \DateTime
+        example: '13-07-2020 15:00:00'
       organizer:
         description: 'An organizer of an Event.'
         type: string
@@ -14188,22 +14258,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -14319,22 +14389,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -14521,9 +14591,8 @@ definitions:
         maxLength: 255
       completionDate:
         description: 'The moment this Result had status: completed.'
-        type: string
-        example: '2021-04-19 15:11:38'
-        format: date-time
+        type: \DateTime
+        example: '25-09-2022 15:00:00'
       resource:
         description: 'The resource of which this result is a result.'
         type: string
@@ -14554,9 +14623,8 @@ definitions:
         maxLength: 255
       completionDate:
         description: 'The moment this Result had status: completed.'
-        type: string
-        example: '2021-04-19 15:11:38'
-        format: date-time
+        type: \DateTime
+        example: '25-09-2022 15:00:00'
       resource:
         description: 'The resource of which this result is a result.'
         type: string
@@ -14834,12 +14902,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
     required: []
   AuditTrail-write:
     properties:
@@ -14887,12 +14955,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-04-19 15:11:38'
+        example: '2021-05-04 08:34:57'
     required: []
   ChangeLog-write:
     properties:
