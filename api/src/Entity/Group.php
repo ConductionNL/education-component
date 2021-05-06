@@ -29,8 +29,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=GroupRepository::class)
  *
  * @ApiFilter(SearchFilter::class, properties={
- *     "mentors": "partial",
- *     "course.id": "partial"
+ *      "mentors": "partial",
+ *      "course.id": "partial",
+ *      "id": "partial"
  * })
  *
  * @ApiFilter(DateFilter::class, properties = {
