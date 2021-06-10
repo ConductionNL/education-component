@@ -31,6 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(SearchFilter::class, properties={
  *      "mentors": "partial",
  *      "course.id": "partial",
+ *      "course.organization": "partial",
  *      "id": "partial"
  * })
  *
