@@ -36,11 +36,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     "person":"exact",
  *     "course.id":"exact",
  *     "program.id":"exact",
+ *     "program.provider": "iexact",
  *     "results.id":"exact",
  *     "status":"exact",
  *     "mentor":"exact",
  *     "id": "exact",
- *     "program.provider": "iexact"
+ *     "participantGroups.id": "exact"
  * })
  */
 class Participant
