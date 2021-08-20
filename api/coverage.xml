@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1629203197">
-  <project timestamp="1629203197">
+<coverage generated="1629449800">
+  <project timestamp="1629449800">
     <file name="/srv/api/src/Controller/UserController.php">
       <class name="App\Controller\UserController" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
@@ -1079,63 +1079,63 @@
       <class name="App\Entity\Result" namespace="global">
         <metrics complexity="23" methods="20" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="0" elements="56" coveredelements="0"/>
       </class>
-      <line num="131" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="133" type="stmt" count="0"/>
-      <line num="134" type="stmt" count="0"/>
-      <line num="136" type="method" name="getId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="138" type="stmt" count="0"/>
-      <line num="141" type="method" name="setId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="129" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="131" type="stmt" count="0"/>
+      <line num="132" type="stmt" count="0"/>
+      <line num="134" type="method" name="getId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="136" type="stmt" count="0"/>
+      <line num="139" type="method" name="setId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="141" type="stmt" count="0"/>
       <line num="143" type="stmt" count="0"/>
-      <line num="145" type="stmt" count="0"/>
-      <line num="148" type="method" name="getName" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="150" type="stmt" count="0"/>
-      <line num="153" type="method" name="setName" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="146" type="method" name="getName" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="148" type="stmt" count="0"/>
+      <line num="151" type="method" name="setName" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="153" type="stmt" count="0"/>
       <line num="155" type="stmt" count="0"/>
-      <line num="157" type="stmt" count="0"/>
-      <line num="160" type="method" name="getDescription" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="162" type="stmt" count="0"/>
-      <line num="165" type="method" name="setDescription" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="158" type="method" name="getDescription" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="160" type="stmt" count="0"/>
+      <line num="163" type="method" name="setDescription" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="165" type="stmt" count="0"/>
       <line num="167" type="stmt" count="0"/>
-      <line num="169" type="stmt" count="0"/>
-      <line num="172" type="method" name="getCompletionDate" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="174" type="stmt" count="0"/>
-      <line num="177" type="method" name="setCompletionDate" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="170" type="method" name="getCompletionDate" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="172" type="stmt" count="0"/>
+      <line num="175" type="method" name="setCompletionDate" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="177" type="stmt" count="0"/>
       <line num="179" type="stmt" count="0"/>
-      <line num="181" type="stmt" count="0"/>
-      <line num="184" type="method" name="getParticipant" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="186" type="stmt" count="0"/>
-      <line num="189" type="method" name="setParticipant" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="182" type="method" name="getParticipant" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="184" type="stmt" count="0"/>
+      <line num="187" type="method" name="setParticipant" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="189" type="stmt" count="0"/>
       <line num="191" type="stmt" count="0"/>
-      <line num="193" type="stmt" count="0"/>
-      <line num="196" type="method" name="getResource" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="198" type="stmt" count="0"/>
-      <line num="201" type="method" name="setResource" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="194" type="method" name="getResource" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="196" type="stmt" count="0"/>
+      <line num="199" type="method" name="setResource" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="201" type="stmt" count="0"/>
       <line num="203" type="stmt" count="0"/>
-      <line num="205" type="stmt" count="0"/>
-      <line num="211" type="method" name="getReviews" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="213" type="stmt" count="0"/>
-      <line num="216" type="method" name="addReview" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="209" type="method" name="getReviews" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="211" type="stmt" count="0"/>
+      <line num="214" type="method" name="addReview" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="216" type="stmt" count="0"/>
+      <line num="217" type="stmt" count="0"/>
       <line num="218" type="stmt" count="0"/>
-      <line num="219" type="stmt" count="0"/>
-      <line num="220" type="stmt" count="0"/>
-      <line num="223" type="stmt" count="0"/>
-      <line num="226" type="method" name="removeReview" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="228" type="stmt" count="0"/>
+      <line num="221" type="stmt" count="0"/>
+      <line num="224" type="method" name="removeReview" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="226" type="stmt" count="0"/>
+      <line num="227" type="stmt" count="0"/>
       <line num="229" type="stmt" count="0"/>
-      <line num="231" type="stmt" count="0"/>
-      <line num="232" type="stmt" count="0"/>
-      <line num="236" type="stmt" count="0"/>
-      <line num="239" type="method" name="getDateCreated" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="241" type="stmt" count="0"/>
-      <line num="244" type="method" name="setDateCreated" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="230" type="stmt" count="0"/>
+      <line num="234" type="stmt" count="0"/>
+      <line num="237" type="method" name="getDateCreated" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="239" type="stmt" count="0"/>
+      <line num="242" type="method" name="setDateCreated" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="244" type="stmt" count="0"/>
       <line num="246" type="stmt" count="0"/>
-      <line num="248" type="stmt" count="0"/>
-      <line num="251" type="method" name="getDateModified" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="253" type="stmt" count="0"/>
-      <line num="256" type="method" name="setDateModified" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="249" type="method" name="getDateModified" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="251" type="stmt" count="0"/>
+      <line num="254" type="method" name="setDateModified" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="256" type="stmt" count="0"/>
       <line num="258" type="stmt" count="0"/>
-      <line num="260" type="stmt" count="0"/>
-      <metrics loc="262" ncloc="167" classes="1" methods="20" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="0" elements="56" coveredelements="0"/>
+      <metrics loc="260" ncloc="167" classes="1" methods="20" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="0" elements="56" coveredelements="0"/>
     </file>
     <file name="/srv/api/src/Entity/Review.php">
       <class name="App\Entity\Review" namespace="global">
@@ -1492,6 +1492,6 @@
       <line num="20" type="stmt" count="0"/>
       <metrics loc="50" ncloc="17" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
     </file>
-    <metrics files="27" loc="5343" ncloc="3403" classes="27" methods="362" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="968" coveredstatements="0" elements="1330" coveredelements="0"/>
+    <metrics files="27" loc="5341" ncloc="3403" classes="27" methods="362" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="968" coveredstatements="0" elements="1330" coveredelements="0"/>
   </project>
 </coverage>
