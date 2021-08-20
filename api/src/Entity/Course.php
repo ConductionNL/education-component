@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\CourseRepository;
 use DateTime;
@@ -27,7 +26,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass=CourseRepository::class)
  *
- * @ApiFilter(SearchFilter::class, properties={"additionalType": "iexact", "organization": "iexact"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "additionalType": "iexact",
+ *     "organization": "iexact",
+ *     "id": "partial"
+ * })
  */
 class Course
 {
@@ -168,13 +171,6 @@ class Course
     private ?string $educationalCredentialAwarded;
 
     /**
-     * @ApiSubresource(maxDepth=1)
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="course")
-     */
-    private Collection $results;
-
-    /**
      * @var Datetime The moment this Course was created
      *
      * @Groups({"read"})
@@ -193,8 +189,7 @@ class Course
     private ?DateTime $dateModified;
 
     /**
-     * @ApiSubresource(maxDepth=1)
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course")
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course", cascade={"remove"})
      * @MaxDepth(1)
      */
     private Collection $participants;
@@ -215,7 +210,6 @@ class Course
 
     /**
      * @Groups({"read","write"})
-     * @ApiSubresource(maxDepth=1)
      * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)
      */
@@ -285,13 +279,20 @@ class Course
      */
     private ?string $timeRequired;
 
+    /**
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="course", cascade={"remove"})
+     * @MaxDepth(1)
+     */
+    private Collection $courseGroups;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
         $this->programs = new ArrayCollection();
         $this->educationEvents = new ArrayCollection();
         $this->activities = new ArrayCollection();
-        $this->results = new ArrayCollection();
+        $this->courseGroups = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -641,30 +642,29 @@ class Course
     }
 
     /**
-     * @return Collection|Result[]
+     * @return Collection|Group[]
      */
-    public function getResults(): Collection
+    public function getCourseGroups(): Collection
     {
-        return $this->results;
+        return $this->courseGroups;
     }
 
-    public function addResult(Result $result): self
+    public function addCourseGroup(Group $courseGroup): self
     {
-        if (!$this->results->contains($result)) {
-            $this->results[] = $result;
-            $result->setCourse($this);
+        if (!$this->courseGroups->contains($courseGroup)) {
+            $this->courseGroups[] = $courseGroup;
+            $courseGroup->setCourse($this);
         }
 
         return $this;
     }
 
-    public function removeResult(Result $result): self
+    public function removeCourseGroup(Group $courseGroup): self
     {
-        if ($this->results->contains($result)) {
-            $this->results->removeElement($result);
+        if ($this->courseGroups->removeElement($courseGroup)) {
             // set the owning side to null (unless already changed)
-            if ($result->getCourse() === $this) {
-                $result->setCourse(null);
+            if ($courseGroup->getCourse() === $this) {
+                $courseGroup->setCourse(null);
             }
         }
 

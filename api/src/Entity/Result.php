@@ -24,7 +24,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass=ResultRepository::class)
  *
- * @ApiFilter(SearchFilter::class, properties={"participant.id":"exact","activity.id":"exact"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "participant.id":"exact",
+ *     "participant.person":"exact"
+ * })
  */
 class Result
 {
@@ -74,7 +77,6 @@ class Result
      *
      * @example 25-09-2022 15:00:00
      *
-     * @Assert\DateTime
      * @Groups({"read", "write"})
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -85,42 +87,28 @@ class Result
      * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="results")
      * @MaxDepth(1)
      */
-    private $participant;
+    private ?Participant $participant;
 
     /**
-     * @MaxDepth(1)
+     * @var string The resource of which this result is a result.
+     *
+     * @example https://zuid-drecht.nl/api/v1/edu/tests/{{uuid}}
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="results")
+     * @ORM\Column(type="string", length=255)
      */
-    private $activity;
-
-    /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Test::class, inversedBy="results")
-     */
-    private $test;
-
-    /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="results")
-     */
-    private $course;
-
-    /**
-     * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="results")
-     */
-    private $program;
+    private $resource;
 
     /**
      * @MaxDepth(1)
      * @Groups({"read", "write"})
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="result", orphanRemoval=true)
      */
-    private $reviews;
+    private Collection $reviews;
 
     /**
      * @var Datetime The moment this Result was created
@@ -193,7 +181,7 @@ class Result
         return $this;
     }
 
-    public function getParticipant(): ?string
+    public function getParticipant(): ?Participant
     {
         return $this->participant;
     }
@@ -205,50 +193,14 @@ class Result
         return $this;
     }
 
-    public function getActivity(): ?Activity
+    public function getResource(): ?string
     {
-        return $this->activity;
+        return $this->resource;
     }
 
-    public function setActivity(?Activity $activity): self
+    public function setResource(string $resource): self
     {
-        $this->activity = $activity;
-
-        return $this;
-    }
-
-    public function getTest(): ?Test
-    {
-        return $this->test;
-    }
-
-    public function setTest(?Test $test): self
-    {
-        $this->test = $test;
-
-        return $this;
-    }
-
-    public function getCourse(): ?Course
-    {
-        return $this->course;
-    }
-
-    public function setCourse(?Course $course): self
-    {
-        $this->course = $course;
-
-        return $this;
-    }
-
-    public function getProgram(): ?Program
-    {
-        return $this->program;
-    }
-
-    public function setProgram(?Program $program): self
-    {
-        $this->program = $program;
+        $this->resource = $resource;
 
         return $this;
     }

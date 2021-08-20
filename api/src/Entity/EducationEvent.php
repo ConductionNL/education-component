@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\EducationEventRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -21,6 +25,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
  * )
  * @ORM\Entity(repositoryClass=EducationEventRepository::class)
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "participants.id": "exact"
+ * })
  */
 class EducationEvent
 {
@@ -109,7 +116,6 @@ class EducationEvent
      *
      * @example 13-07-2020 13:00:00
      *
-     * @Assert\DateTime
      * @Groups({"read", "write"})
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -120,7 +126,6 @@ class EducationEvent
      *
      * @example 13-07-2020 15:00:00
      *
-     * @Assert\DateTime
      * @Groups({"read", "write"})
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -147,10 +152,32 @@ class EducationEvent
     /**
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="educationEvents")
-     * @ORM\JoinColumn(nullable=false)
      * @MaxDepth(1)
      */
-    private $course;
+    private ?Course $course;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="educationEvents")
+     * @MaxDepth(1)
+     */
+    private Collection $participants;
+
+    /**
+     * @var string An organizer of an Event.
+     *
+     * @example https://cc.zuid-drecht.nl/people/{{uuid}]
+     *
+     * @Assert\Url
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $organizer;
+
+    public function __construct()
+    {
+        $this->participants = new ArrayCollection();
+    }
 
     public function getId(): Uuid
     {
@@ -280,6 +307,42 @@ class EducationEvent
     public function setCourse(?Course $course): self
     {
         $this->course = $course;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participant[]
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): self
+    {
+        $this->participants->removeElement($participant);
+
+        return $this;
+    }
+
+    public function getOrganizer(): ?string
+    {
+        return $this->organizer;
+    }
+
+    public function setOrganizer(?string $organizer): self
+    {
+        $this->organizer = $organizer;
 
         return $this;
     }

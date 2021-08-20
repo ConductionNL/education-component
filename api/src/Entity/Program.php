@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\ProgramRepository;
 use DateTime;
@@ -347,24 +346,17 @@ class Program
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program")
-     * @ApiSubresource(maxDepth=1)
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program", cascade={"remove"})
+     * @MaxDepth(1)
      */
-    private $participants;
+    private Collection $participants;
 
     /**
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist"})
-     * @ApiSubresource(maxDepth=1)
-     */
-    private $courses;
-
-    /**
+     * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist","remove"})
      * @MaxDepth(1)
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="program")
      */
-    private $results;
+    private Collection $courses;
 
     /**
      * @var Datetime The moment this Program was created
@@ -388,7 +380,6 @@ class Program
     {
         $this->participants = new ArrayCollection();
         $this->courses = new ArrayCollection();
-        $this->results = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -752,37 +743,6 @@ class Program
     {
         if ($this->courses->contains($course)) {
             $this->courses->removeElement($course);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Result[]
-     */
-    public function getResults(): Collection
-    {
-        return $this->results;
-    }
-
-    public function addResult(Result $result): self
-    {
-        if (!$this->results->contains($result)) {
-            $this->results[] = $result;
-            $result->setProgram($this);
-        }
-
-        return $this;
-    }
-
-    public function removeResult(Result $result): self
-    {
-        if ($this->results->contains($result)) {
-            $this->results->removeElement($result);
-            // set the owning side to null (unless already changed)
-            if ($result->getProgram() === $this) {
-                $result->setProgram(null);
-            }
         }
 
         return $this;

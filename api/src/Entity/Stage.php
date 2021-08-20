@@ -129,7 +129,7 @@ class Stage
      * @ORM\ManyToOne(targetEntity=Test::class, inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $test;
+    private ?Test $test;
 
     /**
      * @var ArrayCollection the questions of this stage
