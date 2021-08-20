@@ -50,12 +50,11 @@ class Result
      *
      * @example Result1
      *
-     * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
      * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
@@ -94,12 +93,11 @@ class Result
      *
      * @example https://zuid-drecht.nl/api/v1/edu/tests/{{uuid}}
      *
-     * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
      * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $resource;
 
