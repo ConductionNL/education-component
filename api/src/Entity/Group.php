@@ -83,15 +83,18 @@ class Group
     private $description;
 
     /**
+     *
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="participantGroups", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="participantGroups", cascade={"remove", "persist"})
      * @MaxDepth(1)
      */
-    private Collection $participants;
+    private $participants;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="courseGroups")
+     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="courseGroups", cascade={"persist"})
      * @MaxDepth(1)
      */
     private ?Course $course;

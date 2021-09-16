@@ -75,25 +75,28 @@ class Participant
     private $person;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="participants", cascade={"persist"})
      * @MaxDepth(1)
      */
     private ?Program $program;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="participants")
+     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="participants", cascade={"persist"})
      * @MaxDepth(1)
      */
     private ?Course $course;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="participant", cascade={"remove", "persist"})
      * @MaxDepth(1)
      */
-    private Collection $results;
+    private $results;
 
     /**
      * @var Datetime The moment this Participant was created
@@ -121,6 +124,9 @@ class Participant
      * @Groups({"read", "write"})
      * @Assert\Choice({"pending", "accepted", "rejected", "completed", "active"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $status;
 
@@ -141,6 +147,9 @@ class Participant
      *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $motivation;
 
@@ -152,6 +161,9 @@ class Participant
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $mentor;
 
@@ -198,15 +210,17 @@ class Participant
     private $type;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants")
+     * @ORM\ManyToMany(targetEntity=Group::class, mappedBy="participants", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $participantGroups;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=EducationEvent::class, mappedBy="participants")
+     * @ORM\ManyToMany(targetEntity=EducationEvent::class, mappedBy="participants", cascade={"persist"})
      * @MaxDepth(1)
      */
     private $educationEvents;

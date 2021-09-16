@@ -345,13 +345,15 @@ class Program
     private $typicalCreditsPerTerm;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="program", cascade={"remove", "persist"})
      * @MaxDepth(1)
      */
     private Collection $participants;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Course::class, inversedBy="programs", cascade={"persist","remove"})
      * @MaxDepth(1)
