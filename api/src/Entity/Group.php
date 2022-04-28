@@ -83,7 +83,6 @@ class Group
     private $description;
 
     /**
-     *
      * @Assert\Valid()
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="participantGroups", cascade={"remove", "persist"})
