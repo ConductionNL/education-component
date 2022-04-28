@@ -78,20 +78,20 @@ class Course
     private string $organization;
 
     /**
-     * @var string The description of this Course.
+     * @var string|null The description of this Course.
      *
      * @example Deze cursus leert je de basics van werken met scrum en Github.
      *
      * @Assert\Length(
-     *     max = 255
+     *     max = 2550
      * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=2550, nullable=true)
      */
     private ?string $description;
 
     /**
-     * @var string The actual content of this Course.
+     * @var string|null The actual content of this Course.
      *
      * @example Github is echt awsome
      *
@@ -101,7 +101,7 @@ class Course
     private ?string $text;
 
     /**
-     * @var string The courseCode of this Course.
+     * @var string|null The courseCode of this Course.
      *
      * @example SG123
      *
@@ -114,7 +114,7 @@ class Course
     private ?string $courseCode;
 
     /**
-     * @var array The coursePrerequisites of this Course.
+     * @var array|null The coursePrerequisites of this Course.
      *
      * @Groups({"read", "write"})
      * @ORM\Column(type="array", nullable=true)
@@ -122,7 +122,7 @@ class Course
     private ?array $coursePrerequisites;
 
     /**
-     * @var string An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.
+     * @var string|null An instance of a Course which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students.
      *
      * @example https://edu.conduction.nl/courses
      *
@@ -135,7 +135,7 @@ class Course
     private ?string $hasCourseInstance;
 
     /**
-     * @var int The numberOfCredits of this Course.
+     * @var int|null The numberOfCredits of this Course.
      *
      * @example 5
      *
@@ -145,7 +145,7 @@ class Course
     private ?int $numberOfCredits;
 
     /**
-     * @var string A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.
+     * @var string|null A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program.
      *
      * @example Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.
      *
@@ -158,7 +158,7 @@ class Course
     private ?string $occupationalCredentialAwarded;
 
     /**
-     * @var string A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.
+     * @var string|null A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program.
      *
      * @example Beschrijving van wat je krijgt bij het halen van deze cursus, bijvoorbeeld een certificaat.
      *
@@ -189,34 +189,38 @@ class Course
     private ?DateTime $dateModified;
 
     /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course", cascade={"remove"})
+     * @Assert\Valid()
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="course", cascade={"remove", "persist"})
      * @MaxDepth(1)
      */
-    private Collection $participants;
+    private $participants;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
      * @ORM\ManyToMany(targetEntity=Program::class, mappedBy="courses", cascade={"persist"})
      * @MaxDepth(1)
      */
-    private Collection $programs;
+    private $programs;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity=EducationEvent::class, mappedBy="course", orphanRemoval=true, cascade={"persist"})
      * @MaxDepth(1)
      */
-    private Collection $educationEvents;
+    private $educationEvents;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="course", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)
      */
-    private Collection $activities;
+    private $activities;
 
     /**
-     * @var array An array of URLs pointing to skills related to this course
+     * @var array|null An array of URLs pointing to skills related to this course
      *
      * @ORM\Column(type="simple_array", nullable=true)
      * @Groups({"read","write"})
@@ -224,7 +228,7 @@ class Course
     private ?array $skills = [];
 
     /**
-     * @var array An array of URLs pointing to competences this course teaches the participant
+     * @var array|null An array of URLs pointing to competences this course teaches the participant
      *
      * @ORM\Column(type="simple_array", nullable=true)
      * @Groups({"read","write"})
@@ -232,7 +236,7 @@ class Course
     private ?array $competences = [];
 
     /**
-     * @var array An array of URLs pointing to products from the pdc related to this course
+     * @var array|null An array of URLs pointing to products from the pdc related to this course
      *
      * @ORM\Column(type="simple_array", nullable=true)
      * @Groups({"read","write"})
@@ -240,7 +244,7 @@ class Course
     private ?array $products = [];
 
     /**
-     * @var string The Type of this course.
+     * @var string|null The Type of this course.
      *
      * @example Elearning, Readthrough, Skilltest.
      *
@@ -253,7 +257,7 @@ class Course
     private ?string $additionalType;
 
     /**
-     * @var string The url linking to a video which belongs to this course
+     * @var string|null The url linking to a video which belongs to this course
      *
      * @example https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9
      *
@@ -267,7 +271,7 @@ class Course
     private ?string $video;
 
     /**
-     * @var string The time Required to complete this Course.
+     * @var string|null The time Required to complete this Course.
      *
      * @example Deze cursus leert je de basics van werken met scrum en Github. Based on schema.org
      *
@@ -280,11 +284,12 @@ class Course
     private ?string $timeRequired;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="course", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity=Group::class, mappedBy="course", cascade={"remove", "persist"})
      * @MaxDepth(1)
      */
-    private Collection $courseGroups;
+    private $courseGroups;
 
     public function __construct()
     {

@@ -65,10 +65,10 @@ class Activity
      * @example Beschrijving van Activity1.
      *
      * @Assert\Length(
-     *     max = 255
+     *     max = 2550
      * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=2550, nullable=true)
      */
     private $description;
 
@@ -87,15 +87,18 @@ class Activity
      * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="activities")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull
      */
     private ?Course $course;
 
     /**
      * Could be 'assignment', 'group work' or 'test'.
      *
-     *
+     * @Assert\Length(
+     *     max = 255
+     * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $educationalUse;
 
@@ -118,6 +121,7 @@ class Activity
     private $dateModified;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
      * @ORM\OneToMany(targetEntity=Test::class, mappedBy="activity", orphanRemoval=true,cascade={"persist"})
      * @MaxDepth(1)

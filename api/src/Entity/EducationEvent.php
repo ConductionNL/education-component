@@ -65,10 +65,10 @@ class EducationEvent
      * @example Dit is de eerste online les over Github.
      *
      * @Assert\Length(
-     *     max = 255
+     *     max = 2550
      * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=2550, nullable=true)
      */
     private $description;
 
@@ -150,15 +150,17 @@ class EducationEvent
     private $dateModified;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="educationEvents")
+     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="educationEvents", cascade={"persist"})
      * @MaxDepth(1)
      */
     private ?Course $course;
 
     /**
+     * @Assert\Valid()
      * @Groups({"read","write"})
-     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="educationEvents")
+     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="educationEvents", cascade={"persist"})
      * @MaxDepth(1)
      */
     private Collection $participants;
@@ -171,6 +173,9 @@ class EducationEvent
      * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max = 255
+     * )
      */
     private $organizer;
 
