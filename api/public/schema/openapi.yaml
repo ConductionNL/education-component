@@ -13109,6 +13109,7 @@ components:
         name:
           description: 'The name of this Result.'
           type: string
+          nullable: true
         description:
           description: 'The description of this Result.'
           type: string
@@ -13126,6 +13127,7 @@ components:
         resource:
           description: 'The resource of which this result is a result.'
           type: string
+          nullable: true
         reviews:
           type: array
           items:
@@ -13140,19 +13142,14 @@ components:
           type: string
           format: date-time
           nullable: true
-      required:
-        - name
-        - resource
     Result-write:
       type: object
       description: ''
-      required:
-        - name
-        - resource
       properties:
         name:
           description: 'The name of this Result.'
           type: string
+          nullable: true
         description:
           description: 'The description of this Result.'
           type: string
@@ -13170,6 +13167,7 @@ components:
         resource:
           description: 'The resource of which this result is a result.'
           type: string
+          nullable: true
         reviews:
           type: array
           items:
@@ -13197,6 +13195,7 @@ components:
         name:
           description: 'The name of this Result.'
           type: string
+          nullable: true
         description:
           description: 'The description of this Result.'
           type: string
@@ -13214,6 +13213,7 @@ components:
         resource:
           description: 'The resource of which this result is a result.'
           type: string
+          nullable: true
         reviews:
           type: array
           items:
@@ -13228,15 +13228,9 @@ components:
           type: string
           format: date-time
           nullable: true
-      required:
-        - name
-        - resource
     'Result:jsonld-write':
       type: object
       description: ''
-      required:
-        - name
-        - resource
       properties:
         '@context':
           readOnly: true
@@ -13250,6 +13244,7 @@ components:
         name:
           description: 'The name of this Result.'
           type: string
+          nullable: true
         description:
           description: 'The description of this Result.'
           type: string
@@ -13267,6 +13262,7 @@ components:
         resource:
           description: 'The resource of which this result is a result.'
           type: string
+          nullable: true
         reviews:
           type: array
           items:
@@ -13881,22 +13877,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -14012,22 +14008,22 @@ definitions:
       applicationStartDate:
         description: 'The day that people can start to apply for this Program.'
         type: string
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
         format: date-time
       applicationDeadline:
         description: 'The day that people can no longer apply for this Program.'
         type: string
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
         format: date-time
       startDate:
         description: 'The moment this Program starts.'
         type: string
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
         format: date-time
       endDate:
         description: 'The moment this Program ends.'
         type: string
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
         format: date-time
       financialAidEligible:
         description: 'The financialAidEligible of this Program.'
@@ -14743,9 +14739,7 @@ definitions:
         type: \Datetime
       participant: []
       reviews: []
-    required:
-      - name
-      - resource
+    required: []
   Result-write:
     properties:
       name:
@@ -14769,9 +14763,7 @@ definitions:
         maxLength: 255
       participant: []
       reviews: []
-    required:
-      - name
-      - resource
+    required: []
   Activity-read:
     properties:
       id:
@@ -14863,12 +14855,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
     required: []
   ChangeLog-write:
     properties:
@@ -14982,12 +14974,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-08-17 12:26:36'
+        example: '2021-08-20 08:56:38'
     required: []
   AuditTrail-write:
     properties:
